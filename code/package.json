@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "w2 proxy && w2 start && w2 use --force && pnpm exec tsx index2.ts",
+    "start": "pnpm exec tsx index.ts",
     "build": "cd football_view && pnpm build"
   },
   "keywords": [],

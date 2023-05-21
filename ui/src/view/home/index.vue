@@ -56,18 +56,22 @@ type D = {
 // const dataList = ref<Game[]>([]);
 const dataSource = ref<D[]>([]);
 // 全局r变量
-const ws = new WebSocket('ws://127.0.0.1:8081');
 const pagination: TableProps['pagination'] = {
   pageSize: 300,
 };
-onMounted(() => {
-  ws.addEventListener('message', (mes) => {
-    const data = JSON.parse(mes.data);
-    message.info('数据已更新');
+onMounted(async () => {
+  setInterval(async () => {
+    const res = await fetch('http://127.0.0.1:9000/data')
+    const data = await res.json()
     if (data?.length) {
       dataSource.value = data;
     }
-  });
+  }, 15*1000)
+  const res = await fetch('http://127.0.0.1:9000/data')
+  const data = await res.json()
+  if (data?.length) {
+    dataSource.value = data;
+  }
 });
 
 
