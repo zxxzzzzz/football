@@ -108,7 +108,7 @@ onMounted(async () => {
     if (!document.hidden) {
       await getData();
     }
-  }, 10 * 1000);
+  }, 5 * 1000);
 });
 
 const onClose = () => {
