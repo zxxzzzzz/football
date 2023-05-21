@@ -289,10 +289,7 @@ export function compare(dataList: ReturnType<typeof toData>, c = 0.13, a = 1, cR
 }
 
 export const saveFile = (fileName: string, data: string) => {
-  let path = './';
-  if (fs.existsSync('/home/app')) {
-    path = '/home/app/';
-  }
+  const path = './';
   const pPath = parse(resolve(path, fileName));
   if (!fs.existsSync(pPath.dir)) {
     fs.mkdirSync(pPath.dir, { recursive: true });
@@ -301,10 +298,7 @@ export const saveFile = (fileName: string, data: string) => {
 };
 
 export function getStore() {
-  let path = './store.json';
-  if (fs.existsSync(nasPath)) {
-    path = nasPath + '/store.json';
-  }
+  const path = './store.json';
   if (!fs.existsSync(path)) {
     fs.writeFileSync(
       path,
@@ -348,10 +342,7 @@ export function getStore() {
   };
 }
 export const log = (msg: string) => {
-  let path = './log.json';
-  if (fs.existsSync(nasPath)) {
-    path = nasPath + '/log.json';
-  }
+  const path = './log.json';
   if (!fs.existsSync(path)) {
     fs.writeFileSync(path, JSON.stringify({ data: [] }), { encoding: 'utf-8' });
   }
@@ -361,10 +352,7 @@ export const log = (msg: string) => {
   fs.writeFileSync(path, Format({ data: l.slice(Math.max(l.length - 100, 0)) }));
 };
 export const getLogHistory = () => {
-  let path = './data/log.json';
-  if (fs.existsSync(nasPath)) {
-    path = nasPath + '/log.json';
-  }
+  const path = './log.json';
   if (!fs.existsSync(path)) {
     fs.writeFileSync(path, JSON.stringify({ data: [] }), { encoding: 'utf-8' });
   }
