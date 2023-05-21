@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "pnpm exec tsx index.ts",
+    "start": "pnpm exec tsx ./src/index.ts",
     "build": "cd football_view && pnpm build"
   },
   "keywords": [],

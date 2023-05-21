@@ -53,7 +53,7 @@ export const isLeagueEqual = (l1: string, l2: string) => {
     ['欧罗巴联赛', '欧洲联赛'],
     ['韩国K甲组联赛', '韩国职业联赛'],
     ['日本J1联赛', '日本职业联赛'],
-    ['日本J2联赛', '日本职业乙级联赛'],
+    ['日本J2联赛', '日本职业乙级联赛', '日本乙级联赛'],
     ['英格兰冠军联赛-附加赛', '英格兰冠军联赛'],
   ];
   const isEqual = !!equalNameList.find((d) => d.includes(l1) && d.includes(l2));

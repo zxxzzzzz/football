@@ -60,20 +60,22 @@ const pagination: TableProps['pagination'] = {
   pageSize: 300,
 };
 onMounted(async () => {
+  const origin = location.origin;
   setInterval(async () => {
-    const res = await fetch('http://todolist.web-framework.1048992591952509.cn-hangzhou.fc.devsapp.net/data')
-    const data = await res.json()
-    if (data?.length) {
-      dataSource.value = data;
+    if(!document.hidden){
+      const res = await fetch(origin + '/data');
+      const data = await res.json();
+      if (data?.length) {
+        dataSource.value = data;
+      }
     }
-  }, 15*1000)
-  const res = await fetch('http://todolist.web-framework.1048992591952509.cn-hangzhou.fc.devsapp.net/data')
-  const data = await res.json()
+  }, 10 * 1000);
+  const res = await fetch(origin + '/data');
+  const data = await res.json();
   if (data?.length) {
     dataSource.value = data;
   }
 });
-
 
 const rowClassName: TableProps['rowClassName'] = (_, index) => {
   const m = ['bg-white', 'bg-gray-100'];

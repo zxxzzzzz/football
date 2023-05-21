@@ -8,7 +8,6 @@ import { MatchInfo } from './type';
 const _fetch = import('node-fetch');
 import { getStore } from './util';
 
-
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
 
 function obj2Str(bodyObj: { [key: string]: string | number }) {
@@ -25,7 +24,8 @@ function retryWrap<T extends any[], R>(cb: (...args: T) => R, count: number) {
     let _error: any = void 0;
     for (let index = 0; index < count; index++) {
       try {
-        return await cb(...args);
+        const d = await cb(...args);
+        return d
       } catch (error) {
         _error = error;
       }
@@ -52,11 +52,8 @@ type Game = {
   teamList: string[];
 };
 
-
-
-
 export async function getTiCaiByFetch() {
-  const fetch = (await _fetch).default
+  const fetch = (await _fetch).default;
   const res = await fetch('https://webapi.sporttery.cn/gateway/jc/football/getMatchCalculatorV1.qry?poolCode=hhad,had&channel=c', {
     headers: {
       accept: 'application/json, text/javascript, */*; q=0.01',
@@ -131,7 +128,7 @@ async function getGameListByNodeFetch(url: string, ver: string, uid: string, lid
   };
   const _url = new URL(url);
   const bodyStr = obj2Str(body);
-  const fetch = (await _fetch).default
+  const fetch = (await _fetch).default;
   const res = await fetch(`${_url.origin}/transform.php?ver=${ver}`, {
     headers: {
       accept: '*/*',
@@ -205,7 +202,7 @@ export async function getGameOBTByNodeFetch(
   };
   const _url = new URL(url);
   const bodyStr = obj2Str(body);
-  const fetch = (await _fetch).default
+  const fetch = (await _fetch).default;
   const res = await fetch(`${_url.origin}/transform.php?ver=${ver}`, {
     headers: {
       accept: '*/*',
@@ -231,7 +228,7 @@ export async function getGameOBTByNodeFetch(
   if (gameList?.LEAGUE) {
     gameList = [gameList];
   }
-  const itemList = (gameList || []).map((g:any) => {
+  const itemList = (gameList || []).map((g: any) => {
     const strong = g?.STRONG?._text;
     return [
       strong === 'H'
@@ -277,7 +274,7 @@ export async function getLeagueListAllByNodeFetch(url: string, uid: string, ver:
   };
   const _url = new URL(url);
   const bodyStr = obj2Str(body);
-  const fetch = (await _fetch).default
+  const fetch = (await _fetch).default;
   const res = await fetch(`${_url.origin}/transform.php?ver=${ver}`, {
     headers: {
       accept: '*/*',
@@ -300,9 +297,9 @@ export async function getLeagueListAllByNodeFetch(url: string, uid: string, ver:
   const text = await res.text();
   const mixObj = Convert.xml2js(text, { compact: true }) as any;
   return (mixObj?.serverresponse?.classifier?.region || [])
-    .map((r:any) => {
+    .map((r: any) => {
       const league = r.league?.length ? r.league : [r.league];
-      return league.map((l:any) => {
+      return league.map((l: any) => {
         const name = l._attributes.name;
         const id = l._attributes.id;
         return { name, id };
@@ -312,19 +309,20 @@ export async function getLeagueListAllByNodeFetch(url: string, uid: string, ver:
 }
 export const retryGetLeagueListAllByNodeFetch = retryWrap(getLeagueListAllByNodeFetch, 3);
 
-export async function loginByNodeFetch(username: string, password: string) {
+export async function loginByNodeFetch(username: string, password: string, forceUpdate = false) {
   const { store } = getStore();
   const now = new Date().valueOf();
   // 时间没超过20分钟，不重新请求token
-  if (store.uidTimestamp && now - store.uidTimestamp < 20 * 60 * 1000) {
-    console.log('use cache');
+  if (store.uidTimestamp && now - store.uidTimestamp < 20 * 60 * 1000 && !forceUpdate) {
+    console.log('使用缓存的login token');
     return {
-      uid:store.uid || '',
-      url:store.url || '',
-      ver:store.ver || ''
-    }
+      uid: store.uid || '',
+      url: store.url || '',
+      ver: store.ver || '',
+    };
   }
-  const fetch = (await _fetch).default
+  console.log('更新login token');
+  const fetch = (await _fetch).default;
   const res = await fetch('https://66.133.91.116/', {
     headers: {
       accept:
@@ -424,7 +422,7 @@ export async function loginByNodeFetch(username: string, password: string) {
     const { save, store } = getStore();
     store.uid = uid;
     store.ver = ver;
-    store.uidTimestamp = new Date().valueOf()
+    store.uidTimestamp = new Date().valueOf();
     store.url = `https://${domain}/`;
     save();
   }
