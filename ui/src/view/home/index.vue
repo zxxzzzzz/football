@@ -61,13 +61,13 @@ const pagination: TableProps['pagination'] = {
 };
 onMounted(async () => {
   setInterval(async () => {
-    const res = await fetch('http://127.0.0.1:9000/data')
+    const res = await fetch('http://todolist.web-framework.1048992591952509.cn-hangzhou.fc.devsapp.net/data')
     const data = await res.json()
     if (data?.length) {
       dataSource.value = data;
     }
   }, 15*1000)
-  const res = await fetch('http://127.0.0.1:9000/data')
+  const res = await fetch('http://todolist.web-framework.1048992591952509.cn-hangzhou.fc.devsapp.net/data')
   const data = await res.json()
   if (data?.length) {
     dataSource.value = data;
