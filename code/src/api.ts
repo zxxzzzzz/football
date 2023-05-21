@@ -6,7 +6,7 @@ import dayjs from 'dayjs';
 import { MatchInfo } from './type';
 // import _fetch from;
 const _fetch = import('node-fetch');
-import { getStore } from './util';
+import { getStore, log, saveStore } from './util';
 
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
 
@@ -25,7 +25,7 @@ function retryWrap<T extends any[], R>(cb: (...args: T) => R, count: number) {
     for (let index = 0; index < count; index++) {
       try {
         const d = await cb(...args);
-        return d
+        return d;
       } catch (error) {
         _error = error;
       }
@@ -310,18 +310,17 @@ export async function getLeagueListAllByNodeFetch(url: string, uid: string, ver:
 export const retryGetLeagueListAllByNodeFetch = retryWrap(getLeagueListAllByNodeFetch, 3);
 
 export async function loginByNodeFetch(username: string, password: string, forceUpdate = false) {
-  const { store } = getStore();
+  const store = getStore();
   const now = new Date().valueOf();
   // 时间没超过20分钟，不重新请求token
   if (store.uidTimestamp && now - store.uidTimestamp < 20 * 60 * 1000 && !forceUpdate) {
-    console.log('使用缓存的login token');
+    log('使用缓存的login token');
     return {
       uid: store.uid || '',
       url: store.url || '',
       ver: store.ver || '',
     };
   }
-  console.log('更新login token');
   const fetch = (await _fetch).default;
   const res = await fetch('https://66.133.91.116/', {
     headers: {
@@ -396,35 +395,43 @@ export async function loginByNodeFetch(username: string, password: string, force
     langx: 'zh-cn',
     code: 663,
   };
-  const res3 = await fetch(`https://66.133.91.116/transform.php?ver=${ver}`, {
-    headers: {
-      accept: '*/*',
-      'accept-language': 'zh-CN,zh;q=0.9',
-      'cache-control': 'no-cache',
-      'content-type': 'application/x-www-form-urlencoded',
-      pragma: 'no-cache',
-      'sec-ch-ua': '"Google Chrome";v="113", "Chromium";v="113", "Not-A.Brand";v="24"',
-      'sec-ch-ua-mobile': '?0',
-      'sec-ch-ua-platform': '"Windows"',
-      'sec-fetch-dest': 'empty',
-      'sec-fetch-mode': 'cors',
-      'sec-fetch-site': 'same-origin',
-      Referer: 'https://extraa.com/',
-      'Referrer-Policy': 'strict-origin-when-cross-origin',
-    },
-    body: obj2Str(body3),
-    method: 'POST',
-  });
-  const text3 = await res3.text();
-  const mixObj3 = Convert.xml2js(text3, { compact: true }) as any;
-  const domain = mixObj3?.serverresponse?.new_domain?._text;
+  const getDomain = retryWrap(async () => {
+    const res3 = await fetch(`https://66.133.91.116/transform.php?ver=${ver}`, {
+      headers: {
+        accept: '*/*',
+        'accept-language': 'zh-CN,zh;q=0.9',
+        'cache-control': 'no-cache',
+        'content-type': 'application/x-www-form-urlencoded',
+        pragma: 'no-cache',
+        'sec-ch-ua': '"Google Chrome";v="113", "Chromium";v="113", "Not-A.Brand";v="24"',
+        'sec-ch-ua-mobile': '?0',
+        'sec-ch-ua-platform': '"Windows"',
+        'sec-fetch-dest': 'empty',
+        'sec-fetch-mode': 'cors',
+        'sec-fetch-site': 'same-origin',
+        Referer: 'https://extraa.com/',
+        'Referrer-Policy': 'strict-origin-when-cross-origin',
+      },
+      body: obj2Str(body3),
+      method: 'POST',
+    });
+    const text3 = await res3.text();
+    const mixObj3 = Convert.xml2js(text3, { compact: true }) as any;
+    const domain = mixObj3?.serverresponse?.new_domain?._text;
+    if (!domain) {
+      throw Error('domain没获取到');
+    }
+    return domain;
+  }, 3);
+  const domain = await getDomain()
   if (uid) {
-    const { save, store } = getStore();
-    store.uid = uid;
-    store.ver = ver;
-    store.uidTimestamp = new Date().valueOf();
-    store.url = `https://${domain}/`;
-    save();
+    log('更新login token');
+    saveStore({
+      uid: uid,
+      ver: ver,
+      uidTimestamp: new Date().valueOf(),
+      url: `https://${domain}/`,
+    });
   }
   return {
     uid,

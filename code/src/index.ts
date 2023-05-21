@@ -12,7 +12,7 @@ import {
   retryLoginByNodeFetch,
 } from './api';
 // import { say } from './chaty';
-import { getStore, saveFile, log, getLogHistory } from './util';
+import { getStore, saveStore, saveFile, log, getLogHistory } from './util';
 
 type FirstOfGeneric<T> = T extends Promise<infer F> ? F : never;
 
@@ -25,7 +25,10 @@ app.listen(9000);
 
 app.get('/data', async (req, res) => {
   try {
-    const data = await getData();
+    let data = await getData();
+    if (data === void 0) {
+      data = await getData(true);
+    }
     res.send(data);
   } catch (error) {
     log((error as Error).message);
@@ -52,7 +55,7 @@ const delay = (n: number) => {
 };
 type M = Promise<ReturnType<typeof toData> | undefined>;
 async function getData(forceUpdate = false): M {
-  const { store, save } = getStore();
+  const store = getStore();
   if (store?.dataTimestamp && new Date().valueOf() - store.dataTimestamp < 15 * 1000) {
     log('使用缓存的匹配数据');
     return store.data;
@@ -70,7 +73,7 @@ async function getData(forceUpdate = false): M {
     if (!forceUpdate) {
       log('获取不到联赛，强制更新login token');
       // 联赛获取不到就强制获取一次
-      return getData(true);
+      return void 0;
     }
     return void 0;
   }
@@ -167,7 +170,7 @@ async function getData(forceUpdate = false): M {
   log('匹配 ' + promiseList.length);
   const matchData = toData(tiCaiDataList, matchedGameList, store.R);
   const message1 = matchData
-    .filter((d) => d.revList?.[0]?.rev > store.Rev)
+    .filter((d) => d.revList?.[0]?.rev > (store.Rev || 400))
     .map((d) => {
       const rev = d.revList[0];
       return `${rev.single ? '【单】 ' : ''}${d.num} ${d.tiCaiTeamList.join(' ')} GC:${rev.gc.toFixed(2)} VV:${rev.vv.toFixed(
@@ -177,7 +180,7 @@ async function getData(forceUpdate = false): M {
     .join('\r\n');
   if (store.message1 !== message1) {
     store.message1 = message1;
-    save();
+    saveStore({ message1: message1 });
     // for (const alias of config.aliasList || []) {
     //   await say(alias, message1);
     // }
@@ -201,11 +204,12 @@ async function getData(forceUpdate = false): M {
     // for (const alias of config.aliasList || []) {
     //   await say(alias, message2);
     // }
-    save();
+    saveStore({ message2: message2 });
   }
-  store.uidTimestamp = new Date().valueOf();
-  store.data = matchData;
-  store.dataTimestamp = new Date().valueOf();
-  save();
+  saveStore({
+    uidTimestamp: new Date().valueOf(),
+    data: matchData,
+    dataTimestamp: new Date().valueOf(),
+  });
   return matchData;
 }

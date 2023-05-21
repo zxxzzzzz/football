@@ -1,12 +1,12 @@
 import * as R from 'ramda';
-import { getTiCaiByFetch } from './api';
+import { getTiCaiByFetch, retryGetGameListByNodeFetch } from './api';
 import dayjs from 'dayjs';
 import fs from 'fs';
 import { resolve, parse } from 'path';
 // @ts-ignore
 import Format from 'json-format';
 
-const nasPath = '/home/football'
+const nasPath = '/home/football';
 
 // const keyList = [['RB莱比锡', '莱红牛']];
 // rate加权
@@ -297,8 +297,26 @@ export const saveFile = (fileName: string, data: string) => {
   fs.writeFileSync(resolve(path, fileName), data, { encoding: 'utf-8' });
 };
 
+type Store = {
+  ver: string;
+  uid: string;
+  url: string;
+  message1: string;
+  message2: string;
+  uidTimestamp: number;
+  dataTimestamp: number;
+  name: string;
+  password: string;
+  R: number;
+  A: number;
+  C: number;
+  Rev: number;
+  compareRev: number;
+  aliasList: string[];
+  data: any;
+};
 export function getStore() {
-  const path = './store.json';
+  const path = './data/store.json';
   if (!fs.existsSync(path)) {
     fs.writeFileSync(
       path,
@@ -315,34 +333,18 @@ export function getStore() {
       { encoding: 'utf-8', flag: 'a+' }
     );
   }
-  const store = JSON.parse(fs.readFileSync(path, { encoding: 'utf-8' })) as {
-    ver?: string;
-    uid?: string;
-    url?: string;
-    message1?: string;
-    message2?: string;
-    uidTimestamp?: number;
-    dataTimestamp?: number;
-    name: string;
-    password: string;
-    R: number;
-    A: number;
-    C: number;
-    Rev: number;
-    compareRev: number;
-    aliasList: ['XDivan', 'Xiao'];
-    data?: any;
-  };
-  const save = () => {
-    fs.writeFileSync(path, Format(store), { encoding: 'utf-8' });
-  };
-  return {
-    store,
-    save,
-  };
+  const store: Partial<Store> = JSON.parse(fs.readFileSync(path, { encoding: 'utf-8' }));
+  return store;
 }
+export const saveStore = (s: Partial<Store>) => {
+  const path = './data/store.json';
+  const store = getStore();
+  fs.writeFileSync(path, Format({ ...store, ...s }), { encoding: 'utf-8' });
+  return { ...store, ...s }
+};
+
 export const log = (msg: string) => {
-  const path = './log.json';
+  const path = './data/log.json';
   if (!fs.existsSync(path)) {
     fs.writeFileSync(path, JSON.stringify({ data: [] }), { encoding: 'utf-8' });
   }
@@ -352,7 +354,7 @@ export const log = (msg: string) => {
   fs.writeFileSync(path, Format({ data: l.slice(Math.max(l.length - 100, 0)) }));
 };
 export const getLogHistory = () => {
-  const path = './log.json';
+  const path = './data/log.json';
   if (!fs.existsSync(path)) {
     fs.writeFileSync(path, JSON.stringify({ data: [] }), { encoding: 'utf-8' });
   }
