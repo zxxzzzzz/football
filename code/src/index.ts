@@ -27,6 +27,7 @@ app.get('/data', async (req, res) => {
   try {
     let data = await getData();
     if (data === void 0) {
+      log('获取不到匹配数据，强制更新token再获取一次')
       data = await getData(true);
     }
     res.send(data);
@@ -71,7 +72,7 @@ async function getData(forceUpdate = false): M {
   const leagueList = await retryGetLeagueListAllByNodeFetch(url, uid, ver);
   if (!leagueList?.length) {
     if (!forceUpdate) {
-      log('获取不到联赛，强制更新login token');
+      log('获取不到联赛');
       // 联赛获取不到就强制获取一次
       return void 0;
     }
