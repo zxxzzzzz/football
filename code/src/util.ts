@@ -6,6 +6,8 @@ import { resolve, parse } from 'path';
 // @ts-ignore
 import Format from 'json-format';
 
+const nasPath = '/home/football'
+
 // const keyList = [['RB莱比锡', '莱红牛']];
 // rate加权
 const isMatch = (a: string, b: string): number => {
@@ -300,8 +302,8 @@ export const saveFile = (fileName: string, data: string) => {
 
 export function getStore() {
   let path = './store.json';
-  if (fs.existsSync('/home/app')) {
-    path = '/home/app/store.json';
+  if (fs.existsSync(nasPath)) {
+    path = nasPath + '/store.json';
   }
   if (!fs.existsSync(path)) {
     fs.writeFileSync(
@@ -347,8 +349,8 @@ export function getStore() {
 }
 export const log = (msg: string) => {
   let path = './data/log.json';
-  if (fs.existsSync('/home/app')) {
-    path = '/home/app/log.json';
+  if (fs.existsSync(nasPath)) {
+    path = nasPath + '/log.json';
   }
   if (!fs.existsSync(path)) {
     fs.writeFileSync(path, JSON.stringify({ data: [] }), { encoding: 'utf-8' });
@@ -360,8 +362,8 @@ export const log = (msg: string) => {
 };
 export const getLogHistory = () => {
   let path = './data/log.json';
-  if (fs.existsSync('/home/app')) {
-    path = '/home/app/log.json';
+  if (fs.existsSync(nasPath)) {
+    path = nasPath + '/log.json';
   }
   if (!fs.existsSync(path)) {
     fs.writeFileSync(path, JSON.stringify({ data: [] }), { encoding: 'utf-8' });
