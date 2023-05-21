@@ -43,6 +43,7 @@ import TiCai from './component/tiCai.vue';
 import Extra from './component/extra.vue';
 // import { Game } from './type';
 import Rev from './component/rev.vue';
+import { countBy } from 'ramda';
 
 // defineProps<{}>();
 type D = {
@@ -102,9 +103,16 @@ async function getData() {
     message2List.value = data.message2List;
   }
 }
+async function  cInter(cb: ()=> Promise<void>, n:number) {
+  await cb()
+  setTimeout(async () => {
+    await cInter(cb, n)
+  }, n);
+
+}
 onMounted(async () => {
   await getData();
-  setInterval(async () => {
+  cInter(async () => {
     if (!document.hidden) {
       await getData();
     }
