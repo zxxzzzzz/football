@@ -13,10 +13,15 @@ import {
 } from './api';
 // import { say } from './chaty';
 import { getStore, saveStore, saveFile, log, getLogHistory } from './util';
+import cors from 'cors';
+
+// console.log(cors);
 
 type FirstOfGeneric<T> = T extends Promise<infer F> ? F : never;
 
 const app = express();
+app.use(cors());
+
 export default app;
 
 app.use(express.static('./public'));
@@ -25,12 +30,37 @@ app.listen(9000);
 
 app.get('/data', async (req, res) => {
   try {
+    // @ts-ignore
+    log(req.query?.k || '')
     let data = await getData();
     if (data === void 0) {
-      log('获取不到匹配数据，强制更新token再获取一次')
+      log('获取不到匹配数据，强制更新token再获取一次');
       data = await getData(true);
     }
-    res.send(data);
+    if (data) {
+      const store = getStore();
+      const message1List = data
+        .filter((d) => d.revList?.[0]?.rev > (store.Rev || 400))
+        .map((d) => {
+          const rev = d.revList[0];
+          return `${rev.single ? '【单】 ' : ''}${d.num} ${d.tiCaiTeamList.join(' ')} GC:${rev.gc.toFixed(2)} VV:${rev.vv.toFixed(
+            2
+          )} offset:${rev.offset.toFixed(2)} rev:${rev.rev.toFixed(2)}`;
+        });
+      const compareDataList = compare(data, store.C, store.A, store.compareRev).slice(0, 3);
+      const message2List = compareDataList.map((cd, index) => {
+        return [
+          `NO.${index}${cd.single1 ? ' 【单】 ' : ' '}${cd.d1.num} ${cd.d1.tiCaiTeamList.join(' ')} GC:${cd.gc1.toFixed(
+            2
+          )} VV:${cd.vv1.toFixed(2)} offset:${cd.offset1.toFixed(2)} rev:${cd.rev1.toFixed(2)}`,
+          `NO.${index}${cd.single2 ? '【单】 ' : ' '}${cd.d2.num} ${cd.d2.tiCaiTeamList.join(' ')} GC:${cd.gc2.toFixed(
+            2
+          )} VV:${cd.vv2.toFixed(2)} offset:${cd.offset2.toFixed(2)} rev:${cd.rev2.toFixed(2)}`,
+        ];
+      });
+      // console.log({ matchData: data, message1List, message2List });
+      res.send({ matchData: data, message1List, message2List });
+    }
   } catch (error) {
     log((error as Error).message);
     res.send((error as Error).message);
@@ -170,43 +200,6 @@ async function getData(forceUpdate = false): M {
   saveFile('./data/matchedGameList.json', Format(matchedGameList));
   log('匹配 ' + promiseList.length);
   const matchData = toData(tiCaiDataList, matchedGameList, store.R);
-  const message1 = matchData
-    .filter((d) => d.revList?.[0]?.rev > (store.Rev || 400))
-    .map((d) => {
-      const rev = d.revList[0];
-      return `${rev.single ? '【单】 ' : ''}${d.num} ${d.tiCaiTeamList.join(' ')} GC:${rev.gc.toFixed(2)} VV:${rev.vv.toFixed(
-        2
-      )} offset:${rev.offset.toFixed(2)} rev:${rev.rev.toFixed(2)}`;
-    })
-    .join('\r\n');
-  if (store.message1 !== message1) {
-    store.message1 = message1;
-    saveStore({ message1: message1 });
-    // for (const alias of config.aliasList || []) {
-    //   await say(alias, message1);
-    // }
-  }
-  const compareDataList = compare(matchData, store.C, store.A, store.compareRev).slice(0, 3);
-  const message2 = compareDataList
-    .map((cd, index) => {
-      return (
-        `NO.${index}${cd.single1 ? ' 【单】 ' : ' '}${cd.d1.num} ${cd.d1.tiCaiTeamList.join(' ')} GC:${cd.gc1.toFixed(
-          2
-        )} VV:${cd.vv1.toFixed(2)} offset:${cd.offset1.toFixed(2)} rev:${cd.rev1.toFixed(2)}` +
-        '\r\n' +
-        `NO.${index}${cd.single2 ? '【单】 ' : ' '}${cd.d2.num} ${cd.d2.tiCaiTeamList.join(' ')} GC:${cd.gc2.toFixed(
-          2
-        )} VV:${cd.vv2.toFixed(2)} offset:${cd.offset2.toFixed(2)} rev:${cd.rev2.toFixed(2)}`
-      );
-    })
-    .join('\r\n');
-  if (store.message2 !== message2) {
-    store.message2 = message2;
-    // for (const alias of config.aliasList || []) {
-    //   await say(alias, message2);
-    // }
-    saveStore({ message2: message2 });
-  }
   saveStore({
     uidTimestamp: new Date().valueOf(),
     data: matchData,

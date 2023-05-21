@@ -301,8 +301,6 @@ type Store = {
   ver: string;
   uid: string;
   url: string;
-  message1: string;
-  message2: string;
   uidTimestamp: number;
   dataTimestamp: number;
   name: string;

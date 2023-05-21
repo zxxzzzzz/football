@@ -5,10 +5,35 @@
     <div class="mx-4">
       <Table :dataSource="dataSource" :columns="columns" bordered :rowClassName="rowClassName" :pagination="pagination"></Table>
     </div>
+    <Drawer width="640" placement="right" :closable="true" :visible="drawerVisible" :mask="true" @close="onClose">
+      <List item-layout="horizontal" :data-source="message1List">
+        <template #renderItem="{ item }">
+          <div style="display: flex;">
+            <div v-for="t,index in item.split(' ')"  :style="{color:colors[index], margin:'0 4px'}">{{ t }}</div>
+          </div>
+        </template>
+      </List>
+      <Divider></Divider>
+      <List item-layout="horizontal" :data-source="message2List">
+        <template #renderItem="{ item }">
+          <div style="margin:4px 0">
+            <div style="display: flex;">
+              <div v-for="t,index in item[0].split(' ')"  :style="{color:colors[index], margin:'0 4px'}">{{ t }}</div>
+            </div>
+            <div style="display: flex;">
+              <div v-for="t,index in item[1].split(' ')"  :style="{color:colors[index], margin:'0 4px'}">{{ t }}</div>
+            </div>
+          </div>
+        </template>
+      </List>
+    </Drawer>
+    <Affix :offsetBottom="400" :style="{ position: 'absolute', right: 0 + 'px'}">
+      <Button type="primary" @click="() => (drawerVisible = true)"> 消息</Button>
+    </Affix>
   </div>
 </template>
 <script lang="ts" setup>
-import { Table } from 'ant-design-vue';
+import { Table, Drawer, List, Button, Affix ,Divider} from 'ant-design-vue';
 import type { TableProps } from 'ant-design-vue';
 // import { data, dataList } from './mock';
 // import { SourceType } from '@/type/enum';
@@ -16,7 +41,6 @@ import { computed, h, ref, onMounted, watch } from 'vue';
 import Match from './component/match.vue';
 import TiCai from './component/tiCai.vue';
 import Extra from './component/extra.vue';
-import { message, Input } from 'ant-design-vue';
 // import { Game } from './type';
 import Rev from './component/rev.vue';
 
@@ -53,29 +77,43 @@ type D = {
     offset: number;
   }[];
 };
+
+const colors = ['#78a5de', '#4fb2a1', '#205a13', '#77b164', '#88b00b', '#cf4b22', '#9e57cd', '#238910', '#c18fde', '#673b84', '#760bbb', '#557766', '#557733', '#337755'];
+
 // const dataList = ref<Game[]>([]);
 const dataSource = ref<D[]>([]);
+const message1List = ref<string[]>([]);
+const message2List = ref<string[]>([]);
+
+const drawerVisible = ref(false);
 // 全局r变量
 const pagination: TableProps['pagination'] = {
   pageSize: 300,
 };
+
+const userKey = new Date().valueOf()
+async function getData() {
+  const origin = location.origin // 'http://127.0.0.1:9000'; //location.origin;
+  const res = await fetch(origin + '/data?k=' + userKey);
+  const data = await res.json();
+  if (data?.matchData?.length) {
+    dataSource.value = data.matchData;
+    message1List.value = data.message1List;
+    message2List.value = data.message2List;
+  }
+}
 onMounted(async () => {
-  const origin = location.origin;
+  await getData();
   setInterval(async () => {
-    if(!document.hidden){
-      const res = await fetch(origin + '/data');
-      const data = await res.json();
-      if (data?.length) {
-        dataSource.value = data;
-      }
+    if (!document.hidden) {
+      await getData();
     }
   }, 10 * 1000);
-  const res = await fetch(origin + '/data');
-  const data = await res.json();
-  if (data?.length) {
-    dataSource.value = data;
-  }
 });
+
+const onClose = () => {
+  drawerVisible.value = false;
+};
 
 const rowClassName: TableProps['rowClassName'] = (_, index) => {
   const m = ['bg-white', 'bg-gray-100'];
