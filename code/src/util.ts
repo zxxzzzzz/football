@@ -287,7 +287,20 @@ export function compare(dataList: ReturnType<typeof toData>, c = 0.13, a = 1, cR
 
 export function getStore() {
   if (!fs.existsSync('./store.json')) {
-    fs.writeFileSync('./store.json', '{}', { encoding: 'utf-8', flag: 'a+' });
+    fs.writeFileSync(
+      './store.json',
+      JSON.stringify({
+        name: 'XDivan4',
+        password: 'Jxd9061912',
+        R: 0.12,
+        A: 1,
+        C: 0.13,
+        Rev: 400,
+        compareRev: 430,
+        aliasList: ['XDivan', 'Xiao'],
+      }),
+      { encoding: 'utf-8', flag: 'a+' }
+    );
   }
   const store = JSON.parse(fs.readFileSync('./store.json', { encoding: 'utf-8' })) as {
     ver?: string;
@@ -297,6 +310,14 @@ export function getStore() {
     message2?: string;
     uidTimestamp?: number;
     dataTimestamp?: number;
+    name: string;
+    password: string;
+    R: number;
+    A: number;
+    C: number;
+    Rev: number;
+    compareRev: number;
+    aliasList: ['XDivan', 'Xiao'];
     data?: any;
   };
   const save = () => {

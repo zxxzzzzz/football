@@ -12,14 +12,13 @@ import {
   retryGetTiCaiByFetch,
   retryLoginByNodeFetch,
 } from './api';
-import config from './config';
 // import { say } from './chaty';
 import { getStore } from './util';
 
 type FirstOfGeneric<T> = T extends Promise<infer F> ? F : never;
 
 const app = express();
-export default app
+export default app;
 
 app.use(express.static('./public'));
 app.use(express.json());
@@ -29,7 +28,6 @@ app.get('/data', async (req, res) => {
   const data = await getData();
   res.send(data || '');
 });
-
 
 const delay = (n: number) => {
   return new Promise((resolve) => {
@@ -42,7 +40,7 @@ const delay = (n: number) => {
 async function getData() {
   const { store, save } = getStore();
   if (store?.dataTimestamp && new Date().valueOf() - store.dataTimestamp < 15 * 1000) {
-    return store.data
+    return store.data;
   }
   const data = await retryLoginByNodeFetch('XDivan4', 'Jxd9061912');
   if (!data) {
@@ -129,7 +127,7 @@ async function getData() {
         };
       }
       return g;
-    }); 
+    });
 
   type G = Exclude<FirstOfGeneric<(typeof promiseList)[0]>, undefined>;
   let matchedGameList: G[] = [];
@@ -145,10 +143,10 @@ async function getData() {
   fs.writeFileSync('./data/matchedLeagueList.json', Format(matchedLeagueList));
   fs.writeFileSync('./data/gameList.json', Format(extraGameList));
   fs.writeFileSync('./data/matchedGameList.json', Format(matchedGameList));
-  console.log('匹配',promiseList.length);
-  const matchData = toData(tiCaiDataList, matchedGameList, config.R);
+  console.log('匹配', promiseList.length);
+  const matchData = toData(tiCaiDataList, matchedGameList, store.R);
   const message1 = matchData
-    .filter((d) => d.revList?.[0]?.rev > config.Rev)
+    .filter((d) => d.revList?.[0]?.rev > store.Rev)
     .map((d) => {
       const rev = d.revList[0];
       return `${rev.single ? '【单】 ' : ''}${d.num} ${d.tiCaiTeamList.join(' ')} GC:${rev.gc.toFixed(2)} VV:${rev.vv.toFixed(
@@ -163,7 +161,7 @@ async function getData() {
     //   await say(alias, message1);
     // }
   }
-  const compareDataList = compare(matchData, config.C, config.A, config.compareRev).slice(0, 3);
+  const compareDataList = compare(matchData, store.C, store.A, store.compareRev).slice(0, 3);
   const message2 = compareDataList
     .map((cd, index) => {
       return (

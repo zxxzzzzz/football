@@ -6,6 +6,14 @@
 	"message2": "NO.0 周日003 卡尔斯鲁厄 凯泽斯劳滕 GC:1.83 VV:1.04 offset:10185.92 rev:2189.97\r\nNO.0 周日010 曼彻斯特城 切尔西 GC:2.08 VV:0.93 offset:19742.33 rev:273.75\r\nNO.1 周日005 PSV埃因霍温 海伦芬 GC:2.22 VV:0.70 offset:14392.75 rev:1657.02\r\nNO.1 周日010 曼彻斯特城 切尔西 GC:2.08 VV:0.93 offset:23949.71 rev:207.13\r\nNO.2 周日010 曼彻斯特城 切尔西 GC:2.08 VV:0.93 offset:10741.30 rev:1569.11\r\nNO.2 周一003 纽卡斯尔联 莱切斯特城 GC:1.94 VV:0.87 offset:21620.69 rev:196.14",
 	"timestamp": 1684596782111,
 	"uidTimestamp": 1684632557763,
+  "name": "XDivan4",
+  "password": "Jxd9061912",
+  "R": 0.12,
+  "A": 1,
+  "C": 0.13,
+  "Rev": 400,
+  "compareRev": 430,
+  "aliasList": ["XDivan", "Xiao"],
 	"data": [
 		{
 			"league": "英格兰超级联赛",
