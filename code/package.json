@@ -1,25 +1,38 @@
 {
-  "name": "demo",
+  "name": "football",
   "version": "1.0.0",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "webpack --config webpack.dev.js",
-    "build": "webpack --config webpack.prod.js"
-  },
   "description": "",
-  "devDependencies": {
-    "babel-core": "^6.26.3",
-    "babel-loader": "7",
-    "babel-preset-env": "^1.7.0",
-    "webpack": "^4.30.0",
-    "webpack-cli": "^3.3.2",
-    "webpack-merge": "^4.2.1"
+  "main": "index.js",
+  "scripts": {
+    "start": "w2 proxy && w2 start && w2 use --force && pnpm exec tsx index2.ts",
+    "build": "cd football_view && pnpm build"
   },
+  "keywords": [],
   "author": "",
-  "license": "MIT",
+  "license": "ISC",
   "dependencies": {
-    "@serverless-devs/fc-http": "latest",
-    "body-parser": "^1.19.0",
-    "express": "^4.17.0"
+    "@types/express": "^4.17.17",
+    "@types/fs-extra": "^11.0.1",
+    "@types/ramda": "^0.28.23",
+    "@types/ws": "^8.5.4",
+    "dayjs": "^1.11.7",
+    "events": "^3.3.0",
+    "express": "^4.18.2",
+    "fs-extra": "^11.1.1",
+    "http-proxy": "^1.18.1",
+    "http-proxy-agent": "^5.0.0",
+    "json-format": "^1.0.1",
+    "node-fetch": "^3.3.1",
+    "open": "^9.1.0",
+    "puppeteer": "^19.8.0",
+    "puppeteer-cluster": "^0.23.0",
+    "puppeteer-extra": "^3.3.6",
+    "puppeteer-extra-plugin-stealth": "^2.11.2",
+    "qrcode-terminal": "^0.12.0",
+    "ramda": "^0.28.0",
+    "tsx": "^3.12.6",
+    "wechaty": "^1.20.2",
+    "ws": "^8.13.0",
+    "xml-js": "^1.6.11"
   }
 }
