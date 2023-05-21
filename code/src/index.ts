@@ -25,8 +25,13 @@ app.use(express.json());
 app.listen(9000);
 
 app.get('/data', async (req, res) => {
-  const data = await getData();
-  res.send(data || '');
+  try {
+    const data = await getData();
+    res.send(data || '');
+    
+  } catch (error) {
+    res.send((error as Error).message);
+  }
 });
 
 const delay = (n: number) => {
