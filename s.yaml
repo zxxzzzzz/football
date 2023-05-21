@@ -55,6 +55,7 @@ services:
         codeUri: ./code
         handler: index.handler
         memorySize: 2048
+        diskSize: 512
         cpu: 2
         timeout: 60
       triggers:
