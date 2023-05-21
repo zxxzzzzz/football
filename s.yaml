@@ -54,7 +54,8 @@ services:
         runtime: nodejs16
         codeUri: ./code
         handler: index.handler
-        memorySize: 256
+        memorySize: 1024
+        cpu: 2
         timeout: 60
       triggers:
         - name: httpTrigger
