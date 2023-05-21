@@ -54,7 +54,7 @@ services:
         runtime: nodejs16
         codeUri: ./code
         handler: index.handler
-        memorySize: 1024
+        memorySize: 2048
         cpu: 2
         timeout: 60
       triggers:
