@@ -345,3 +345,27 @@ export function getStore() {
     save,
   };
 }
+export const log = (msg: string) => {
+  let path = './data/log.json';
+  if (fs.existsSync('/home/app')) {
+    path = '/home/app/log.json';
+  }
+  if (!fs.existsSync(path)) {
+    fs.writeFileSync(path, JSON.stringify({ data: [] }), { encoding: 'utf-8' });
+  }
+  const d = JSON.parse(fs.readFileSync(path, { encoding: 'utf-8' })) as { data: { dateTime: string; msg: string }[] };
+  const l = [...d.data, { dateTime: dayjs().format('YYYY-MM-DD HH:mm:ss'), msg }];
+  console.log({ dateTime: dayjs().format('YYYY-MM-DD HH:mm:ss'), msg });
+  fs.writeFileSync(path, Format({ data: l.slice(Math.max(l.length - 100, 0)) }));
+};
+export const getLogHistory = () => {
+  let path = './data/log.json';
+  if (fs.existsSync('/home/app')) {
+    path = '/home/app/log.json';
+  }
+  if (!fs.existsSync(path)) {
+    fs.writeFileSync(path, JSON.stringify({ data: [] }), { encoding: 'utf-8' });
+  }
+  const d = JSON.parse(fs.readFileSync(path, { encoding: 'utf-8' })) as { data: { dateTime: string; msg: string }[] };
+  return d;
+};

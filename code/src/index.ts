@@ -12,7 +12,7 @@ import {
   retryLoginByNodeFetch,
 } from './api';
 // import { say } from './chaty';
-import { getStore, saveFile } from './util';
+import { getStore, saveFile, log, getLogHistory } from './util';
 
 type FirstOfGeneric<T> = T extends Promise<infer F> ? F : never;
 
@@ -28,7 +28,17 @@ app.get('/data', async (req, res) => {
     const data = await getData();
     res.send(data);
   } catch (error) {
-    console.log((error as Error).message);
+    log((error as Error).message);
+    res.send((error as Error).message);
+  }
+});
+
+app.get('/log', async (req, res) => {
+  try {
+    const data = await getLogHistory();
+    res.send(data);
+  } catch (error) {
+    log((error as Error).message);
     res.send((error as Error).message);
   }
 });
@@ -40,33 +50,33 @@ const delay = (n: number) => {
     }, n);
   });
 };
-type M = Promise<ReturnType<typeof toData> | undefined>
-async function getData(forceUpdate = false):M {
+type M = Promise<ReturnType<typeof toData> | undefined>;
+async function getData(forceUpdate = false): M {
   const { store, save } = getStore();
   if (store?.dataTimestamp && new Date().valueOf() - store.dataTimestamp < 15 * 1000) {
-    console.log('使用缓存的匹配数据');
+    log('使用缓存的匹配数据');
     return store.data;
   }
   const data = await retryLoginByNodeFetch('XDivan4', 'Jxd9061912', forceUpdate);
-  console.log(data, 'token');
+  log(JSON.stringify(data));
   if (!data) {
-    return void 0
+    return void 0;
   }
   const uid = data.uid || '';
   const ver = data.ver || '';
   const url = data.url || '';
   const leagueList = await retryGetLeagueListAllByNodeFetch(url, uid, ver);
   if (!leagueList?.length) {
-    if(!forceUpdate){
-      console.log('获取不到联赛，强制更新login token');
+    if (!forceUpdate) {
+      log('获取不到联赛，强制更新login token');
       // 联赛获取不到就强制获取一次
       return getData(true);
     }
-    return void 0
+    return void 0;
   }
   const tiCaiDataList = await retryGetTiCaiByFetch();
   if (!tiCaiDataList?.length) {
-    return void 0
+    return void 0;
   }
   const matchedLeagueList = tiCaiDataList
     .map((t) => {
@@ -154,7 +164,7 @@ async function getData(forceUpdate = false):M {
   saveFile('./data/matchedLeagueList.json', Format(matchedLeagueList));
   saveFile('./data/gameList.json', Format(extraGameList));
   saveFile('./data/matchedGameList.json', Format(matchedGameList));
-  console.log('匹配', promiseList.length);
+  log('匹配 ' + promiseList.length);
   const matchData = toData(tiCaiDataList, matchedGameList, store.R);
   const message1 = matchData
     .filter((d) => d.revList?.[0]?.rev > store.Rev)
