@@ -348,7 +348,7 @@ export function getStore() {
   };
 }
 export const log = (msg: string) => {
-  let path = './data/log.json';
+  let path = './log.json';
   if (fs.existsSync(nasPath)) {
     path = nasPath + '/log.json';
   }
