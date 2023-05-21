@@ -1,4 +1,4 @@
 const serverless = require('@serverless-devs/fc-http');
-const app = require('./server');
+const { default: app } = require('./dist/index');
 
 exports.handler = serverless(app);
