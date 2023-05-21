@@ -4,8 +4,10 @@ import Format from 'json-format';
 import fs from 'fs-extra';
 import dayjs from 'dayjs';
 import { MatchInfo } from './type';
-import _fetch from 'node-fetch';
+// import _fetch from;
+const _fetch = import('node-fetch');
 import { getStore } from './util';
+
 
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
 
@@ -54,7 +56,8 @@ type Game = {
 
 
 export async function getTiCaiByFetch() {
-  const res = await _fetch('https://webapi.sporttery.cn/gateway/jc/football/getMatchCalculatorV1.qry?poolCode=hhad,had&channel=c', {
+  const fetch = (await _fetch).default
+  const res = await fetch('https://webapi.sporttery.cn/gateway/jc/football/getMatchCalculatorV1.qry?poolCode=hhad,had&channel=c', {
     headers: {
       accept: 'application/json, text/javascript, */*; q=0.01',
       'accept-language': 'zh-CN,zh;q=0.9',
@@ -128,7 +131,8 @@ async function getGameListByNodeFetch(url: string, ver: string, uid: string, lid
   };
   const _url = new URL(url);
   const bodyStr = obj2Str(body);
-  const res = await _fetch(`${_url.origin}/transform.php?ver=${ver}`, {
+  const fetch = (await _fetch).default
+  const res = await fetch(`${_url.origin}/transform.php?ver=${ver}`, {
     headers: {
       accept: '*/*',
       'accept-language': 'zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6',
@@ -201,7 +205,8 @@ export async function getGameOBTByNodeFetch(
   };
   const _url = new URL(url);
   const bodyStr = obj2Str(body);
-  const res = await _fetch(`${_url.origin}/transform.php?ver=${ver}`, {
+  const fetch = (await _fetch).default
+  const res = await fetch(`${_url.origin}/transform.php?ver=${ver}`, {
     headers: {
       accept: '*/*',
       'accept-language': 'zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6',
@@ -272,7 +277,8 @@ export async function getLeagueListAllByNodeFetch(url: string, uid: string, ver:
   };
   const _url = new URL(url);
   const bodyStr = obj2Str(body);
-  const res = await _fetch(`${_url.origin}/transform.php?ver=${ver}`, {
+  const fetch = (await _fetch).default
+  const res = await fetch(`${_url.origin}/transform.php?ver=${ver}`, {
     headers: {
       accept: '*/*',
       'accept-language': 'zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6',
@@ -318,7 +324,8 @@ export async function loginByNodeFetch(username: string, password: string) {
       ver:store.ver || ''
     }
   }
-  const res = await _fetch('https://66.133.91.116/', {
+  const fetch = (await _fetch).default
+  const res = await fetch('https://66.133.91.116/', {
     headers: {
       accept:
         'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
@@ -360,7 +367,7 @@ export async function loginByNodeFetch(username: string, password: string) {
       'TW96aWxsYS81LjAgKFdpbmRvd3MgTlQgMTAuMDsgV2luNjQ7IHg2NCkgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzExMy4wLjAuMCBTYWZhcmkvNTM3LjM2',
   };
 
-  const res2 = await _fetch(`https://66.133.91.116/transform.php?ver=${ver}`, {
+  const res2 = await fetch(`https://66.133.91.116/transform.php?ver=${ver}`, {
     headers: {
       accept: '*/*',
       'accept-language': 'zh-CN,zh;q=0.9',
@@ -391,7 +398,7 @@ export async function loginByNodeFetch(username: string, password: string) {
     langx: 'zh-cn',
     code: 663,
   };
-  const res3 = await _fetch(`https://66.133.91.116/transform.php?ver=${ver}`, {
+  const res3 = await fetch(`https://66.133.91.116/transform.php?ver=${ver}`, {
     headers: {
       accept: '*/*',
       'accept-language': 'zh-CN,zh;q=0.9',
