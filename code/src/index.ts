@@ -1,5 +1,4 @@
 import * as R from 'ramda';
-import fs from 'fs-extra';
 // @ts-ignore
 import Format from 'json-format';
 import { isTeamEqu, isLeagueEqual, toData, compare } from './util';
@@ -13,7 +12,7 @@ import {
   retryLoginByNodeFetch,
 } from './api';
 // import { say } from './chaty';
-import { getStore } from './util';
+import { getStore,saveFile } from './util';
 
 type FirstOfGeneric<T> = T extends Promise<infer F> ? F : never;
 
@@ -143,11 +142,11 @@ async function getData() {
     }
   }
   // 数据保存，便于找问题
-  fs.writeFileSync('./data/tiCaiData.json', Format(tiCaiDataList));
-  fs.writeFileSync('./data/leagueList.json', Format(leagueList));
-  fs.writeFileSync('./data/matchedLeagueList.json', Format(matchedLeagueList));
-  fs.writeFileSync('./data/gameList.json', Format(extraGameList));
-  fs.writeFileSync('./data/matchedGameList.json', Format(matchedGameList));
+  saveFile('./data/tiCaiData.json', Format(tiCaiDataList));
+  saveFile('./data/leagueList.json', Format(leagueList));
+  saveFile('./data/matchedLeagueList.json', Format(matchedLeagueList));
+  saveFile('./data/gameList.json', Format(extraGameList));
+  saveFile('./data/matchedGameList.json', Format(matchedGameList));
   console.log('匹配', promiseList.length);
   const matchData = toData(tiCaiDataList, matchedGameList, store.R);
   const message1 = matchData

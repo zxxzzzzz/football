@@ -2,6 +2,7 @@ import * as R from 'ramda';
 import { getTiCaiByFetch } from './api';
 import dayjs from 'dayjs';
 import fs from 'fs';
+import { resolve, parse } from 'path';
 // @ts-ignore
 import Format from 'json-format';
 
@@ -284,6 +285,18 @@ export function compare(dataList: ReturnType<typeof toData>, c = 0.13, a = 1, cR
       return b.rev1 + b.rev2 - a.rev1 - a.rev2;
     });
 }
+
+export const saveFile = (fileName: string, data: string) => {
+  let path = './';
+  if (fs.existsSync('/home/app')) {
+    path = '/home/app/';
+  }
+  const pPath = parse(resolve(path, fileName));
+  if (!fs.existsSync(pPath.dir)) {
+    fs.mkdirSync(pPath.dir, { recursive: true });
+  }
+  fs.writeFileSync(resolve(path, fileName), data, { encoding: 'utf-8' });
+};
 
 export function getStore() {
   let path = './store.json';
