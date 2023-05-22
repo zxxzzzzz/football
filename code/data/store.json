@@ -1,15 +1,9 @@
 {
-	"name": "XDivan4",
-	"password": "Jxd9061912",
 	"R": 0.12,
 	"A": 1,
 	"C": 0.13,
 	"Rev": 400,
 	"compareRev": 430,
-	"aliasList": [
-		"XDivan",
-		"Xiao"
-	],
 	"uid": "z4pxkfz99m31149741l342019b0",
 	"ver": "-3ed5-forecast-0518-97881ae5676be2",
 	"uidTimestamp": 1684678620919,

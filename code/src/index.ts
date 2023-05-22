@@ -31,7 +31,7 @@ app.listen(9000);
 app.get('/data', async (req, res) => {
   try {
     // @ts-ignore
-    log(req.query?.k || '')
+    log(req.query?.k || '');
     let data = await getData();
     if (data === void 0) {
       log('获取不到匹配数据，强制更新token再获取一次');
@@ -59,11 +59,11 @@ app.get('/data', async (req, res) => {
         ];
       });
       // console.log({ matchData: data, message1List, message2List });
-      res.send({ matchData: data, message1List, message2List });
+      res.send({ code: 200, msg: 'success', data: { matchData: data, message1List, message2List } });
     }
   } catch (error) {
     log((error as Error).message);
-    res.send((error as Error).message);
+    res.send({ code: '403', msg: (error as Error).message });
   }
 });
 
@@ -85,7 +85,7 @@ const delay = (n: number) => {
   });
 };
 type M = Promise<ReturnType<typeof toData> | undefined>;
-let isWaitForNewData = false
+let isWaitForNewData = false;
 async function getData(forceUpdate = false): M {
   const store = await getStore();
   // 如果发现获取数据时在等待数据，直接返回旧数据
@@ -94,8 +94,12 @@ async function getData(forceUpdate = false): M {
     log('使用缓存的匹配数据');
     return store.data;
   }
-  isWaitForNewData = true
-  const data = await retryLoginByNodeFetch(process.env.username || 'XDivan4', process.env.password || 'Jxd9061912', forceUpdate);
+  isWaitForNewData = true;
+  if (!process.env.username) {
+    throw Error('用户名 密码没有填写');
+    // return void 0;
+  }
+  const data = await retryLoginByNodeFetch(process.env.username || '', process.env.password || '', forceUpdate);
   log(JSON.stringify(data));
   if (!data) {
     return void 0;
@@ -209,6 +213,6 @@ async function getData(forceUpdate = false): M {
     data: matchData,
     dataTimestamp: new Date().valueOf(),
   });
-  isWaitForNewData = false
+  isWaitForNewData = false;
   return matchData;
 }
