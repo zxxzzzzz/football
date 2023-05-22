@@ -1,0 +1,21 @@
+{
+	"name": "XDivan4",
+	"password": "Jxd9061912",
+	"R": 0.12,
+	"A": 1,
+	"C": 0.13,
+	"Rev": 400,
+	"compareRev": 430,
+	"aliasList": [
+		"XDivan",
+		"Xiao"
+	],
+	"uid": "z4pxkfz99m31149741l342019b0",
+	"ver": "-3ed5-forecast-0518-97881ae5676be2",
+	"uidTimestamp": 1684678620919,
+	"url": "https://134.159.80.56/",
+	"message1": "周日017 卡萨皮亚 埃斯托里尔 GC:1.67 VV:1.25 offset:7399.20 rev:707.98\r\n周一003 纽卡斯尔联 莱切斯特城 GC:1.97 VV:0.87 offset:10555.31 rev:640.24\r\n周日019 乌迪内斯 拉齐奥 GC:1.82 VV:1.01 offset:9053.47 rev:600.03\r\n周日012 奥格斯堡 多特蒙德 GC:1.74 VV:1.11 offset:8234.43 rev:596.14\r\n周日020 塞维利亚 皇家贝蒂斯 GC:1.95 VV:0.87 offset:10448.15 rev:544.40\r\n周日011 洛里昂 朗斯 GC:2.42 VV:0.58 offset:15431.31 rev:400.77",
+	"message2": "NO.0 周日017 卡萨皮亚 埃斯托里尔 GC:1.67 VV:1.25 offset:7198.06 rev:549.51\r\nNO.0 周一003 纽卡斯尔联 莱切斯特城 GC:1.97 VV:0.87 offset:17627.36 rev:68.69\r\nNO.1 周日017 卡萨皮亚 埃斯托里尔 GC:1.67 VV:1.25 offset:7133.03 rev:465.95\r\nNO.1 周日012 奥格斯堡 多特蒙德 GC:1.74 VV:1.11 offset:13751.49 rev:58.24\r\nNO.2 周日012 奥格斯堡 多特蒙德 GC:1.74 VV:1.11 offset:7907.09 rev:322.63\r\nNO.2 周一003 纽卡斯尔联 莱切斯特城 GC:1.97 VV:0.87 offset:18366.23 rev:40.33",
+	"data": [],
+	"dataTimestamp": 1684678620919
+}
