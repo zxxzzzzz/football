@@ -28,6 +28,9 @@ app.use(express.static('./public'));
 app.use(express.json());
 app.listen(9000);
 
+process.env.username = 'XDivan4';
+process.env.password = 'Jxd9061912';
+
 app.get('/data', async (req, res) => {
   try {
     // @ts-ignore
@@ -152,14 +155,15 @@ async function getData(username: string, password: string, forceUpdate = false):
           const teamRate = isTeamEqu(tiCai.teamList, extra.teamList);
           const tDateTime = dayjs(tiCai.dateTime, 'MM-DD HH:mm');
           const gDateTime = dayjs(extra.dateTime, 'MM-DD HH:mm');
+          const oneMinute = 60 * 1000;
           // 时间是否匹配,上下十分钟的范围
-          const isTime =
-            Math.abs(tDateTime.valueOf() - gDateTime.valueOf()) <= 10 * 60 * 1000 ||
-            (Math.abs(tDateTime.valueOf() - gDateTime.valueOf()) >= 12 * 60 * 60 * 1000 - 10 * 60 * 1000 &&
-              Math.abs(tDateTime.valueOf() - gDateTime.valueOf()) <= 12 * 60 * 60 * 1000 + 10 * 60 * 1000);
+          const isTime = Math.abs(gDateTime.valueOf() - tDateTime.valueOf()) <= 10 * oneMinute;
+          // 有时体彩的时间会落后extra的时间24小时
+          const isTime2 = Math.abs(gDateTime.valueOf() - tDateTime.add(24, 'hour').valueOf()) <= 10 * oneMinute;
           // 联赛是否匹配
           const isLeague = isLeagueEqual(tiCai.league, extra.league);
-          const re: [typeof extra, number] = [extra, isLeague ? (isTime && isLeague ? 1 : 0) + teamRate : 0];
+          // 联赛必须匹配上
+          const re: [typeof extra, number] = [extra, isLeague ? (isTime || isTime2 ? 1 : 0) + teamRate : 0];
           return re;
         });
       // 选出匹配度最高的一场比赛

@@ -51,11 +51,10 @@ export const isTeamEqu = (a: string[], b: string[]) => {
   }
   const lList = a
     .map((aStr) => {
-      return b.map((bStr) => {
+      return Math.max(...b.map((bStr) => {
         return isMatch(aStr, bStr);
-      });
+      }));
     })
-    .flat();
   return lList.reduce((a, b) => a + b);
 };
 
@@ -126,7 +125,8 @@ export function toData(tiCaiList: TiCaiList, extraList: TiCaiList, _R = 0.12) {
         league: ti.league,
         num: ti.num || '',
         singleList: ti.singleList,
-        dateTime: ti?.dateTime || '',
+        // 体彩的时间不对，使用extra的时间作为基准
+        dateTime: matchedExtra?.dateTime || '',
         tiCaiTeamList: ti.teamList,
         extraTeamList: matchedExtra?.teamList || ti.teamList,
         tiCaiItemList: ti.itemList,
