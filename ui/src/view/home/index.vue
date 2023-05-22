@@ -7,14 +7,17 @@
     </div>
     <Drawer width="640" placement="right" :closable="true" :visible="drawerVisible" :mask="true" @close="onClose">
       <List item-layout="horizontal" :data-source="message1List">
+
         <template #renderItem="{ item }">
           <div style="display: flex">
             <div v-for="(t, index) in item.split(' ')" :style="{ color: colors[index], margin: '0 4px' }">{{ t }}</div>
           </div>
         </template>
+
       </List>
       <Divider></Divider>
       <List item-layout="horizontal" :data-source="message2List">
+
         <template #renderItem="{ item }">
           <div style="margin: 4px 0">
             <div style="display: flex">
@@ -25,6 +28,7 @@
             </div>
           </div>
         </template>
+
       </List>
     </Drawer>
     <Affix :offsetBottom="400" :style="{ position: 'absolute', right: 0 + 'px' }">
@@ -111,6 +115,7 @@ const userKey = new Date().valueOf();
 async function getData() {
   const origin = location.origin;
   const url = new URL(location.href);
+  console.log(url.searchParams.get('username'), url.searchParams.get('password'));
   const res = await fetch(
     `${origin}/data?username=${url.searchParams.get('username') || ''}&password=${url.searchParams.get('password') || ''}`
   );
