@@ -38,7 +38,7 @@ app.get('/data', async (req, res) => {
       data = await getData(true);
     }
     if (data) {
-      const store = getStore();
+      const store = await getStore();
       const message1List = data
         .filter((d) => d.revList?.[0]?.rev > (store.Rev || 400))
         .map((d) => {
@@ -87,7 +87,7 @@ const delay = (n: number) => {
 type M = Promise<ReturnType<typeof toData> | undefined>;
 let isWaitForNewData = false
 async function getData(forceUpdate = false): M {
-  const store = getStore();
+  const store = await getStore();
   // 如果发现获取数据时在等待数据，直接返回旧数据
   // 数据未过期，直接返回旧数据
   if ((store?.dataTimestamp && new Date().valueOf() - store.dataTimestamp < 15 * 1000) || isWaitForNewData) {
@@ -95,7 +95,7 @@ async function getData(forceUpdate = false): M {
     return store.data;
   }
   isWaitForNewData = true
-  const data = await retryLoginByNodeFetch('XDivan4', 'Jxd9061912', forceUpdate);
+  const data = await retryLoginByNodeFetch(process.env.username || 'XDivan4', process.env.password || 'Jxd9061912', forceUpdate);
   log(JSON.stringify(data));
   if (!data) {
     return void 0;
@@ -204,7 +204,7 @@ async function getData(forceUpdate = false): M {
   saveFile('./data/matchedGameList.json', Format(matchedGameList));
   log('匹配 ' + promiseList.length);
   const matchData = toData(tiCaiDataList, matchedGameList, store.R);
-  saveStore({
+  await saveStore({
     uidTimestamp: new Date().valueOf(),
     data: matchData,
     dataTimestamp: new Date().valueOf(),

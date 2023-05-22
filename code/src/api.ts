@@ -1,7 +1,4 @@
 import Convert from 'xml-js';
-// @ts-ignore
-import Format from 'json-format';
-import fs from 'fs-extra';
 import dayjs from 'dayjs';
 import { MatchInfo } from './type';
 // import _fetch from;
@@ -310,7 +307,7 @@ export async function getLeagueListAllByNodeFetch(url: string, uid: string, ver:
 export const retryGetLeagueListAllByNodeFetch = retryWrap(getLeagueListAllByNodeFetch, 3);
 
 export async function loginByNodeFetch(username: string, password: string, forceUpdate = false) {
-  const store = getStore();
+  const store = await getStore();
   const now = new Date().valueOf();
   // 时间没超过20分钟，不重新请求token
   if (store.uidTimestamp && now - store.uidTimestamp < 20 * 60 * 1000 && !forceUpdate) {
@@ -426,7 +423,7 @@ export async function loginByNodeFetch(username: string, password: string, force
   const domain = await getDomain()
   if (uid) {
     log('更新login token');
-    saveStore({
+    await saveStore({
       uid: uid,
       ver: ver,
       uidTimestamp: new Date().valueOf(),
