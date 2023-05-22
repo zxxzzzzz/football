@@ -112,7 +112,7 @@ async function getData() {
   const origin = location.origin;
   const url = new URL(location.href);
   const res = await fetch(
-    origin + '/data?username=' + url.searchParams.get('username') || '' + '&password=' + url.searchParams.get('password') || ''
+    `${origin}/data?username=${url.searchParams.get('username') || ''}&password=${url.searchParams.get('password') || ''}`
   );
   const data = (await res.json()) as { code: number; msg: string; data?: any };
   if (data.code !== 200) {
