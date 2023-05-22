@@ -7,14 +7,17 @@ import { resolve, parse } from 'path';
 import Format from 'json-format';
 import OSS from 'ali-oss';
 
-let client = new OSS({
-  // yourRegion填写Bucket所在地域。以华东1（杭州）为例，Region填写为oss-cn-hangzhou。
-  region: 'oss-cn-hangzhou',
-  // 阿里云账号AccessKey拥有所有API的访问权限，风险很高。强烈建议您创建并使用RAM用户进行API访问或日常运维，请登录RAM控制台创建RAM用户。
-  accessKeyId: process.env.key || '',
-  accessKeySecret: process.env.secret || '',
-  bucket: 'footballc',
-});
+let client: OSS | undefined = void 0;
+if (process.env.key) {
+  client = new OSS({
+    // yourRegion填写Bucket所在地域。以华东1（杭州）为例，Region填写为oss-cn-hangzhou。
+    region: 'oss-cn-hangzhou',
+    // 阿里云账号AccessKey拥有所有API的访问权限，风险很高。强烈建议您创建并使用RAM用户进行API访问或日常运维，请登录RAM控制台创建RAM用户。
+    accessKeyId: process.env.key || '',
+    accessKeySecret: process.env.secret || '',
+    bucket: 'footballc',
+  });
+}
 
 // const keyList = [['RB莱比锡', '莱红牛']];
 // rate加权
@@ -336,25 +339,25 @@ export async function getStore() {
   }
   // 如果本地没有数据，请求oss里的数据
   try {
-    if(process.env.key){
+    if (client) {
       const res = await client.get('store.json');
       d = JSON.parse(res.content);
-      log('获取 oss store数据成功')
+      log('获取 oss store数据成功');
     } else {
-      d = initData
+      d = initData;
     }
   } catch (error) {
     // @ts-ignore
     status = error.status;
   }
   // oss文件不存在, 把init数据存储到oss
-  if (status === 404) {
+  if (status === 404 && client) {
     await client.put('store.json', Buffer.from(JSON.stringify(initData)), {});
     d = initData;
   }
   // oss没有权限
   if (status === 403) {
-    log('获取oss store数据无权限')
+    log('获取oss store数据无权限');
   }
   // 本地备份下oss里的数据
   fs.writeFileSync(path, JSON.stringify(d), { encoding: 'utf-8', flag: 'w' });
@@ -371,13 +374,11 @@ export const saveStore = async (s: Partial<Store>) => {
   fs.writeFileSync(path, Format({ ...store, ...s }), { encoding: 'utf-8' });
   // oss保存
   try {
-    if(process.env.key){
+    if (client) {
       await client.put('store.json', Buffer.from(JSON.stringify({ ...store, ...s })));
-      log('store存储到oss')
+      log('store存储到oss');
     }
-  } catch (error) {
-
-  }
+  } catch (error) {}
   return { ...store, ...s };
 };
 
