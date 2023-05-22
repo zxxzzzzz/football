@@ -31,7 +31,8 @@ app.listen(9000);
 app.get('/data', async (req, res) => {
   try {
     // @ts-ignore
-    log(req.query?.k || '');
+    log(req.query?.username || '');
+    log(req.query?.password || '');
     let data = await getData();
     if (data === void 0) {
       log('获取不到匹配数据，强制更新token再获取一次');
@@ -86,7 +87,11 @@ const delay = (n: number) => {
 };
 type M = Promise<ReturnType<typeof toData> | undefined>;
 let isWaitForNewData = false;
-async function getData(forceUpdate = false): M {
+async function getData(username: string, password: string, forceUpdate = false): M {
+  if (!username || !password) {
+    throw Error('用户名或者密码没有填写');
+    // return void 0;
+  }
   const store = await getStore();
   // 如果发现获取数据时在等待数据，直接返回旧数据
   // 数据未过期，直接返回旧数据
@@ -95,11 +100,7 @@ async function getData(forceUpdate = false): M {
     return store.data;
   }
   isWaitForNewData = true;
-  if (!process.env.username) {
-    throw Error('用户名 密码没有填写');
-    // return void 0;
-  }
-  const data = await retryLoginByNodeFetch(process.env.username || '', process.env.password || '', forceUpdate);
+  const data = await retryLoginByNodeFetch(username, password, forceUpdate);
   log(JSON.stringify(data));
   if (!data) {
     return void 0;
