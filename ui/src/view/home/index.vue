@@ -110,7 +110,10 @@ const pagination: TableProps['pagination'] = {
 const userKey = new Date().valueOf();
 async function getData() {
   const origin = location.origin; // 'http://127.0.0.1:9000'; //location.origin;
-  const res = await fetch(origin + '/data?k=' + userKey);
+  const url = new URL(location.href);
+  const res = await fetch(
+    origin + '/data?username=' + url.searchParams.get('username') || '' + '&password=' + url.searchParams.get('password') || ''
+  );
   const data = (await res.json()) as { code: number; msg: string; data?: any };
   if (data.code !== 200) {
     message.error(data.msg);
