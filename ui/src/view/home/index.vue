@@ -109,7 +109,7 @@ const pagination: TableProps['pagination'] = {
 
 const userKey = new Date().valueOf();
 async function getData() {
-  const origin = location.origin; // 'http://127.0.0.1:9000'; //location.origin;
+  const origin = location.origin;
   const url = new URL(location.href);
   const res = await fetch(
     origin + '/data?username=' + url.searchParams.get('username') || '' + '&password=' + url.searchParams.get('password') || ''
