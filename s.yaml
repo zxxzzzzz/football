@@ -62,6 +62,8 @@ services:
         environmentVariables:
           password: ${env(password)}
           username: ${env(username)}
+          key: ${env(username)}
+          secret: ${env(secret)}
       triggers:
         - name: httpTrigger
           type: http
