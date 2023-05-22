@@ -54,10 +54,14 @@ services:
         runtime: nodejs16
         codeUri: ./code
         handler: index.handler
+        instanceConcurrency: 4
         memorySize: 2048
         diskSize: 512
         cpu: 2
         timeout: 60
+        environmentVariables:
+          password: ${env(password)}
+          username: ${env(username)}
       triggers:
         - name: httpTrigger
           type: http

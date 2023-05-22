@@ -31,8 +31,8 @@ app.listen(9000);
 app.get('/data', async (req, res) => {
   try {
     // @ts-ignore
-    const username = (req.query?.username || '') as string;
-    const password = (req.query?.password || '') as string;
+    const username = (process.env.username || '') as string;
+    const password = (process.env.password || '') as string;
     let data = await getData(username, password);
     if (data === void 0) {
       log('获取不到匹配数据，强制更新token再获取一次');

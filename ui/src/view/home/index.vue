@@ -115,7 +115,6 @@ const userKey = new Date().valueOf();
 async function getData() {
   const origin = location.origin;
   const url = new URL(location.href);
-  console.log(url.searchParams.get('username'), url.searchParams.get('password'));
   const res = await fetch(
     `${origin}/data?username=${url.searchParams.get('username') || ''}&password=${url.searchParams.get('password') || ''}`
   );
