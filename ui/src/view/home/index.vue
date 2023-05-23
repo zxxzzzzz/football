@@ -5,35 +5,39 @@
     <div class="mx-4">
       <Table :dataSource="dataSource" :columns="columns" bordered :rowClassName="rowClassName" :pagination="pagination"></Table>
     </div>
-    <Drawer width="640" placement="right" :closable="true" :visible="drawerVisible" :mask="true" @close="onClose">
+    <Drawer width="840" placement="right" :closable="true" :visible="drawerVisible" :mask="true" @close="onClose">
       <List item-layout="horizontal" :data-source="message1List">
+
         <template #renderItem="{ item }">
-          <div style="display: flex;">
-            <div v-for="t,index in item.split(' ')"  :style="{color:colors[index], margin:'0 4px'}">{{ t }}</div>
+          <div class="flex flex-wrap">
+            <div v-for="(t, index) in item.split(' ')" :style="{ color: colors[index], margin: '0 4px' }" class="whitespace-nowrap">{{ t }}</div>
           </div>
         </template>
+
       </List>
       <Divider></Divider>
       <List item-layout="horizontal" :data-source="message2List">
+
         <template #renderItem="{ item }">
-          <div style="margin:4px 0">
-            <div style="display: flex;">
-              <div v-for="t,index in item[0].split(' ')"  :style="{color:colors[index], margin:'0 4px'}">{{ t }}</div>
+          <div style="margin: 4px 0">
+            <div class="flex flex-wrap">
+              <div v-for="(t, index) in item[0].split(' ')" :style="{ color: colors[index], margin: '0 4px' }" class="whitespace-nowrap">{{ t }}</div>
             </div>
-            <div style="display: flex;">
-              <div v-for="t,index in item[1].split(' ')"  :style="{color:colors[index], margin:'0 4px'}">{{ t }}</div>
+            <div class="flex flex-wrap">
+              <div v-for="(t, index) in item[1].split(' ')" :style="{ color: colors[index], margin: '0 4px' }" class="whitespace-nowrap">{{ t }}</div>
             </div>
           </div>
         </template>
+
       </List>
     </Drawer>
-    <Affix :offsetBottom="400" :style="{ position: 'absolute', right: 0 + 'px'}">
+    <Affix :offsetBottom="400" :style="{ position: 'absolute', right: 0 + 'px' }">
       <Button type="primary" @click="() => (drawerVisible = true)"> 消息</Button>
     </Affix>
   </div>
 </template>
 <script lang="ts" setup>
-import { Table, Drawer, List, Button, Affix ,Divider} from 'ant-design-vue';
+import { Table, Drawer, List, Button, Affix, Divider, message } from 'ant-design-vue';
 import type { TableProps } from 'ant-design-vue';
 // import { data, dataList } from './mock';
 // import { SourceType } from '@/type/enum';
@@ -79,7 +83,22 @@ type D = {
   }[];
 };
 
-const colors = ['#78a5de', '#4fb2a1', '#205a13', '#77b164', '#88b00b', '#cf4b22', '#9e57cd', '#238910', '#c18fde', '#673b84', '#760bbb', '#557766', '#557733', '#337755'];
+const colors = [
+  '#78a5de',
+  '#4fb2a1',
+  '#205a13',
+  '#77b164',
+  '#88b00b',
+  '#cf4b22',
+  '#9e57cd',
+  '#238910',
+  '#c18fde',
+  '#673b84',
+  '#760bbb',
+  '#557766',
+  '#557733',
+  '#337755',
+];
 
 // const dataList = ref<Game[]>([]);
 const dataSource = ref<D[]>([]);
@@ -92,23 +111,37 @@ const pagination: TableProps['pagination'] = {
   pageSize: 300,
 };
 
-const userKey = new Date().valueOf()
+const userKey = new Date().valueOf();
 async function getData() {
-  const origin = location.origin // 'http://127.0.0.1:9000'; //location.origin;
-  const res = await fetch(origin + '/data?k=' + userKey);
-  const data = await res.json();
-  if (data?.matchData?.length) {
-    dataSource.value = data.matchData;
-    message1List.value = data.message1List;
-    message2List.value = data.message2List;
+  const origin = location.origin;
+  const url = new URL(location.href);
+  const res = await fetch(
+    `${origin}/data?username=${url.searchParams.get('username') || ''}&password=${url.searchParams.get('password') || ''}`
+  );
+  const data = (await res.json()) as { code: number; msg: string; data?: any };
+  if (data.code !== 200) {
+    message.error(data?.msg || '更新出错');
+  }
+  if (data.data?.matchData?.length) {
+    message.success('数据更新成功');
+    dataSource.value = data.data.matchData;
+    message1List.value = data.data.message1List;
+    message2List.value = data.data.message2List;
   }
 }
-async function  cInter(cb: ()=> Promise<void>, n:number) {
-  await cb()
+async function cInter(cb: () => Promise<void>, n: number) {
+  try {
+    await cb();
+  } catch (error) {
+    
+  }
   setTimeout(async () => {
-    await cInter(cb, n)
+    try {
+      await cInter(cb, n);
+    } catch (error) {
+      
+    }
   }, n);
-
 }
 onMounted(async () => {
   await getData();

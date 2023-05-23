@@ -7,14 +7,17 @@ import { resolve, parse } from 'path';
 import Format from 'json-format';
 import OSS from 'ali-oss';
 
-let client = new OSS({
-  // yourRegion填写Bucket所在地域。以华东1（杭州）为例，Region填写为oss-cn-hangzhou。
-  region: 'oss-cn-hangzhou',
-  // 阿里云账号AccessKey拥有所有API的访问权限，风险很高。强烈建议您创建并使用RAM用户进行API访问或日常运维，请登录RAM控制台创建RAM用户。
-  accessKeyId: process.env.key || '',
-  accessKeySecret: process.env.secret || '',
-  bucket: 'footballc',
-});
+let client: OSS | undefined = void 0;
+if (process.env.key) {
+  client = new OSS({
+    // yourRegion填写Bucket所在地域。以华东1（杭州）为例，Region填写为oss-cn-hangzhou。
+    region: 'oss-cn-hangzhou',
+    // 阿里云账号AccessKey拥有所有API的访问权限，风险很高。强烈建议您创建并使用RAM用户进行API访问或日常运维，请登录RAM控制台创建RAM用户。
+    accessKeyId: process.env.key || '',
+    accessKeySecret: process.env.secret || '',
+    bucket: 'footballc',
+  });
+}
 
 // const keyList = [['RB莱比锡', '莱红牛']];
 // rate加权
@@ -46,13 +49,13 @@ export const isTeamEqu = (a: string[], b: string[]) => {
   if (!a?.length || !b?.length) {
     return 0;
   }
-  const lList = a
-    .map((aStr) => {
-      return b.map((bStr) => {
+  const lList = a.map((aStr) => {
+    return Math.max(
+      ...b.map((bStr) => {
         return isMatch(aStr, bStr);
-      });
-    })
-    .flat();
+      })
+    );
+  });
   return lList.reduce((a, b) => a + b);
 };
 
@@ -65,20 +68,17 @@ export const isLeagueEqual = (l1: string, l2: string) => {
     ['日本J1联赛', '日本职业联赛'],
     ['日本J2联赛', '日本职业乙级联赛', '日本乙级联赛'],
     ['英格兰冠军联赛-附加赛', '英格兰冠军联赛'],
+    ['世界U20锦标赛', 'U20世界杯2023(在阿根廷)'],
+    ['美国公开赛冠军杯', '美国公开赛杯'],
+    ['南美解放者杯', '南美自由杯'],
   ];
   const isEqual = !!equalNameList.find((d) => d.includes(l1) && d.includes(l2));
   if (isEqual) {
     return true;
   }
-  return (
-    l1 === l2 ||
-    l1.replace(/[组]/g, '级') === l2 ||
-    l2.replace(/[组]/g, '级') === l1 ||
-    l1 + '-附加赛' === l2 ||
-    l1 === l2 + '-附加赛' ||
-    l1 + '-升级附加赛' === l2 ||
-    l1 === l2 + '-升级附加赛'
-  );
+  const _l1 = l1.replace(/[组]/g, '级');
+  const _l2 = l2.replace(/[组]/g, '级');
+  return _l1 === _l2 || _l1 + '-附加赛' === _l2 || _l1 === _l2 + '-附加赛' || _l1 + '-升级附加赛' === _l2 || _l1 === _l2 + '-升级附加赛';
 };
 
 // console.log(isTeamEqu(['阿尔克马尔', '海伦维恩'], ['阿尔克马','海伦芬']));
@@ -105,7 +105,7 @@ type TiCaiList = FirstOfGeneric<ReturnType<typeof getTiCaiByFetch>>;
 export function toData(tiCaiList: TiCaiList, extraList: TiCaiList, _R = 0.12) {
   return tiCaiList
     .map((ti) => {
-      const matchedExtra = extraList.find((d) => d.ecid === ti.ecid);
+      let matchedExtra = extraList.find((d) => d.ecid === ti.ecid);
       if (!matchedExtra) {
         return {
           league: ti.league,
@@ -119,11 +119,31 @@ export function toData(tiCaiList: TiCaiList, extraList: TiCaiList, _R = 0.12) {
           revList: [],
         };
       }
+      // 处理队伍错位的情况
+      if (matchedExtra.teamList[0] === ti.teamList[1]) {
+        matchedExtra = {
+          ...matchedExtra,
+          teamList: [matchedExtra.teamList[1], matchedExtra.teamList[0]],
+          itemList: matchedExtra.itemList.map((item) => {
+            if (item.oddsTitle === '独赢') {
+              return {
+                ...item,
+                oddsItemList: [item.oddsItemList[1], item.oddsItemList[0], item.oddsItemList[2]],
+              };
+            }
+            return {
+              ...item,
+              oddsItemList: [item.oddsItemList[1], item.oddsItemList[0]],
+            };
+          }),
+        };
+      }
       return {
         league: ti.league,
         num: ti.num || '',
         singleList: ti.singleList,
-        dateTime: ti?.dateTime || '',
+        // 体彩的时间不对，使用extra的时间作为基准
+        dateTime: matchedExtra?.dateTime || '',
         tiCaiTeamList: ti.teamList,
         extraTeamList: matchedExtra?.teamList || ti.teamList,
         tiCaiItemList: ti.itemList,
@@ -135,6 +155,9 @@ export function toData(tiCaiList: TiCaiList, extraList: TiCaiList, _R = 0.12) {
         }),
         revList: ti.itemList
           .map((item) => {
+            if (!matchedExtra) {
+              return [];
+            }
             const filterList = item.oddsItemList
               .map((d, index) => ({ single: ti.singleList[index], oddsItem: d }))
               .filter(({ oddsItem }) => oddsItem[0] !== Score.noSale)
@@ -194,6 +217,9 @@ export function toData(tiCaiList: TiCaiList, extraList: TiCaiList, _R = 0.12) {
                 }
                 return filterList
                   .map((f) => {
+                    if (!matchedExtra) {
+                      return void 0;
+                    }
                     const { GC, VV, Offset, Rev } = getRev(f.tiCaiOdds, f.type === 'win' ? r[2] : r[1], _R);
                     return {
                       teamList: matchedExtra.teamList,
@@ -214,7 +240,7 @@ export function toData(tiCaiList: TiCaiList, extraList: TiCaiList, _R = 0.12) {
                       offset: Offset,
                     };
                   })
-                  .filter((d) => d.isMatch);
+                  .filter((d): d is Exclude<typeof d, undefined> => !!d?.isMatch);
               })
               .flat();
             return matchList;
@@ -299,8 +325,17 @@ export function compare(dataList: ReturnType<typeof toData>, c = 0.13, a = 1, cR
 export const saveFile = (fileName: string, data: string) => {
   const path = './';
   const pPath = parse(resolve(path, fileName));
+  // 如果开启了oss,保存数据到oss
   if (!fs.existsSync(pPath.dir)) {
     fs.mkdirSync(pPath.dir, { recursive: true });
+  }
+  const _data = fs.readFileSync(resolve(path, fileName), { encoding: 'utf-8' });
+  // 如果数据没变 就不在保存数据
+  if (data === _data) {
+    return;
+  }
+  if (client) {
+    client.put(pPath.name + pPath.ext, Buffer.from(data));
   }
   fs.writeFileSync(resolve(path, fileName), data, { encoding: 'utf-8' });
 };
@@ -332,32 +367,35 @@ export async function getStore() {
   // 首先查看本地是否有数据,如果本地有数据，直接使用本地数据
   if (fs.existsSync(path)) {
     const store: Partial<Store> = JSON.parse(fs.readFileSync(path, { encoding: 'utf-8' }));
-    return store;
+    // 本地数据距离现在数据不超过1分钟
+    if (dayjs().valueOf() - (store?.dataTimestamp || 0) < 60 * 1000) {
+      return store;
+    }
   }
   // 如果本地没有数据，请求oss里的数据
   try {
-    if(process.env.key){
+    if (client) {
       const res = await client.get('store.json');
       d = JSON.parse(res.content);
-      log('获取 oss store数据成功')
+      log('获取 oss store数据成功');
     } else {
-      d = initData
+      d = initData;
     }
   } catch (error) {
     // @ts-ignore
     status = error.status;
   }
   // oss文件不存在, 把init数据存储到oss
-  if (status === 404) {
-    await client.put('store.json', Buffer.from(JSON.stringify(initData)), {});
+  if (status === 404 && client) {
+    await client.put('store.json', Buffer.from(Format(initData)));
     d = initData;
   }
   // oss没有权限
   if (status === 403) {
-    log('获取oss store数据无权限')
+    log('获取oss store数据无权限');
   }
   // 本地备份下oss里的数据
-  fs.writeFileSync(path, JSON.stringify(d), { encoding: 'utf-8', flag: 'w' });
+  fs.writeFileSync(path, Format(d), { encoding: 'utf-8', flag: 'w' });
   if (d) {
     return d;
   }
@@ -371,30 +409,31 @@ export const saveStore = async (s: Partial<Store>) => {
   fs.writeFileSync(path, Format({ ...store, ...s }), { encoding: 'utf-8' });
   // oss保存
   try {
-    if(process.env.key){
-      await client.put('store.json', Buffer.from(JSON.stringify({ ...store, ...s })));
-      log('store存储到oss')
+    if (client) {
+      await client.put('store.json', Buffer.from(Format({ ...store, ...s })));
+      log('store存储到oss');
     }
-  } catch (error) {
-
-  }
+  } catch (error) {}
   return { ...store, ...s };
 };
 
 export const log = (msg: string) => {
   const path = './data/log.json';
   if (!fs.existsSync(path)) {
-    fs.writeFileSync(path, JSON.stringify({ data: [] }), { encoding: 'utf-8' });
+    fs.writeFileSync(path, Format({ data: [] }), { encoding: 'utf-8' });
   }
   const d = JSON.parse(fs.readFileSync(path, { encoding: 'utf-8' })) as { data: { dateTime: string; msg: string }[] };
   const l = [...d.data, { dateTime: dayjs().format('YYYY-MM-DD HH:mm:ss'), msg }];
   console.log({ dateTime: dayjs().format('YYYY-MM-DD HH:mm:ss'), msg });
-  fs.writeFileSync(path, Format({ data: l.slice(Math.max(l.length - 100, 0)) }));
+  if (client) {
+    client.put('log.json', Buffer.from(Format(l)), { headers: { 'x-oss-tagging': 'history=0' } });
+  }
+  fs.writeFileSync(path, Format({ data: l.slice(Math.max(l.length - 1000, 0)) }));
 };
 export const getLogHistory = () => {
   const path = './data/log.json';
   if (!fs.existsSync(path)) {
-    fs.writeFileSync(path, JSON.stringify({ data: [] }), { encoding: 'utf-8' });
+    fs.writeFileSync(path, Format({ data: [] }), { encoding: 'utf-8' });
   }
   const d = JSON.parse(fs.readFileSync(path, { encoding: 'utf-8' })) as { data: { dateTime: string; msg: string }[] };
   return d;
