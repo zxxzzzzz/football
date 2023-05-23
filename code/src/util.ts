@@ -367,7 +367,10 @@ export async function getStore() {
   // 首先查看本地是否有数据,如果本地有数据，直接使用本地数据
   if (fs.existsSync(path)) {
     const store: Partial<Store> = JSON.parse(fs.readFileSync(path, { encoding: 'utf-8' }));
-    return store;
+    // 本地数据距离现在数据不超过1分钟
+    if (dayjs().valueOf() - (store?.dataTimestamp || 0) < 60 * 1000) {
+      return store;
+    }
   }
   // 如果本地没有数据，请求oss里的数据
   try {
@@ -384,7 +387,7 @@ export async function getStore() {
   }
   // oss文件不存在, 把init数据存储到oss
   if (status === 404 && client) {
-    await client.put('store.json', Buffer.from(Format(initData)), {});
+    await client.put('store.json', Buffer.from(Format(initData)));
     d = initData;
   }
   // oss没有权限
