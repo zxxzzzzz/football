@@ -5,12 +5,12 @@
     <div class="mx-4">
       <Table :dataSource="dataSource" :columns="columns" bordered :rowClassName="rowClassName" :pagination="pagination"></Table>
     </div>
-    <Drawer width="640" placement="right" :closable="true" :visible="drawerVisible" :mask="true" @close="onClose">
+    <Drawer width="840" placement="right" :closable="true" :visible="drawerVisible" :mask="true" @close="onClose">
       <List item-layout="horizontal" :data-source="message1List">
 
         <template #renderItem="{ item }">
-          <div style="display: flex">
-            <div v-for="(t, index) in item.split(' ')" :style="{ color: colors[index], margin: '0 4px' }">{{ t }}</div>
+          <div class="flex flex-wrap">
+            <div v-for="(t, index) in item.split(' ')" :style="{ color: colors[index], margin: '0 4px' }" class="whitespace-nowrap">{{ t }}</div>
           </div>
         </template>
 
@@ -20,11 +20,11 @@
 
         <template #renderItem="{ item }">
           <div style="margin: 4px 0">
-            <div style="display: flex">
-              <div v-for="(t, index) in item[0].split(' ')" :style="{ color: colors[index], margin: '0 4px' }">{{ t }}</div>
+            <div class="flex flex-wrap">
+              <div v-for="(t, index) in item[0].split(' ')" :style="{ color: colors[index], margin: '0 4px' }" class="whitespace-nowrap">{{ t }}</div>
             </div>
-            <div style="display: flex">
-              <div v-for="(t, index) in item[1].split(' ')" :style="{ color: colors[index], margin: '0 4px' }">{{ t }}</div>
+            <div class="flex flex-wrap">
+              <div v-for="(t, index) in item[1].split(' ')" :style="{ color: colors[index], margin: '0 4px' }" class="whitespace-nowrap">{{ t }}</div>
             </div>
           </div>
         </template>
