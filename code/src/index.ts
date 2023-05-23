@@ -44,7 +44,7 @@ app.get('/data', async (req, res) => {
     if (data) {
       const store = await getStore();
       const message1List = data
-        .filter((d) => d.revList?.[0]?.rev > (store.Rev || 400))
+        .filter((d) => d?.revList?.[0]?.rev > (store.Rev || 400))
         .map((d) => {
           const rev = d.revList[0];
           return `${rev.single ? '【单】' : ''}${d.num} ${d.dateTime} ${d.tiCaiTeamList.join(' ')} GC:${rev.gc.toFixed(2)} VV:${rev.vv.toFixed(
