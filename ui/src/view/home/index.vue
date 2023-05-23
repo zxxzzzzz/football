@@ -120,9 +120,10 @@ async function getData() {
   );
   const data = (await res.json()) as { code: number; msg: string; data?: any };
   if (data.code !== 200) {
-    message.error(data.msg);
+    message.error(data?.msg || '更新出错');
   }
   if (data.data?.matchData?.length) {
+    message.success('数据更新成功');
     dataSource.value = data.data.matchData;
     message1List.value = data.data.message1List;
     message2List.value = data.data.message2List;
