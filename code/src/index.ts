@@ -28,9 +28,6 @@ app.use(express.static('./public'));
 app.use(express.json());
 app.listen(9000);
 
-process.env.username = 'XDivan4';
-process.env.password = 'Jxd9061912';
-
 app.get('/data', async (req, res) => {
   try {
     // @ts-ignore
@@ -89,7 +86,6 @@ const delay = (n: number) => {
   });
 };
 type M = Promise<ReturnType<typeof toData> | undefined>;
-let isWaitForNewData = false;
 async function getData(username: string, password: string, forceUpdate = false): M {
   if (!username || !password) {
     throw Error('用户名或者密码没有填写');
@@ -98,11 +94,10 @@ async function getData(username: string, password: string, forceUpdate = false):
   const store = await getStore();
   // 如果发现获取数据时在等待数据，直接返回旧数据
   // 数据未过期，直接返回旧数据
-  if ((store?.dataTimestamp && new Date().valueOf() - store.dataTimestamp < 15 * 1000) || isWaitForNewData) {
+  if ((store?.dataTimestamp && new Date().valueOf() - store.dataTimestamp < 15 * 1000)) {
     log('使用缓存的匹配数据');
     return store.data;
   }
-  isWaitForNewData = true;
   const data = await retryLoginByNodeFetch(username, password, forceUpdate);
   log(JSON.stringify(data));
   if (!data) {
@@ -218,6 +213,5 @@ async function getData(username: string, password: string, forceUpdate = false):
     data: matchData,
     dataTimestamp: new Date().valueOf(),
   });
-  isWaitForNewData = false;
   return matchData;
 }
