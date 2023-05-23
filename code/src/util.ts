@@ -375,7 +375,7 @@ export async function getStore() {
   // 如果本地没有数据，请求oss里的数据
   try {
     if (client) {
-      const res = await client.get('store.json');
+      const res = await client.get(`store_${dayjs().add(8, 'h').format('YYYY-MM-DD')}.json`);
       d = JSON.parse(res.content);
       log('获取 oss store数据成功');
     } else {
