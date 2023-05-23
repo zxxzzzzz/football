@@ -28,6 +28,9 @@ app.use(express.static('./public'));
 app.use(express.json());
 app.listen(9000);
 
+process.env.username = 'XDivan4';
+process.env.password = 'Jxd9061912';
+
 app.get('/data', async (req, res) => {
   try {
     // @ts-ignore
@@ -44,17 +47,17 @@ app.get('/data', async (req, res) => {
         .filter((d) => d.revList?.[0]?.rev > (store.Rev || 400))
         .map((d) => {
           const rev = d.revList[0];
-          return `${rev.single ? '【单】 ' : ''}${d.num} ${d.tiCaiTeamList.join(' ')} GC:${rev.gc.toFixed(2)} VV:${rev.vv.toFixed(
+          return `${rev.single ? '【单】 ' : ''}${d.num} ${d.dateTime} ${d.tiCaiTeamList.join(' ')} GC:${rev.gc.toFixed(2)} VV:${rev.vv.toFixed(
             2
           )} offset:${rev.offset.toFixed(2)} rev:${rev.rev.toFixed(2)}`;
         });
       const compareDataList = compare(data, store.C, store.A, store.compareRev).slice(0, 3);
       const message2List = compareDataList.map((cd, index) => {
         return [
-          `NO.${index}${cd.single1 ? ' 【单】 ' : ' '}${cd.d1.num} ${cd.d1.tiCaiTeamList.join(' ')} GC:${cd.gc1.toFixed(
+          `NO.${index} ${cd.single1 ? '【单】' : ''} ${cd.d1.num} ${cd.d1.dateTime} ${cd.d1.tiCaiTeamList.join(' ')} GC:${cd.gc1.toFixed(
             2
           )} VV:${cd.vv1.toFixed(2)} offset:${cd.offset1.toFixed(2)} rev:${cd.rev1.toFixed(2)}`,
-          `NO.${index}${cd.single2 ? '【单】 ' : ' '}${cd.d2.num} ${cd.d2.tiCaiTeamList.join(' ')} GC:${cd.gc2.toFixed(
+          `NO.${index} ${cd.single2 ? '【单】' : ''} ${cd.d2.num} ${cd.d2.dateTime} ${cd.d2.tiCaiTeamList.join(' ')} GC:${cd.gc2.toFixed(
             2
           )} VV:${cd.vv2.toFixed(2)} offset:${cd.offset2.toFixed(2)} rev:${cd.rev2.toFixed(2)}`,
         ];
@@ -152,14 +155,15 @@ async function getData(username: string, password: string, forceUpdate = false):
           const teamRate = isTeamEqu(tiCai.teamList, extra.teamList);
           const tDateTime = dayjs(tiCai.dateTime, 'MM-DD HH:mm');
           const gDateTime = dayjs(extra.dateTime, 'MM-DD HH:mm');
+          const oneMinute = 60 * 1000;
           // 时间是否匹配,上下十分钟的范围
-          const isTime =
-            Math.abs(tDateTime.valueOf() - gDateTime.valueOf()) <= 10 * 60 * 1000 ||
-            (Math.abs(tDateTime.valueOf() - gDateTime.valueOf()) >= 12 * 60 * 60 * 1000 - 10 * 60 * 1000 &&
-              Math.abs(tDateTime.valueOf() - gDateTime.valueOf()) <= 12 * 60 * 60 * 1000 + 10 * 60 * 1000);
+          const isTime = Math.abs(gDateTime.valueOf() - tDateTime.valueOf()) <= 10 * oneMinute;
+          // 有时体彩的时间会落后extra的时间24小时
+          const isTime2 = Math.abs(gDateTime.valueOf() - tDateTime.add(24, 'hour').valueOf()) <= 10 * oneMinute;
           // 联赛是否匹配
           const isLeague = isLeagueEqual(tiCai.league, extra.league);
-          const re: [typeof extra, number] = [extra, isLeague ? (isTime && isLeague ? 1 : 0) + teamRate : 0];
+          // 联赛必须匹配上
+          const re: [typeof extra, number] = [extra, isLeague ? (isTime || isTime2 ? 1 : 0) + teamRate : 0];
           return re;
         });
       // 选出匹配度最高的一场比赛

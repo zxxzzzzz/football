@@ -160,7 +160,7 @@ async function getGameListByNodeFetch(url: string, ver: string, uid: string, lid
         num: '',
         singleList: [false, false],
         strong: game.STRONG._text,
-        dateTime: dayjs(vDateTime, 'MM-DD HH:mm a').format('MM-DD HH:mm'),
+        dateTime: dayjs(vDateTime, 'MM-DD HH:mm a').add(12, 'hour').format('MM-DD HH:mm'),
         itemList: [
           {
             oddsTitle: '独赢',

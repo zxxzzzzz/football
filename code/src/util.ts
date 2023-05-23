@@ -49,13 +49,13 @@ export const isTeamEqu = (a: string[], b: string[]) => {
   if (!a?.length || !b?.length) {
     return 0;
   }
-  const lList = a
-    .map((aStr) => {
-      return b.map((bStr) => {
+  const lList = a.map((aStr) => {
+    return Math.max(
+      ...b.map((bStr) => {
         return isMatch(aStr, bStr);
-      });
-    })
-    .flat();
+      })
+    );
+  });
   return lList.reduce((a, b) => a + b);
 };
 
@@ -68,6 +68,7 @@ export const isLeagueEqual = (l1: string, l2: string) => {
     ['日本J1联赛', '日本职业联赛'],
     ['日本J2联赛', '日本职业乙级联赛', '日本乙级联赛'],
     ['英格兰冠军联赛-附加赛', '英格兰冠军联赛'],
+    ['世界U20锦标赛', 'U20世界杯2023(在阿根廷)'],
   ];
   const isEqual = !!equalNameList.find((d) => d.includes(l1) && d.includes(l2));
   if (isEqual) {
@@ -126,7 +127,8 @@ export function toData(tiCaiList: TiCaiList, extraList: TiCaiList, _R = 0.12) {
         league: ti.league,
         num: ti.num || '',
         singleList: ti.singleList,
-        dateTime: ti?.dateTime || '',
+        // 体彩的时间不对，使用extra的时间作为基准
+        dateTime: matchedExtra?.dateTime || '',
         tiCaiTeamList: ti.teamList,
         extraTeamList: matchedExtra?.teamList || ti.teamList,
         tiCaiItemList: ti.itemList,
