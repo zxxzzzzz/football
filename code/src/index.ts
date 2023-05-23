@@ -28,9 +28,6 @@ app.use(express.static('./public'));
 app.use(express.json());
 app.listen(9000);
 
-process.env.username = 'XDivan4';
-process.env.password = 'Jxd9061912';
-
 app.get('/data', async (req, res) => {
   try {
     // @ts-ignore
