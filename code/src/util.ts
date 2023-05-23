@@ -74,14 +74,14 @@ export const isLeagueEqual = (l1: string, l2: string) => {
   if (isEqual) {
     return true;
   }
+  const _l1 = l1.replace(/[组]/g, '级')
+  const _l2 = l2.replace(/[组]/g, '级')
   return (
-    l1 === l2 ||
-    l1.replace(/[组]/g, '级') === l2 ||
-    l2.replace(/[组]/g, '级') === l1 ||
-    l1 + '-附加赛' === l2 ||
-    l1 === l2 + '-附加赛' ||
-    l1 + '-升级附加赛' === l2 ||
-    l1 === l2 + '-升级附加赛'
+    _l1 === _l2 ||
+    _l1 + '-附加赛' === _l2 ||
+    _l1 === _l2 + '-附加赛' ||
+    _l1 + '-升级附加赛' === _l2 ||
+    _l1 === _l2 + '-升级附加赛'
   );
 };
 
