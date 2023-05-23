@@ -302,6 +302,10 @@ export function compare(dataList: ReturnType<typeof toData>, c = 0.13, a = 1, cR
 export const saveFile = (fileName: string, data: string) => {
   const path = './';
   const pPath = parse(resolve(path, fileName));
+  // 如果开启了oss,保存数据到oss
+  if (client) {
+    client.put(pPath.name + pPath.ext, Buffer.from(data));
+  }
   if (!fs.existsSync(pPath.dir)) {
     fs.mkdirSync(pPath.dir, { recursive: true });
   }
@@ -390,6 +394,9 @@ export const log = (msg: string) => {
   const d = JSON.parse(fs.readFileSync(path, { encoding: 'utf-8' })) as { data: { dateTime: string; msg: string }[] };
   const l = [...d.data, { dateTime: dayjs().format('YYYY-MM-DD HH:mm:ss'), msg }];
   console.log({ dateTime: dayjs().format('YYYY-MM-DD HH:mm:ss'), msg });
+  if (client) {
+    client.put('log.json', Buffer.from(JSON.stringify(l)), { headers: { 'x-oss-tagging': 'history=0' } });
+  }
   fs.writeFileSync(path, Format({ data: l.slice(Math.max(l.length - 1000, 0)) }));
 };
 export const getLogHistory = () => {
