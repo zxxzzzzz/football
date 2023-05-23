@@ -111,7 +111,6 @@ const pagination: TableProps['pagination'] = {
   pageSize: 300,
 };
 
-const userKey = new Date().valueOf();
 async function getData() {
   const origin = location.origin;
   const url = new URL(location.href);
@@ -144,7 +143,7 @@ async function cInter(cb: () => Promise<void>, n: number) {
   }, n);
 }
 onMounted(async () => {
-  await getData();
+  // await getData();
   cInter(async () => {
     if (!document.hidden) {
       await getData();
