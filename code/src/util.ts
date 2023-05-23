@@ -76,15 +76,9 @@ export const isLeagueEqual = (l1: string, l2: string) => {
   if (isEqual) {
     return true;
   }
-  const _l1 = l1.replace(/[组]/g, '级')
-  const _l2 = l2.replace(/[组]/g, '级')
-  return (
-    _l1 === _l2 ||
-    _l1 + '-附加赛' === _l2 ||
-    _l1 === _l2 + '-附加赛' ||
-    _l1 + '-升级附加赛' === _l2 ||
-    _l1 === _l2 + '-升级附加赛'
-  );
+  const _l1 = l1.replace(/[组]/g, '级');
+  const _l2 = l2.replace(/[组]/g, '级');
+  return _l1 === _l2 || _l1 + '-附加赛' === _l2 || _l1 === _l2 + '-附加赛' || _l1 + '-升级附加赛' === _l2 || _l1 === _l2 + '-升级附加赛';
 };
 
 // console.log(isTeamEqu(['阿尔克马尔', '海伦维恩'], ['阿尔克马','海伦芬']));
@@ -307,11 +301,16 @@ export const saveFile = (fileName: string, data: string) => {
   const path = './';
   const pPath = parse(resolve(path, fileName));
   // 如果开启了oss,保存数据到oss
-  if (client) {
-    client.put(pPath.name + pPath.ext, Buffer.from(data));
-  }
   if (!fs.existsSync(pPath.dir)) {
     fs.mkdirSync(pPath.dir, { recursive: true });
+  }
+  const _data = fs.readFileSync(resolve(path, fileName), { encoding: 'utf-8' });
+  // 如果数据没变 就不在保存数据
+  if (data === _data) {
+    return;
+  }
+  if (client) {
+    client.put(pPath.name + pPath.ext, Buffer.from(data));
   }
   fs.writeFileSync(resolve(path, fileName), data, { encoding: 'utf-8' });
 };
