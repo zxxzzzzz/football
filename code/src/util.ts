@@ -360,7 +360,7 @@ export async function getStore() {
   }
   // oss文件不存在, 把init数据存储到oss
   if (status === 404 && client) {
-    await client.put('store.json', Buffer.from(JSON.stringify(initData)), {});
+    await client.put('store.json', Buffer.from(Format(initData)), {});
     d = initData;
   }
   // oss没有权限
@@ -368,7 +368,7 @@ export async function getStore() {
     log('获取oss store数据无权限');
   }
   // 本地备份下oss里的数据
-  fs.writeFileSync(path, JSON.stringify(d), { encoding: 'utf-8', flag: 'w' });
+  fs.writeFileSync(path, Format(d), { encoding: 'utf-8', flag: 'w' });
   if (d) {
     return d;
   }
@@ -383,7 +383,7 @@ export const saveStore = async (s: Partial<Store>) => {
   // oss保存
   try {
     if (client) {
-      await client.put('store.json', Buffer.from(JSON.stringify({ ...store, ...s })));
+      await client.put('store.json', Buffer.from(Format({ ...store, ...s })));
       log('store存储到oss');
     }
   } catch (error) {}
@@ -393,20 +393,20 @@ export const saveStore = async (s: Partial<Store>) => {
 export const log = (msg: string) => {
   const path = './data/log.json';
   if (!fs.existsSync(path)) {
-    fs.writeFileSync(path, JSON.stringify({ data: [] }), { encoding: 'utf-8' });
+    fs.writeFileSync(path, Format({ data: [] }), { encoding: 'utf-8' });
   }
   const d = JSON.parse(fs.readFileSync(path, { encoding: 'utf-8' })) as { data: { dateTime: string; msg: string }[] };
   const l = [...d.data, { dateTime: dayjs().format('YYYY-MM-DD HH:mm:ss'), msg }];
   console.log({ dateTime: dayjs().format('YYYY-MM-DD HH:mm:ss'), msg });
   if (client) {
-    client.put('log.json', Buffer.from(JSON.stringify(l)), { headers: { 'x-oss-tagging': 'history=0' } });
+    client.put('log.json', Buffer.from(Format(l)), { headers: { 'x-oss-tagging': 'history=0' } });
   }
   fs.writeFileSync(path, Format({ data: l.slice(Math.max(l.length - 1000, 0)) }));
 };
 export const getLogHistory = () => {
   const path = './data/log.json';
   if (!fs.existsSync(path)) {
-    fs.writeFileSync(path, JSON.stringify({ data: [] }), { encoding: 'utf-8' });
+    fs.writeFileSync(path, Format({ data: [] }), { encoding: 'utf-8' });
   }
   const d = JSON.parse(fs.readFileSync(path, { encoding: 'utf-8' })) as { data: { dateTime: string; msg: string }[] };
   return d;
