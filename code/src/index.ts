@@ -28,7 +28,6 @@ app.use(express.static('./public'));
 app.use(express.json());
 app.listen(9000);
 
-
 app.get('/data', async (req, res) => {
   try {
     // @ts-ignore
@@ -45,19 +44,25 @@ app.get('/data', async (req, res) => {
         .filter((d) => d?.revList?.[0]?.rev > (store.Rev || 400))
         .map((d) => {
           const rev = d.revList[0];
-          return `${rev.single ? '【单】' : ''}${d.num} ${dayjs(d.dateTime, 'MM-DD HH:mm').format('MM-DD\u3000HH:ss')} ${d.tiCaiTeamList.join(' ')} GC:${rev.gc.toFixed(2)} VV:${rev.vv.toFixed(
+          return `${rev.single ? '【单】' : ''}${d.num} ${dayjs(d.dateTime, 'MM-DD HH:mm').format(
+            'MM-DD\u3000HH:ss'
+          )} ${d.tiCaiTeamList.join(' ')} GC:${rev.gc.toFixed(2)} VV:${rev.vv.toFixed(2)} offset:${rev.offset.toFixed(
             2
-          )} offset:${rev.offset.toFixed(2)} rev:${rev.rev.toFixed(2)}`;
+          )} rev:${rev.rev.toFixed(2)}`;
         });
       const compareDataList = compare(data, store.C, store.A, store.compareRev).slice(0, 3);
       const message2List = compareDataList.map((cd, index) => {
         return [
-          `NO.${index}${cd.single1 ? '【单】' : ''} ${cd.d1.num} ${dayjs(cd.d1.dateTime, 'MM-DD HH:mm').format('MM-DD\u3000HH:ss')} ${cd.d1.tiCaiTeamList.join(' ')} GC:${cd.gc1.toFixed(
+          `NO.${index}${cd.single1 ? '【单】' : ''} ${cd.d1.num} ${dayjs(cd.d1.dateTime, 'MM-DD HH:mm').format(
+            'MM-DD\u3000HH:ss'
+          )} ${cd.d1.tiCaiTeamList.join(' ')} GC:${cd.gc1.toFixed(2)} VV:${cd.vv1.toFixed(2)} offset:${cd.offset1.toFixed(
             2
-          )} VV:${cd.vv1.toFixed(2)} offset:${cd.offset1.toFixed(2)} rev:${cd.rev1.toFixed(2)}`,
-          `NO.${index}${cd.single2 ? '【单】' : ''} ${cd.d2.num} ${dayjs(cd.d2.dateTime, 'MM-DD HH:mm').format('MM-DD\u3000HH:ss')} ${cd.d2.tiCaiTeamList.join(' ')} GC:${cd.gc2.toFixed(
+          )} rev:${cd.rev1.toFixed(2)}`,
+          `NO.${index}${cd.single2 ? '【单】' : ''} ${cd.d2.num} ${dayjs(cd.d2.dateTime, 'MM-DD HH:mm').format(
+            'MM-DD\u3000HH:ss'
+          )} ${cd.d2.tiCaiTeamList.join(' ')} GC:${cd.gc2.toFixed(2)} VV:${cd.vv2.toFixed(2)} offset:${cd.offset2.toFixed(
             2
-          )} VV:${cd.vv2.toFixed(2)} offset:${cd.offset2.toFixed(2)} rev:${cd.rev2.toFixed(2)}`,
+          )} rev:${cd.rev2.toFixed(2)}`,
         ];
       });
       // console.log({ matchData: data, message1List, message2List });
@@ -94,6 +99,12 @@ async function getData(username: string, password: string, forceUpdate = false):
     // return void 0;
   }
   const store = await getStore();
+  // 如果数据长时间没变，强制更新
+  if (store?.dataTimestamp && new Date().valueOf() - store.dataTimestamp > 30 * 1000) {
+    log('长时间没更新，强制改变 isWaitForNewData')
+    isWaitForNewData = false;
+  }
+  log('isWaitForNewData ' + isWaitForNewData)
   // 如果发现获取数据时在等待数据，直接返回旧数据
   // 数据未过期，直接返回旧数据
   if ((store?.dataTimestamp && new Date().valueOf() - store.dataTimestamp < 15 * 1000) || isWaitForNewData) {
