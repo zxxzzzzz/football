@@ -105,7 +105,7 @@ type TiCaiList = FirstOfGeneric<ReturnType<typeof getTiCaiByFetch>>;
 export function toData(tiCaiList: TiCaiList, extraList: TiCaiList, _R = 0.12) {
   return tiCaiList
     .map((ti) => {
-      const matchedExtra = extraList.find((d) => d.ecid === ti.ecid);
+      let matchedExtra = extraList.find((d) => d.ecid === ti.ecid);
       if (!matchedExtra) {
         return {
           league: ti.league,
@@ -117,6 +117,25 @@ export function toData(tiCaiList: TiCaiList, extraList: TiCaiList, _R = 0.12) {
           tiCaiItemList: ti.itemList,
           extraItemList: [],
           revList: [],
+        };
+      }
+      // 处理队伍错位的情况
+      if (matchedExtra.teamList[0] === ti.teamList[1]) {
+        matchedExtra = {
+          ...matchedExtra,
+          teamList: [matchedExtra.teamList[1], matchedExtra.teamList[0]],
+          itemList: matchedExtra.itemList.map((item) => {
+            if (item.oddsTitle === '独赢') {
+              return {
+                ...item,
+                oddsItemList: [item.oddsItemList[1], item.oddsItemList[0], item.oddsItemList[2]],
+              };
+            }
+            return {
+              ...item,
+              oddsItemList: [item.oddsItemList[1], item.oddsItemList[0]],
+            };
+          }),
         };
       }
       return {
