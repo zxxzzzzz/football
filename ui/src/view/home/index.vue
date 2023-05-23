@@ -129,9 +129,17 @@ async function getData() {
   }
 }
 async function cInter(cb: () => Promise<void>, n: number) {
-  await cb();
+  try {
+    await cb();
+  } catch (error) {
+    
+  }
   setTimeout(async () => {
-    await cInter(cb, n);
+    try {
+      await cInter(cb, n);
+    } catch (error) {
+      
+    }
   }, n);
 }
 onMounted(async () => {
