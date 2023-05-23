@@ -312,9 +312,9 @@ export function compare(dataList: ReturnType<typeof toData>, c = 0.13, a = 1, cR
     .filter(({ d1, d2 }) => {
       const dy1 = dayjs(d1.dateTime, 'MM-DD HH:mm');
       const dy2 = dayjs(d2.dateTime, 'MM-DD HH:mm');
-      const now = dayjs();
       const bet = Math.abs(dy1.valueOf() - dy2.valueOf());
-      const isToday = Math.abs(dy1.date() - now.date()) + Math.abs(dy2.date() - now.date()) <= 1;
+      // 两个比赛的日期得是一致或者连续的
+      const isToday = Math.abs(dy1.date()  - dy2.date()) <= 1;
       return bet > 2 * 60 * 60 * 1000 && isToday;
     })
     .sort((a, b) => {
@@ -335,7 +335,7 @@ export const saveFile = (fileName: string, data: string) => {
     return;
   }
   if (client) {
-    client.put(pPath.name + pPath.ext, Buffer.from(data));
+    client.put(pPath.name + `_${dayjs().add(8, 'h').format('YYYY-MM-DD')}` + pPath.ext, Buffer.from(data));
   }
   fs.writeFileSync(resolve(path, fileName), data, { encoding: 'utf-8' });
 };
@@ -387,7 +387,8 @@ export async function getStore() {
   }
   // oss文件不存在, 把init数据存储到oss
   if (status === 404 && client) {
-    await client.put('store.json', Buffer.from(Format(initData)));
+    // 因为时区问题，北京时间要加8
+    await client.put(`store_${dayjs().add(8, 'h').format('YYYY-MM-DD')}.json`, Buffer.from(Format(initData)));
     d = initData;
   }
   // oss没有权限
@@ -410,7 +411,7 @@ export const saveStore = async (s: Partial<Store>) => {
   // oss保存
   try {
     if (client) {
-      await client.put('store.json', Buffer.from(Format({ ...store, ...s })));
+      await client.put(`store_${dayjs().add(8, 'h').format('YYYY-MM-DD')}.json`, Buffer.from(Format({ ...store, ...s })));
       log('store存储到oss');
     }
   } catch (error) {}
@@ -423,10 +424,12 @@ export const log = (msg: string) => {
     fs.writeFileSync(path, Format({ data: [] }), { encoding: 'utf-8' });
   }
   const d = JSON.parse(fs.readFileSync(path, { encoding: 'utf-8' })) as { data: { dateTime: string; msg: string }[] };
-  const l = [...d.data, { dateTime: dayjs().format('YYYY-MM-DD HH:mm:ss'), msg }];
-  console.log({ dateTime: dayjs().format('YYYY-MM-DD HH:mm:ss'), msg });
+  const l = [{ dateTime: dayjs().add(8,'h').format('YYYY-MM-DD HH:mm:ss'), msg }, ...d.data];
+  console.log({ dateTime: dayjs().add(8,'h').format('YYYY-MM-DD HH:mm:ss'), msg });
   if (client) {
-    client.put('log.json', Buffer.from(Format(l)), { headers: { 'x-oss-tagging': 'history=0' } });
+    client.put(`log_${dayjs().add(8, 'h').format('YYYY-MM-DD')}.json`, Buffer.from(Format(l)), {
+      headers: { 'x-oss-tagging': 'history=0' },
+    });
   }
   fs.writeFileSync(path, Format({ data: l.slice(Math.max(l.length - 1000, 0)) }));
 };
