@@ -191,7 +191,7 @@ export function toData(tiCaiList: TiCaiList, extraList: TiCaiList, _R = 0.12) {
                 ];
               })
               .flat();
-            const matchList = matchedExtra.itemList
+            const matchList = matchedExtra?.itemList
               .filter((item) => {
                 const r = [parseFloat(item.oddsItemList[0][0]), parseFloat(item.oddsItemList[0][1]), parseFloat(item.oddsItemList[1][1])];
                 if (!['让球', '独赢'].includes(item.oddsTitle)) {
@@ -216,10 +216,10 @@ export function toData(tiCaiList: TiCaiList, extraList: TiCaiList, _R = 0.12) {
                   .map((f) => {
                     const { GC, VV, Offset, Rev } = getRev(f.tiCaiOdds, f.type === 'win' ? r[2] : r[1], _R);
                     return {
-                      teamList: matchedExtra.teamList,
+                      teamList: matchedExtra?.teamList,
                       num: ti.num,
                       single: f.single,
-                      ecid: matchedExtra.ecid,
+                      ecid: matchedExtra?.ecid,
                       isMatch: f.filter(r[0], item.oddsTitle === '独赢'),
                       isOnlyWin: item.oddsTitle === '独赢',
                       type: f.type,
@@ -240,19 +240,19 @@ export function toData(tiCaiList: TiCaiList, extraList: TiCaiList, _R = 0.12) {
             return matchList;
           })
           .flat()
-          .sort((a, b) => b.rev - a.rev)
+          .sort((a, b) => (b?.rev || 0) - (a?.rev || 0))
           .slice(0, 1),
       };
     })
     .sort((a, b) => {
       const rev1 = a.revList.reduce((re, cur) => {
-        if (cur.isMatch && cur.rev > re) {
+        if (cur?.isMatch && cur.rev > re) {
           return cur.rev;
         }
         return re;
       }, 0);
       const rev2 = b.revList.reduce((re, cur) => {
-        if (cur.isMatch && cur.rev > re) {
+        if (cur?.isMatch && cur.rev > re) {
           return cur.rev;
         }
         return re;
@@ -264,7 +264,7 @@ export function toData(tiCaiList: TiCaiList, extraList: TiCaiList, _R = 0.12) {
 export function compare(dataList: ReturnType<typeof toData>, c = 0.13, a = 1, cRev = 430) {
   const filterDataList = dataList
     .filter((d) => {
-      return d.revList?.[0]?.rev > cRev;
+      return (d?.revList?.[0]?.rev || 0) > cRev;
     })
     .sort((a, b) => {
       const dy1 = dayjs(a.dateTime, 'MM-DD HH:mm').valueOf();
@@ -289,12 +289,12 @@ export function compare(dataList: ReturnType<typeof toData>, c = 0.13, a = 1, cR
     for (let j = i; j < filterDataList.length; j++) {
       const d1 = filterDataList[i];
       const d2 = filterDataList[j];
-      const single1 = d1.revList[0].single;
-      const single2 = d2.revList[0].single;
-      const gc1 = d1.revList[0].gc;
-      const vv1 = d1.revList[0].vv;
-      const vv2 = d2.revList[0].vv;
-      const gc2 = d2.revList[0].gc;
+      const single1 = d1?.revList[0]?.single || false;
+      const single2 = d2?.revList[0]?.single || false;
+      const gc1 = d1?.revList[0]?.gc || 0;
+      const vv1 = d1?.revList[0]?.vv || 0;
+      const vv2 = d2?.revList[0]?.vv || 0;
+      const gc2 = d2?.revList[0]?.gc || 0;
       const offset2 = (gc1 * gc2 * 10000) / (1.028 * vv2 + 0.972);
       const offset1 = (1.028 * vv2 * offset2 - (10000 * (1 - c) * 7) / 8) / ((1.028 * vv1) / 8 + 0.972);
       const rev1 = offset1 * vv1 * 1.028 - 10000 * (1 - c);
