@@ -38,13 +38,25 @@ const isMatch = (a: string, b: string): number => {
   const matchList = R.range(0, Math.min(a.length, b.length)).map((index) => {
     return a[index] === b[index];
   });
-  return (
+  const rate1 =
     matchList.reduce((re, cur) => {
       return re + (cur ? 1 : 0);
     }, 0) /
-    ((a.length + b.length) / 2)
-  );
+    ((a.length + b.length) / 2);
+  const matchList2 = R.range(0, Math.min(a.length, b.length)).map((index) => {
+    if (a.length > b.length) {
+      return a.includes(b[index]);
+    }
+    return b.includes(a[index]);
+  });
+  const rate2 =
+    matchList.reduce((re, cur) => {
+      return re + (cur ? 1 : 0);
+    }, 0) /
+    ((a.length + b.length) / 2);
+  return rate1 + rate2 * 0.1;
 };
+
 export const isTeamEqu = (a: string[], b: string[]) => {
   if (!a?.length || !b?.length) {
     return 0;
@@ -314,7 +326,7 @@ export function compare(dataList: ReturnType<typeof toData>, c = 0.13, a = 1, cR
       const dy2 = dayjs(d2.dateTime, 'MM-DD HH:mm');
       const bet = Math.abs(dy1.valueOf() - dy2.valueOf());
       // 两个比赛的日期得是一致或者连续的
-      const isToday = Math.abs(dy1.date()  - dy2.date()) <= 1;
+      const isToday = Math.abs(dy1.date() - dy2.date()) <= 1;
       return bet > 2 * 60 * 60 * 1000 && isToday;
     })
     .sort((a, b) => {
@@ -424,8 +436,8 @@ export const log = (msg: string) => {
     fs.writeFileSync(path, Format({ data: [] }), { encoding: 'utf-8' });
   }
   const d = JSON.parse(fs.readFileSync(path, { encoding: 'utf-8' })) as { data: { dateTime: string; msg: string }[] };
-  const l = [{ dateTime: dayjs().add(8,'h').format('YYYY-MM-DD HH:mm:ss'), msg }, ...d.data];
-  console.log({ dateTime: dayjs().add(8,'h').format('YYYY-MM-DD HH:mm:ss'), msg });
+  const l = [{ dateTime: dayjs().add(8, 'h').format('YYYY-MM-DD HH:mm:ss'), msg }, ...d.data];
+  console.log({ dateTime: dayjs().add(8, 'h').format('YYYY-MM-DD HH:mm:ss'), msg });
   if (client) {
     client.put(`log_${dayjs().add(8, 'h').format('YYYY-MM-DD')}.json`, Buffer.from(Format(l)), {
       headers: { 'x-oss-tagging': 'history=0' },
