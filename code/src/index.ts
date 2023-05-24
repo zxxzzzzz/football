@@ -166,13 +166,15 @@ async function getData(username: string, password: string, forceUpdate = false):
           const gDateTime = dayjs(extra.dateTime, 'MM-DD HH:mm');
           const oneMinute = 60 * 1000;
           // 时间是否匹配,上下十分钟的范围
-          const isTime = Math.abs(gDateTime.valueOf() - tDateTime.valueOf()) <= 10 * oneMinute;
+          const isTime1 = Math.abs(gDateTime.valueOf() - tDateTime.valueOf()) <= 10 * oneMinute;
           // 有时体彩的时间会落后extra的时间24小时
           const isTime2 = Math.abs(gDateTime.valueOf() - tDateTime.add(24, 'hour').valueOf()) <= 10 * oneMinute;
+          const isTime = isTime1 || isTime2;
           // 联赛是否匹配
           const isLeague = isLeagueEqual(tiCai.league, extra.league);
+          const rate = (isLeague ? 100 : 0) + (isTime ? 10 : 0) + teamRate;
           // 联赛必须匹配上
-          const re: [typeof extra, number] = [extra, isLeague ? (isTime || isTime2 ? 1 + teamRate : teamRate) : 0];
+          const re: [typeof extra, number] = [extra, rate];
           return re;
         });
       // 选出匹配度最高的一场比赛
