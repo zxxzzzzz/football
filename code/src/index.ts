@@ -100,11 +100,11 @@ async function getData(username: string, password: string, forceUpdate = false):
   }
   const store = await getStore();
   // 如果数据长时间没变，强制更新
-  if (store?.dataTimestamp && new Date().valueOf() - store.dataTimestamp > 30 * 1000) {
-    log('长时间没更新，强制改变 isWaitForNewData')
+  if (store?.dataTimestamp && new Date().valueOf() - store.dataTimestamp > 30 * 1000 && isWaitForNewData) {
+    log('长时间没更新，强制改变 isWaitForNewData');
     isWaitForNewData = false;
   }
-  log('isWaitForNewData ' + isWaitForNewData)
+  log('isWaitForNewData ' + isWaitForNewData);
   // 如果发现获取数据时在等待数据，直接返回旧数据
   // 数据未过期，直接返回旧数据
   if ((store?.dataTimestamp && new Date().valueOf() - store.dataTimestamp < 15 * 1000) || isWaitForNewData) {
@@ -172,7 +172,7 @@ async function getData(username: string, password: string, forceUpdate = false):
           // 联赛是否匹配
           const isLeague = isLeagueEqual(tiCai.league, extra.league);
           // 联赛必须匹配上
-          const re: [typeof extra, number] = [extra, isLeague ? (isTime || isTime2 ? 1 : 0) + teamRate : 0];
+          const re: [typeof extra, number] = [extra, isLeague ? (isTime || isTime2 ? 1 + teamRate : teamRate) : 0];
           return re;
         });
       // 选出匹配度最高的一场比赛
