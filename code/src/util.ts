@@ -50,7 +50,7 @@ const isMatch = (a: string, b: string): number => {
     return b.includes(a[index]);
   });
   const rate2 =
-    matchList.reduce((re, cur) => {
+    matchList2.reduce((re, cur) => {
       return re + (cur ? 1 : 0);
     }, 0) /
     ((a.length + b.length) / 2);
