@@ -113,7 +113,6 @@ async function getData(username: string, password: string, forceUpdate = false):
   }
   isWaitForNewData = true;
   const data = await retryLoginByNodeFetch(username, password, forceUpdate);
-  log(JSON.stringify(data));
   if (!data) {
     return void 0;
   }

@@ -19,22 +19,7 @@ if (process.env.key) {
   });
 }
 
-// const keyList = [['RB莱比锡', '莱红牛']];
-// rate加权
 const isMatch = (a: string, b: string): number => {
-  // const matchedEl = keyList.find((k) => k.includes(a));
-  // if (matchedEl && matchedEl.includes(b)) {
-  //   return 1;
-  // }
-  // if (a.includes(b) || b.includes(a)) {
-  //   return 1;
-  // }
-  // const flag = R.range(0, Math.max(a.length, b.length)).every((index) => {
-  //   return a[index] === b[index];
-  // });
-  // if (flag) {
-  //   return 1;
-  // }
   const matchList = R.range(0, Math.min(a.length, b.length)).map((index) => {
     return a[index] === b[index];
   });
@@ -430,18 +415,16 @@ export const saveStore = async (s: Partial<Store>) => {
   return { ...store, ...s };
 };
 
-export const log = (msg: string) => {
+export const log = (msg: any) => {
   const path = './data/log.json';
   if (!fs.existsSync(path)) {
     fs.writeFileSync(path, Format({ data: [] }), { encoding: 'utf-8' });
   }
-  const d = JSON.parse(fs.readFileSync(path, { encoding: 'utf-8' })) as { data: { dateTime: string; msg: string }[] };
+  const d = JSON.parse(fs.readFileSync(path, { encoding: 'utf-8' })) as { data: { dateTime: string; msg: any }[] };
   const l = [{ dateTime: dayjs().add(8, 'h').format('YYYY-MM-DD HH:mm:ss'), msg }, ...d.data];
   console.log({ dateTime: dayjs().add(8, 'h').format('YYYY-MM-DD HH:mm:ss'), msg });
   if (client) {
-    client.put(`log_${dayjs().add(8, 'h').format('YYYY-MM-DD')}.json`, Buffer.from(Format(l)), {
-      headers: { 'x-oss-tagging': 'history=0' },
-    });
+    client.put(`log.json`, Buffer.from(Format(l)));
   }
   fs.writeFileSync(path, Format({ data: l.slice(Math.max(l.length - 1000, 0)) }));
 };
@@ -450,6 +433,6 @@ export const getLogHistory = () => {
   if (!fs.existsSync(path)) {
     fs.writeFileSync(path, Format({ data: [] }), { encoding: 'utf-8' });
   }
-  const d = JSON.parse(fs.readFileSync(path, { encoding: 'utf-8' })) as { data: { dateTime: string; msg: string }[] };
+  const d = JSON.parse(fs.readFileSync(path, { encoding: 'utf-8' })) as { data: { dateTime: string; msg: any }[] };
   return d;
 };

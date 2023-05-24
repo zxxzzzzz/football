@@ -311,7 +311,12 @@ export async function loginByNodeFetch(username: string, password: string, force
   const now = new Date().valueOf();
   // 时间没超过20分钟，不重新请求token
   if (store.uidTimestamp && now - store.uidTimestamp < 20 * 60 * 1000 && !forceUpdate) {
-    log('使用缓存的login token');
+    log({
+      uid: store.uid || '',
+      url: store.url || '',
+      ver: store.ver || '',
+      msg: '使用缓存的login token',
+    });
     return {
       uid: store.uid || '',
       url: store.url || '',
@@ -420,9 +425,15 @@ export async function loginByNodeFetch(username: string, password: string, force
     }
     return domain;
   }, 3);
-  const domain = await getDomain()
+  const domain = await getDomain();
   if (uid) {
-    log('更新login token');
+    log({
+      msg: '更新login token',
+      uid: uid,
+      ver: ver,
+      uidTimestamp: new Date().valueOf(),
+      url: `https://${domain}/`,
+    });
     await saveStore({
       uid: uid,
       ver: ver,

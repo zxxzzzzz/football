@@ -3,7 +3,7 @@
     <div class="bg-white">&nbsp;</div>
     <div class="bg-gray-100">&nbsp;</div>
     <div class="mx-4">
-      <Table :dataSource="dataSource" :columns="columns" bordered :rowClassName="rowClassName" :pagination="pagination"></Table>
+      <Table :dataSource="sortDataSource" :columns="columns" bordered :rowClassName="rowClassName" :pagination="pagination"></Table>
     </div>
     <Drawer width="840" placement="right" :closable="true" :visible="drawerVisible" :mask="true" @close="onClose">
       <List item-layout="horizontal" :data-source="message1List">
@@ -32,7 +32,8 @@
       </List>
     </Drawer>
     <Affix :offsetBottom="400" :style="{ position: 'absolute', right: 0 + 'px' }">
-      <Button type="primary" @click="() => (drawerVisible = true)"> 消息</Button>
+      <Button type="primary" @click="() => (drawerVisible = true)" class="my-2">  消息</Button>
+      <Button type="primary" @click="() => (drawerVisible = true)">{{ isSortByRev ? '正常排序' : 'rev排序' }}</Button>
     </Affix>
   </div>
 </template>
@@ -47,7 +48,7 @@ import TiCai from './component/tiCai.vue';
 import Extra from './component/extra.vue';
 // import { Game } from './type';
 import Rev from './component/rev.vue';
-import { countBy } from 'ramda';
+import dayjs from 'dayjs';
 
 // defineProps<{}>();
 type D = {
@@ -102,8 +103,30 @@ const colors = [
 
 // const dataList = ref<Game[]>([]);
 const dataSource = ref<D[]>([]);
+const sortDataSource = computed(() => {
+  if (isSortByRev.value) {
+    return dataSource.value.sort((a, b) => {
+      const rev1 = a.revList.reduce((re, cur) => {
+        if (cur.isMatch && cur.rev > re) {
+          return cur.rev;
+        }
+        return re;
+      }, 0);
+      const rev2 = b.revList.reduce((re, cur) => {
+        if (cur.isMatch && cur.rev > re) {
+          return cur.rev;
+        }
+        return re;
+      }, 0);
+      return rev2 - rev1;
+    });
+  }
+  return dataSource.value.sort((a, b) => dayjs(a.dateTime, 'MM-DD HH:ss').valueOf() - dayjs(b.dateTime, 'MM-DD HH:ss').valueOf());
+});
 const message1List = ref<string[]>([]);
 const message2List = ref<string[]>([]);
+// 是否按照rev排序
+const isSortByRev = ref(true);
 
 const drawerVisible = ref(false);
 // 全局r变量
@@ -131,15 +154,11 @@ async function getData() {
 async function cInter(cb: () => Promise<void>, n: number) {
   try {
     await cb();
-  } catch (error) {
-    
-  }
+  } catch (error) {}
   setTimeout(async () => {
     try {
       await cInter(cb, n);
-    } catch (error) {
-      
-    }
+    } catch (error) {}
   }, n);
 }
 onMounted(async () => {
@@ -153,6 +172,10 @@ onMounted(async () => {
 
 const onClose = () => {
   drawerVisible.value = false;
+};
+
+const handleSort = () => {
+  isSortByRev.value = !isSortByRev.value;
 };
 
 const rowClassName: TableProps['rowClassName'] = (_, index) => {
