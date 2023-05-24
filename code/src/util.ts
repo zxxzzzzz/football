@@ -149,7 +149,7 @@ export function toData(tiCaiList: TiCaiList, extraList: TiCaiList, _R = 0.12) {
           const extra = matchedExtra.itemList
             .map((item) => item.oddsItemList)
             .flat()
-            .find((item) => item[0] === tiOddTitle.replace(/+/g, '-'));
+            .find((item) => item[0] === tiOddTitle.replace(/[+]/g, '-'));
           if (!extra) {
             return void 0;
           }
