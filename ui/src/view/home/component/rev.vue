@@ -1,6 +1,9 @@
 <template>
   <div>
+    <div>胜平负</div>
     <Table :columns="columns" :dataSource="dataSource" :pagination="false"> </Table>
+    <div class="mt-4">得分</div>
+    <Table :columns="columns" :dataSource="scoreDataSource" :pagination="false"> </Table>
     <!-- <div>{{ dataSource }}</div> -->
   </div>
 </template>
@@ -23,10 +26,27 @@ const props = defineProps<{
     vv: number;
     r: number;
     offset: number;
+  }[],
+  scoreItemList: {
+    isMatch: boolean; 
+    type: string;
+    tiCaiOdds: number;
+    extraOdds: number;
+    tiCai: number;
+    extra: number;
+    rev: number;
+    gc: number;
+    vv: number;
+    r: number;
+    offset: number;
   }[];
 }>();
 const dataSource = computed(() => {
   return props.itemList
+    // .slice(0, 1);
+});
+const scoreDataSource = computed(() => {
+  return props.scoreItemList
     // .slice(0, 1);
 });
 const columns: TableProps<typeof dataSource.value[0]>['columns'] = [

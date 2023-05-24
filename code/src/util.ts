@@ -170,7 +170,9 @@ export function toData(tiCaiList: TiCaiList, extraList: TiCaiList, _R = 0.12) {
             offset: Offset,
           };
         })
-        .filter((a): a is Exclude<typeof a, undefined> => !!a),
+        .filter((a): a is Exclude<typeof a, undefined> => !!a)
+        .sort((a, b) => b.rev - a.rev)
+        .slice(0, 1),
       revList: ti.itemList
         .filter((item) => item.oddsTitle === '胜平负')
         .map((item) => {

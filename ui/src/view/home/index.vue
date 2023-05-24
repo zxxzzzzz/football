@@ -69,6 +69,23 @@ type D = {
     oddsTitle: string;
     oddsItemList: string[][];
   }[];
+  scoreRevList: {
+    teamList: string[];
+    num: string | undefined;
+    ecid: '6841929';
+    isMatch: boolean;
+    isOnlyWin: boolean;
+    type: string;
+    tiCaiOdds: number;
+    extraOdds: number;
+    tiCai: number;
+    extra: number;
+    rev: number;
+    gc: number;
+    vv: number;
+    r: number;
+    offset: number;
+  }[];
   revList: {
     teamList: string[];
     num: string | undefined;
@@ -221,6 +238,7 @@ const columns: TableProps<Record>['columns'] = [
     customRender({ record }) {
       return h(Rev, {
         itemList: record.revList,
+        scoreItemList: record.scoreRevList,
       });
     },
   },
