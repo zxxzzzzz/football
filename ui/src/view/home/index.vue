@@ -203,7 +203,7 @@ const columns: TableProps<Record>['columns'] = [
   {
     title: '体彩',
     customRender({ record }) {
-      return h(TiCai, { teamList: record.tiCaiTeamList, item: record.tiCaiItemList[0], revList: record.revList });
+      return h(TiCai, { teamList: record.tiCaiTeamList, itemList: record.tiCaiItemList, revList: record.revList });
     },
   },
   {
