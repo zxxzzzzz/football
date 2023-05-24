@@ -150,7 +150,7 @@ export function toData(tiCaiList: TiCaiList, extraList: TiCaiList, _R = 0.12) {
           }
           return true;
         }),
-        revList: ti.itemList
+        revList: ti.itemList.filter(item => item.oddsTitle === '胜平负')
           .map((item) => {
             if (!matchedExtra) {
               return [];
