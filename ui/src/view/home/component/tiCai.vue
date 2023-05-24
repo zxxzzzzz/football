@@ -14,10 +14,10 @@
 </template>
 <script lang="ts" setup>
 import { computed, h, onMounted } from 'vue';
-import { Table } from 'ant-design-vue';
+import { Table, Tag } from 'ant-design-vue';
 import type { TableProps } from 'ant-design-vue';
 import Highlight from './highlight.vue';
-import {Score} from '../enum';
+import { Score } from '../enum';
 
 interface Item {
   oddsTitle: string;
@@ -34,10 +34,10 @@ type Rev = {
 };
 const props = defineProps<{ itemList: Item[]; revList: Rev[] }>();
 const dataSource = computed(() => {
-  return (props.itemList.filter(item => item.oddsTitle === '胜平负')?.[0]?.oddsItemList ||[]).map((odds) => {
+  return (props.itemList.filter((item) => item.oddsTitle === '胜平负')?.[0]?.oddsItemList || []).map((odds) => {
     return {
       score: parseFloat(odds[0]),
-      scoreTitle:odds[0] === Score.noSale ? '未开售': odds[0],
+      scoreTitle: odds[0] === Score.noSale ? '未开售' : odds[0],
       win: parseFloat(odds[1]),
       draw: parseFloat(odds[2]),
       lose: parseFloat(odds[3]),
@@ -47,7 +47,7 @@ const dataSource = computed(() => {
 const itemListSort = computed(() => {
   return props.itemList.filter((a) => a.oddsTitle === '得分');
 });
-const columns: TableProps<typeof dataSource.value[0]>['columns'] = [
+const columns: TableProps<(typeof dataSource.value)[0]>['columns'] = [
   // {title:'球队', customRender(){return '-'}},
   { title: '让球', dataIndex: 'scoreTitle', minWidth: 48 },
   {

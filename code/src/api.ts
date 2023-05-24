@@ -91,7 +91,7 @@ export async function getTiCaiByFetch() {
           const X = 5000 / (1 + a / b + a / c);
           // const Y =  a/b*X
           // const Z =  a/c*X
-          return `${(X * a * 2) / 10000}`;
+          return ((X * a * 2) / 10000).toFixed(3);
         };
         const get2G = (a: number, b: number, c: number) => {
           if (!a || !b || !c) {
@@ -100,7 +100,7 @@ export async function getTiCaiByFetch() {
           const X = 9200 / 2 / a;
           // Y+Z = 5000 - X  bY = cZ  Z=bY/c   Y+bY/c = 5000 -X  Y = (5000-X)/(1+b/c)
           const Y = (5000 - X) / (1 + b / c);
-          return `${(Y * b * 2) / 10000}`;
+          return ((Y * b * 2) / 10000).toFixed(3);
         };
 
         return {

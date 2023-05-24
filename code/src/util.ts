@@ -100,153 +100,178 @@ export enum Score {
 type FirstOfGeneric<T> = T extends Promise<infer F> ? F : never;
 type TiCaiList = FirstOfGeneric<ReturnType<typeof getTiCaiByFetch>>;
 export function toData(tiCaiList: TiCaiList, extraList: TiCaiList, _R = 0.12) {
-  return tiCaiList
-    .map((ti) => {
-      let matchedExtra = extraList.find((d) => d.ecid === ti.ecid);
-      if (!matchedExtra) {
-        return {
-          league: ti.league,
-          num: ti.num || '',
-          singleList: ti.singleList,
-          dateTime: ti?.dateTime || '',
-          tiCaiTeamList: ti.teamList,
-          extraTeamList: ti.teamList,
-          tiCaiItemList: ti.itemList,
-          extraItemList: [],
-          revList: [],
-        };
-      }
-      // 处理队伍错位的情况
-      if (matchedExtra.teamList[0] === ti.teamList[1]) {
-        matchedExtra = {
-          ...matchedExtra,
-          teamList: [matchedExtra.teamList[1], matchedExtra.teamList[0]],
-          itemList: matchedExtra.itemList.map((item) => {
-            if (item.oddsTitle === '独赢') {
-              return {
-                ...item,
-                oddsItemList: [item.oddsItemList[1], item.oddsItemList[0], item.oddsItemList[2]],
-              };
-            }
+  const dataList = tiCaiList.map((ti) => {
+    let matchedExtra = extraList.find((d) => d.ecid === ti.ecid);
+    if (!matchedExtra) {
+      return void 0;
+    }
+    // 处理队伍错位的情况
+    if (matchedExtra.teamList[0] === ti.teamList[1]) {
+      matchedExtra = {
+        ...matchedExtra,
+        teamList: [matchedExtra.teamList[1], matchedExtra.teamList[0]],
+        itemList: matchedExtra.itemList.map((item) => {
+          if (item.oddsTitle === '独赢') {
             return {
               ...item,
-              oddsItemList: [item.oddsItemList[1], item.oddsItemList[0]],
+              oddsItemList: [item.oddsItemList[1], item.oddsItemList[0], item.oddsItemList[2]],
             };
-          }),
-        };
-      }
-      return {
-        league: ti.league,
-        num: ti.num || '',
-        singleList: ti.singleList,
-        // 体彩的时间不对，使用extra的时间作为基准
-        dateTime: matchedExtra?.dateTime || '',
-        tiCaiTeamList: ti.teamList,
-        extraTeamList: matchedExtra?.teamList || ti.teamList,
-        tiCaiItemList: ti.itemList,
-        extraItemList: (matchedExtra?.itemList || []).filter((d: any) => {
-          if (d.oddsTitle === '得分') {
-            return d.oddsItemList[0][0].slice(1) === '2' || d.oddsItemList[0][0].slice(1) === '2.5';
           }
-          return true;
+          return {
+            ...item,
+            oddsItemList: [item.oddsItemList[1], item.oddsItemList[0]],
+          };
         }),
-        revList: ti.itemList.filter(item => item.oddsTitle === '胜平负')
-          .map((item) => {
-            if (!matchedExtra) {
-              return [];
-            }
-            const filterList = item.oddsItemList
-              .map((d, index) => ({ single: ti.singleList[index], oddsItem: d }))
-              .filter(({ oddsItem }) => oddsItem[0] !== Score.noSale)
-              .map(({ oddsItem, single }) => {
-                // 体彩让球  [主胜对立面，主负对立面]
-                const filterMap: { [key: string | number]: [number, number] } = {
-                  '3': [+2.5, +3.5],
-                  '2': [+1.5, +2.5],
-                  '1': [+0.5, +1.5],
-                  '0': [-0.5, +0.5],
-                  '-1': [-1.5, -0.5],
-                  '-2': [-2.5, -1.5],
-                  '-3': [-3.5, -2.5],
-                };
-                return [
-                  {
-                    filter: (d: number, isOnlyWin: boolean) =>
-                      isOnlyWin ? parseFloat(oddsItem[0]) === 1 : filterMap[parseFloat(oddsItem[0])][0] === d,
-                    // 胜
-                    type: 'win',
-                    single,
-                    tiCai: parseFloat(oddsItem[0]),
-                    tiCaiOdds: parseFloat(oddsItem[1]),
-                  },
-                  {
-                    filter: (d: number, isOnlyWin: boolean) =>
-                      isOnlyWin ? parseFloat(oddsItem[0]) === -1 : filterMap[parseFloat(oddsItem[0])][1] === d,
-                    type: 'lose',
-                    single,
-                    tiCai: parseFloat(oddsItem[0]),
-                    // 负
-                    tiCaiOdds: parseFloat(oddsItem[3]),
-                  },
-                ];
-              })
-              .flat();
-            const matchList = matchedExtra.itemList
-              .filter((item) => {
-                const r = [parseFloat(item.oddsItemList[0][0]), parseFloat(item.oddsItemList[0][1]), parseFloat(item.oddsItemList[1][1])];
-                if (!['让球', '独赢'].includes(item.oddsTitle)) {
-                  return false;
-                }
-                if (item.oddsItemList[0][0]?.includes('/')) {
-                  return false;
-                }
-                if (r[0] === Math.round(r[0])) {
-                  return false;
-                }
-                return true;
-              })
-              .map((item) => {
-                // 比分 胜 负
-                let r = [parseFloat(item.oddsItemList[0][0]), parseFloat(item.oddsItemList[0][1]), parseFloat(item.oddsItemList[1][1])];
-                if (item.oddsTitle === '独赢') {
-                  // 独赢没有让球，随便填个值
-                  r = [0, parseFloat(item.oddsItemList[0][0]), parseFloat(item.oddsItemList[1][0])];
-                }
-                return filterList
-                  .map((f) => {
-                    if (!matchedExtra) {
-                      return void 0;
-                    }
-                    const { GC, VV, Offset, Rev } = getRev(f.tiCaiOdds, f.type === 'win' ? r[2] : r[1], _R);
-                    return {
-                      teamList: matchedExtra.teamList,
-                      num: ti.num,
-                      single: f.single,
-                      ecid: matchedExtra.ecid,
-                      isMatch: f.filter(r[0], item.oddsTitle === '独赢'),
-                      isOnlyWin: item.oddsTitle === '独赢',
-                      type: f.type,
-                      tiCaiOdds: f.tiCaiOdds,
-                      extraOdds: f.type === 'win' ? r[2] : r[1],
-                      tiCai: f.tiCai,
-                      extra: r[0],
-                      rev: Rev,
-                      gc: GC,
-                      vv: VV,
-                      r: _R,
-                      offset: Offset,
-                    };
-                  })
-                  .filter((d): d is Exclude<typeof d, undefined> => !!d?.isMatch);
-              })
-              .flat();
-            return matchList;
-          })
-          .flat()
-          .sort((a, b) => b.rev - a.rev)
-          .slice(0, 1),
       };
-    })
+    }
+    return {
+      league: ti.league,
+      num: ti.num || '',
+      singleList: ti.singleList,
+      // 体彩的时间不对，使用extra的时间作为基准
+      dateTime: matchedExtra?.dateTime || '',
+      tiCaiTeamList: ti.teamList,
+      extraTeamList: matchedExtra?.teamList || ti.teamList,
+      tiCaiItemList: ti.itemList,
+      extraItemList: (matchedExtra?.itemList || []).filter((d: any) => {
+        if (d.oddsTitle === '得分') {
+          return d.oddsItemList[0][0].slice(1) === '2' || d.oddsItemList[0][0].slice(1) === '2.5';
+        }
+        return true;
+      }),
+      scoreRevList: ti.itemList
+        .filter((item) => item.oddsTitle === '得分')
+        .map((tItem) => {
+          if (!matchedExtra) {
+            return void 0;
+          }
+          const [tiOddTitle, tiOdd] = tItem.oddsItemList[0];
+          const extra = matchedExtra.itemList
+            .map((item) => item.oddsItemList)
+            .flat()
+            .find((item) => item[0] === tiOddTitle.replace(/+/g, '-'));
+          if (!extra) {
+            return void 0;
+          }
+          const [eOddTitle, eOdd] = extra;
+          const { GC, VV, Offset, Rev } = getRev(parseFloat(tiOdd), parseFloat(eOdd), _R);
+          return {
+            teamList: matchedExtra.teamList,
+            num: ti.num,
+            ecid: matchedExtra.ecid,
+            tiCaiOdds: tiOddTitle,
+            extraOdds: eOddTitle,
+            tiCai: parseFloat(tiOdd),
+            extra: parseFloat(eOdd),
+            rev: Rev,
+            gc: GC,
+            vv: VV,
+            r: _R,
+            offset: Offset,
+          };
+        })
+        .filter((a): a is Exclude<typeof a, undefined> => !!a),
+      revList: ti.itemList
+        .filter((item) => item.oddsTitle === '胜平负')
+        .map((item) => {
+          if (!matchedExtra) {
+            return void 0;
+          }
+          const filterList = item.oddsItemList
+            .map((d, index) => ({ single: ti.singleList[index], oddsItem: d }))
+            .filter(({ oddsItem }) => oddsItem[0] !== Score.noSale)
+            .map(({ oddsItem, single }) => {
+              // 体彩让球  [主胜对立面，主负对立面]
+              const filterMap: { [key: string | number]: [number, number] } = {
+                '3': [+2.5, +3.5],
+                '2': [+1.5, +2.5],
+                '1': [+0.5, +1.5],
+                '0': [-0.5, +0.5],
+                '-1': [-1.5, -0.5],
+                '-2': [-2.5, -1.5],
+                '-3': [-3.5, -2.5],
+              };
+              return [
+                {
+                  filter: (d: number, isOnlyWin: boolean) =>
+                    isOnlyWin ? parseFloat(oddsItem[0]) === 1 : filterMap[parseFloat(oddsItem[0])][0] === d,
+                  // 胜
+                  type: 'win',
+                  single,
+                  tiCai: parseFloat(oddsItem[0]),
+                  tiCaiOdds: parseFloat(oddsItem[1]),
+                },
+                {
+                  filter: (d: number, isOnlyWin: boolean) =>
+                    isOnlyWin ? parseFloat(oddsItem[0]) === -1 : filterMap[parseFloat(oddsItem[0])][1] === d,
+                  type: 'lose',
+                  single,
+                  tiCai: parseFloat(oddsItem[0]),
+                  // 负
+                  tiCaiOdds: parseFloat(oddsItem[3]),
+                },
+              ];
+            })
+            .flat();
+          const matchList = matchedExtra.itemList
+            .filter((item) => {
+              const r = [parseFloat(item.oddsItemList[0][0]), parseFloat(item.oddsItemList[0][1]), parseFloat(item.oddsItemList[1][1])];
+              if (!['让球', '独赢'].includes(item.oddsTitle)) {
+                return false;
+              }
+              if (item.oddsItemList[0][0]?.includes('/')) {
+                return false;
+              }
+              if (r[0] === Math.round(r[0])) {
+                return false;
+              }
+              return true;
+            })
+            .map((item) => {
+              // 比分 胜 负
+              let r = [parseFloat(item.oddsItemList[0][0]), parseFloat(item.oddsItemList[0][1]), parseFloat(item.oddsItemList[1][1])];
+              if (item.oddsTitle === '独赢') {
+                // 独赢没有让球，随便填个值
+                r = [0, parseFloat(item.oddsItemList[0][0]), parseFloat(item.oddsItemList[1][0])];
+              }
+              return filterList
+                .map((f) => {
+                  if (!matchedExtra) {
+                    return void 0;
+                  }
+                  const { GC, VV, Offset, Rev } = getRev(f.tiCaiOdds, f.type === 'win' ? r[2] : r[1], _R);
+                  return {
+                    teamList: matchedExtra.teamList,
+                    num: ti.num,
+                    single: f.single,
+                    ecid: matchedExtra.ecid,
+                    isMatch: f.filter(r[0], item.oddsTitle === '独赢'),
+                    isOnlyWin: item.oddsTitle === '独赢',
+                    type: f.type,
+                    tiCaiOdds: f.tiCaiOdds,
+                    extraOdds: f.type === 'win' ? r[2] : r[1],
+                    tiCai: f.tiCai,
+                    extra: r[0],
+                    rev: Rev,
+                    gc: GC,
+                    vv: VV,
+                    r: _R,
+                    offset: Offset,
+                  };
+                })
+                .filter((d): d is Exclude<typeof d, undefined> => !!d?.isMatch);
+            })
+            .flat();
+          return matchList;
+        })
+        .flat()
+        .filter((a): a is Exclude<typeof a, undefined> => !!a)
+        .sort((a, b) => b.rev - a.rev)
+        .slice(0, 1),
+    };
+  });
+  return dataList
+    .filter((d): d is Exclude<typeof d, undefined> => !!d)
     .sort((a, b) => {
       const rev1 = a.revList.reduce((re, cur) => {
         if (cur.isMatch && cur.rev > re) {
