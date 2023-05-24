@@ -7,33 +7,37 @@
     </div>
     <Drawer width="840" placement="right" :closable="true" :visible="drawerVisible" :mask="true" @close="onClose">
       <List item-layout="horizontal" :data-source="message1List">
-
         <template #renderItem="{ item }">
           <div class="flex flex-wrap">
-            <div v-for="(t, index) in item.split(' ')" :style="{ color: colors[index], margin: '0 4px' }" class="whitespace-nowrap">{{ t }}</div>
+            <div v-for="(t, index) in item.split(' ')" :style="{ color: colors[index], margin: '0 4px' }" class="whitespace-nowrap">
+              {{ t }}
+            </div>
           </div>
         </template>
-
       </List>
       <Divider></Divider>
       <List item-layout="horizontal" :data-source="message2List">
-
         <template #renderItem="{ item }">
           <div style="margin: 4px 0">
             <div class="flex flex-wrap">
-              <div v-for="(t, index) in item[0].split(' ')" :style="{ color: colors[index], margin: '0 4px' }" class="whitespace-nowrap">{{ t }}</div>
+              <div v-for="(t, index) in item[0].split(' ')" :style="{ color: colors[index], margin: '0 4px' }" class="whitespace-nowrap">
+                {{ t }}
+              </div>
             </div>
             <div class="flex flex-wrap">
-              <div v-for="(t, index) in item[1].split(' ')" :style="{ color: colors[index], margin: '0 4px' }" class="whitespace-nowrap">{{ t }}</div>
+              <div v-for="(t, index) in item[1].split(' ')" :style="{ color: colors[index], margin: '0 4px' }" class="whitespace-nowrap">
+                {{ t }}
+              </div>
             </div>
           </div>
         </template>
-
       </List>
     </Drawer>
     <Affix :offsetBottom="400" :style="{ position: 'absolute', right: 0 + 'px' }">
-      <Button type="primary" @click="() => (drawerVisible = true)" class="my-2">  消息</Button>
-      <Button type="primary" @click="() => (drawerVisible = true)">{{ isSortByRev ? '正常排序' : 'rev排序' }}</Button>
+      <div class="flex flex-col">
+        <Button type="primary" @click="() => (drawerVisible = true)" class="my-2"> 消息</Button>
+        <Button type="primary" @click="handleSort">{{ isSortByRev ? '正常排序' : 'rev排序' }}</Button>
+      </div>
     </Affix>
   </div>
 </template>
