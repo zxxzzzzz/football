@@ -3,36 +3,41 @@
     <div class="bg-white">&nbsp;</div>
     <div class="bg-gray-100">&nbsp;</div>
     <div class="mx-4">
-      <Table :dataSource="dataSource" :columns="columns" bordered :rowClassName="rowClassName" :pagination="pagination"></Table>
+      <Table :dataSource="sortDataSource" :columns="columns" bordered :rowClassName="rowClassName" :pagination="pagination"></Table>
     </div>
     <Drawer width="840" placement="right" :closable="true" :visible="drawerVisible" :mask="true" @close="onClose">
       <List item-layout="horizontal" :data-source="message1List">
-
         <template #renderItem="{ item }">
           <div class="flex flex-wrap">
-            <div v-for="(t, index) in item.split(' ')" :style="{ color: colors[index], margin: '0 4px' }" class="whitespace-nowrap">{{ t }}</div>
+            <div v-for="(t, index) in item.split(' ')" :style="{ color: colors[index], margin: '0 4px' }" class="whitespace-nowrap">
+              {{ t }}
+            </div>
           </div>
         </template>
-
       </List>
       <Divider></Divider>
       <List item-layout="horizontal" :data-source="message2List">
-
         <template #renderItem="{ item }">
           <div style="margin: 4px 0">
             <div class="flex flex-wrap">
-              <div v-for="(t, index) in item[0].split(' ')" :style="{ color: colors[index], margin: '0 4px' }" class="whitespace-nowrap">{{ t }}</div>
+              <div v-for="(t, index) in item[0].split(' ')" :style="{ color: colors[index], margin: '0 4px' }" class="whitespace-nowrap">
+                {{ t }}
+              </div>
             </div>
             <div class="flex flex-wrap">
-              <div v-for="(t, index) in item[1].split(' ')" :style="{ color: colors[index], margin: '0 4px' }" class="whitespace-nowrap">{{ t }}</div>
+              <div v-for="(t, index) in item[1].split(' ')" :style="{ color: colors[index], margin: '0 4px' }" class="whitespace-nowrap">
+                {{ t }}
+              </div>
             </div>
           </div>
         </template>
-
       </List>
     </Drawer>
     <Affix :offsetBottom="400" :style="{ position: 'absolute', right: 0 + 'px' }">
-      <Button type="primary" @click="() => (drawerVisible = true)"> 消息</Button>
+      <div class="flex flex-col">
+        <Button type="primary" @click="() => (drawerVisible = true)" class="my-2"> 消息</Button>
+        <Button type="primary" @click="handleSort">{{ isSortByRev ? '正常排序' : 'rev排序' }}</Button>
+      </div>
     </Affix>
   </div>
 </template>
@@ -47,7 +52,7 @@ import TiCai from './component/tiCai.vue';
 import Extra from './component/extra.vue';
 // import { Game } from './type';
 import Rev from './component/rev.vue';
-import { countBy } from 'ramda';
+import dayjs from 'dayjs';
 
 // defineProps<{}>();
 type D = {
@@ -63,6 +68,23 @@ type D = {
   extraItemList: {
     oddsTitle: string;
     oddsItemList: string[][];
+  }[];
+  scoreRevList: {
+    teamList: string[];
+    num: string | undefined;
+    ecid: '6841929';
+    isMatch: boolean;
+    isOnlyWin: boolean;
+    type: string;
+    tiCaiOdds: number;
+    extraOdds: number;
+    tiCai: number;
+    extra: number;
+    rev: number;
+    gc: number;
+    vv: number;
+    r: number;
+    offset: number;
   }[];
   revList: {
     teamList: string[];
@@ -102,8 +124,30 @@ const colors = [
 
 // const dataList = ref<Game[]>([]);
 const dataSource = ref<D[]>([]);
+const sortDataSource = computed(() => {
+  if (isSortByRev.value) {
+    return dataSource.value.sort((a, b) => {
+      const rev1 = a.revList.reduce((re, cur) => {
+        if (cur.isMatch && cur.rev > re) {
+          return cur.rev;
+        }
+        return re;
+      }, 0);
+      const rev2 = b.revList.reduce((re, cur) => {
+        if (cur.isMatch && cur.rev > re) {
+          return cur.rev;
+        }
+        return re;
+      }, 0);
+      return rev2 - rev1;
+    });
+  }
+  return dataSource.value.sort((a, b) => dayjs(a.dateTime, 'MM-DD HH:ss').valueOf() - dayjs(b.dateTime, 'MM-DD HH:ss').valueOf());
+});
 const message1List = ref<string[]>([]);
 const message2List = ref<string[]>([]);
+// 是否按照rev排序
+const isSortByRev = ref(true);
 
 const drawerVisible = ref(false);
 // 全局r变量
@@ -131,15 +175,11 @@ async function getData() {
 async function cInter(cb: () => Promise<void>, n: number) {
   try {
     await cb();
-  } catch (error) {
-    
-  }
+  } catch (error) {}
   setTimeout(async () => {
     try {
       await cInter(cb, n);
-    } catch (error) {
-      
-    }
+    } catch (error) {}
   }, n);
 }
 onMounted(async () => {
@@ -153,6 +193,10 @@ onMounted(async () => {
 
 const onClose = () => {
   drawerVisible.value = false;
+};
+
+const handleSort = () => {
+  isSortByRev.value = !isSortByRev.value;
 };
 
 const rowClassName: TableProps['rowClassName'] = (_, index) => {
@@ -176,7 +220,7 @@ const columns: TableProps<Record>['columns'] = [
   {
     title: '体彩',
     customRender({ record }) {
-      return h(TiCai, { teamList: record.tiCaiTeamList, item: record.tiCaiItemList[0], revList: record.revList });
+      return h(TiCai, { teamList: record.tiCaiTeamList, itemList: record.tiCaiItemList, revList: record.revList });
     },
   },
   {
@@ -194,6 +238,7 @@ const columns: TableProps<Record>['columns'] = [
     customRender({ record }) {
       return h(Rev, {
         itemList: record.revList,
+        scoreItemList: record.scoreRevList,
       });
     },
   },

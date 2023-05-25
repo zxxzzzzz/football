@@ -51,7 +51,7 @@ type Game = {
 
 export async function getTiCaiByFetch() {
   const fetch = (await _fetch).default;
-  const res = await fetch('https://webapi.sporttery.cn/gateway/jc/football/getMatchCalculatorV1.qry?poolCode=hhad,had&channel=c', {
+  const res = await fetch('https://webapi.sporttery.cn/gateway/jc/football/getMatchCalculatorV1.qry?poolCode=hhad,had,ttg&channel=c', {
     headers: {
       accept: 'application/json, text/javascript, */*; q=0.01',
       'accept-language': 'zh-CN,zh;q=0.9',
@@ -79,6 +79,30 @@ export async function getTiCaiByFetch() {
       .flat()
       .map((m) => {
         const leagueAllName = m.leagueAllName;
+        const ttg = m.ttg;
+        const a = parseFloat(ttg.s2);
+        const b = parseFloat(ttg.s1);
+        const c = parseFloat(ttg.s0);
+        const get25G = (a: number, b: number, c: number) => {
+          if (!a || !b || !c) {
+            return '0';
+          }
+          // X+aX/b+aX/c=5000  aX=bY=cZ X+Y+Z=5000
+          const X = 5000 / (1 + a / b + a / c);
+          // const Y =  a/b*X
+          // const Z =  a/c*X
+          return ((X * a * 2) / 10000).toFixed(3);
+        };
+        const get2G = (a: number, b: number, c: number) => {
+          if (!a || !b || !c) {
+            return '0';
+          }
+          const X = 9200 / 2 / a;
+          // Y+Z = 5000 - X  bY = cZ  Z=bY/c   Y+bY/c = 5000 -X  Y = (5000-X)/(1+b/c)
+          const Y = (5000 - X) / (1 + b / c);
+          return ((Y * b * 2) / 10000).toFixed(3);
+        };
+
         return {
           dateTime: dayjs(m.businessDate + ' ' + m.matchTime, 'YYYY-MM-DD HH:mm:ss').format('MM-DD HH:mm'),
           num: m.matchNumStr,
@@ -93,6 +117,14 @@ export async function getTiCaiByFetch() {
                 [m.had.goalLine === void 0 ? '100' : m.had.goalLine || '0', m.had.h || '0', m.had.d || '0', m.had.a || '0'],
                 [m.hhad.goalLine === void 0 ? '100' : m.hhad.goalLine || '0', m.hhad.h || '0', m.hhad.d || '0', m.hhad.a || '0'],
               ],
+            },
+            {
+              oddsTitle: '得分',
+              oddsItemList: [[`+2.5`, get25G(a, b, c)]],
+            },
+            {
+              oddsTitle: '得分',
+              oddsItemList: [[`+2`, get2G(a, b, c)]],
             },
           ],
           ecid: '',
@@ -311,7 +343,12 @@ export async function loginByNodeFetch(username: string, password: string, force
   const now = new Date().valueOf();
   // 时间没超过20分钟，不重新请求token
   if (store.uidTimestamp && now - store.uidTimestamp < 20 * 60 * 1000 && !forceUpdate) {
-    log('使用缓存的login token');
+    log({
+      uid: store.uid || '',
+      url: store.url || '',
+      ver: store.ver || '',
+      msg: '使用缓存的login token',
+    });
     return {
       uid: store.uid || '',
       url: store.url || '',
@@ -420,9 +457,15 @@ export async function loginByNodeFetch(username: string, password: string, force
     }
     return domain;
   }, 3);
-  const domain = await getDomain()
+  const domain = await getDomain();
   if (uid) {
-    log('更新login token');
+    log({
+      msg: '更新login token',
+      uid: uid,
+      ver: ver,
+      uidTimestamp: new Date().valueOf(),
+      url: `https://${domain}/`,
+    });
     await saveStore({
       uid: uid,
       ver: ver,

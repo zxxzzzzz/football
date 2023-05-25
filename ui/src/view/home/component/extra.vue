@@ -1,17 +1,14 @@
 <template>
-  <div class="flex">
+  <div>
     <Ball :revList="props.revList" :itemList="ballItemList" class="flex-1"></Ball>
-    <!-- <div class="mx-4 titleContainer">
-      <div class="mb-2">&nbsp;</div>
-      <div class="mb-2">{{ props.teamList[0] }}</div>
-      <div>{{ props.teamList[1] }}</div>
-    </div> -->
-    <div v-for="item in itemListSort">
-      <div class="mr-4 mb-2">{{ item.oddsTitle }}</div>
-      <div class="flex mr-4 mb-2" v-for="oddItem in item.oddsItemList">
-        <div class="mr-1" v-for="(str, index) in oddItem">
-          <div v-if="index === 0">{{ str }}</div>
-          <Tag v-else>{{ str }}</Tag>
+    <div class="flex">
+      <div v-for="item in itemListSort">
+        <div class="mr-4 mb-2">{{ item.oddsTitle }}</div>
+        <div class="flex mr-4 mb-2" v-for="oddItem in item.oddsItemList">
+          <div class="mr-1" v-for="(str, index) in oddItem">
+            <div v-if="index === 0">{{ str }}</div>
+            <Tag v-else>{{ str }}</Tag>
+          </div>
         </div>
       </div>
     </div>
