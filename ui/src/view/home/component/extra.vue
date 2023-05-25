@@ -50,13 +50,16 @@ const scoreItemList = computed(() => {
     .map((item) => {
       return {
         title: item.oddsTitle,
-        itemList: item.oddsItemList.map((oddsItem) => {
-          const index = props.scoreRevList.findIndex((s) => oddsItem[0] === s.extraOdds && oddsItem[1] === `${s.extra}`);
-          return {
-            index: index + 2,
-            content: oddsItem,
-          };
-        }),
+        itemList: item.oddsItemList
+          .map((oddsItem) => {
+            const index = props.scoreRevList.findIndex((s) => oddsItem[0] === s.extraOdds && oddsItem[1] === `${s.extra}`);
+            if (index === -1) return void 0;
+            return {
+              index: index + 2,
+              content: oddsItem,
+            };
+          })
+          .filter((d): d is Exclude<typeof d, undefined> => !!d),
       };
     });
 });

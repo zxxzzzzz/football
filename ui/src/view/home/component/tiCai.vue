@@ -5,7 +5,7 @@
       <div class="mr-4 mb-2">{{ item.title }}</div>
       <div class="flex mr-4 mb-2" v-for="oddItem in item.itemList">
         <div class="mr-1">
-          <div >{{ oddItem.content[0] }}</div>
+          <div>{{ oddItem.content[0] }}</div>
           <Highlight :content="oddItem.content[1]" :index="oddItem.index"></Highlight>
         </div>
       </div>
@@ -59,11 +59,12 @@ const scoreItemList = computed(() => {
         title: item.oddsTitle,
         itemList: item.oddsItemList.map((oddsItem) => {
           const index = props.scoreRevList.findIndex((s) => oddsItem[0] === s.tiCaiOdds && oddsItem[1] === `${s.tiCai}`);
+          if (index === -1) return void 0;
           return {
-            index:index+2,
-            content:oddsItem
-          }
-        }),
+            index: index + 2,
+            content: oddsItem,
+          };
+        }).filter((d):d is Exclude<typeof d, undefined> => !!d),
       };
     });
 });

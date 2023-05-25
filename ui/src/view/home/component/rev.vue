@@ -26,10 +26,8 @@ const props = defineProps<{
     vv: number;
     r: number;
     offset: number;
-  }[],
+  }[];
   scoreItemList: {
-    isMatch: boolean; 
-    type: string;
     tiCaiOdds: string;
     extraOdds: string;
     tiCai: number;
@@ -42,14 +40,14 @@ const props = defineProps<{
   }[];
 }>();
 const dataSource = computed(() => {
-  return props.itemList
-    // .slice(0, 1);
+  return props.itemList;
+  // .slice(0, 1);
 });
 const scoreDataSource = computed(() => {
-  return props.scoreItemList
-    // .slice(0, 1);
+  return props.scoreItemList;
+  // .slice(0, 1);
 });
-const columns: TableProps<typeof dataSource.value[0]>['columns'] = [
+const columns: TableProps<(typeof dataSource.value)[0]>['columns'] = [
   {
     title: 'GC',
     dataIndex: 'gc',
@@ -89,6 +87,43 @@ const columns: TableProps<typeof dataSource.value[0]>['columns'] = [
         return h(Highlight, { content: record.rev.toFixed(2), index: revIndex });
       }
       return record.rev.toFixed(2);
+    },
+  },
+];
+const scoreColumns: TableProps<(typeof scoreDataSource.value)[0]>['columns'] = [
+  {
+    title: 'GC',
+    dataIndex: 'gc',
+    customRender({ record }) {
+      return record.gc.toFixed(2);
+    },
+  },
+  {
+    title: 'VV',
+    dataIndex: 'vv',
+    customRender({ record }) {
+      return record.vv.toFixed(2);
+    },
+  },
+  {
+    title: 'Offset',
+    dataIndex: 'offset',
+    customRender({ record }) {
+      return record.offset.toFixed(2);
+    },
+  },
+  {
+    title: 'R',
+    dataIndex: 'r',
+    customRender({ record }) {
+      return record.r.toFixed(2);
+    },
+  },
+  {
+    title: 'Rev',
+    dataIndex: 'rev',
+    customRender({ record, index }) {
+      return h(Highlight, { content: record.rev.toFixed(2), index: index + 2 });
     },
   },
 ];
