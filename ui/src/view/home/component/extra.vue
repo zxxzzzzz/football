@@ -18,6 +18,7 @@
 import { Tag } from 'ant-design-vue';
 import { computed } from 'vue';
 import Ball from './ball.vue';
+import Highlight from './highlight.vue';
 interface Item {
   oddsTitle: string;
   oddsItemList: string[][];
