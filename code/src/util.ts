@@ -375,6 +375,7 @@ type Store = {
   C: number;
   Rev: number;
   compareRev: number;
+  scoreRev: number;
   data: any;
 };
 export async function getStore() {
@@ -386,6 +387,7 @@ export async function getStore() {
     C: 0.13,
     Rev: 400,
     compareRev: 430,
+    scoreRev: 200,
   };
   const path = './data/store.json';
   // 首先查看本地是否有数据,如果本地有数据，直接使用本地数据
@@ -399,7 +401,7 @@ export async function getStore() {
   // 如果本地没有数据，请求oss里的数据
   try {
     if (client) {
-      const res = await client.get(`store_${dayjs().add(8, 'h').format('YYYY-MM-DD')}.json`);
+      const res = await client.get(`store.json`);
       d = JSON.parse(res.content);
       log('获取 oss store数据成功');
     } else {
@@ -412,7 +414,7 @@ export async function getStore() {
   // oss文件不存在, 把init数据存储到oss
   if (status === 404 && client) {
     // 因为时区问题，北京时间要加8
-    await client.put(`store_${dayjs().add(8, 'h').format('YYYY-MM-DD')}.json`, Buffer.from(Format(initData)));
+    await client.put(`store.json`, Buffer.from(Format(initData)));
     d = initData;
   }
   // oss没有权限
@@ -435,7 +437,7 @@ export const saveStore = async (s: Partial<Store>) => {
   // oss保存
   try {
     if (client) {
-      await client.put(`store_${dayjs().add(8, 'h').format('YYYY-MM-DD')}.json`, Buffer.from(Format({ ...store, ...s })));
+      await client.put(`store.json`, Buffer.from(Format({ ...store, ...s })));
       log('store存储到oss');
     }
   } catch (error) {}

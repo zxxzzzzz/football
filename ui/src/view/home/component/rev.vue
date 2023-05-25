@@ -30,8 +30,8 @@ const props = defineProps<{
   scoreItemList: {
     isMatch: boolean; 
     type: string;
-    tiCaiOdds: number;
-    extraOdds: number;
+    tiCaiOdds: string;
+    extraOdds: string;
     tiCai: number;
     extra: number;
     rev: number;

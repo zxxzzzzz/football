@@ -5,7 +5,7 @@
     <div class="mx-4">
       <Table :dataSource="sortDataSource" :columns="columns" bordered :rowClassName="rowClassName" :pagination="pagination"></Table>
     </div>
-    <Drawer width="840" placement="right" :closable="true" :visible="drawerVisible" :mask="true" @close="onClose">
+    <!-- <Drawer width="840" placement="right" :closable="true" :visible="drawerVisible" :mask="true" @close="onClose">
       <List item-layout="horizontal" :data-source="message1List">
         <template #renderItem="{ item }">
           <div class="flex flex-wrap">
@@ -32,7 +32,7 @@
           </div>
         </template>
       </List>
-    </Drawer>
+    </Drawer> -->
     <Affix :offsetBottom="400" :style="{ position: 'absolute', right: 0 + 'px' }">
       <div class="flex flex-col">
         <Button type="primary" @click="() => (drawerVisible = true)" class="my-2"> 消息</Button>
@@ -76,8 +76,8 @@ type D = {
     isMatch: boolean;
     isOnlyWin: boolean;
     type: string;
-    tiCaiOdds: number;
-    extraOdds: number;
+    tiCaiOdds: string;
+    extraOdds: string;
     tiCai: number;
     extra: number;
     rev: number;
@@ -220,7 +220,7 @@ const columns: TableProps<Record>['columns'] = [
   {
     title: '体彩',
     customRender({ record }) {
-      return h(TiCai, { teamList: record.tiCaiTeamList, itemList: record.tiCaiItemList, revList: record.revList });
+      return h(TiCai, { teamList: record.tiCaiTeamList, itemList: record.tiCaiItemList, revList: record.revList, scoreRevList: record.scoreRevList, });
     },
   },
   {
@@ -230,6 +230,7 @@ const columns: TableProps<Record>['columns'] = [
         teamList: record.extraTeamList,
         itemList: record.extraItemList.filter((e) => ['让球', '得分', '独赢'].includes(e.oddsTitle)),
         revList: record.revList,
+        scoreRevList: record.scoreRevList,
       });
     },
   },

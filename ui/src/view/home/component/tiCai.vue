@@ -1,12 +1,12 @@
 <template>
   <div>
     <Table :dataSource="dataSource" :columns="columns" :pagination="false"></Table>
-    <div v-for="item in itemListSort">
-      <div class="mr-4 mb-2">{{ item.oddsTitle }}</div>
-      <div class="flex mr-4 mb-2" v-for="oddItem in item.oddsItemList">
-        <div class="mr-1" v-for="(str, index) in oddItem">
-          <div v-if="index === 0">{{ str }}</div>
-          <Tag v-else>{{ str }}</Tag>
+    <div v-for="item in scoreItemList">
+      <div class="mr-4 mb-2">{{ item.title }}</div>
+      <div class="flex mr-4 mb-2" v-for="oddItem in item.itemList">
+        <div class="mr-1">
+          <div >{{ oddItem.content[0] }}</div>
+          <Highlight :content="oddItem.content[1]" :index="oddItem.index"></Highlight>
         </div>
       </div>
     </div>
@@ -32,7 +32,14 @@ type Rev = {
   extra: number;
   rev: number;
 };
-const props = defineProps<{ itemList: Item[]; revList: Rev[] }>();
+type Rev2 = {
+  tiCaiOdds: string;
+  extraOdds: string;
+  tiCai: number;
+  extra: number;
+  rev: number;
+};
+const props = defineProps<{ itemList: Item[]; revList: Rev[]; scoreRevList: Rev2[] }>();
 const dataSource = computed(() => {
   return (props.itemList.filter((item) => item.oddsTitle === '胜平负')?.[0]?.oddsItemList || []).map((odds) => {
     return {
@@ -44,8 +51,21 @@ const dataSource = computed(() => {
     };
   });
 });
-const itemListSort = computed(() => {
-  return props.itemList.filter((a) => a.oddsTitle === '得分');
+const scoreItemList = computed(() => {
+  return props.itemList
+    .filter((a) => a.oddsTitle === '得分')
+    .map((item) => {
+      return {
+        title: item.oddsTitle,
+        itemList: item.oddsItemList.map((oddsItem) => {
+          const index = props.scoreRevList.findIndex((s) => oddsItem[0] === s.tiCaiOdds && oddsItem[1] === `${s.tiCai}`);
+          return {
+            index:index+2,
+            content:oddsItem
+          }
+        }),
+      };
+    });
 });
 const columns: TableProps<(typeof dataSource.value)[0]>['columns'] = [
   // {title:'球队', customRender(){return '-'}},
