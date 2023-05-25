@@ -16,8 +16,8 @@ import { getStore, saveStore, saveFile, log, getLogHistory } from './util';
 import cors from 'cors';
 
 // console.log(cors);
-// process.env.username = 'XDivan4';
-// process.env.password = 'Jxd9061912';
+process.env.username = 'XDivan4';
+process.env.password = 'Jxd9061912';
 
 type FirstOfGeneric<T> = T extends Promise<infer F> ? F : never;
 
@@ -44,6 +44,11 @@ app.get('/data', async (req, res) => {
       const store = await getStore();
       const message1List = data
         .filter((d) => d?.revList?.[0]?.rev > (store.Rev || 400))
+        .sort((a,b) => {
+          const rev1 = a.revList[0];
+          const rev2 = b.revList[0];
+          return rev2.rev - rev1.rev
+        })
         .map((d) => {
           const rev = d.revList[0];
           return `${rev.single ? '【单】' : ''}${d.num} ${dayjs(d.dateTime, 'MM-DD HH:mm').format(
@@ -53,14 +58,19 @@ app.get('/data', async (req, res) => {
           )} rev:${rev.rev.toFixed(2)}`;
         });
       const message3List = data
-        // .filter((d) => d?.scoreRevList?.[0]?.rev > (store.scoreRev || 0))
+        .filter((d) => d?.scoreRevList?.[0]?.rev > (store?.scoreRev || 200))
+        .sort((a,b) => {
+          const rev1 = a.scoreRevList[0];
+          const rev2 = b.scoreRevList[0];
+          return rev2.rev - rev1.rev
+        })
         .map((d) => {
           const rev = d.scoreRevList[0];
           return `${d.num} ${dayjs(d.dateTime, 'MM-DD HH:mm').format('MM-DD\u2002HH:ss')} ${d.tiCaiTeamList.join(' ')} GC:${rev.gc.toFixed(
             2
-          )} VV:${rev.vv.toFixed(2)} offset:${rev.offset.toFixed(2)} rev:${rev.rev.toFixed(2)} 0球(${rev.score?.c})-${
-            rev.score?.Z
-          }\u20021球（${rev.score?.b}）-${rev.score?.Y}\u20022球（${rev.score?.a}）-${rev.score?.X}`;
+          )} VV:${rev.vv.toFixed(2)} offset:${rev.offset.toFixed(2)} rev:${rev.rev.toFixed(2)} 0球(${rev.score?.c?.toFixed(1)})-${
+            rev.score?.Z?.toFixed(1)
+          }\u20021球(${rev.score?.b?.toFixed(1)})-${rev.score?.Y?.toFixed(1)}\u20022球(${rev.score?.a?.toFixed(1)})-${rev.score?.X?.toFixed(1)}`;
         });
       const compareDataList = compare(data, store.C, store.A, store.compareRev).slice(0, 3);
       const message2List = compareDataList.map((cd, index) => {

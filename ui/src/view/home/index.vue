@@ -8,7 +8,7 @@
     <Drawer width="840" placement="right" :closable="true" :visible="drawerVisible" :mask="true" @close="onClose">
       <List item-layout="horizontal" :data-source="message1List">
         <template #renderItem="{ item }">
-          <div class="flex flex-wrap">
+          <div class="flex flex-wrap mb-2">
             <div v-for="(t, index) in item.split(' ')" :style="{ color: colors[index], margin: '0 4px' }" class="whitespace-nowrap">
               {{ t }}
             </div>
@@ -18,7 +18,7 @@
       <Divider></Divider>
       <List item-layout="horizontal" :data-source="message2List">
         <template #renderItem="{ item }">
-          <div style="margin: 4px 0">
+          <div class="mb-2">
             <div class="flex flex-wrap">
               <div v-for="(t, index) in item[0].split(' ')" :style="{ color: colors[index], margin: '0 4px' }" class="whitespace-nowrap">
                 {{ t }}
@@ -35,7 +35,7 @@
       <Divider></Divider>
       <List item-layout="horizontal" :data-source="message3List">
         <template #renderItem="{ item }">
-          <div class="flex flex-wrap">
+          <div class="flex flex-wrap mb-2">
             <div v-for="(t, index) in item.split(' ')" :style="{ color: colors[index], margin: '0 4px' }" class="whitespace-nowrap">
               {{ t }}
             </div>
@@ -46,7 +46,7 @@
     <Affix :offsetBottom="400" :style="{ position: 'absolute', right: 0 + 'px' }">
       <div class="flex flex-col">
         <Button type="primary" @click="() => (drawerVisible = true)" class="my-2"> 消息</Button>
-        <Button type="primary" @click="handleSort">{{ isSortByRev ? '正常排序' : 'rev排序' }}</Button>
+        <Button type="primary" @click="handleSort">{{ sortName }}</Button>
       </div>
     </Affix>
   </div>
@@ -83,9 +83,6 @@ type D = {
     teamList: string[];
     num: string | undefined;
     ecid: '6841929';
-    isMatch: boolean;
-    isOnlyWin: boolean;
-    type: string;
     tiCaiOdds: string;
     extraOdds: string;
     tiCai: number;
@@ -135,30 +132,66 @@ const colors = [
 // const dataList = ref<Game[]>([]);
 const dataSource = ref<D[]>([]);
 const sortDataSource = computed(() => {
-  if (isSortByRev.value) {
+  if (sortType.value === SortType.rev) {
     return dataSource.value.sort((a, b) => {
       const rev1 = a.revList.reduce((re, cur) => {
         if (cur.isMatch && cur.rev > re) {
           return cur.rev;
         }
         return re;
-      }, 0);
+      }, -Infinity);
       const rev2 = b.revList.reduce((re, cur) => {
         if (cur.isMatch && cur.rev > re) {
           return cur.rev;
         }
         return re;
-      }, 0);
+      }, -Infinity);
       return rev2 - rev1;
     });
   }
-  return dataSource.value.sort((a, b) => dayjs(a.dateTime, 'MM-DD HH:ss').valueOf() - dayjs(b.dateTime, 'MM-DD HH:ss').valueOf());
+  if (sortType.value === SortType.score) {
+    return dataSource.value.sort((a, b) => {
+      const rev1 = a.scoreRevList.reduce((re, cur) => {
+        if (cur.rev > re) {
+          return cur.rev;
+        }
+        return re;
+      }, -Infinity);
+      const rev2 = b.scoreRevList.reduce((re, cur) => {
+        if (cur.rev > re) {
+          return cur.rev;
+        }
+        return re;
+      }, -Infinity);
+      return rev2 - rev1;
+    });
+  }
+  if (sortType.value === SortType.normal) {
+    return dataSource.value.sort((a, b) => dayjs(a.dateTime, 'MM-DD HH:ss').valueOf() - dayjs(b.dateTime, 'MM-DD HH:ss').valueOf());
+  }
 });
 const message1List = ref<string[]>([]);
 const message2List = ref<string[]>([]);
 const message3List = ref<string[]>([]);
 // 是否按照rev排序
-const isSortByRev = ref(true);
+const enum SortType {
+  normal,
+  rev,
+  score,
+}
+const sortType = ref(SortType.rev);
+const sortName = computed(() => {
+  if (sortType.value === SortType.normal) {
+    return '用rev排序';
+  }
+  if (sortType.value === SortType.rev) {
+    return '用得分排序';
+  }
+  if (sortType.value === SortType.score) {
+    return '用时间排序';
+  }
+  return '';
+});
 
 const drawerVisible = ref(false);
 // 全局r变量
@@ -167,7 +200,7 @@ const pagination: TableProps['pagination'] = {
 };
 
 async function getData() {
-  const origin = location.origin;
+  const origin = import.meta.env.DEV ? 'http://127.0.0.1:9000' : location.origin;
   const url = new URL(location.href);
   const res = await fetch(
     `${origin}/data?username=${url.searchParams.get('username') || ''}&password=${url.searchParams.get('password') || ''}`
@@ -207,7 +240,7 @@ onMounted(async () => {
     if (!document.hidden) {
       return await getData();
     }
-    return true
+    return true;
   }, 5 * 1000);
 });
 
@@ -216,7 +249,19 @@ const onClose = () => {
 };
 
 const handleSort = () => {
-  isSortByRev.value = !isSortByRev.value;
+  if (sortType.value === SortType.normal) {
+    sortType.value = SortType.rev;
+    return
+  }
+  if (sortType.value === SortType.rev) {
+    sortType.value = SortType.score;
+    return
+  }
+  if (sortType.value === SortType.score) {
+    sortType.value = SortType.normal;
+    return
+  }
+  return SortType.normal;
 };
 
 const rowClassName: TableProps['rowClassName'] = (_, index) => {
