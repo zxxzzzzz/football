@@ -5,7 +5,7 @@
     <div class="mx-4">
       <Table :dataSource="sortDataSource" :columns="columns" bordered :rowClassName="rowClassName" :pagination="pagination"></Table>
     </div>
-    <!-- <Drawer width="840" placement="right" :closable="true" :visible="drawerVisible" :mask="true" @close="onClose">
+    <Drawer width="840" placement="right" :closable="true" :visible="drawerVisible" :mask="true" @close="onClose">
       <List item-layout="horizontal" :data-source="message1List">
         <template #renderItem="{ item }">
           <div class="flex flex-wrap">
@@ -32,7 +32,7 @@
           </div>
         </template>
       </List>
-    </Drawer> -->
+    </Drawer>
     <Affix :offsetBottom="400" :style="{ position: 'absolute', right: 0 + 'px' }">
       <div class="flex flex-col">
         <Button type="primary" @click="() => (drawerVisible = true)" class="my-2"> 消息</Button>
@@ -164,6 +164,9 @@ async function getData() {
   const data = (await res.json()) as { code: number; msg: string; data?: any };
   if (data.code !== 200) {
     message.error(data?.msg || '更新出错');
+    if (data?.msg?.includes?.('登录失败')) {
+      return false;
+    }
   }
   if (data.data?.matchData?.length) {
     message.success('数据更新成功');
@@ -171,10 +174,14 @@ async function getData() {
     message1List.value = data.data.message1List;
     message2List.value = data.data.message2List;
   }
+  return true;
 }
-async function cInter(cb: () => Promise<void>, n: number) {
+async function cInter(cb: () => Promise<boolean>, n: number) {
   try {
-    await cb();
+    const d = await cb();
+    if (!d) {
+      return;
+    }
   } catch (error) {}
   setTimeout(async () => {
     try {
@@ -186,8 +193,9 @@ onMounted(async () => {
   // await getData();
   cInter(async () => {
     if (!document.hidden) {
-      await getData();
+      return await getData();
     }
+    return true
   }, 5 * 1000);
 });
 
@@ -220,7 +228,12 @@ const columns: TableProps<Record>['columns'] = [
   {
     title: '体彩',
     customRender({ record }) {
-      return h(TiCai, { teamList: record.tiCaiTeamList, itemList: record.tiCaiItemList, revList: record.revList, scoreRevList: record.scoreRevList, });
+      return h(TiCai, {
+        teamList: record.tiCaiTeamList,
+        itemList: record.tiCaiItemList,
+        revList: record.revList,
+        scoreRevList: record.scoreRevList,
+      });
     },
   },
   {

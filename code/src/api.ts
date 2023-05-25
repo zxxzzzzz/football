@@ -338,6 +338,34 @@ export async function getLeagueListAllByNodeFetch(url: string, uid: string, ver:
 }
 export const retryGetLeagueListAllByNodeFetch = retryWrap(getLeagueListAllByNodeFetch, 3);
 
+async function getServiceMainget(ver: string) {
+  const fetch = (await _fetch).default;
+  const res = await fetch(`https://66.133.91.116/transform.php?ver=${ver}`, {
+    headers: {
+      accept: '*/*',
+      'accept-language': 'zh-CN,zh;q=0.9',
+      'cache-control': 'no-cache',
+      'content-type': 'application/x-www-form-urlencoded',
+      pragma: 'no-cache',
+      'sec-fetch-dest': 'empty',
+      'sec-fetch-mode': 'cors',
+      'sec-fetch-site': 'same-origin',
+      Referer: 'https://66.133.91.116/',
+      'Referrer-Policy': 'strict-origin-when-cross-origin',
+    },
+    body: `p=service_mainget&ver=${ver}&langx=zh-cn&login=N`,
+    method: 'POST',
+  });
+  const text2 = await res.text();
+  const mixObj = Convert.xml2js(text2, { compact: true }) as any;
+  const code = mixObj?.serverresponse?.code?._text as string;
+  const maintain_time = mixObj?.serverresponse?.maintain_time?._text as string;
+  if (code === '619') {
+    return { code: 619, msg: `数据源网站在维护，维护时间${maintain_time}，暂时不能获取到数据` };
+  }
+  return { code: 200, msg: '' };
+}
+
 export async function loginByNodeFetch(username: string, password: string, forceUpdate = false) {
   const store = await getStore();
   const now = new Date().valueOf();
@@ -422,8 +450,11 @@ export async function loginByNodeFetch(username: string, password: string, force
   const uid = mixObj?.serverresponse?.uid?._text as string;
   const _username = mixObj?.serverresponse?.username?._text;
   if (!uid) {
-    log({ msg: 'extra登录失败', username, password, ver, text2 });
-    throw Error('登录失败');
+    const d = await getServiceMainget(ver);
+    log({ msg: 'extra登录失败', username, password, ver, mixObj, sMsg: d.msg });
+    if (d.code === 619) {
+      throw Error('数据源网站登录失败,' + d.msg);
+    }
   }
   const body3 = {
     p: 'check_login_domain',
