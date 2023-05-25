@@ -163,7 +163,7 @@ async function getData() {
   );
   const data = (await res.json()) as { code: number; msg: string; data?: any };
   if (data.code !== 200) {
-    message.error(data?.msg || '更新出错');
+    message.error(data?.msg || '更新出错', 20);
     if (data?.msg?.includes?.('登录失败')) {
       return false;
     }
