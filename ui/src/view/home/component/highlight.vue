@@ -30,6 +30,6 @@ const color = computed(() => {
       ')'
     );
   }
-  return colorList[props.index] || 'red';
+  return colorList[props.index] || '';
 });
 </script>

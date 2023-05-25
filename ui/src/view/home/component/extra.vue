@@ -53,9 +53,8 @@ const scoreItemList = computed(() => {
         itemList: item.oddsItemList
           .map((oddsItem) => {
             const index = props.scoreRevList.findIndex((s) => oddsItem[0] === s.extraOdds && oddsItem[1] === `${s.extra}`);
-            if (index === -1) return void 0;
             return {
-              index: index + 2,
+              index: index === -1 ? -1 : index + 2,
               content: oddsItem,
             };
           })

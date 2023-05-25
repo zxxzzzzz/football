@@ -59,12 +59,11 @@ const scoreItemList = computed(() => {
         title: item.oddsTitle,
         itemList: item.oddsItemList.map((oddsItem) => {
           const index = props.scoreRevList.findIndex((s) => oddsItem[0] === s.tiCaiOdds && oddsItem[1] === `${s.tiCai}`);
-          if (index === -1) return void 0;
           return {
-            index: index + 2,
+            index: index === -1 ? -1 : index + 2,
             content: oddsItem,
           };
-        }).filter((d):d is Exclude<typeof d, undefined> => !!d),
+        }),
       };
     });
 });

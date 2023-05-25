@@ -3,7 +3,7 @@
     <div>胜平负</div>
     <Table :columns="columns" :dataSource="dataSource" :pagination="false"> </Table>
     <div class="mt-4">得分</div>
-    <Table :columns="columns" :dataSource="scoreDataSource" :pagination="false"> </Table>
+    <Table :columns="scoreColumns" :dataSource="scoreDataSource" :pagination="false"> </Table>
     <!-- <div>{{ dataSource }}</div> -->
   </div>
 </template>
