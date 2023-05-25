@@ -16,6 +16,8 @@ import { getStore, saveStore, saveFile, log, getLogHistory } from './util';
 import cors from 'cors';
 
 // console.log(cors);
+// process.env.username = 'XDivan4';
+// process.env.password = 'Jxd9061912';
 
 type FirstOfGeneric<T> = T extends Promise<infer F> ? F : never;
 
@@ -51,7 +53,7 @@ app.get('/data', async (req, res) => {
           )} rev:${rev.rev.toFixed(2)}`;
         });
       const message3List = data
-        .filter((d) => d?.scoreRevList?.[0]?.rev > (store.scoreRev || 0))
+        // .filter((d) => d?.scoreRevList?.[0]?.rev > (store.scoreRev || 0))
         .map((d) => {
           const rev = d.scoreRevList[0];
           return `${d.num} ${dayjs(d.dateTime, 'MM-DD HH:mm').format('MM-DD\u2002HH:ss')} ${d.tiCaiTeamList.join(' ')} GC:${rev.gc.toFixed(
