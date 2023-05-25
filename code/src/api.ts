@@ -341,8 +341,8 @@ export const retryGetLeagueListAllByNodeFetch = retryWrap(getLeagueListAllByNode
 export async function loginByNodeFetch(username: string, password: string, forceUpdate = false) {
   const store = await getStore();
   const now = new Date().valueOf();
-  // 时间没超过20分钟，不重新请求token
-  if (store.uidTimestamp && now - store.uidTimestamp < 20 * 60 * 1000 && !forceUpdate) {
+  // 没有强制更新，不重新请求token
+  if (store.uid && store.url && store.ver && store.uidTimestamp && !forceUpdate) {
     log({
       uid: store.uid || '',
       url: store.url || '',
@@ -421,11 +421,10 @@ export async function loginByNodeFetch(username: string, password: string, force
   const mixObj = Convert.xml2js(text2, { compact: true }) as any;
   const uid = mixObj?.serverresponse?.uid?._text as string;
   const _username = mixObj?.serverresponse?.username?._text;
-  await saveStore({
-    uid: uid,
-    ver: ver,
-    _username,
-  });
+  if (!uid) {
+    log({ username, password, ver });
+    throw Error('登录失败');
+  }
   const body3 = {
     p: 'check_login_domain',
     ver: ver,
