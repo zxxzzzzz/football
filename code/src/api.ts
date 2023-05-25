@@ -421,6 +421,11 @@ export async function loginByNodeFetch(username: string, password: string, force
   const mixObj = Convert.xml2js(text2, { compact: true }) as any;
   const uid = mixObj?.serverresponse?.uid?._text as string;
   const _username = mixObj?.serverresponse?.username?._text;
+  await saveStore({
+    uid: uid,
+    ver: ver,
+    _username,
+  });
   const body3 = {
     p: 'check_login_domain',
     ver: ver,

@@ -370,6 +370,7 @@ type Store = {
   url: string;
   uidTimestamp: number;
   dataTimestamp: number;
+  _username: string;
   R: number;
   A: number;
   C: number;

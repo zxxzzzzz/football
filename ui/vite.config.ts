@@ -1,8 +1,7 @@
-import { defineConfig } from 'vite'
-import vue from '@vitejs/plugin-vue'
-import WindiCSS from 'vite-plugin-windicss'
+import { defineConfig } from 'vite';
+import vue from '@vitejs/plugin-vue';
+import WindiCSS from 'vite-plugin-windicss';
 import { resolve } from 'path';
-
 
 function pathResolve(dir: string) {
   return resolve(process.cwd(), '.', dir);
@@ -10,8 +9,9 @@ function pathResolve(dir: string) {
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  build:{
-    outDir:'../code/public'
+  build: {
+    outDir: '../code/public',
+    emptyOutDir: true,
   },
   resolve: {
     alias: [
@@ -27,4 +27,4 @@ export default defineConfig({
     ],
   },
   plugins: [vue(), WindiCSS()],
-})
+});
