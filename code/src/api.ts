@@ -85,24 +85,26 @@ export async function getTiCaiByFetch() {
         const c = parseFloat(ttg.s0);
         const get25G = (a: number, b: number, c: number) => {
           if (!a || !b || !c) {
-            return '0';
+            return void 0;
           }
           // X+aX/b+aX/c=5000  aX=bY=cZ X+Y+Z=5000
           const X = 5000 / (1 + a / b + a / c);
-          // const Y =  a/b*X
-          // const Z =  a/c*X
-          return ((X * a * 2) / 10000).toFixed(3);
+          const Y = (a / b) * X;
+          const Z = (a / c) * X;
+          return { rate: ((X * a * 2) / 10000).toFixed(3), X, Y, Z };
         };
         const get2G = (a: number, b: number, c: number) => {
           if (!a || !b || !c) {
-            return '0';
+            return void 0;
           }
           const X = 9200 / 2 / a;
           // Y+Z = 5000 - X  bY = cZ  Z=bY/c   Y+bY/c = 5000 -X  Y = (5000-X)/(1+b/c)
           const Y = (5000 - X) / (1 + b / c);
-          return ((Y * b * 2) / 10000).toFixed(3);
+          const Z = (b * Y) / c;
+          return { rate: ((Y * b * 2) / 10000).toFixed(3), X, Y, Z };
         };
-
+        const _25G = get25G(a, b, c);
+        const _2G = get2G(a, b, c);
         return {
           dateTime: dayjs(m.businessDate + ' ' + m.matchTime, 'YYYY-MM-DD HH:mm:ss').format('MM-DD HH:mm'),
           num: m.matchNumStr,
@@ -120,13 +122,19 @@ export async function getTiCaiByFetch() {
             },
             {
               oddsTitle: '得分',
-              oddsItemList: [[`+2.5`, get25G(a, b, c)]],
+              oddsItemList: [[`+2.5`, _25G?.rate || '0']],
+              score: { a, b, c, X: _25G?.X || 0, Y: _25G?.Y || 0, Z: _25G?.Z || 0 },
             },
             {
               oddsTitle: '得分',
-              oddsItemList: [[`+2`, get2G(a, b, c)]],
+              oddsItemList: [[`+2`, _2G?.rate || '0']],
+              score: { a, b, c, X: _2G?.X || 0, Y: _2G?.Y || 0, Z: _2G?.Z || 0 },
             },
-          ],
+          ] as {
+            oddsTitle: string;
+            oddsItemList: string[][];
+            score?: { a: number; b: number; c: number; X: number; Y: number; Z: number };
+          }[],
           ecid: '',
         };
       });

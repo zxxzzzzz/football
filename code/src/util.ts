@@ -156,6 +156,7 @@ export function toData(tiCaiList: TiCaiList, extraList: TiCaiList, _R = 0.12) {
           const [eOddTitle, eOdd] = extra;
           const { GC, VV, Offset, Rev } = getRev(parseFloat(tiOdd), parseFloat(eOdd), _R);
           return {
+            score: tItem.score,
             teamList: matchedExtra.teamList,
             num: ti.num,
             ecid: matchedExtra.ecid,
