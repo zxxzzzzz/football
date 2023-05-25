@@ -422,7 +422,7 @@ export async function loginByNodeFetch(username: string, password: string, force
   const uid = mixObj?.serverresponse?.uid?._text as string;
   const _username = mixObj?.serverresponse?.username?._text;
   if (!uid) {
-    log({ username, password, ver });
+    log({ msg: 'extra登录失败', username, password, ver, text2 });
     throw Error('登录失败');
   }
   const body3 = {
