@@ -494,6 +494,7 @@ export async function loginByNodeFetch(username: string, password: string, force
     if (d.code === 619) {
       throw createError(d.msg, Code.maintain);
     }
+    throw createError('不知道什么原因，extra登录失败', Code.accountUnknownFail);
   }
   const body3 = {
     p: 'check_login_domain',

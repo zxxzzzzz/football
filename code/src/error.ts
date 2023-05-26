@@ -2,6 +2,7 @@ export enum Code {
   maintain = 619,
   success = 200,
   wrongAccount = 403,
+  accountUnknownFail = 401,
   dataFail = 404
 }
 

@@ -129,6 +129,14 @@ const colors = [
   '#337755',
 ];
 
+enum Code {
+  maintain = 619,
+  success = 200,
+  wrongAccount = 403,
+  accountUnknownFail = 401,
+  dataFail = 404
+}
+
 // const dataList = ref<Game[]>([]);
 const dataSource = ref<D[]>([]);
 const sortDataSource = computed(() => {
@@ -208,7 +216,13 @@ async function getData() {
   const data = (await res.json()) as { code: number; msg: string; data?: any };
   if (data.code !== 200) {
     message.error(data?.msg || '更新出错', 20);
-    if (data?.msg?.includes?.('登录失败')) {
+    // 某些错误下 ，不再就行请求
+    if (data?.code === Code.maintain) {
+      message.info('已停止数据自动更新', 10)
+      return false;
+    }
+    if (data?.code === Code.accountUnknownFail) {
+      message.info('为了保证账号安全，已停止数据自动更新。刷新页面可开始继续自动更新', 10)
       return false;
     }
   }
