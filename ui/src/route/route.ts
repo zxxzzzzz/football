@@ -14,6 +14,10 @@ export const routeList: RouteRecordRaw[] = [
     component: () => import('@/view/mobile/index.vue'),
   },
   {
+    path: '/setting',
+    component: () => import('@/view/setting/index.vue'),
+  },
+  {
     path: '',
     redirect: '/login',
   },

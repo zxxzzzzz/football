@@ -1,6 +1,521 @@
 {
 	"data": [
 		{
+			"dateTime": "2023-05-27 00:47:37",
+			"msg": "oss数据不存在，使用本地数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:47:34",
+			"msg": "oss数据不存在，使用本地数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:47:34",
+			"msg": "isWaitForNewDatafalse 使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:47:34",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-27 00:47:34",
+			"msg": "oss数据不存在，使用本地数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:47:29",
+			"msg": "oss数据不存在，使用本地数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:47:29",
+			"msg": "oss数据不存在，使用本地数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:47:29",
+			"msg": "匹配到 32 条数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:47:28",
+			"msg": {
+				"uid": "jg13veqwynm31149741l10973b0",
+				"url": "https://134.159.80.56/",
+				"ver": "-3ed5-forecast-0525-99881ae5676be2",
+				"msg": "使用缓存的login token"
+			}
+		},
+		{
+			"dateTime": "2023-05-27 00:47:28",
+			"msg": "oss数据不存在，使用本地数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:47:28",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-27 00:47:28",
+			"msg": "oss数据不存在，使用本地数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:47:18",
+			"msg": "oss数据不存在，使用本地数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:47:17",
+			"msg": "oss数据不存在，使用本地数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:47:17",
+			"msg": "isWaitForNewDatafalse 使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:47:17",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-27 00:47:17",
+			"msg": "oss数据不存在，使用本地数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:47:12",
+			"msg": "oss数据不存在，使用本地数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:47:12",
+			"msg": "isWaitForNewDatafalse 使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:47:12",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-27 00:47:12",
+			"msg": "oss数据不存在，使用本地数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:47:09",
+			"msg": "oss数据不存在，使用本地数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:47:09",
+			"msg": "isWaitForNewDatafalse 使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:47:09",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-27 00:47:09",
+			"msg": "oss数据不存在，使用本地数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:47:09",
+			"msg": "oss数据不存在，使用本地数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:47:09",
+			"msg": "isWaitForNewDatafalse 使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:47:09",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-27 00:47:09",
+			"msg": "oss数据不存在，使用本地数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:47:09",
+			"msg": "oss数据不存在，使用本地数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:47:09",
+			"msg": "isWaitForNewDatafalse 使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:47:09",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-27 00:47:09",
+			"msg": "oss数据不存在，使用本地数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:47:09",
+			"msg": "oss数据不存在，使用本地数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:47:09",
+			"msg": "oss数据不存在，使用本地数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:47:09",
+			"msg": "匹配到 32 条数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:47:08",
+			"msg": {
+				"uid": "jg13veqwynm31149741l10973b0",
+				"url": "https://134.159.80.56/",
+				"ver": "-3ed5-forecast-0525-99881ae5676be2",
+				"msg": "使用缓存的login token"
+			}
+		},
+		{
+			"dateTime": "2023-05-27 00:47:08",
+			"msg": "oss数据不存在，使用本地数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:47:08",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-27 00:47:08",
+			"msg": "oss数据不存在，使用本地数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:41:18",
+			"msg": "oss数据不存在，使用本地数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:41:18",
+			"msg": "isWaitForNewDatafalse 使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:41:18",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-27 00:41:18",
+			"msg": "oss数据不存在，使用本地数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:41:18",
+			"msg": "oss数据不存在，使用本地数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:41:18",
+			"msg": "isWaitForNewDatafalse 使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:41:18",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-27 00:41:18",
+			"msg": "oss数据不存在，使用本地数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:41:16",
+			"msg": "oss数据不存在，使用本地数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:41:16",
+			"msg": "isWaitForNewDatafalse 使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:41:16",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-27 00:41:16",
+			"msg": "oss数据不存在，使用本地数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:41:13",
+			"msg": "oss数据不存在，使用本地数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:41:13",
+			"msg": "oss数据不存在，使用本地数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:41:13",
+			"msg": "匹配到 32 条数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:41:12",
+			"msg": {
+				"uid": "jg13veqwynm31149741l10973b0",
+				"url": "https://134.159.80.56/",
+				"ver": "-3ed5-forecast-0525-99881ae5676be2",
+				"msg": "使用缓存的login token"
+			}
+		},
+		{
+			"dateTime": "2023-05-27 00:41:12",
+			"msg": "oss数据不存在，使用本地数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:41:12",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-27 00:41:12",
+			"msg": "oss数据不存在，使用本地数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:41:11",
+			"msg": "oss数据不存在，使用本地数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:41:11",
+			"msg": "isWaitForNewDatafalse 使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:41:11",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-27 00:41:11",
+			"msg": "oss数据不存在，使用本地数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:41:08",
+			"msg": "oss数据不存在，使用本地数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:41:07",
+			"msg": "oss数据不存在，使用本地数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:41:07",
+			"msg": "isWaitForNewDatafalse 使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:41:07",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-27 00:41:07",
+			"msg": "oss数据不存在，使用本地数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:41:06",
+			"msg": "oss数据不存在，使用本地数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:41:06",
+			"msg": "isWaitForNewDatafalse 使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:41:06",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-27 00:41:06",
+			"msg": "oss数据不存在，使用本地数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:41:04",
+			"msg": "oss数据不存在，使用本地数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:41:02",
+			"msg": "oss数据不存在，使用本地数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:41:02",
+			"msg": "isWaitForNewDatafalse 使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:41:02",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-27 00:41:02",
+			"msg": "oss数据不存在，使用本地数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:40:57",
+			"msg": "oss数据不存在，使用本地数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:40:57",
+			"msg": "isWaitForNewDatafalse 使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:40:57",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-27 00:40:57",
+			"msg": "oss数据不存在，使用本地数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:40:57",
+			"msg": "oss数据不存在，使用本地数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:40:57",
+			"msg": "isWaitForNewDatafalse 使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:40:57",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-27 00:40:57",
+			"msg": "oss数据不存在，使用本地数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:40:57",
+			"msg": "oss数据不存在，使用本地数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:40:57",
+			"msg": "isWaitForNewDatafalse 使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:40:57",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-27 00:40:57",
+			"msg": "oss数据不存在，使用本地数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:40:57",
+			"msg": "oss数据不存在，使用本地数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:40:57",
+			"msg": "oss数据不存在，使用本地数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:40:57",
+			"msg": "匹配到 32 条数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:40:55",
+			"msg": {
+				"uid": "jg13veqwynm31149741l10973b0",
+				"url": "https://134.159.80.56/",
+				"ver": "-3ed5-forecast-0525-99881ae5676be2",
+				"msg": "使用缓存的login token"
+			}
+		},
+		{
+			"dateTime": "2023-05-27 00:40:55",
+			"msg": "oss数据不存在，使用本地数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:40:55",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-27 00:40:55",
+			"msg": "oss数据不存在，使用本地数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:37:11",
+			"msg": "oss数据不存在，使用本地数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:37:11",
+			"msg": "isWaitForNewDatafalse 使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:37:11",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-27 00:37:11",
+			"msg": "oss数据不存在，使用本地数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:37:06",
+			"msg": "oss数据不存在，使用本地数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:37:06",
+			"msg": "oss数据不存在，使用本地数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:37:06",
+			"msg": "匹配到 32 条数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:37:04",
+			"msg": "oss数据不存在，使用本地数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:37:04",
+			"msg": {
+				"msg": "更新login token",
+				"uid": "jg13veqwynm31149741l10973b0",
+				"ver": "-3ed5-forecast-0525-99881ae5676be2",
+				"url": "https://134.159.80.56/"
+			}
+		},
+		{
+			"dateTime": "2023-05-27 00:37:02",
+			"msg": "oss数据不存在，使用本地数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:37:02",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-27 00:37:02",
+			"msg": "oss数据不存在，使用本地数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:35:01",
+			"msg": "oss数据不存在，使用本地数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:35:01",
+			"msg": "oss数据不存在，使用本地数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:34:44",
+			"msg": "oss数据不存在，使用本地数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:33:47",
+			"msg": "oss数据不存在，使用本地数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:32:49",
+			"msg": "oss数据不存在，使用本地数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:32:20",
+			"msg": "oss数据不存在，使用本地数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:32:09",
+			"msg": "oss数据不存在，使用本地数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:30:55",
+			"msg": "oss数据不存在，使用本地数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:28:26",
+			"msg": "local数据比较新，使用本地数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:28:25",
+			"msg": "oss数据不存在，使用本地数据"
+		},
+		{
+			"dateTime": "2023-05-26 23:54:40",
+			"msg": "匹配到 32 条数据"
+		},
+		{
+			"dateTime": "2023-05-26 23:54:39",
+			"msg": {
+				"msg": "更新login token",
+				"uid": "x12kjpxxv0m31149741l10632b0",
+				"ver": "-3ed5-forecast-0525-99881ae5676be2",
+				"uidTimestamp": 1685087679062,
+				"url": "https://134.159.80.56/"
+			}
+		},
+		{
+			"dateTime": "2023-05-26 23:54:36",
+			"msg": "isWaitForNewData false"
+		},
+		{
 			"dateTime": "2023-05-26 22:57:06",
 			"msg": "匹配到 32 条数据"
 		},

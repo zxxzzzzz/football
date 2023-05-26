@@ -12,7 +12,7 @@ import {
   retryLoginByNodeFetch,
 } from './api';
 // import { say } from './chaty';
-import { getStore, saveStore, saveFile, log, getLogHistory } from './util';
+import { getStore, saveStore, saveFile, log, getLogHistory, getMessage1List, getMessage2List, getMessage3List } from './util';
 import cors from 'cors';
 import { Code, createError } from './error';
 
@@ -36,62 +36,33 @@ app.get('/data', async (req, res) => {
     // @ts-ignore
     const username = (process.env.username || '') as string;
     const password = (process.env.password || '') as string;
-    let data = await getData(username, password);
+    type PromiseType<T> = T extends Promise<infer U> ? U : never;
+    const store = await getStore();
+    let data: PromiseType<ReturnType<typeof getData>> = store.data;
+    // 数据过期后，异步更新数据。保证请求不阻碍
+    if (data && dayjs().valueOf() - (store.timestamp || 0) < 15 * 1000) {
+      setTimeout(async () => {
+        const data = await getData(username, password);
+        if (data === void 0) {
+          log('获取不到匹配数据，强制更新token再获取一次');
+          await getData(username, password, true);
+        }
+      }, 0);
+    }
+    // store里没数据，获取数据。
+    if (!data) {
+      data = await getData(username, password);
+    }
+    // 还没获取到，强制更新token后更新数据
     if (data === void 0) {
       log('获取不到匹配数据，强制更新token再获取一次');
       data = await getData(username, password, true);
     }
     if (data) {
       const store = await getStore();
-      const message1List = data
-        .filter((d) => d?.revList?.[0]?.rev > (store.Rev || 400))
-        .sort((a, b) => {
-          const rev1 = a.revList[0];
-          const rev2 = b.revList[0];
-          return rev2.rev - rev1.rev;
-        })
-        .map((d) => {
-          const rev = d.revList[0];
-          // 胜，负，让胜，让负
-          const desc = rev.type === 'win' ? `${rev.tiCaiOdds === 0 ? '胜' : '让胜'}` : `${rev.tiCaiOdds === 0 ? '负' : '让负'}`;
-          return `${rev.single ? '【单】' : ''}${d.num} ${dayjs(d.dateTime, 'MM-DD HH:mm').format(
-            'MM-DD\u2002HH:ss'
-          )} ${d.tiCaiTeamList.join(' ')} ${desc} GC:${rev.gc.toFixed(2)} VV:${rev.vv.toFixed(2)} offset:${rev.offset.toFixed(
-            2
-          )} rev:${rev.rev.toFixed(2)}`;
-        });
-      const message3List = data
-        .filter((d) => d?.scoreRevList?.[0]?.rev > (store?.scoreRev || 200))
-        .sort((a, b) => {
-          const rev1 = a.scoreRevList[0];
-          const rev2 = b.scoreRevList[0];
-          return rev2.rev - rev1.rev;
-        })
-        .map((d) => {
-          const rev = d.scoreRevList[0];
-          return `${d.num} ${dayjs(d.dateTime, 'MM-DD HH:mm').format('MM-DD\u2002HH:ss')} ${d.tiCaiTeamList.join(' ')} GC:${rev.gc.toFixed(
-            2
-          )} VV:${rev.vv.toFixed(2)} offset:${rev.offset.toFixed(2)} rev:${rev.rev.toFixed(2)} 0球(${rev.score?.c?.toFixed(
-            1
-          )})-${rev.score?.Z?.toFixed(1)}\u20021球(${rev.score?.b?.toFixed(1)})-${rev.score?.Y?.toFixed(
-            1
-          )}\u20022球(${rev.score?.a?.toFixed(1)})-${rev.score?.X?.toFixed(1)}`;
-        });
-      const compareDataList = compare(data, store.C, store.A, store.compareRev).slice(0, 3);
-      const message2List = compareDataList.map((cd, index) => {
-        return [
-          `NO.${index}${cd.single1 ? '【单】' : ''} ${cd.d1.num} ${dayjs(cd.d1.dateTime, 'MM-DD HH:mm').format(
-            'MM-DD\u2002HH:ss'
-          )} ${cd.d1.tiCaiTeamList.join(' ')} GC:${cd.gc1.toFixed(2)} VV:${cd.vv1.toFixed(2)} offset:${cd.offset1.toFixed(
-            2
-          )} rev:${cd.rev1.toFixed(2)}`,
-          `NO.${index}${cd.single2 ? '【单】' : ''} ${cd.d2.num} ${dayjs(cd.d2.dateTime, 'MM-DD HH:mm').format(
-            'MM-DD\u2002HH:ss'
-          )} ${cd.d2.tiCaiTeamList.join(' ')} GC:${cd.gc2.toFixed(2)} VV:${cd.vv2.toFixed(2)} offset:${cd.offset2.toFixed(
-            2
-          )} rev:${cd.rev2.toFixed(2)}`,
-        ];
-      });
+      const message1List = getMessage1List(data, store.Rev || 400);
+      const message3List = getMessage3List(data, store.scoreRev || 200);
+      const message2List = getMessage2List(data, store.C || 0.13, store.A || 1, store.compareRev || 430);
       res.send({ code: 200, msg: 'success', data: { matchData: data, message1List, message2List, message3List } });
     }
   } catch (error) {
@@ -101,13 +72,34 @@ app.get('/data', async (req, res) => {
   }
 });
 
-app.get('/log', async (req, res) => {
+app.get('/setting', async (req, res) => {
   try {
-    const data = await getLogHistory();
-    res.send(data);
+    const store = await getStore();
+    res.send({
+      code: 200,
+      msg: 'success',
+      data: {
+        R: store.R,
+        A: store.A,
+        C: store.C,
+        Rev: store.Rev,
+        compareRev: store.compareRev,
+        scoreRev: store.scoreRev,
+      },
+    });
   } catch (error) {
     log((error as Error).message);
-    res.send((error as Error).message);
+    res.send({ code: 500, msg: (error as Error).message });
+  }
+});
+app.post('/setting', async (req, res) => {
+  try {
+    const body = req.body;
+    await saveStore(body);
+    res.status(200).send({ code: 200, msg: 'success' });
+  } catch (error) {
+    log((error as Error).message);
+    res.send({ code: 500, msg: (error as Error).message });
   }
 });
 
@@ -119,25 +111,12 @@ const delay = (n: number) => {
   });
 };
 type M = Promise<ReturnType<typeof toData> | undefined>;
-let isWaitForNewData = false;
+
+//是否在更新数据
 async function getData(username: string, password: string, forceUpdate = false): M {
   if (!username || !password) {
     throw createError('用户名或者密码没有填写', Code.wrongAccount);
   }
-  const store = await getStore();
-  // 如果数据长时间没变，强制更新
-  if (store?.dataTimestamp && new Date().valueOf() - store.dataTimestamp > 30 * 1000 && isWaitForNewData) {
-    log('长时间没更新，强制改变 isWaitForNewData');
-    isWaitForNewData = false;
-  }
-  log('isWaitForNewData ' + isWaitForNewData);
-  // 如果发现获取数据时在等待数据，直接返回旧数据
-  // 数据未过期，直接返回旧数据
-  if ((store?.dataTimestamp && new Date().valueOf() - store.dataTimestamp < 15 * 1000) || isWaitForNewData) {
-    log(`isWaitForNewData${isWaitForNewData} 使用缓存的匹配数据`);
-    return store.data;
-  }
-  isWaitForNewData = true;
   const data = await retryLoginByNodeFetch(username, password, forceUpdate);
   if (!data) {
     return void 0;
@@ -243,12 +222,10 @@ async function getData(username: string, password: string, forceUpdate = false):
   saveFile('./data/gameList.json', Format(extraGameList));
   saveFile('./data/matchedGameList.json', Format(matchedGameList));
   log('匹配到 ' + promiseList.length + ' 条数据');
+  const store = await getStore();
   const matchData = toData(tiCaiDataList, matchedGameList, store.R);
   await saveStore({
-    uidTimestamp: new Date().valueOf(),
     data: matchData,
-    dataTimestamp: new Date().valueOf(),
   });
-  isWaitForNewData = false;
   return matchData;
 }

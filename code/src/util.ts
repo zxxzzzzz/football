@@ -147,7 +147,7 @@ export function toData(tiCaiList: TiCaiList, extraList: TiCaiList, _R = 0.12) {
           }
           const [tiOddTitle, tiOdd] = tItem.oddsItemList[0];
           const extra = matchedExtra.itemList
-            .filter(item => item.oddsTitle === '得分')
+            .filter((item) => item.oddsTitle === '得分')
             .map((item) => item.oddsItemList)
             .flat()
             .find((item) => item[0] === tiOddTitle.replace(/[+]/g, '-'));
@@ -340,7 +340,7 @@ export function compare(dataList: ReturnType<typeof toData>, c = 0.13, a = 1, cR
       const dy2 = dayjs(d2.dateTime, 'MM-DD HH:mm');
       const bet = Math.abs(dy1.valueOf() - dy2.valueOf());
       // 两个比赛的日期得是一致或者连续的 且有一场在当天
-      const isToday = Math.abs(dy1.date() - dy2.date()) <= 1 && dy1.date() === dayjs().add(8, 'h').date()
+      const isToday = Math.abs(dy1.date() - dy2.date()) <= 1 && dy1.date() === dayjs().add(8, 'h').date();
       return bet > 2 * 60 * 60 * 1000 && isToday;
     })
     .sort((a, b) => {
@@ -370,9 +370,7 @@ type Store = {
   ver: string;
   uid: string;
   url: string;
-  uidTimestamp: number;
-  dataTimestamp: number;
-  _username: string;
+  timestamp: number;
   R: number;
   A: number;
   C: number;
@@ -383,7 +381,6 @@ type Store = {
 };
 export async function getStore() {
   let status = 200;
-  let d: Partial<Store> | undefined = void 0;
   const initData: Partial<Store> = {
     R: 0.12,
     A: 1,
@@ -394,41 +391,53 @@ export async function getStore() {
   };
   const path = './data/store.json';
   // 首先查看本地是否有数据,如果本地有数据，直接使用本地数据
+  let localStore: Partial<Store> | undefined = void 0;
   if (fs.existsSync(path)) {
-    const store: Partial<Store> = JSON.parse(fs.readFileSync(path, { encoding: 'utf-8' }));
-    // 本地数据距离现在数据不超过1分钟
-    if (dayjs().valueOf() - (store?.dataTimestamp || 0) < 60 * 1000) {
-      return store;
-    }
+    localStore = JSON.parse(fs.readFileSync(path, { encoding: 'utf-8' }));
   }
-  // 如果本地没有数据，请求oss里的数据
+  // 本地数据如果在30s之内
+  if (localStore && dayjs().valueOf() - (localStore?.timestamp || 0) < 30 * 1000) {
+    log('local数据在30s更新过，直接使用local数据');
+    return localStore;
+  }
+  let ossStore: Partial<Store> | undefined = void 0;
+  // 请求oss里的数据
   try {
     if (client) {
       const res = await client.get(`store.json`);
-      d = JSON.parse(res.content);
-      log('获取 oss store数据成功');
-    } else {
-      d = initData;
+      ossStore = JSON.parse(res.content);
     }
   } catch (error) {
     // @ts-ignore
     status = error.status;
   }
-  // oss文件不存在, 把init数据存储到oss
-  if (status === 404 && client) {
-    // 因为时区问题，北京时间要加8
-    
-    await client.put(`store.json`, Buffer.from(Format(initData)));
-    d = initData;
-  }
   // oss没有权限
   if (status === 403) {
     log('获取oss store数据无权限');
   }
-  // 本地备份下oss里的数据
-  fs.writeFileSync(path, Format(d), { encoding: 'utf-8', flag: 'w' });
-  if (d) {
-    return d;
+  let store: Partial<Store> | undefined = void 0;
+  if (!localStore && ossStore) {
+    store = ossStore;
+    log('local数据不存在，使用oss数据');
+  }
+  if (!localStore && !ossStore) {
+    store = initData;
+    log('local oss数据都不存在，使用初始化数据');
+  }
+  if (localStore && !ossStore) {
+    store = localStore;
+    log('oss数据不存在，使用本地数据');
+  }
+  if (localStore?.timestamp && ossStore?.timestamp && (localStore?.timestamp || 0) > (ossStore?.timestamp || 0)) {
+    store = localStore;
+    log('local数据比较新，使用本地数据');
+  }
+  if (localStore?.timestamp && ossStore?.timestamp && (localStore?.timestamp || 0) < (ossStore?.timestamp || 0)) {
+    log('oss数据比较新，使用oss数据');
+    store = ossStore;
+  }
+  if (store) {
+    return store;
   }
   return initData;
 }
@@ -437,15 +446,16 @@ export const saveStore = async (s: Partial<Store>) => {
   // 本地先存
   const path = './data/store.json';
   const store = await getStore();
-  fs.writeFileSync(path, Format({ ...store, ...s }), { encoding: 'utf-8' });
+  const tStore: Partial<Store> = { ...store, ...s, timestamp: dayjs().valueOf() };
+  fs.writeFileSync(path, Format(tStore), { encoding: 'utf-8' });
   // oss保存
   try {
     if (client) {
-      await client.put(`store.json`, Buffer.from(Format({ ...store, ...s })));
+      await client.put(`store.json`, Buffer.from(Format(tStore)));
       log('store存储到oss');
     }
   } catch (error) {}
-  return { ...store, ...s };
+  return tStore;
 };
 
 export const log = (msg: any) => {
@@ -467,3 +477,57 @@ export const getLogHistory = () => {
   const d = JSON.parse(fs.readFileSync(path, { encoding: 'utf-8' })) as { data: { dateTime: string; msg: any }[] };
   return d;
 };
+
+export function getMessage1List(data: ReturnType<typeof toData>, rev: number) {
+  return data
+    .filter((d) => d?.revList?.[0]?.rev > rev)
+    .sort((a, b) => {
+      const rev1 = a.revList[0];
+      const rev2 = b.revList[0];
+      return rev2.rev - rev1.rev;
+    })
+    .map((d) => {
+      const rev = d.revList[0];
+      // 胜，负，让胜，让负
+      const desc = rev.type === 'win' ? `${rev.tiCaiOdds === 0 ? '胜' : '让胜'}` : `${rev.tiCaiOdds === 0 ? '负' : '让负'}`;
+      return `${rev.single ? '【单】' : ''}${d.num} ${dayjs(d.dateTime, 'MM-DD HH:mm').format('MM-DD\u2002HH:ss')} ${d.tiCaiTeamList.join(
+        ' '
+      )} ${desc} GC:${rev.gc.toFixed(2)} VV:${rev.vv.toFixed(2)} offset:${rev.offset.toFixed(2)} rev:${rev.rev.toFixed(2)}`;
+    });
+}
+export function getMessage3List(data: ReturnType<typeof toData>, scoreRev: number) {
+  return data
+    .filter((d) => d?.scoreRevList?.[0]?.rev > scoreRev)
+    .sort((a, b) => {
+      const rev1 = a.scoreRevList[0];
+      const rev2 = b.scoreRevList[0];
+      return rev2.rev - rev1.rev;
+    })
+    .map((d) => {
+      const rev = d.scoreRevList[0];
+      return `${d.num} ${dayjs(d.dateTime, 'MM-DD HH:mm').format('MM-DD\u2002HH:ss')} ${d.tiCaiTeamList.join(' ')} GC:${rev.gc.toFixed(
+        2
+      )} VV:${rev.vv.toFixed(2)} offset:${rev.offset.toFixed(2)} rev:${rev.rev.toFixed(2)} 0球(${rev.score?.c?.toFixed(
+        1
+      )})-${rev.score?.Z?.toFixed(1)}\u20021球(${rev.score?.b?.toFixed(1)})-${rev.score?.Y?.toFixed(1)}\u20022球(${rev.score?.a?.toFixed(
+        1
+      )})-${rev.score?.X?.toFixed(1)}`;
+    });
+}
+export function getMessage2List(data: ReturnType<typeof toData>, C: number, A: number, compareRev: number) {
+  const compareDataList = compare(data, C, A, compareRev).slice(0, 3);
+  return compareDataList.map((cd, index) => {
+    return [
+      `NO.${index}${cd.single1 ? '【单】' : ''} ${cd.d1.num} ${dayjs(cd.d1.dateTime, 'MM-DD HH:mm').format(
+        'MM-DD\u2002HH:ss'
+      )} ${cd.d1.tiCaiTeamList.join(' ')} GC:${cd.gc1.toFixed(2)} VV:${cd.vv1.toFixed(2)} offset:${cd.offset1.toFixed(
+        2
+      )} rev:${cd.rev1.toFixed(2)}`,
+      `NO.${index}${cd.single2 ? '【单】' : ''} ${cd.d2.num} ${dayjs(cd.d2.dateTime, 'MM-DD HH:mm').format(
+        'MM-DD\u2002HH:ss'
+      )} ${cd.d2.tiCaiTeamList.join(' ')} GC:${cd.gc2.toFixed(2)} VV:${cd.vv2.toFixed(2)} offset:${cd.offset2.toFixed(
+        2
+      )} rev:${cd.rev2.toFixed(2)}`,
+    ];
+  });
+}

@@ -46,7 +46,8 @@
     <Affix :offsetBottom="400" :style="{ position: 'absolute', right: 0 + 'px' }">
       <div class="flex flex-col">
         <Button type="primary" @click="() => (drawerVisible = true)" class="my-2"> 消息</Button>
-        <Button type="primary" @click="handleSort">{{ sortName }}</Button>
+        <Button type="primary" @click="handleSort" class="my-2">{{ sortName }}</Button>
+        <Button class="my-2" @click="handleSetting"> 设置</Button>
       </div>
     </Affix>
   </div>
@@ -56,13 +57,16 @@ import { Table, Drawer, List, Button, Affix, Divider, message } from 'ant-design
 import type { TableProps } from 'ant-design-vue';
 // import { data, dataList } from './mock';
 // import { SourceType } from '@/type/enum';
-import { computed, h, ref, onMounted, watch } from 'vue';
+import { computed, h, ref, onMounted, watch, onUnmounted } from 'vue';
 import Match from './component/match.vue';
 import TiCai from './component/tiCai.vue';
 import Extra from './component/extra.vue';
 // import { Game } from './type';
 import Rev from './component/rev.vue';
 import dayjs from 'dayjs';
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
 
 // defineProps<{}>();
 type D = {
@@ -134,7 +138,7 @@ enum Code {
   success = 200,
   wrongAccount = 403,
   accountUnknownFail = 401,
-  dataFail = 404
+  dataFail = 404,
 }
 
 // const dataList = ref<Game[]>([]);
@@ -181,6 +185,7 @@ const sortDataSource = computed(() => {
 const message1List = ref<string[]>([]);
 const message2List = ref<string[]>([]);
 const message3List = ref<string[]>([]);
+let timeId: ReturnType<typeof setTimeout> | undefined = void 0;
 // 是否按照rev排序
 const enum SortType {
   normal,
@@ -218,11 +223,11 @@ async function getData() {
     message.error(data?.msg || '更新出错', 20);
     // 某些错误下 ，不再就行请求
     if (data?.code === Code.maintain) {
-      message.info('已停止数据自动更新', 10)
+      message.info('已停止数据自动更新', 10);
       return false;
     }
     if (data?.code === Code.accountUnknownFail) {
-      message.info('为了保证账号安全，已停止数据自动更新。刷新页面可开始继续自动更新', 10)
+      message.info('为了保证账号安全，已停止数据自动更新。刷新页面可开始继续自动更新', 10);
       return false;
     }
   }
@@ -242,7 +247,7 @@ async function cInter(cb: () => Promise<boolean>, n: number) {
       return;
     }
   } catch (error) {}
-  setTimeout(async () => {
+  timeId = setTimeout(async () => {
     try {
       await cInter(cb, n);
     } catch (error) {}
@@ -257,6 +262,11 @@ onMounted(async () => {
     return true;
   }, 5 * 1000);
 });
+onUnmounted(() => {
+  if (timeId) {
+    clearTimeout(timeId);
+  }
+});
 
 const onClose = () => {
   drawerVisible.value = false;
@@ -265,17 +275,21 @@ const onClose = () => {
 const handleSort = () => {
   if (sortType.value === SortType.normal) {
     sortType.value = SortType.rev;
-    return
+    return;
   }
   if (sortType.value === SortType.rev) {
     sortType.value = SortType.score;
-    return
+    return;
   }
   if (sortType.value === SortType.score) {
     sortType.value = SortType.normal;
-    return
+    return;
   }
   return SortType.normal;
+};
+
+const handleSetting = () => {
+  router.push({ path: '/setting' });
 };
 
 const rowClassName: TableProps['rowClassName'] = (_, index) => {

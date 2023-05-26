@@ -1,47 +1,54 @@
 <template>
   <div>
     <List item-layout="horizontal" :data-source="message1List">
-        <template #renderItem="{ item }">
-          <div class="flex flex-wrap mb-2">
-            <div v-for="(t, index) in item.split(' ')" :style="{ color: colors[index], margin: '0 4px' }" class="whitespace-nowrap">
+      <template #renderItem="{ item }">
+        <div class="flex flex-wrap mb-2">
+          <div v-for="(t, index) in item.split(' ')" :style="{ color: colors[index], margin: '0 4px' }" class="whitespace-nowrap">
+            {{ t }}
+          </div>
+        </div>
+      </template>
+    </List>
+    <Divider></Divider>
+    <List item-layout="horizontal" :data-source="message2List">
+      <template #renderItem="{ item }">
+        <div class="mb-2">
+          <div class="flex flex-wrap">
+            <div v-for="(t, index) in item[0].split(' ')" :style="{ color: colors[index], margin: '0 4px' }" class="whitespace-nowrap">
               {{ t }}
             </div>
           </div>
-        </template>
-      </List>
-      <Divider></Divider>
-      <List item-layout="horizontal" :data-source="message2List">
-        <template #renderItem="{ item }">
-          <div class="mb-2">
-            <div class="flex flex-wrap">
-              <div v-for="(t, index) in item[0].split(' ')" :style="{ color: colors[index], margin: '0 4px' }" class="whitespace-nowrap">
-                {{ t }}
-              </div>
-            </div>
-            <div class="flex flex-wrap">
-              <div v-for="(t, index) in item[1].split(' ')" :style="{ color: colors[index], margin: '0 4px' }" class="whitespace-nowrap">
-                {{ t }}
-              </div>
-            </div>
-          </div>
-        </template>
-      </List>
-      <Divider></Divider>
-      <List item-layout="horizontal" :data-source="message3List">
-        <template #renderItem="{ item }">
-          <div class="flex flex-wrap mb-2">
-            <div v-for="(t, index) in item.split(' ')" :style="{ color: colors[index], margin: '0 4px' }" class="whitespace-nowrap">
+          <div class="flex flex-wrap">
+            <div v-for="(t, index) in item[1].split(' ')" :style="{ color: colors[index], margin: '0 4px' }" class="whitespace-nowrap">
               {{ t }}
             </div>
           </div>
-        </template>
-      </List>
+        </div>
+      </template>
+    </List>
+    <Divider></Divider>
+    <List item-layout="horizontal" :data-source="message3List">
+      <template #renderItem="{ item }">
+        <div class="flex flex-wrap mb-2">
+          <div v-for="(t, index) in item.split(' ')" :style="{ color: colors[index], margin: '0 4px' }" class="whitespace-nowrap">
+            {{ t }}
+          </div>
+        </div>
+      </template>
+    </List>
+    <Affix :offsetBottom="400" :style="{ position: 'absolute', right: 0 + 'px' }">
+      <div class="flex flex-col">
+        <Button class="my-2" @click="handleSetting"> 设置</Button>
+      </div>
+    </Affix>
   </div>
 </template>
 <script lang="ts" setup>
 import { Table, Drawer, List, Button, Affix, Divider, message } from 'ant-design-vue';
-import { computed, h, ref, onMounted, watch } from 'vue';
+import { computed, h, ref, onMounted, watch, onUnmounted } from 'vue';
+import { useRouter } from 'vue-router';
 
+const router = useRouter();
 // defineProps<{}>();
 type D = {
   league: string;
@@ -112,7 +119,7 @@ enum Code {
   success = 200,
   wrongAccount = 403,
   accountUnknownFail = 401,
-  dataFail = 404
+  dataFail = 404,
 }
 
 // const dataList = ref<Game[]>([]);
@@ -121,6 +128,7 @@ const dataSource = ref<D[]>([]);
 const message1List = ref<string[]>([]);
 const message2List = ref<string[]>([]);
 const message3List = ref<string[]>([]);
+let timeId: ReturnType<typeof setTimeout> | undefined = void 0;
 
 async function getData() {
   const origin = import.meta.env.DEV ? 'http://127.0.0.1:9000' : location.origin;
@@ -133,11 +141,11 @@ async function getData() {
     message.error(data?.msg || '更新出错', 20);
     // 某些错误下 ，不再就行请求
     if (data?.code === Code.maintain) {
-      message.info('已停止数据自动更新', 10)
+      message.info('已停止数据自动更新', 10);
       return false;
     }
     if (data?.code === Code.accountUnknownFail) {
-      message.info('为了保证账号安全，已停止数据自动更新。刷新页面可开始继续自动更新', 10)
+      message.info('为了保证账号安全，已停止数据自动更新。刷新页面可开始继续自动更新', 10);
       return false;
     }
   }
@@ -157,12 +165,15 @@ async function cInter(cb: () => Promise<boolean>, n: number) {
       return;
     }
   } catch (error) {}
-  setTimeout(async () => {
+  timeId = setTimeout(async () => {
     try {
       await cInter(cb, n);
     } catch (error) {}
   }, n);
 }
+const handleSetting = () => {
+  router.push({ path: '/setting' });
+};
 onMounted(async () => {
   // await getData();
   cInter(async () => {
@@ -172,5 +183,9 @@ onMounted(async () => {
     return true;
   }, 5 * 1000);
 });
-
+onUnmounted(() => {
+  if (timeId) {
+    clearTimeout(timeId);
+  }
+});
 </script>

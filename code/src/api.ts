@@ -409,7 +409,7 @@ async function getServiceMainget(ver: string) {
 export async function loginByNodeFetch(username: string, password: string, forceUpdate = false) {
   const store = await getStore();
   // 没有强制更新，不重新请求token
-  if (store.uid && store.url && store.ver && store.uidTimestamp && !forceUpdate) {
+  if (store.uid && store.url && store.ver && !forceUpdate) {
     log({
       uid: store.uid || '',
       url: store.url || '',
@@ -538,13 +538,11 @@ export async function loginByNodeFetch(username: string, password: string, force
       msg: '更新login token',
       uid: uid,
       ver: ver,
-      uidTimestamp: new Date().valueOf(),
       url: `https://${domain}/`,
     });
     await saveStore({
       uid: uid,
       ver: ver,
-      uidTimestamp: new Date().valueOf(),
       url: `https://${domain}/`,
     });
   }
