@@ -87,10 +87,10 @@ type D = {
     teamList: string[];
     num: string | undefined;
     ecid: '6841929';
-    tiCaiOdds: string;
-    extraOdds: string;
-    tiCai: number;
-    extra: number;
+    tiCaiOdds: number;
+    extraOdds: number;
+    tiCai: string;
+    extra: string;
     rev: number;
     gc: number;
     vv: number;

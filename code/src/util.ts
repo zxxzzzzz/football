@@ -161,10 +161,10 @@ export function toData(tiCaiList: TiCaiList, extraList: TiCaiList, _R = 0.12) {
             teamList: matchedExtra.teamList,
             num: ti.num,
             ecid: matchedExtra.ecid,
-            tiCaiOdds: tiOddTitle,
-            extraOdds: eOddTitle,
-            tiCai: parseFloat(tiOdd),
-            extra: parseFloat(eOdd),
+            tiCaiOdds: parseFloat(tiOdd),
+            extraOdds: parseFloat(eOdd),
+            tiCai: tiOddTitle,
+            extra: eOddTitle,
             rev: Rev,
             gc: GC,
             vv: VV,
@@ -334,18 +334,9 @@ export function compare(dataList: ReturnType<typeof toData>, c = 0.13, a = 1, cR
       mDataList = [...mDataList, { d1, d2, gc1, gc2, vv1, vv2, offset1, offset2, rev1, rev2, single1, single2 }];
     }
   }
-  return mDataList
-    .filter(({ d1, d2 }) => {
-      const dy1 = dayjs(d1.dateTime, 'MM-DD HH:mm');
-      const dy2 = dayjs(d2.dateTime, 'MM-DD HH:mm');
-      const bet = Math.abs(dy1.valueOf() - dy2.valueOf());
-      // 两个比赛的日期得是一致或者连续的 且有一场在当天
-      const isToday = Math.abs(dy1.date() - dy2.date()) <= 1 && dy1.date() === dayjs().add(8, 'h').date();
-      return bet > 2 * 60 * 60 * 1000 && isToday;
-    })
-    .sort((a, b) => {
-      return b.rev1 + b.rev2 - a.rev1 - a.rev2;
-    });
+  return mDataList.sort((a, b) => {
+    return b.rev1 + b.rev2 - a.rev1 - a.rev2;
+  });
 }
 
 export const saveFile = (fileName: string, data: string) => {
@@ -452,7 +443,7 @@ export const saveStore = async (s: Partial<Store>) => {
   try {
     if (client) {
       await client.put(`store.json`, Buffer.from(Format(tStore)));
-      log('store存储到oss');
+      log({ msg: 'store存储到oss', data: s });
     }
   } catch (error) {}
   return tStore;
@@ -489,7 +480,7 @@ export function getMessage1List(data: ReturnType<typeof toData>, rev: number) {
     .map((d) => {
       const rev = d.revList[0];
       // 胜，负，让胜，让负
-      const desc = rev.type === 'win' ? `${rev.tiCaiOdds === 0 ? '胜' : '让胜'}` : `${rev.tiCaiOdds === 0 ? '负' : '让负'}`;
+      const desc = rev.type === 'win' ? `${rev.tiCai === 0 ? '胜' : '让胜'}` : `${rev.tiCaiOdds === 0 ? '负' : '让负'}`;
       return `${rev.single ? '【单】' : ''}${d.num} ${dayjs(d.dateTime, 'MM-DD HH:mm').format('MM-DD\u2002HH:ss')} ${d.tiCaiTeamList.join(
         ' '
       )} ${desc} GC:${rev.gc.toFixed(2)} VV:${rev.vv.toFixed(2)} offset:${rev.offset.toFixed(2)} rev:${rev.rev.toFixed(2)}`;
@@ -516,18 +507,28 @@ export function getMessage3List(data: ReturnType<typeof toData>, scoreRev: numbe
 }
 export function getMessage2List(data: ReturnType<typeof toData>, C: number, A: number, compareRev: number) {
   const compareDataList = compare(data, C, A, compareRev).slice(0, 3);
-  return compareDataList.map((cd, index) => {
-    return [
-      `NO.${index}${cd.single1 ? '【单】' : ''} ${cd.d1.num} ${dayjs(cd.d1.dateTime, 'MM-DD HH:mm').format(
-        'MM-DD\u2002HH:ss'
-      )} ${cd.d1.tiCaiTeamList.join(' ')} GC:${cd.gc1.toFixed(2)} VV:${cd.vv1.toFixed(2)} offset:${cd.offset1.toFixed(
-        2
-      )} rev:${cd.rev1.toFixed(2)}`,
-      `NO.${index}${cd.single2 ? '【单】' : ''} ${cd.d2.num} ${dayjs(cd.d2.dateTime, 'MM-DD HH:mm').format(
-        'MM-DD\u2002HH:ss'
-      )} ${cd.d2.tiCaiTeamList.join(' ')} GC:${cd.gc2.toFixed(2)} VV:${cd.vv2.toFixed(2)} offset:${cd.offset2.toFixed(
-        2
-      )} rev:${cd.rev2.toFixed(2)}`,
-    ];
-  });
+  const messageList = compareDataList
+    .filter(({ d1, d2 }) => {
+      const dy1 = dayjs(d1.dateTime, 'MM-DD HH:mm');
+      const dy2 = dayjs(d2.dateTime, 'MM-DD HH:mm');
+      const bet = Math.abs(dy1.valueOf() - dy2.valueOf());
+      // 两个比赛的日期得是一致或者连续的 且有一场在当天
+      const isToday = Math.abs(dy1.date() - dy2.date()) <= 1 && dy1.date() === dayjs().add(8, 'h').date();
+      return bet > 2 * 60 * 60 * 1000 && isToday;
+    })
+    .map((cd, index) => {
+      return [
+        `NO.${index}${cd.single1 ? '【单】' : ''} ${cd.d1.num} ${dayjs(cd.d1.dateTime, 'MM-DD HH:mm').format(
+          'MM-DD\u2002HH:ss'
+        )} ${cd.d1.tiCaiTeamList.join(' ')} GC:${cd.gc1.toFixed(2)} VV:${cd.vv1.toFixed(2)} offset:${cd.offset1.toFixed(
+          2
+        )} rev:${cd.rev1.toFixed(2)}`,
+        `NO.${index}${cd.single2 ? '【单】' : ''} ${cd.d2.num} ${dayjs(cd.d2.dateTime, 'MM-DD HH:mm').format(
+          'MM-DD\u2002HH:ss'
+        )} ${cd.d2.tiCaiTeamList.join(' ')} GC:${cd.gc2.toFixed(2)} VV:${cd.vv2.toFixed(2)} offset:${cd.offset2.toFixed(
+          2
+        )} rev:${cd.rev2.toFixed(2)}`,
+      ];
+    });
+  return { messageList, compareDataList };
 }

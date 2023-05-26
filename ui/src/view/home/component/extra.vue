@@ -34,10 +34,10 @@ type Rev = {
   isOnlyWin: boolean;
 };
 type Rev2 = {
-  tiCaiOdds: string;
-  extraOdds: string;
-  tiCai: number;
-  extra: number;
+  tiCaiOdds: number;
+  extraOdds: number;
+  tiCai: string;
+  extra: string;
   rev: number;
 };
 const props = withDefaults(defineProps<{ teamList: string[]; itemList: Item[]; revList: Rev[]; scoreRevList: Rev2[] }>(), {
@@ -53,7 +53,7 @@ const scoreItemList = computed(() => {
         title: item.oddsTitle,
         itemList: item.oddsItemList
           .map((oddsItem) => {
-            const index = props.scoreRevList.findIndex((s) => oddsItem[0] === s.extraOdds && parseFloat(oddsItem[1]) === s.extra);
+            const index = props.scoreRevList.findIndex((s) => oddsItem[0] === s.extra && parseFloat(oddsItem[1]) === s.extraOdds);
             return {
               index: index === -1 ? -1 : index + 2,
               content: oddsItem,

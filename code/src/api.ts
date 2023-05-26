@@ -490,7 +490,6 @@ export async function loginByNodeFetch(username: string, password: string, force
   const _username = mixObj?.serverresponse?.username?._text;
   if (!uid) {
     const d = await getServiceMainget(ver);
-    log({ msg: 'extra登录失败', username, password, ver, mixObj, sMsg: d.msg });
     if (d.code === 619) {
       throw createError(d.msg, Code.maintain);
     }

@@ -31,7 +31,7 @@ app.use(express.static('./public'));
 app.use(express.json());
 app.listen(9000);
 
-let isWait = false
+let isWait = false;
 app.get('/data', async (req, res) => {
   try {
     // @ts-ignore
@@ -43,29 +43,28 @@ app.get('/data', async (req, res) => {
     // 数据过期后，异步更新数据。保证请求不阻碍
     if (data && dayjs().valueOf() - (store.timestamp || 0) > 15 * 1000 && !isWait) {
       setTimeout(async () => {
-        log('异步更新数据')
-        isWait = true
+        isWait = true;
         try {
-          const data = await getData(username, password);
-          if (data === void 0) {
-            log('获取不到匹配数据，强制更新token再获取一次');
-            await getData(username, password, true);
+          let data = await getData(username, password);
+          if (!data) {
+            data = await getData(username, password, true);
           }
-          isWait = false
-          log('异步更新数据成功')
+          isWait = false;
+          await saveStore({
+            data: data,
+          });
+          log({ msg: '异步更新数据成功' });
         } catch (error) {
-          isWait = false
+          isWait = false;
         }
       }, 0);
     }
     // store里没数据，获取数据。
     if (!data) {
-      log('store没有数据，更新数据')
       data = await getData(username, password);
     }
     // 还没获取到，强制更新token后更新数据
     if (!data) {
-      log('获取不到匹配数据，强制更新token再获取一次');
       data = await getData(username, password, true);
     }
     if (data) {
@@ -231,11 +230,8 @@ async function getData(username: string, password: string, forceUpdate = false):
   saveFile('./data/matchedLeagueList.json', Format(matchedLeagueList));
   saveFile('./data/gameList.json', Format(extraGameList));
   saveFile('./data/matchedGameList.json', Format(matchedGameList));
-  log('匹配到 ' + promiseList.length + ' 条数据');
+  log({ msg: '更新了 ' + promiseList.length + ' 条数据', forceUpdate });
   const store = await getStore();
   const matchData = toData(tiCaiDataList, matchedGameList, store.R);
-  await saveStore({
-    data: matchData,
-  });
   return matchData;
 }

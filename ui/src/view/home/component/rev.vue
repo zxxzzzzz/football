@@ -28,10 +28,10 @@ const props = defineProps<{
     offset: number;
   }[];
   scoreItemList: {
-    tiCaiOdds: string;
-    extraOdds: string;
-    tiCai: number;
-    extra: number;
+    tiCaiOdds: number;
+    extraOdds: number;
+    tiCai: string;
+    extra: string;
     rev: number;
     gc: number;
     vv: number;
