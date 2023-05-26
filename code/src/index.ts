@@ -40,41 +40,20 @@ app.get('/data', async (req, res) => {
     type PromiseType<T> = T extends Promise<infer U> ? U : never;
     const store = await getStore();
     let data: PromiseType<ReturnType<typeof getData>> = store.data;
-    // 数据过期后，异步更新数据。保证请求不阻碍
-    if (data && dayjs().valueOf() - (store.timestamp || 0) > 15 * 1000 && !isWait) {
-      setTimeout(async () => {
-        isWait = true;
-        try {
-          let data = await getData(username, password);
-          if (!data) {
-            data = await getData(username, password, true);
-          }
-          isWait = false;
-          await saveStore({
-            data: data,
-          });
-          log({ msg: '异步更新数据成功' });
-        } catch (error) {
-          isWait = false;
+    // store缓存不存在  或者 数据过期后，异步更新数据。保证请求不阻碍
+    if (!data && (data && dayjs().valueOf() - (store.timestamp || 0) > 15 * 1000 && !isWait)) {
+      isWait = true;
+      try {
+        data = await getData(username, password);
+        if (!data) {
+          data = await getData(username, password, true);
         }
-      }, 0);
-    }
-    // store里没数据，获取数据。
-    if (!data) {
-      data = await getData(username, password);
-      if (data) {
+        isWait = false;
         await saveStore({
           data: data,
         });
-      }
-    }
-    // 还没获取到，强制更新token后更新数据
-    if (!data) {
-      data = await getData(username, password, true);
-      if (data) {
-        await saveStore({
-          data: data,
-        });
+      } catch (error) {
+        isWait = false;
       }
     }
     if (data) {
