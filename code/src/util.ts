@@ -147,6 +147,7 @@ export function toData(tiCaiList: TiCaiList, extraList: TiCaiList, _R = 0.12) {
           }
           const [tiOddTitle, tiOdd] = tItem.oddsItemList[0];
           const extra = matchedExtra.itemList
+            .filter(item => item.oddsTitle === '得分')
             .map((item) => item.oddsItemList)
             .flat()
             .find((item) => item[0] === tiOddTitle.replace(/[+]/g, '-'));
