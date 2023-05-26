@@ -515,10 +515,11 @@ export function getMessage2List(data: ReturnType<typeof toData>, C: number, A: n
       const dy1 = dayjs(d1.dateTime, 'MM-DD HH:mm');
       const dy2 = dayjs(d2.dateTime, 'MM-DD HH:mm');
       const bet = Math.abs(dy1.valueOf() - dy2.valueOf());
+      const dy1Num = d1.num.slice(0,2)
+      const wl = ['周日','周一','周二','周三','周四','周五','周六']
       // 两个比赛的日期得是一致或者连续的 且有一场在当天
-      console.log(dayjs().startOf('day').add(1, 'day').set('h', 11).set('minute', 30).valueOf());
       const isToday =
-        Math.abs(dy1.date() - dy2.date()) <= 1 && dy1.valueOf() <= dayjs().startOf('day').add(1, 'day').set('h', 11).set('minute', 30).valueOf();
+        Math.abs(dy1.date() - dy2.date()) <= 1 && dy1Num === wl[dayjs().add(8, 'hour').day()];
       return bet > 2 * 60 * 60 * 1000 && isToday;
     })
     .map((cd, index) => {
