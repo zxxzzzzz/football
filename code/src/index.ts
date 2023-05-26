@@ -43,6 +43,7 @@ app.get('/data', async (req, res) => {
     // 数据过期后，异步更新数据。保证请求不阻碍
     if (data && dayjs().valueOf() - (store.timestamp || 0) < 15 * 1000 && !isWait) {
       setTimeout(async () => {
+        log('异步更新数据')
         isWait = true
         try {
           const data = await getData(username, password);
@@ -51,6 +52,7 @@ app.get('/data', async (req, res) => {
             await getData(username, password, true);
           }
           isWait = false
+          log('异步更新数据成功')
         } catch (error) {
           isWait = false
         }
