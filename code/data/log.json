@@ -1,6 +1,191 @@
 {
 	"data": [
 		{
+			"dateTime": "2023-05-26 22:57:06",
+			"msg": "匹配到 32 条数据"
+		},
+		{
+			"dateTime": "2023-05-26 22:57:06",
+			"msg": {
+				"uid": "5q18qp9m31149741l10239b0",
+				"url": "https://134.159.80.56/",
+				"ver": "-3ed5-forecast-0525-99881ae5676be2",
+				"msg": "使用缓存的login token"
+			}
+		},
+		{
+			"dateTime": "2023-05-26 22:57:06",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 22:57:00",
+			"msg": "isWaitForNewDatafalse 使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 22:57:00",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 22:56:55",
+			"msg": "isWaitForNewDatafalse 使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 22:56:55",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 22:56:50",
+			"msg": "匹配到 32 条数据"
+		},
+		{
+			"dateTime": "2023-05-26 22:56:49",
+			"msg": {
+				"uid": "5q18qp9m31149741l10239b0",
+				"url": "https://134.159.80.56/",
+				"ver": "-3ed5-forecast-0525-99881ae5676be2",
+				"msg": "使用缓存的login token"
+			}
+		},
+		{
+			"dateTime": "2023-05-26 22:56:49",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 22:56:44",
+			"msg": "isWaitForNewDatafalse 使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 22:56:44",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 22:56:39",
+			"msg": "isWaitForNewDatafalse 使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 22:56:39",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 22:56:34",
+			"msg": "匹配到 32 条数据"
+		},
+		{
+			"dateTime": "2023-05-26 22:56:33",
+			"msg": {
+				"uid": "5q18qp9m31149741l10239b0",
+				"url": "https://134.159.80.56/",
+				"ver": "-3ed5-forecast-0525-99881ae5676be2",
+				"msg": "使用缓存的login token"
+			}
+		},
+		{
+			"dateTime": "2023-05-26 22:56:33",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 22:56:28",
+			"msg": "isWaitForNewDatafalse 使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 22:56:28",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 22:56:23",
+			"msg": "isWaitForNewDatafalse 使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 22:56:23",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 22:56:18",
+			"msg": "匹配到 32 条数据"
+		},
+		{
+			"dateTime": "2023-05-26 22:56:17",
+			"msg": {
+				"msg": "更新login token",
+				"uid": "5q18qp9m31149741l10239b0",
+				"ver": "-3ed5-forecast-0525-99881ae5676be2",
+				"uidTimestamp": 1685084177398,
+				"url": "https://134.159.80.56/"
+			}
+		},
+		{
+			"dateTime": "2023-05-26 22:56:16",
+			"msg": "获取extra数据domain失败"
+		},
+		{
+			"dateTime": "2023-05-26 22:56:08",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 22:56:08",
+			"msg": "长时间没更新，强制改变 isWaitForNewData"
+		},
+		{
+			"dateTime": "2023-05-26 22:56:07",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 22:55:27",
+			"msg": "匹配到 32 条数据"
+		},
+		{
+			"dateTime": "2023-05-26 22:55:26",
+			"msg": {
+				"msg": "更新login token",
+				"uid": "751wq8rwm31149741l10228b0",
+				"ver": "-3ed5-forecast-0525-99881ae5676be2",
+				"uidTimestamp": 1685084126384,
+				"url": "https://134.159.80.56/"
+			}
+		},
+		{
+			"dateTime": "2023-05-26 22:55:25",
+			"msg": "isWaitForNewDatatrue 使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 22:55:25",
+			"msg": "isWaitForNewData true"
+		},
+		{
+			"dateTime": "2023-05-26 22:55:25",
+			"msg": "获取不到匹配数据，强制更新token再获取一次"
+		},
+		{
+			"dateTime": "2023-05-26 22:55:25",
+			"msg": "isWaitForNewDatatrue 使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 22:55:25",
+			"msg": "isWaitForNewData true"
+		},
+		{
+			"dateTime": "2023-05-26 22:55:23",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 22:49:49",
+			"msg": "匹配到 32 条数据"
+		},
+		{
+			"dateTime": "2023-05-26 22:49:48",
+			"msg": {
+				"msg": "更新login token",
+				"uid": "3g0xj7t3m31149741l10199b0",
+				"ver": "-3ed5-forecast-0525-99881ae5676be2",
+				"uidTimestamp": 1685083788206,
+				"url": "https://134.159.80.56/"
+			}
+		},
+		{
+			"dateTime": "2023-05-26 22:49:45",
+			"msg": "isWaitForNewData false"
+		},
+		{
 			"dateTime": "2023-05-26 04:36:51",
 			"msg": "使用缓存的匹配数据"
 		},
