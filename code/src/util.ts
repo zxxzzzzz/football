@@ -98,8 +98,9 @@ export enum Score {
 }
 
 type FirstOfGeneric<T> = T extends Promise<infer F> ? F : never;
-type TiCaiList = FirstOfGeneric<ReturnType<typeof getTiCaiByFetch>>;
-export function toData(tiCaiList: TiCaiList, extraList: TiCaiList, _R = 0.12) {
+type TiCaiItem = FirstOfGeneric<ReturnType<typeof getTiCaiByFetch>>[0];
+type ExtraItem = TiCaiItem & { rate: number };
+export function toData(tiCaiList: TiCaiItem[], extraList: ExtraItem[], _R = 0.12) {
   const dataList = tiCaiList.map((ti) => {
     let matchedExtra = extraList.find((d) => d.ecid === ti.ecid);
     if (!matchedExtra) {
