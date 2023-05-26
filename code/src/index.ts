@@ -62,20 +62,31 @@ app.get('/data', async (req, res) => {
     // store里没数据，获取数据。
     if (!data) {
       data = await getData(username, password);
+      if (data) {
+        await saveStore({
+          data: data,
+        });
+      }
     }
     // 还没获取到，强制更新token后更新数据
     if (!data) {
       data = await getData(username, password, true);
+      if (data) {
+        await saveStore({
+          data: data,
+        });
+      }
     }
     if (data) {
-      await saveStore({
-        data: data,
-      });
       const store = await getStore();
       const message1List = getMessage1List(data, store.Rev || 400);
       const message3List = getMessage3List(data, store.scoreRev || 200);
       const { messageList: message2List, compareDataList } = getMessage2List(data, store.C || 0.13, store.A || 1, store.compareRev || 430);
-      res.send({ code: 200, msg: 'success', data: { matchData: data, message1List, message2List, message3List, compareDataList } });
+      res.send({
+        code: 200,
+        msg: 'success',
+        data: { timestamp: store.timestamp || 0, matchData: data, message1List, message2List, message3List, compareDataList },
+      });
     }
   } catch (error) {
     log((error as Error).message);

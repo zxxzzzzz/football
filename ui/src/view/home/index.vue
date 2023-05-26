@@ -232,7 +232,10 @@ async function getData() {
     }
   }
   if (data.data?.matchData?.length) {
-    message.success('数据更新成功');
+    message.success(
+      '数据更新成功' + `数据更新时间${data?.data?.timestamp ? dayjs(data?.data?.timestamp).add(8, 'h').format('MM:DD HH:mm:ss') : ''}`,
+      5
+    );
     dataSource.value = data.data.matchData;
     message1List.value = data.data.message1List;
     message2List.value = data.data.message2List;
