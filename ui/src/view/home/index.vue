@@ -233,7 +233,7 @@ async function getData() {
   }
   if (data.data?.matchData?.length) {
     message.success(
-      `数据更新 ${data?.data?.timestamp ? dayjs(data?.data?.timestamp).format('MM-DD HH:mm:ss') : ''}`,
+      `数据更新 ${data?.data?.timestamp ? '距离当前' + (dayjs().valueOf() - dayjs(data.data.timestamp).valueOf())/1000 +'秒' : ''}`,
       5
     );
     dataSource.value = data.data.matchData;
