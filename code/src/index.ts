@@ -41,7 +41,7 @@ app.get('/data', async (req, res) => {
     const store = await getStore();
     let data: PromiseType<ReturnType<typeof getData>> = store.data;
     // 数据过期后，异步更新数据。保证请求不阻碍
-    if (data && dayjs().valueOf() - (store.timestamp || 0) < 15 * 1000 && !isWait) {
+    if (data && dayjs().valueOf() - (store.timestamp || 0) > 15 * 1000 && !isWait) {
       setTimeout(async () => {
         log('异步更新数据')
         isWait = true
@@ -60,10 +60,11 @@ app.get('/data', async (req, res) => {
     }
     // store里没数据，获取数据。
     if (!data) {
+      log('store没有数据，更新数据')
       data = await getData(username, password);
     }
     // 还没获取到，强制更新token后更新数据
-    if (data === void 0) {
+    if (!data) {
       log('获取不到匹配数据，强制更新token再获取一次');
       data = await getData(username, password, true);
     }
