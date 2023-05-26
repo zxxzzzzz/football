@@ -1,5 +1,5 @@
 import * as R from 'ramda';
-import { getTiCaiByFetch, retryGetGameListByNodeFetch } from './api';
+import { getTiCaiByFetch } from './api';
 import dayjs from 'dayjs';
 import fs from 'fs';
 import { resolve, parse } from 'path';
@@ -417,6 +417,7 @@ export async function getStore() {
   // oss文件不存在, 把init数据存储到oss
   if (status === 404 && client) {
     // 因为时区问题，北京时间要加8
+    
     await client.put(`store.json`, Buffer.from(Format(initData)));
     d = initData;
   }
@@ -455,11 +456,9 @@ export const log = (msg: any) => {
   const d = JSON.parse(fs.readFileSync(path, { encoding: 'utf-8' })) as { data: { dateTime: string; msg: any }[] };
   const l = [{ dateTime: dayjs().add(8, 'h').format('YYYY-MM-DD HH:mm:ss'), msg }, ...d.data];
   console.log({ dateTime: dayjs().add(8, 'h').format('YYYY-MM-DD HH:mm:ss'), msg });
-  if (client) {
-    client.put(`log.json`, Buffer.from(Format(l)));
-  }
   fs.writeFileSync(path, Format({ data: l.slice(Math.max(l.length - 1000, 0)) }));
 };
+
 export const getLogHistory = () => {
   const path = './data/log.json';
   if (!fs.existsSync(path)) {

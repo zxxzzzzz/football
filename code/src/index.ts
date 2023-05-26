@@ -14,6 +14,7 @@ import {
 // import { say } from './chaty';
 import { getStore, saveStore, saveFile, log, getLogHistory } from './util';
 import cors from 'cors';
+import { Code, createError } from './error';
 
 // console.log(cors);
 process.env.username = 'XDivan4';
@@ -44,15 +45,15 @@ app.get('/data', async (req, res) => {
       const store = await getStore();
       const message1List = data
         .filter((d) => d?.revList?.[0]?.rev > (store.Rev || 400))
-        .sort((a,b) => {
+        .sort((a, b) => {
           const rev1 = a.revList[0];
           const rev2 = b.revList[0];
-          return rev2.rev - rev1.rev
+          return rev2.rev - rev1.rev;
         })
         .map((d) => {
           const rev = d.revList[0];
           // 胜，负，让胜，让负
-          const desc = rev.type === 'win' ? `${rev.tiCaiOdds === 0 ? '胜' : '让胜'}` : `${rev.tiCaiOdds === 0 ? '负' : '让负'}` 
+          const desc = rev.type === 'win' ? `${rev.tiCaiOdds === 0 ? '胜' : '让胜'}` : `${rev.tiCaiOdds === 0 ? '负' : '让负'}`;
           return `${rev.single ? '【单】' : ''}${d.num} ${dayjs(d.dateTime, 'MM-DD HH:mm').format(
             'MM-DD\u2002HH:ss'
           )} ${d.tiCaiTeamList.join(' ')} ${desc} GC:${rev.gc.toFixed(2)} VV:${rev.vv.toFixed(2)} offset:${rev.offset.toFixed(
@@ -61,18 +62,20 @@ app.get('/data', async (req, res) => {
         });
       const message3List = data
         .filter((d) => d?.scoreRevList?.[0]?.rev > (store?.scoreRev || 200))
-        .sort((a,b) => {
+        .sort((a, b) => {
           const rev1 = a.scoreRevList[0];
           const rev2 = b.scoreRevList[0];
-          return rev2.rev - rev1.rev
+          return rev2.rev - rev1.rev;
         })
         .map((d) => {
           const rev = d.scoreRevList[0];
           return `${d.num} ${dayjs(d.dateTime, 'MM-DD HH:mm').format('MM-DD\u2002HH:ss')} ${d.tiCaiTeamList.join(' ')} GC:${rev.gc.toFixed(
             2
-          )} VV:${rev.vv.toFixed(2)} offset:${rev.offset.toFixed(2)} rev:${rev.rev.toFixed(2)} 0球(${rev.score?.c?.toFixed(1)})-${
-            rev.score?.Z?.toFixed(1)
-          }\u20021球(${rev.score?.b?.toFixed(1)})-${rev.score?.Y?.toFixed(1)}\u20022球(${rev.score?.a?.toFixed(1)})-${rev.score?.X?.toFixed(1)}`;
+          )} VV:${rev.vv.toFixed(2)} offset:${rev.offset.toFixed(2)} rev:${rev.rev.toFixed(2)} 0球(${rev.score?.c?.toFixed(
+            1
+          )})-${rev.score?.Z?.toFixed(1)}\u20021球(${rev.score?.b?.toFixed(1)})-${rev.score?.Y?.toFixed(
+            1
+          )}\u20022球(${rev.score?.a?.toFixed(1)})-${rev.score?.X?.toFixed(1)}`;
         });
       const compareDataList = compare(data, store.C, store.A, store.compareRev).slice(0, 3);
       const message2List = compareDataList.map((cd, index) => {
@@ -89,12 +92,12 @@ app.get('/data', async (req, res) => {
           )} rev:${cd.rev2.toFixed(2)}`,
         ];
       });
-      // console.log({ matchData: data, message1List, message2List });
       res.send({ code: 200, msg: 'success', data: { matchData: data, message1List, message2List, message3List } });
     }
   } catch (error) {
     log((error as Error).message);
-    res.send({ code: '403', msg: (error as Error).message });
+    // @ts-ignore
+    res.send({ code: error?.code || 500, msg: (error as Error).message });
   }
 });
 
@@ -119,8 +122,7 @@ type M = Promise<ReturnType<typeof toData> | undefined>;
 let isWaitForNewData = false;
 async function getData(username: string, password: string, forceUpdate = false): M {
   if (!username || !password) {
-    throw Error('用户名或者密码没有填写');
-    // return void 0;
+    throw createError('用户名或者密码没有填写', Code.wrongAccount);
   }
   const store = await getStore();
   // 如果数据长时间没变，强制更新
@@ -132,7 +134,7 @@ async function getData(username: string, password: string, forceUpdate = false):
   // 如果发现获取数据时在等待数据，直接返回旧数据
   // 数据未过期，直接返回旧数据
   if ((store?.dataTimestamp && new Date().valueOf() - store.dataTimestamp < 15 * 1000) || isWaitForNewData) {
-    log('使用缓存的匹配数据');
+    log(`isWaitForNewData${isWaitForNewData} 使用缓存的匹配数据`);
     return store.data;
   }
   isWaitForNewData = true;
@@ -145,11 +147,6 @@ async function getData(username: string, password: string, forceUpdate = false):
   const url = data.url || '';
   const leagueList = await retryGetLeagueListAllByNodeFetch(url, uid, ver);
   if (!leagueList?.length) {
-    if (!forceUpdate) {
-      log('获取不到联赛');
-      // 联赛获取不到就强制获取一次
-      return void 0;
-    }
     return void 0;
   }
   const tiCaiDataList = await retryGetTiCaiByFetch();
@@ -245,7 +242,7 @@ async function getData(username: string, password: string, forceUpdate = false):
   saveFile('./data/matchedLeagueList.json', Format(matchedLeagueList));
   saveFile('./data/gameList.json', Format(extraGameList));
   saveFile('./data/matchedGameList.json', Format(matchedGameList));
-  log('匹配 ' + promiseList.length);
+  log('匹配到 ' + promiseList.length + ' 条数据');
   const matchData = toData(tiCaiDataList, matchedGameList, store.R);
   await saveStore({
     uidTimestamp: new Date().valueOf(),

@@ -4,6 +4,7 @@ import { MatchInfo } from './type';
 // import _fetch from;
 const _fetch = import('node-fetch');
 import { getStore, log, saveStore } from './util';
+import { Code, createError } from './error';
 
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
 
@@ -16,7 +17,7 @@ function obj2Str(bodyObj: { [key: string]: string | number }) {
   return bodyStr;
 }
 
-function retryWrap<T extends any[], R>(cb: (...args: T) => R, count: number) {
+export function retryWrap<T extends any[], R>(cb: (...args: T) => R, count: number) {
   return async (...args: T) => {
     let _error: any = void 0;
     for (let index = 0; index < count; index++) {
@@ -51,25 +52,30 @@ type Game = {
 
 export async function getTiCaiByFetch() {
   const fetch = (await _fetch).default;
-  const res = await fetch('https://webapi.sporttery.cn/gateway/jc/football/getMatchCalculatorV1.qry?poolCode=hhad,had,ttg&channel=c', {
-    headers: {
-      accept: 'application/json, text/javascript, */*; q=0.01',
-      'accept-language': 'zh-CN,zh;q=0.9',
-      'cache-control': 'no-cache',
-      pragma: 'no-cache',
-      'sec-ch-ua': '"Google Chrome";v="111", "Not(A:Brand";v="8", "Chromium";v="111"',
-      'sec-ch-ua-mobile': '?0',
-      'sec-ch-ua-platform': '"Windows"',
-      'sec-fetch-dest': 'empty',
-      'sec-fetch-mode': 'cors',
-      'sec-fetch-site': 'same-site',
-      Referer: 'https://www.sporttery.cn/',
-      'Referrer-Policy': 'strict-origin-when-cross-origin',
-    },
-    body: null,
-    method: 'GET',
-  });
-  const data = (await res.json()) as any;
+  let data: any = void 0;
+  try {
+    const res = await fetch('https://webapi.sporttery.cn/gateway/jc/football/getMatchCalculatorV1.qry?poolCode=hhad,had,ttg&channel=c', {
+      headers: {
+        accept: 'application/json, text/javascript, */*; q=0.01',
+        'accept-language': 'zh-CN,zh;q=0.9',
+        'cache-control': 'no-cache',
+        pragma: 'no-cache',
+        'sec-ch-ua': '"Google Chrome";v="111", "Not(A:Brand";v="8", "Chromium";v="111"',
+        'sec-ch-ua-mobile': '?0',
+        'sec-ch-ua-platform': '"Windows"',
+        'sec-fetch-dest': 'empty',
+        'sec-fetch-mode': 'cors',
+        'sec-fetch-site': 'same-site',
+        Referer: 'https://www.sporttery.cn/',
+        'Referrer-Policy': 'strict-origin-when-cross-origin',
+      },
+      body: null,
+      method: 'GET',
+    });
+    data = (await res.json()) as any;
+  } catch (error) {
+    throw createError('获取体彩数据失败', Code.dataFail);
+  }
   const matchInfoList: MatchInfo[] = data?.value?.matchInfoList;
   if (matchInfoList) {
     const dataList = matchInfoList
@@ -166,26 +172,32 @@ async function getGameListByNodeFetch(url: string, ver: string, uid: string, lid
   const _url = new URL(url);
   const bodyStr = obj2Str(body);
   const fetch = (await _fetch).default;
-  const res = await fetch(`${_url.origin}/transform.php?ver=${ver}`, {
-    headers: {
-      accept: '*/*',
-      'accept-language': 'zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6',
-      'content-type': 'application/x-www-form-urlencoded',
-      'sec-ch-ua': '"Chromium";v="112", "Microsoft Edge";v="112", "Not:A-Brand";v="99"',
-      'sec-ch-ua-mobile': '?0',
-      'sec-ch-ua-platform': '"Windows"',
-      'sec-fetch-dest': 'empty',
-      'sec-fetch-mode': 'cors',
-      'sec-fetch-site': 'same-origin',
-    },
-    referrer: 'https://64.188.38.120/',
-    referrerPolicy: 'strict-origin-when-cross-origin',
-    body: bodyStr,
-    method: 'POST',
-    // mode: 'cors',
-    // credentials: 'include',
-  });
-  const text = await res.text();
+  let text: string | undefined = void 0;
+  try {
+    const res = await fetch(`${_url.origin}/transform.php?ver=${ver}`, {
+      headers: {
+        accept: '*/*',
+        'accept-language': 'zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6',
+        'content-type': 'application/x-www-form-urlencoded',
+        'sec-ch-ua': '"Chromium";v="112", "Microsoft Edge";v="112", "Not:A-Brand";v="99"',
+        'sec-ch-ua-mobile': '?0',
+        'sec-ch-ua-platform': '"Windows"',
+        'sec-fetch-dest': 'empty',
+        'sec-fetch-mode': 'cors',
+        'sec-fetch-site': 'same-origin',
+      },
+      referrer: 'https://64.188.38.120/',
+      referrerPolicy: 'strict-origin-when-cross-origin',
+      body: bodyStr,
+      method: 'POST',
+    });
+    text = await res.text();
+  } catch (error) {
+    throw createError('获取extra数据失败', Code.dataFail);
+  }
+  if (!text) {
+    throw createError('获取extra数据失败', Code.dataFail);
+  }
   const mixObj = Convert.xml2js(text, { compact: true }) as any;
   const gameList: Game[] = ([] as any[])
     .concat(mixObj?.serverresponse?.ec)
@@ -240,27 +252,33 @@ export async function getGameOBTByNodeFetch(
   const _url = new URL(url);
   const bodyStr = obj2Str(body);
   const fetch = (await _fetch).default;
-  const res = await fetch(`${_url.origin}/transform.php?ver=${ver}`, {
-    headers: {
-      accept: '*/*',
-      'accept-language': 'zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6',
-      'content-type': 'application/x-www-form-urlencoded',
-      'sec-ch-ua': '"Chromium";v="112", "Microsoft Edge";v="112", "Not:A-Brand";v="99"',
-      'sec-ch-ua-mobile': '?0',
-      'sec-ch-ua-platform': '"Windows"',
-      'sec-fetch-dest': 'empty',
-      'sec-fetch-mode': 'cors',
-      'sec-fetch-site': 'same-origin',
-    },
-    referrer: 'https://64.188.38.120/',
-    referrerPolicy: 'strict-origin-when-cross-origin',
-    body: bodyStr,
-    method: 'POST',
-    // mode: 'cors',
-    // credentials: 'include',
-  });
-  const text = await res.text();
-  const mixObj = Convert.xml2js(text || '', { compact: true }) as any;
+  let text: string | undefined = void 0;
+  try {
+    const res = await fetch(`${_url.origin}/transform.php?ver=${ver}`, {
+      headers: {
+        accept: '*/*',
+        'accept-language': 'zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6',
+        'content-type': 'application/x-www-form-urlencoded',
+        'sec-ch-ua': '"Chromium";v="112", "Microsoft Edge";v="112", "Not:A-Brand";v="99"',
+        'sec-ch-ua-mobile': '?0',
+        'sec-ch-ua-platform': '"Windows"',
+        'sec-fetch-dest': 'empty',
+        'sec-fetch-mode': 'cors',
+        'sec-fetch-site': 'same-origin',
+      },
+      referrer: 'https://64.188.38.120/',
+      referrerPolicy: 'strict-origin-when-cross-origin',
+      body: bodyStr,
+      method: 'POST',
+    });
+    text = await res.text();
+  } catch (error) {
+    throw createError('获取extra数据失败', Code.dataFail);
+  }
+  if (!text) {
+    throw createError('获取extra数据失败', Code.dataFail);
+  }
+  const mixObj = Convert.xml2js(text, { compact: true }) as any;
   let gameList = mixObj?.serverresponse?.ec?.game;
   if (gameList?.LEAGUE) {
     gameList = [gameList];
@@ -312,26 +330,32 @@ export async function getLeagueListAllByNodeFetch(url: string, uid: string, ver:
   const _url = new URL(url);
   const bodyStr = obj2Str(body);
   const fetch = (await _fetch).default;
-  const res = await fetch(`${_url.origin}/transform.php?ver=${ver}`, {
-    headers: {
-      accept: '*/*',
-      'accept-language': 'zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6',
-      'content-type': 'application/x-www-form-urlencoded',
-      'sec-ch-ua': '"Chromium";v="112", "Microsoft Edge";v="112", "Not:A-Brand";v="99"',
-      'sec-ch-ua-mobile': '?0',
-      'sec-ch-ua-platform': '"Windows"',
-      'sec-fetch-dest': 'empty',
-      'sec-fetch-mode': 'cors',
-      'sec-fetch-site': 'same-origin',
-    },
-    referrer: 'https://64.188.38.120/',
-    referrerPolicy: 'strict-origin-when-cross-origin',
-    body: bodyStr,
-    method: 'POST',
-    // mode: 'cors',
-    // credentials: 'include',
-  });
-  const text = await res.text();
+  let text: string | undefined = void 0;
+  try {
+    const res = await fetch(`${_url.origin}/transform.php?ver=${ver}`, {
+      headers: {
+        accept: '*/*',
+        'accept-language': 'zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6',
+        'content-type': 'application/x-www-form-urlencoded',
+        'sec-ch-ua': '"Chromium";v="112", "Microsoft Edge";v="112", "Not:A-Brand";v="99"',
+        'sec-ch-ua-mobile': '?0',
+        'sec-ch-ua-platform': '"Windows"',
+        'sec-fetch-dest': 'empty',
+        'sec-fetch-mode': 'cors',
+        'sec-fetch-site': 'same-origin',
+      },
+      referrer: 'https://64.188.38.120/',
+      referrerPolicy: 'strict-origin-when-cross-origin',
+      body: bodyStr,
+      method: 'POST',
+    });
+    text = await res.text();
+  } catch (error) {
+    throw createError('获取extra数据失败', Code.dataFail);
+  }
+  if (!text) {
+    throw createError('获取extra数据失败', Code.dataFail);
+  }
   const mixObj = Convert.xml2js(text, { compact: true }) as any;
   return (mixObj?.serverresponse?.classifier?.region || [])
     .map((r: any) => {
@@ -348,23 +372,31 @@ export const retryGetLeagueListAllByNodeFetch = retryWrap(getLeagueListAllByNode
 
 async function getServiceMainget(ver: string) {
   const fetch = (await _fetch).default;
-  const res = await fetch(`https://66.133.91.116/transform.php?ver=${ver}`, {
-    headers: {
-      accept: '*/*',
-      'accept-language': 'zh-CN,zh;q=0.9',
-      'cache-control': 'no-cache',
-      'content-type': 'application/x-www-form-urlencoded',
-      pragma: 'no-cache',
-      'sec-fetch-dest': 'empty',
-      'sec-fetch-mode': 'cors',
-      'sec-fetch-site': 'same-origin',
-      Referer: 'https://66.133.91.116/',
-      'Referrer-Policy': 'strict-origin-when-cross-origin',
-    },
-    body: `p=service_mainget&ver=${ver}&langx=zh-cn&login=N`,
-    method: 'POST',
-  });
-  const text2 = await res.text();
+  let text2: string | undefined = void 0;
+  try {
+    const res = await fetch(`https://66.133.91.116/transform.php?ver=${ver}`, {
+      headers: {
+        accept: '*/*',
+        'accept-language': 'zh-CN,zh;q=0.9',
+        'cache-control': 'no-cache',
+        'content-type': 'application/x-www-form-urlencoded',
+        pragma: 'no-cache',
+        'sec-fetch-dest': 'empty',
+        'sec-fetch-mode': 'cors',
+        'sec-fetch-site': 'same-origin',
+        Referer: 'https://66.133.91.116/',
+        'Referrer-Policy': 'strict-origin-when-cross-origin',
+      },
+      body: `p=service_mainget&ver=${ver}&langx=zh-cn&login=N`,
+      method: 'POST',
+    });
+    text2 = await res.text();
+  } catch (error) {
+    throw createError('获取extra状态失败', Code.dataFail);
+  }
+  if (!text2) {
+    throw createError('获取extra状态失败', Code.dataFail);
+  }
   const mixObj = Convert.xml2js(text2, { compact: true }) as any;
   const code = mixObj?.serverresponse?.code?._text as string;
   const maintain_time = mixObj?.serverresponse?.maintain_time?._text as string;
@@ -376,7 +408,6 @@ async function getServiceMainget(ver: string) {
 
 export async function loginByNodeFetch(username: string, password: string, forceUpdate = false) {
   const store = await getStore();
-  const now = new Date().valueOf();
   // 没有强制更新，不重新请求token
   if (store.uid && store.url && store.ver && store.uidTimestamp && !forceUpdate) {
     log({
@@ -461,7 +492,7 @@ export async function loginByNodeFetch(username: string, password: string, force
     const d = await getServiceMainget(ver);
     log({ msg: 'extra登录失败', username, password, ver, mixObj, sMsg: d.msg });
     if (d.code === 619) {
-      throw Error('数据源网站登录失败,' + d.msg);
+      throw createError(d.msg, Code.maintain);
     }
   }
   const body3 = {
@@ -496,7 +527,7 @@ export async function loginByNodeFetch(username: string, password: string, force
     const mixObj3 = Convert.xml2js(text3, { compact: true }) as any;
     const domain = mixObj3?.serverresponse?.new_domain?._text;
     if (!domain) {
-      throw Error('domain没获取到');
+      throw createError('获取extra数据domain失败', Code.dataFail);
     }
     return domain;
   }, 3);

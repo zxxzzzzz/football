@@ -1,7 +1,8 @@
-enum Code {
+export enum Code {
   maintain = 619,
   success = 200,
   wrongAccount = 403,
+  dataFail = 404
 }
 
 export function createError(msg: string, code: Code) {
