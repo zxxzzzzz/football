@@ -339,8 +339,8 @@ export function compare(dataList: ReturnType<typeof toData>, c = 0.13, a = 1, cR
       const dy1 = dayjs(d1.dateTime, 'MM-DD HH:mm');
       const dy2 = dayjs(d2.dateTime, 'MM-DD HH:mm');
       const bet = Math.abs(dy1.valueOf() - dy2.valueOf());
-      // 两个比赛的日期得是一致或者连续的
-      const isToday = Math.abs(dy1.date() - dy2.date()) <= 1;
+      // 两个比赛的日期得是一致或者连续的 且有一场在当天
+      const isToday = Math.abs(dy1.date() - dy2.date()) <= 1 && dy1.date() === dayjs().add(8, 'h').date()
       return bet > 2 * 60 * 60 * 1000 && isToday;
     })
     .sort((a, b) => {
