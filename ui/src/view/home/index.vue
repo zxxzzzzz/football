@@ -233,7 +233,7 @@ async function getData() {
   }
   if (data.data?.matchData?.length) {
     message.success(
-      '数据更新成功' + `数据更新时间${data?.data?.timestamp ? dayjs(data?.data?.timestamp).add(8, 'h').format('MM:DD HH:mm:ss') : ''}`,
+      `数据更新 ${data?.data?.timestamp ? dayjs(data?.data?.timestamp).format('MM-DD HH:mm:ss') : ''}`,
       5
     );
     dataSource.value = data.data.matchData;
