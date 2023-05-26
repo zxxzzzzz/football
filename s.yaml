@@ -26,6 +26,7 @@ vars: # 全局变量
   service:
     name: "web-framework"
     description: 'Serverless Devs Web Framework Service'
+    logConfig: auto
 
 services:
   framework: # 业务名称/模块名称
@@ -48,7 +49,6 @@ services:
     props: # 组件的属性值
       region: ${vars.region} # 关于变量的使用方法，可以参考：https://www.serverless-devs.com/serverless-devs/yaml#变量赋值
       service: ${vars.service}
-      logConfig: auto
       function:
         name: "todolist"
         description: 'Serverless Devs Web Framework Function'
