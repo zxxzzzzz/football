@@ -68,6 +68,9 @@ app.get('/data', async (req, res) => {
       data = await getData(username, password, true);
     }
     if (data) {
+      await saveStore({
+        data: data,
+      });
       const store = await getStore();
       const message1List = getMessage1List(data, store.Rev || 400);
       const message3List = getMessage3List(data, store.scoreRev || 200);
