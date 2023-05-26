@@ -517,7 +517,7 @@ export function getMessage2List(data: ReturnType<typeof toData>, C: number, A: n
       const bet = Math.abs(dy1.valueOf() - dy2.valueOf());
       // 两个比赛的日期得是一致或者连续的 且有一场在当天
       const isToday =
-        Math.abs(dy1.date() - dy2.date()) <= 1 && dy1.valueOf() <= dayjs().startOf('D').add(1, 'D').set('h', 11).set('minute', 30).valueOf();
+        Math.abs(dy1.date() - dy2.date()) <= 1 && dy1.valueOf() <= dayjs().startOf('day').add(1, 'day').set('h', 11).set('minute', 30).valueOf();
       return bet > 2 * 60 * 60 * 1000 && isToday;
     })
     .map((cd, index) => {
