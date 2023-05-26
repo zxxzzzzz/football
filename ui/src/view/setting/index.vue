@@ -104,6 +104,7 @@ const handleSave = async () => {
       return { ...re, [k]: n };
     }, {} as Setting);
     await setSetting(_setting);
+    message.success('设置更新成功')
     await getSetting();
   }
 };
