@@ -34,6 +34,7 @@ app.listen(9000);
 let isWait = false;
 app.get('/data', async (req, res) => {
   try {
+    console.log(dayjs().valueOf());
     // @ts-ignore
     const username = (process.env.username || '') as string;
     const password = (process.env.password || '') as string;
