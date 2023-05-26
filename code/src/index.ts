@@ -31,6 +31,7 @@ app.use(express.static('./public'));
 app.use(express.json());
 app.listen(9000);
 
+let isWait = false
 app.get('/data', async (req, res) => {
   try {
     // @ts-ignore
@@ -40,12 +41,18 @@ app.get('/data', async (req, res) => {
     const store = await getStore();
     let data: PromiseType<ReturnType<typeof getData>> = store.data;
     // 数据过期后，异步更新数据。保证请求不阻碍
-    if (data && dayjs().valueOf() - (store.timestamp || 0) < 15 * 1000) {
+    if (data && dayjs().valueOf() - (store.timestamp || 0) < 15 * 1000 && !isWait) {
       setTimeout(async () => {
-        const data = await getData(username, password);
-        if (data === void 0) {
-          log('获取不到匹配数据，强制更新token再获取一次');
-          await getData(username, password, true);
+        isWait = true
+        try {
+          const data = await getData(username, password);
+          if (data === void 0) {
+            log('获取不到匹配数据，强制更新token再获取一次');
+            await getData(username, password, true);
+          }
+          isWait = false
+        } catch (error) {
+          isWait = false
         }
       }, 0);
     }
