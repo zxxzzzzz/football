@@ -128,6 +128,8 @@ export function toData(tiCaiList: TiCaiList, extraList: TiCaiList, _R = 0.12) {
       league: ti.league,
       num: ti.num || '',
       singleList: ti.singleList,
+      // @ts-ignore
+      rate: matchedExtra.rate,
       // 体彩的时间不对，使用extra的时间作为基准
       dateTime: matchedExtra?.dateTime || '',
       tiCaiTeamList: ti.teamList,
