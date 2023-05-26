@@ -198,18 +198,17 @@ async function getData(username: string, password: string, forceUpdate = false):
       if (!game[0]) {
         return void 0;
       }
-      if (game[1] !== 0) {
-        tiCai.ecid = game[0].ecid;
-      }
-      return game[0];
+      tiCai.ecid = game[0].ecid;
+      return game;
     })
-    .filter((g) => g?.ecid)
-    .map(async (g) => {
+    .filter((g):g is Exclude<typeof g, undefined> => !!g)
+    .map(async ([g,rate]) => {
       if (g) {
         // 填充 更多细节数据
         const itemList = await retryGetGameOBTByNodeFetch(url, ver, uid, g?.ecid);
         return {
           ...g,
+          rate,
           itemList: [...(g.itemList || []), ...(itemList || [])],
         };
       }
