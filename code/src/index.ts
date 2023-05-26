@@ -186,7 +186,7 @@ async function getData(username: string, password: string, forceUpdate = false):
           return re;
         });
       // 选出匹配度最高的一场比赛
-      const game = _extraGameList.reduce(
+      const game = _extraGameList.filter(([e, rate]) => rate > 110).reduce(
         (re, cur) => {
           if (re[1] < cur[1]) {
             return cur;
