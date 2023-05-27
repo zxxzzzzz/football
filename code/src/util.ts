@@ -440,7 +440,7 @@ export const saveStore = async (s: Partial<Store>, updateTimestamp = true) => {
   // 本地先存
   const path = './data/store.json';
   const store = await getStore();
-  const tStore: Partial<Store> = updateTimestamp ? { ...store, ...s, timestamp: dayjs().valueOf() } : { ...store, ...s };
+  const tStore: Partial<Store> = { ...store, ...s, timestamp: dayjs().valueOf() }
   fs.writeFileSync(path, Format(tStore), { encoding: 'utf-8' });
   // oss保存
   try {
