@@ -73,6 +73,9 @@ app.get('/data', async (req, res) => {
           count: getDataCount,
         },
       });
+      if (dayjs().valueOf() - (store.timestamp || 0) > 15 * 1000) {
+        await delay(5 * 1000);
+      }
       return;
     }
     const message1List = getMessage1List(data, store.Rev || 400);
@@ -91,6 +94,9 @@ app.get('/data', async (req, res) => {
         count: getDataCount,
       },
     });
+    if (dayjs().valueOf() - (store.timestamp || 0) > 15 * 1000) {
+      await delay(5 * 1000);
+    }
   } catch (error) {
     log((error as Error).message);
     // @ts-ignore
