@@ -374,7 +374,6 @@ type Store = {
   data: any;
 };
 export async function getStore() {
-  let status = 200;
   const initData: Partial<Store> = {
     R: 0.12,
     A: 1,
@@ -383,64 +382,27 @@ export async function getStore() {
     compareRev: 430,
     scoreRev: 200,
   };
+  if (client) {
+    try {
+      const res = await client.get(`store.json`);
+      return JSON.parse(res.content);
+    } catch (error) {
+      return initData
+    }
+  }
   const path = './data/store.json';
   // 首先查看本地是否有数据,如果本地有数据，直接使用本地数据
-  let localStore: Partial<Store> | undefined = void 0;
   if (fs.existsSync(path)) {
-    localStore = JSON.parse(fs.readFileSync(path, { encoding: 'utf-8' }));
+    return JSON.parse(fs.readFileSync(path, { encoding: 'utf-8' }));
   }
-  // 本地数据如果在30s之内
-  if (localStore && dayjs().valueOf() - (localStore?.timestamp || 0) < 30 * 1000) {
-    log('local数据在30s更新过，直接使用local数据');
-    return localStore;
-  }
-  let ossStore: Partial<Store> | undefined = void 0;
-  // 请求oss里的数据
-  try {
-    if (client) {
-      const res = await client.get(`store.json`);
-      ossStore = JSON.parse(res.content);
-    }
-  } catch (error) {
-    // @ts-ignore
-    status = error.status;
-  }
-  // oss没有权限
-  if (status === 403) {
-    log('获取oss store数据无权限');
-  }
-  let store: Partial<Store> | undefined = void 0;
-  if (!localStore && ossStore) {
-    store = ossStore;
-    log('local数据不存在，使用oss数据');
-  }
-  if (!localStore && !ossStore) {
-    store = initData;
-    log('local oss数据都不存在，使用初始化数据');
-  }
-  if (localStore && !ossStore) {
-    store = localStore;
-    log('oss数据不存在，使用本地数据');
-  }
-  if (localStore?.timestamp && ossStore?.timestamp && (localStore?.timestamp || 0) > (ossStore?.timestamp || 0)) {
-    store = localStore;
-    log('local数据比较新，使用本地数据');
-  }
-  if (localStore?.timestamp && ossStore?.timestamp && (localStore?.timestamp || 0) < (ossStore?.timestamp || 0)) {
-    log('oss数据比较新，使用oss数据');
-    store = ossStore;
-  }
-  if (store) {
-    return store;
-  }
-  return initData;
+  return initData
 }
 
-export const saveStore = async (s: Partial<Store>, updateTimestamp = true) => {
+export const saveStore = async (s: Partial<Store>) => {
   // 本地先存
   const path = './data/store.json';
   const store = await getStore();
-  const tStore: Partial<Store> = { ...store, ...s, timestamp: dayjs().valueOf() }
+  const tStore: Partial<Store> = { ...store, ...s, timestamp: dayjs().valueOf() };
   fs.writeFileSync(path, Format(tStore), { encoding: 'utf-8' });
   // oss保存
   try {
@@ -515,11 +477,10 @@ export function getMessage2List(data: ReturnType<typeof toData>, C: number, A: n
       const dy1 = dayjs(d1.dateTime, 'MM-DD HH:mm');
       const dy2 = dayjs(d2.dateTime, 'MM-DD HH:mm');
       const bet = Math.abs(dy1.valueOf() - dy2.valueOf());
-      const dy1Num = d1.num.slice(0,2)
-      const wl = ['周日','周一','周二','周三','周四','周五','周六']
+      const dy1Num = d1.num.slice(0, 2);
+      const wl = ['周日', '周一', '周二', '周三', '周四', '周五', '周六'];
       // 两个比赛的日期得是一致或者连续的 且有一场在当天
-      const isToday =
-        Math.abs(dy1.date() - dy2.date()) <= 1 && dy1Num === wl[dayjs().add(8, 'hour').day()];
+      const isToday = Math.abs(dy1.date() - dy2.date()) <= 1 && dy1Num === wl[dayjs().add(8, 'hour').day()];
       return bet > 2 * 60 * 60 * 1000 && isToday;
     })
     .map((cd, index) => {
@@ -538,7 +499,6 @@ export function getMessage2List(data: ReturnType<typeof toData>, C: number, A: n
     });
   return { messageList, compareDataList };
 }
-
 
 export async function cInter(cb: () => Promise<boolean>, n: number) {
   try {
