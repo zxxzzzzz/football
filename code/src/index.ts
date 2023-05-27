@@ -34,6 +34,7 @@ app.listen(9000);
 let getDataCount = 10;
 // 后台获取数据
 cInter(async () => {
+  console.log('upup', getDataCount);
   if (getDataCount <= 0) {
     return false;
   }
