@@ -39,25 +39,11 @@ app.get('/data', async (req, res) => {
   const password = (process.env.password || '') as string;
   type PromiseType<T> = T extends Promise<infer U> ? U : never;
   const store = await getStore();
-  const data: PromiseType<ReturnType<typeof getData>> = store.data;
-  // 如果在等待数据 直接返回缓存数据
-  if (isWait && data && data && dayjs().valueOf() - (store.timestamp || 0) < 30 * 1000) {
-    const store = await getStore();
-    const message1List = getMessage1List(data, store.Rev || 400);
-    const message3List = getMessage3List(data, store.scoreRev || 200);
-    const { messageList: message2List, compareDataList } = getMessage2List(data, store.C || 0.13, store.A || 1, store.compareRev || 430);
-    res.send({
-      code: 200,
-      msg: 'success',
-      data: { timestamp: store.timestamp || 0, matchData: data, message1List, message2List, message3List, compareDataList },
-    });
-    return;
-  }
-  // store缓存不存在  或者 数据过期后，异步更新数据。保证请求不阻碍
+  const data: PromiseType<ReturnType<typeof getData>> | undefined = store.data;
+  // store缓存不存在  或者 数据过期后，更新数据
   if (!data || (data && dayjs().valueOf() - (store.timestamp || 0) > 15 * 1000)) {
     isWait = true;
     try {
-      console.log('请求新的匹配数据');
       const _data = await getData(username, password);
       await saveStore({
         data: _data,
@@ -78,6 +64,35 @@ app.get('/data', async (req, res) => {
       return;
     }
   }
+  // 如果在等待数据 直接返回缓存数据
+  if (isWait && data && data && dayjs().valueOf() - (store.timestamp || 0) < 30 * 1000) {
+    const store = await getStore();
+    const message1List = getMessage1List(data, store.Rev || 400);
+    const message3List = getMessage3List(data, store.scoreRev || 200);
+    const { messageList: message2List, compareDataList } = getMessage2List(data, store.C || 0.13, store.A || 1, store.compareRev || 430);
+    res.send({
+      code: 200,
+      msg: 'success',
+      data: { timestamp: store.timestamp || 0, matchData: data, message1List, message2List, message3List, compareDataList },
+    });
+    return;
+  }
+  if (data) {
+    const store = await getStore();
+    const message1List = getMessage1List(data, store.Rev || 400);
+    const message3List = getMessage3List(data, store.scoreRev || 200);
+    const { messageList: message2List, compareDataList } = getMessage2List(data, store.C || 0.13, store.A || 1, store.compareRev || 430);
+    res.send({
+      code: 200,
+      msg: 'success',
+      data: { timestamp: store.timestamp || 0, matchData: data, message1List, message2List, message3List, compareDataList },
+    });
+    return;
+  }
+  res.send({
+    code: 500,
+    msg: '默认更新错误',
+  });
 });
 
 app.get('/setting', async (req, res) => {
