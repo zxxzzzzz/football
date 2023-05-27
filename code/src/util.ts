@@ -502,10 +502,10 @@ export function getMessage3List(data: ReturnType<typeof toData>, scoreRev: numbe
       return `${d.num} ${dayjs(d.dateTime, 'MM-DD HH:mm').format('MM-DD\u2002HH:ss')} ${d.tiCaiTeamList.join(' ')} GC:${rev.gc.toFixed(
         2
       )} VV:${rev.vv.toFixed(2)} offset:${rev.offset.toFixed(2)} rev:${rev.rev.toFixed(2)} 0球(${rev.score?.c?.toFixed(
-        1
-      )})-${rev.score?.Z?.toFixed(1)}\u20021球(${rev.score?.b?.toFixed(1)})-${rev.score?.Y?.toFixed(1)}\u20022球(${rev.score?.a?.toFixed(
-        1
-      )})-${rev.score?.X?.toFixed(1)}`;
+        2
+      )})-${rev.score?.Z?.toFixed(2)}\u20021球(${rev.score?.b?.toFixed(2)})-${rev.score?.Y?.toFixed(2)}\u20022球(${rev.score?.a?.toFixed(
+        2
+      )})-${rev.score?.X?.toFixed(2)}`;
     });
 }
 export function getMessage2List(data: ReturnType<typeof toData>, C: number, A: number, compareRev: number) {
