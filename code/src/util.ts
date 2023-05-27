@@ -538,3 +538,18 @@ export function getMessage2List(data: ReturnType<typeof toData>, C: number, A: n
     });
   return { messageList, compareDataList };
 }
+
+
+export async function cInter(cb: () => Promise<boolean>, n: number) {
+  try {
+    const d = await cb();
+    if (!d) {
+      return;
+    }
+  } catch (error) {}
+  setTimeout(async () => {
+    try {
+      await cInter(cb, n);
+    } catch (error) {}
+  }, n);
+}
