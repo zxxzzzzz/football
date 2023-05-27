@@ -66,13 +66,16 @@ app.get('/data', async (req, res) => {
         } catch (error) {
           // @ts-ignore
           res.send({code:error.code, msg:error.message})
+          isWait = false;
+          return
         }
       } else {
         // @ts-ignore
         res.send({code:error.code, msg:error.message})
+        isWait = false;
+        return
       }
     }
-    isWait = false;
     if (data) {
       await saveStore({
         data: data,

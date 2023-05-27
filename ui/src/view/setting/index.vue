@@ -48,15 +48,23 @@ const setting = ref({
 
 async function getSetting() {
   const origin = import.meta.env.DEV ? 'http://127.0.0.1:9000' : location.origin;
-  const res = await fetch(`${origin}/setting`);
-  const d = await res.json();
-  if (d.code === 200) {
-    setting.value = {
-      ...d.data,
-    };
+  let res: Response | undefined = void 0;
+  try {
+    res = await fetch(`${origin}/setting`);
+  } catch (error) {
+    // @ts-ignore
+    message.error(error.message);
   }
-  if (d.code !== 200) {
-    message.error(d.msg);
+  if (res) {
+    const d = await res.json();
+    if (d.code === 200) {
+      setting.value = {
+        ...d.data,
+      };
+    }
+    if (d.code !== 200) {
+      message.error(d.msg);
+    }
   }
 }
 type Setting = typeof setting.value;
@@ -104,7 +112,7 @@ const handleSave = async () => {
       return { ...re, [k]: n };
     }, {} as Setting);
     await setSetting(_setting);
-    message.success('设置更新成功')
+    message.success('设置更新成功');
     await getSetting();
   }
 };
