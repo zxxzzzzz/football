@@ -12,7 +12,7 @@ import {
   retryLoginByNodeFetch,
 } from './api';
 // import { say } from './chaty';
-import { getStore, saveStore, saveFile, log, getMessage1List, getMessage2List, getMessage3List, cInter } from './util';
+import { getStore, saveStore, saveFile, log, getLogHistory, getMessage1List, getMessage2List, getMessage3List } from './util';
 import cors from 'cors';
 import { Code, createError } from './error';
 
@@ -31,71 +31,55 @@ app.use(express.static('./public'));
 app.use(express.json());
 app.listen(9000);
 
-let getDataCount = 10;
-// 后台获取数据
-cInter(async () => {
-  console.log('upup', getDataCount);
-  if (getDataCount <= 0) {
-    return false;
-  }
-  const username = (process.env.username || '') as string;
-  const password = (process.env.password || '') as string;
-  let data = await getData(username, password);
-  if (!data) {
-    data = await getData(username, password, true);
-  }
-  await saveStore({
-    data: data,
-  });
-  getDataCount -= 1;
-  return true;
-}, 15 * 1000);
-
+let isWait = false;
 app.get('/data', async (req, res) => {
   try {
+    console.log(dayjs().valueOf());
+    // @ts-ignore
+    const username = (process.env.username || '') as string;
+    const password = (process.env.password || '') as string;
     type PromiseType<T> = T extends Promise<infer U> ? U : never;
     const store = await getStore();
     let data: PromiseType<ReturnType<typeof getData>> = store.data;
-    if (getDataCount <= 0) {
-      getDataCount = 10;
-    }
-    if (!data) {
+    // 如果在等待数据 直接返回缓存数据
+    if (isWait && data && (data && dayjs().valueOf() - (store.timestamp || 0) < 30 * 1000)) {
+      const store = await getStore();
+      const message1List = getMessage1List(data, store.Rev || 400);
+      const message3List = getMessage3List(data, store.scoreRev || 200);
+      const { messageList: message2List, compareDataList } = getMessage2List(data, store.C || 0.13, store.A || 1, store.compareRev || 430);
       res.send({
         code: 200,
         msg: 'success',
-        data: {
-          timestamp: store.timestamp || 0,
-          matchData: data || [],
-          message1List: [],
-          message2List: [],
-          message3List: [],
-          compareDataList: [],
-          count: getDataCount,
-        },
+        data: { timestamp: store.timestamp || 0, matchData: data, message1List, message2List, message3List, compareDataList },
       });
-      if (dayjs().valueOf() - (store.timestamp || 0) > 15 * 1000) {
-        await delay(5 * 1000);
-      }
       return;
     }
-    const message1List = getMessage1List(data, store.Rev || 400);
-    const message3List = getMessage3List(data, store.scoreRev || 200);
-    const { messageList: message2List, compareDataList } = getMessage2List(data, store.C || 0.13, store.A || 1, store.compareRev || 430);
-    res.send({
-      code: 200,
-      msg: 'success',
-      data: {
-        timestamp: store.timestamp || 0,
-        matchData: data,
-        message1List,
-        message2List,
-        message3List,
-        compareDataList,
-        count: getDataCount,
-      },
-    });
-    if (dayjs().valueOf() - (store.timestamp || 0) > 15 * 1000) {
-      await delay(5 * 1000);
+    // store缓存不存在  或者 数据过期后，异步更新数据。保证请求不阻碍
+    if (!data || (data && dayjs().valueOf() - (store.timestamp || 0) > 15 * 1000)) {
+      isWait = true;
+      try {
+        data = await getData(username, password);
+        if (!data) {
+          data = await getData(username, password, true);
+        }
+        isWait = false;
+        await saveStore({
+          data: data,
+        });
+      } catch (error) {
+        isWait = false;
+      }
+    }
+    if (data) {
+      const store = await getStore();
+      const message1List = getMessage1List(data, store.Rev || 400);
+      const message3List = getMessage3List(data, store.scoreRev || 200);
+      const { messageList: message2List, compareDataList } = getMessage2List(data, store.C || 0.13, store.A || 1, store.compareRev || 430);
+      res.send({
+        code: 200,
+        msg: 'success',
+        data: { timestamp: store.timestamp || 0, matchData: data, message1List, message2List, message3List, compareDataList },
+      });
     }
   } catch (error) {
     log((error as Error).message);
