@@ -61,9 +61,15 @@ app.get('/data', async (req, res) => {
     } catch (error) {
       // @ts-ignore uid过期
       if (error.code === Code.uidExpire) {
-        data = await getData(username, password, true);
+        try {
+          data = await getData(username, password, true);
+        } catch (error) {
+          // @ts-ignore
+          res.send({code:error.code, msg:error.message})
+        }
       } else {
-        throw error
+        // @ts-ignore
+        res.send({code:error.code, msg:error.message})
       }
     }
     isWait = false;

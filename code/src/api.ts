@@ -190,10 +190,10 @@ async function getGameListByNodeFetch(url: string, ver: string, uid: string, lid
     });
     text = await res.text();
   } catch (error) {
-    throw createError('获取extra数据失败', Code.dataFail);
+    throw createError('获取extra 比赛数据失败', Code.dataFail);
   }
   if (!text) {
-    throw createError('获取extra数据失败', Code.dataFail);
+    throw createError('获取extra 比赛数据失败', Code.dataFail);
   }
   const mixObj = Convert.xml2js(text, { compact: true }) as any;
   if(mixObj?.serverresponse?.code?._text === 'error'){
@@ -273,10 +273,10 @@ export async function getGameOBTByNodeFetch(
     });
     text = await res.text();
   } catch (error) {
-    throw createError('获取extra数据失败', Code.dataFail);
+    throw createError('获取extra 补充数据失败', Code.dataFail);
   }
   if (!text) {
-    throw createError('获取extra数据失败', Code.dataFail);
+    throw createError('获取extra 补充数据失败', Code.dataFail);
   }
   const mixObj = Convert.xml2js(text, { compact: true }) as any;
   if(mixObj?.serverresponse?.code?._text === 'error'){
@@ -354,10 +354,10 @@ export async function getLeagueListAllByNodeFetch(url: string, uid: string, ver:
     });
     text = await res.text();
   } catch (error) {
-    throw createError('获取extra数据失败', Code.dataFail);
+    throw createError('获取extra 联赛数据失败', Code.dataFail);
   }
   if (!text) {
-    throw createError('获取extra数据失败', Code.dataFail);
+    throw createError('获取extra 联赛数据失败', Code.dataFail);
   }
   const mixObj = Convert.xml2js(text, { compact: true }) as any;
   if(mixObj?.serverresponse?.code?._text === 'error'){
