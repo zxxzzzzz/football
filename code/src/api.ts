@@ -19,19 +19,16 @@ function obj2Str(bodyObj: { [key: string]: string | number }) {
 
 export function retryWrap<T extends any[], R>(cb: (...args: T) => R, count: number) {
   return async (...args: T) => {
-    let _error: any = void 0;
+    let _error = Error('wrap默认错误');
     for (let index = 0; index < count; index++) {
       try {
         const d = await cb(...args);
         return d;
       } catch (error) {
-        _error = error;
+        _error = error as Error;
       }
     }
-    if (_error) {
-      throw _error;
-    }
-    return void 0;
+    throw _error;
   };
 }
 
@@ -199,6 +196,9 @@ async function getGameListByNodeFetch(url: string, ver: string, uid: string, lid
     throw createError('获取extra数据失败', Code.dataFail);
   }
   const mixObj = Convert.xml2js(text, { compact: true }) as any;
+  if(mixObj?.serverresponse?.code?._text === 'error'){
+    throw createError('uid过期', Code.uidExpire)
+  }
   const gameList: Game[] = ([] as any[])
     .concat(mixObj?.serverresponse?.ec)
     .filter((e) => e)
@@ -448,7 +448,7 @@ export async function loginByNodeFetch(username: string, password: string, force
   const text = await res.text();
   const m = text.match(/top\.ver = '([^']+?)'/);
   if (!m?.[1]) {
-    return;
+    throw createError('获取ver失败', Code.dataFail)
   }
   const ver = m[1];
 
@@ -539,11 +539,14 @@ export async function loginByNodeFetch(username: string, password: string, force
       ver: ver,
       url: `https://${domain}/`,
     });
-    await saveStore({
-      uid: uid,
-      ver: ver,
-      url: `https://${domain}/`,
-    }, false);
+    await saveStore(
+      {
+        uid: uid,
+        ver: ver,
+        url: `https://${domain}/`,
+      },
+      false
+    );
   }
   return {
     uid,

@@ -17,8 +17,8 @@ import cors from 'cors';
 import { Code, createError } from './error';
 
 // console.log(cors);
-process.env.username = 'XDivan4';
-process.env.password = 'Jxd9061912';
+// process.env.username = 'jixiang123';
+// process.env.password = 'ming326391';
 
 type FirstOfGeneric<T> = T extends Promise<infer F> ? F : never;
 
@@ -33,58 +33,53 @@ app.listen(9000);
 
 let isWait = false;
 app.get('/data', async (req, res) => {
-  try {
-    console.log(dayjs().valueOf());
-    // @ts-ignore
-    const username = (process.env.username || '') as string;
-    const password = (process.env.password || '') as string;
-    type PromiseType<T> = T extends Promise<infer U> ? U : never;
+  console.log(dayjs().valueOf());
+  const username = (process.env.username || '') as string;
+  const password = (process.env.password || '') as string;
+  type PromiseType<T> = T extends Promise<infer U> ? U : never;
+  const store = await getStore();
+  let data: PromiseType<ReturnType<typeof getData>> = store.data;
+  // 如果在等待数据 直接返回缓存数据
+  if (isWait && data && data && dayjs().valueOf() - (store.timestamp || 0) < 30 * 1000) {
     const store = await getStore();
-    let data: PromiseType<ReturnType<typeof getData>> = store.data;
-    // 如果在等待数据 直接返回缓存数据
-    if (isWait && data && (data && dayjs().valueOf() - (store.timestamp || 0) < 30 * 1000)) {
-      const store = await getStore();
-      const message1List = getMessage1List(data, store.Rev || 400);
-      const message3List = getMessage3List(data, store.scoreRev || 200);
-      const { messageList: message2List, compareDataList } = getMessage2List(data, store.C || 0.13, store.A || 1, store.compareRev || 430);
-      res.send({
-        code: 200,
-        msg: 'success',
-        data: { timestamp: store.timestamp || 0, matchData: data, message1List, message2List, message3List, compareDataList },
-      });
-      return;
-    }
-    // store缓存不存在  或者 数据过期后，异步更新数据。保证请求不阻碍
-    if (!data || (data && dayjs().valueOf() - (store.timestamp || 0) > 15 * 1000)) {
-      isWait = true;
-      try {
-        data = await getData(username, password);
-        if (!data) {
-          data = await getData(username, password, true);
-        }
-        isWait = false;
-        await saveStore({
-          data: data,
-        });
-      } catch (error) {
-        isWait = false;
+    const message1List = getMessage1List(data, store.Rev || 400);
+    const message3List = getMessage3List(data, store.scoreRev || 200);
+    const { messageList: message2List, compareDataList } = getMessage2List(data, store.C || 0.13, store.A || 1, store.compareRev || 430);
+    res.send({
+      code: 200,
+      msg: 'success',
+      data: { timestamp: store.timestamp || 0, matchData: data, message1List, message2List, message3List, compareDataList },
+    });
+    return;
+  }
+  // store缓存不存在  或者 数据过期后，异步更新数据。保证请求不阻碍
+  if (!data || (data && dayjs().valueOf() - (store.timestamp || 0) > 15 * 1000)) {
+    isWait = true;
+    try {
+      data = await getData(username, password);
+    } catch (error) {
+      // @ts-ignore uid过期
+      if (error.code === Code.uidExpire) {
+        data = await getData(username, password, true);
       }
     }
+    isWait = false;
     if (data) {
-      const store = await getStore();
-      const message1List = getMessage1List(data, store.Rev || 400);
-      const message3List = getMessage3List(data, store.scoreRev || 200);
-      const { messageList: message2List, compareDataList } = getMessage2List(data, store.C || 0.13, store.A || 1, store.compareRev || 430);
-      res.send({
-        code: 200,
-        msg: 'success',
-        data: { timestamp: store.timestamp || 0, matchData: data, message1List, message2List, message3List, compareDataList },
+      await saveStore({
+        data: data,
       });
     }
-  } catch (error) {
-    log((error as Error).message);
-    // @ts-ignore
-    res.send({ code: error?.code || 500, msg: (error as Error).message });
+  }
+  if (data) {
+    const store = await getStore();
+    const message1List = getMessage1List(data, store.Rev || 400);
+    const message3List = getMessage3List(data, store.scoreRev || 200);
+    const { messageList: message2List, compareDataList } = getMessage2List(data, store.C || 0.13, store.A || 1, store.compareRev || 430);
+    res.send({
+      code: 200,
+      msg: 'success',
+      data: { timestamp: store.timestamp || 0, matchData: data, message1List, message2List, message3List, compareDataList },
+    });
   }
 });
 
@@ -126,28 +121,19 @@ const delay = (n: number) => {
     }, n);
   });
 };
-type M = Promise<ReturnType<typeof toData> | undefined>;
+// type M = Promise<ReturnType<typeof toData> | undefined>;
 
 //是否在更新数据
-async function getData(username: string, password: string, forceUpdate = false): M {
+async function getData(username: string, password: string, forceUpdate = false) {
   if (!username || !password) {
     throw createError('用户名或者密码没有填写', Code.wrongAccount);
   }
   const data = await retryLoginByNodeFetch(username, password, forceUpdate);
-  if (!data) {
-    return void 0;
-  }
   const uid = data.uid || '';
   const ver = data.ver || '';
   const url = data.url || '';
   const leagueList = await retryGetLeagueListAllByNodeFetch(url, uid, ver);
-  if (!leagueList?.length) {
-    return void 0;
-  }
   const tiCaiDataList = await retryGetTiCaiByFetch();
-  if (!tiCaiDataList?.length) {
-    return void 0;
-  }
   const matchedLeagueList = tiCaiDataList
     .map((t) => {
       const t1 = leagueList.find((l) => {
