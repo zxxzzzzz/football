@@ -373,7 +373,7 @@ type Store = {
   scoreRev: number;
   data: any;
 };
-export async function getStore() {
+export async function getStore():Promise<Partial<Store>> {
   const initData: Partial<Store> = {
     R: 0.12,
     A: 1,
@@ -408,22 +408,11 @@ export const saveStore = async (s: Partial<Store>) => {
   try {
     if (client) {
       await client.put(`store.json`, Buffer.from(Format(tStore)));
-      log({ msg: 'store存储到oss', data: s });
     }
   } catch (error) {}
   return tStore;
 };
 
-export const log = (msg: any) => {
-  const path = './data/log.json';
-  if (!fs.existsSync(path)) {
-    fs.writeFileSync(path, Format({ data: [] }), { encoding: 'utf-8' });
-  }
-  const d = JSON.parse(fs.readFileSync(path, { encoding: 'utf-8' })) as { data: { dateTime: string; msg: any }[] };
-  const l = [{ dateTime: dayjs().add(8, 'h').format('YYYY-MM-DD HH:mm:ss'), msg }, ...d.data];
-  console.log({ dateTime: dayjs().add(8, 'h').format('YYYY-MM-DD HH:mm:ss'), msg });
-  fs.writeFileSync(path, Format({ data: l.slice(Math.max(l.length - 1000, 0)) }));
-};
 
 export const getLogHistory = () => {
   const path = './data/log.json';

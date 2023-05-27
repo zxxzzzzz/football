@@ -3,7 +3,6 @@ import dayjs from 'dayjs';
 import { MatchInfo } from './type';
 // import _fetch from;
 const _fetch = import('node-fetch');
-import { getStore, log, saveStore } from './util';
 import { Code, createError } from './error';
 
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
@@ -412,22 +411,22 @@ async function getServiceMainget(ver: string) {
   return { code: 200, msg: '' };
 }
 
-export async function loginByNodeFetch(username: string, password: string, forceUpdate = false) {
-  const store = await getStore();
-  // 没有强制更新，不重新请求token
-  if (store.uid && store.url && store.ver && !forceUpdate) {
-    log({
-      uid: store.uid || '',
-      url: store.url || '',
-      ver: store.ver || '',
-      msg: '使用缓存的login token',
-    });
-    return {
-      uid: store.uid || '',
-      url: store.url || '',
-      ver: store.ver || '',
-    };
-  }
+export async function loginByNodeFetch(username: string, password: string) {
+  // const store = await getStore();
+  // // 没有强制更新，不重新请求token
+  // if (store.uid && store.url && store.ver && !forceUpdate) {
+  //   log({
+  //     uid: store.uid || '',
+  //     url: store.url || '',
+  //     ver: store.ver || '',
+  //     msg: '使用缓存的login token',
+  //   });
+  //   return {
+  //     uid: store.uid || '',
+  //     url: store.url || '',
+  //     ver: store.ver || '',
+  //   };
+  // }
   const fetch = (await _fetch).default;
   const res = await fetch('https://66.133.91.116/', {
     headers: {
@@ -499,7 +498,7 @@ export async function loginByNodeFetch(username: string, password: string, force
     if (d.code === 619) {
       throw createError(d.msg, Code.maintain);
     }
-    throw createError('不知道什么原因，extra登录失败', Code.accountUnknownFail);
+    throw createError('不知道什么原因， uid获取失败', Code.accountUnknownFail);
   }
   const body3 = {
     p: 'check_login_domain',
@@ -533,26 +532,11 @@ export async function loginByNodeFetch(username: string, password: string, force
     const mixObj3 = Convert.xml2js(text3, { compact: true }) as any;
     const domain = mixObj3?.serverresponse?.new_domain?._text;
     if (!domain) {
-      throw createError('获取extra数据domain失败', Code.dataFail);
+      throw createError('获取extra domain失败', Code.dataFail);
     }
-    return domain;
+    return domain as string;
   }, 3);
   const domain = await getDomain();
-  if (uid) {
-    log({
-      msg: '更新login token',
-      uid: uid,
-      ver: ver,
-      url: `https://${domain}/`,
-    });
-    await saveStore(
-      {
-        uid: uid,
-        ver: ver,
-        url: `https://${domain}/`,
-      }
-    );
-  }
   return {
     uid,
     ver,

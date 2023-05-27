@@ -12,9 +12,9 @@ import {
   retryLoginByNodeFetch,
 } from './api';
 // import { say } from './chaty';
-import { getStore, saveStore, saveFile, log, getLogHistory, getMessage1List, getMessage2List, getMessage3List } from './util';
+import { getStore, saveStore, saveFile, getLogHistory, getMessage1List, getMessage2List, getMessage3List } from './util';
 import cors from 'cors';
-import { Code, createError } from './error';
+import { CError, Code, createError } from './error';
 
 // console.log(cors);
 // process.env.username = 'jixiang123';
@@ -39,7 +39,7 @@ app.get('/data', async (req, res) => {
   const password = (process.env.password || '') as string;
   type PromiseType<T> = T extends Promise<infer U> ? U : never;
   const store = await getStore();
-  let data: PromiseType<ReturnType<typeof getData>> = store.data;
+  const data: PromiseType<ReturnType<typeof getData>> = store.data;
   // 如果在等待数据 直接返回缓存数据
   if (isWait && data && data && dayjs().valueOf() - (store.timestamp || 0) < 30 * 1000) {
     const store = await getStore();
@@ -57,41 +57,26 @@ app.get('/data', async (req, res) => {
   if (!data || (data && dayjs().valueOf() - (store.timestamp || 0) > 15 * 1000)) {
     isWait = true;
     try {
-      data = await getData(username, password);
-    } catch (error) {
-      // @ts-ignore uid过期
-      if (error.code === Code.uidExpire) {
-        try {
-          data = await getData(username, password, true);
-        } catch (error) {
-          // @ts-ignore
-          res.send({code:error.code, msg:error.message})
-          isWait = false;
-          return
-        }
-      } else {
-        // @ts-ignore
-        res.send({code:error.code, msg:error.message})
-        isWait = false;
-        return
-      }
-    }
-    if (data) {
+      console.log('请求新的匹配数据');
+      const _data = await getData(username, password);
       await saveStore({
-        data: data,
+        data: _data,
       });
+      const store = await getStore();
+      const message1List = getMessage1List(_data, store.Rev || 400);
+      const message3List = getMessage3List(_data, store.scoreRev || 200);
+      const { messageList: message2List, compareDataList } = getMessage2List(_data, store.C || 0.13, store.A || 1, store.compareRev || 430);
+      res.send({
+        code: 200,
+        msg: 'success',
+        data: { timestamp: store.timestamp || 0, matchData: _data, message1List, message2List, message3List, compareDataList },
+      });
+      return;
+    } catch (error) {
+      res.send({ code: (error as CError).code, msg: (error as CError).message });
+      isWait = false;
+      return;
     }
-  }
-  if (data) {
-    const store = await getStore();
-    const message1List = getMessage1List(data, store.Rev || 400);
-    const message3List = getMessage3List(data, store.scoreRev || 200);
-    const { messageList: message2List, compareDataList } = getMessage2List(data, store.C || 0.13, store.A || 1, store.compareRev || 430);
-    res.send({
-      code: 200,
-      msg: 'success',
-      data: { timestamp: store.timestamp || 0, matchData: data, message1List, message2List, message3List, compareDataList },
-    });
   }
 });
 
@@ -111,7 +96,6 @@ app.get('/setting', async (req, res) => {
       },
     });
   } catch (error) {
-    log((error as Error).message);
     res.send({ code: 500, msg: (error as Error).message });
   }
 });
@@ -121,7 +105,6 @@ app.post('/setting', async (req, res) => {
     await saveStore(body);
     res.status(200).send({ code: 200, msg: 'success' });
   } catch (error) {
-    log((error as Error).message);
     res.send({ code: 500, msg: (error as Error).message });
   }
 });
@@ -136,15 +119,37 @@ const delay = (n: number) => {
 // type M = Promise<ReturnType<typeof toData> | undefined>;
 
 //是否在更新数据
-async function getData(username: string, password: string, forceUpdate = false) {
+async function getData(username: string, password: string) {
   if (!username || !password) {
     throw createError('用户名或者密码没有填写', Code.wrongAccount);
   }
-  const data = await retryLoginByNodeFetch(username, password, forceUpdate);
-  const uid = data.uid || '';
-  const ver = data.ver || '';
-  const url = data.url || '';
-  const leagueList = await retryGetLeagueListAllByNodeFetch(url, uid, ver);
+  const store = await getStore();
+  let uid = store.uid;
+  let ver = store.ver;
+  let url = store.url;
+  if (!uid || !ver || !url) {
+    const d = await retryLoginByNodeFetch(username, password);
+    await saveStore(d);
+    console.log('uid不存在，更新uid后 存储到store');
+    uid = d.uid;
+    ver = d.ver;
+    url = d.url;
+  }
+  let leagueList: { name: string; id: string }[] = [];
+  try {
+    leagueList = await retryGetLeagueListAllByNodeFetch(url, uid, ver);
+  } catch (error) {
+    if ((error as CError).code === Code.uidExpire) {
+      const d = await retryLoginByNodeFetch(username, password);
+      await saveStore(d);
+      console.log({ uid, ver, url }, 'uid过期，更新uid后 存储到store', d);
+      uid = d.uid;
+      ver = d.ver;
+      url = d.url;
+      leagueList = await retryGetLeagueListAllByNodeFetch(url, uid, ver);
+    }
+    throw error;
+  }
   const tiCaiDataList = await retryGetTiCaiByFetch();
   const matchedLeagueList = tiCaiDataList
     .map((t) => {
@@ -164,7 +169,7 @@ async function getData(username: string, password: string, forceUpdate = false) 
   const extraGameList = (
     await Promise.all(
       matchedLeagueList.map((m) => {
-        return retryGetGameListByNodeFetch(url, ver, uid, m.id);
+        return retryGetGameListByNodeFetch(url || '', ver || '', uid || '', m.id);
       })
     )
   ).flat();
@@ -209,7 +214,7 @@ async function getData(username: string, password: string, forceUpdate = false) 
     .filter((g): g is Exclude<typeof g, undefined> => !!g)
     .map(async ([g, rate]) => {
       // 填充 更多细节数据
-      const itemList = await retryGetGameOBTByNodeFetch(url, ver, uid, g?.ecid);
+      const itemList = await retryGetGameOBTByNodeFetch(url || '', ver || '', uid || '', g?.ecid);
       return {
         ...g,
         rate,
@@ -231,8 +236,6 @@ async function getData(username: string, password: string, forceUpdate = false) 
   saveFile('./data/matchedLeagueList.json', Format(matchedLeagueList));
   saveFile('./data/gameList.json', Format(extraGameList));
   saveFile('./data/matchedGameList.json', Format(matchedGameList));
-  log({ msg: '更新了 ' + promiseList.length + ' 条数据', forceUpdate });
-  const store = await getStore();
   const matchData = toData(tiCaiDataList, matchedGameList, store.R);
   return matchData;
 }

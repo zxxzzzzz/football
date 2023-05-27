@@ -13,3 +13,5 @@ export function createError(msg: string, code: Code) {
   e.code = code;
   return e;
 }
+
+export type CError = Error & { code: Code };
