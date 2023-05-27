@@ -118,7 +118,7 @@ app.get('/setting', async (req, res) => {
 app.post('/setting', async (req, res) => {
   try {
     const body = req.body;
-    await saveStore(body, false);
+    await saveStore(body);
     res.status(200).send({ code: 200, msg: 'success' });
   } catch (error) {
     log((error as Error).message);

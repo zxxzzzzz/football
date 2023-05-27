@@ -550,8 +550,7 @@ export async function loginByNodeFetch(username: string, password: string, force
         uid: uid,
         ver: ver,
         url: `https://${domain}/`,
-      },
-      false
+      }
     );
   }
   return {
