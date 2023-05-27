@@ -279,6 +279,9 @@ export async function getGameOBTByNodeFetch(
     throw createError('获取extra数据失败', Code.dataFail);
   }
   const mixObj = Convert.xml2js(text, { compact: true }) as any;
+  if(mixObj?.serverresponse?.code?._text === 'error'){
+    throw createError('uid过期', Code.uidExpire)
+  }
   let gameList = mixObj?.serverresponse?.ec?.game;
   if (gameList?.LEAGUE) {
     gameList = [gameList];
