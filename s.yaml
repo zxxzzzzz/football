@@ -55,7 +55,7 @@ services:
         runtime: nodejs16
         codeUri: ./code
         handler: index.handler
-        instanceConcurrency: 1
+        instanceConcurrency: 4
         memorySize: 1024
         diskSize: 512
         cpu: 1
