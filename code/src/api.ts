@@ -357,6 +357,9 @@ export async function getLeagueListAllByNodeFetch(url: string, uid: string, ver:
     throw createError('获取extra数据失败', Code.dataFail);
   }
   const mixObj = Convert.xml2js(text, { compact: true }) as any;
+  if(mixObj?.serverresponse?.code?._text === 'error'){
+    throw createError('uid过期', Code.uidExpire)
+  }
   return (mixObj?.serverresponse?.classifier?.region || [])
     .map((r: any) => {
       const league = r.league?.length ? r.league : [r.league];

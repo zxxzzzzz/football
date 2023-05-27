@@ -34,6 +34,7 @@ app.listen(9000);
 let isWait = false;
 app.get('/data', async (req, res) => {
   console.log(dayjs().valueOf());
+
   const username = (process.env.username || '') as string;
   const password = (process.env.password || '') as string;
   type PromiseType<T> = T extends Promise<infer U> ? U : never;
@@ -61,6 +62,8 @@ app.get('/data', async (req, res) => {
       // @ts-ignore uid过期
       if (error.code === Code.uidExpire) {
         data = await getData(username, password, true);
+      } else {
+        throw error
       }
     }
     isWait = false;
