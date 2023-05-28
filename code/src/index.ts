@@ -58,6 +58,7 @@ app.get('/data', async (req, res) => {
     try {
       const _data = await getData(username, password);
       await saveStore({
+        timestamp: dayjs().valueOf(),
         data: _data,
       });
       const store = await getStore();
