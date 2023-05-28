@@ -195,8 +195,8 @@ async function getGameListByNodeFetch(url: string, ver: string, uid: string, lid
     throw createError('获取extra 比赛数据失败', Code.dataFail);
   }
   const mixObj = Convert.xml2js(text, { compact: true }) as any;
-  if(mixObj?.serverresponse?.code?._text === 'error'){
-    throw createError('uid过期', Code.uidExpire)
+  if (mixObj?.serverresponse?.code?._text === 'error') {
+    throw createError('uid过期', Code.uidExpire);
   }
   const gameList: Game[] = ([] as any[])
     .concat(mixObj?.serverresponse?.ec)
@@ -278,8 +278,8 @@ export async function getGameOBTByNodeFetch(
     throw createError('获取extra 补充数据失败', Code.dataFail);
   }
   const mixObj = Convert.xml2js(text, { compact: true }) as any;
-  if(mixObj?.serverresponse?.code?._text === 'error'){
-    throw createError('uid过期', Code.uidExpire)
+  if (mixObj?.serverresponse?.code?._text === 'error') {
+    throw createError('uid过期', Code.uidExpire);
   }
   let gameList = mixObj?.serverresponse?.ec?.game;
   if (gameList?.LEAGUE) {
@@ -317,6 +317,7 @@ export async function getGameOBTByNodeFetch(
 export const retryGetGameOBTByNodeFetch = retryWrap(getGameOBTByNodeFetch, 3);
 
 export async function getLeagueListAllByNodeFetch(url: string, uid: string, ver: string): Promise<{ name: string; id: string }[]> {
+  console.log('请求联赛', { url, uid, ver });
   const body = {
     p: 'get_league_list_All',
     uid: uid,
@@ -359,8 +360,8 @@ export async function getLeagueListAllByNodeFetch(url: string, uid: string, ver:
     throw createError('获取extra 联赛数据失败', Code.dataFail);
   }
   const mixObj = Convert.xml2js(text, { compact: true }) as any;
-  if(mixObj?.serverresponse?.code?._text === 'error'){
-    throw createError('uid过期', Code.uidExpire)
+  if (mixObj?.serverresponse?.code?._text === 'error') {
+    throw createError('uid过期', Code.uidExpire);
   }
   return (mixObj?.serverresponse?.classifier?.region || [])
     .map((r: any) => {
@@ -453,7 +454,7 @@ export async function loginByNodeFetch(username: string, password: string) {
   const text = await res.text();
   const m = text.match(/top\.ver = '([^']+?)'/);
   if (!m?.[1]) {
-    throw createError('获取ver失败', Code.dataFail)
+    throw createError('获取ver失败', Code.dataFail);
   }
   const ver = m[1];
 
