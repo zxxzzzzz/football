@@ -26,6 +26,7 @@ vars: # 全局变量
   service:
     name: "web-framework"
     description: 'Serverless Devs Web Framework Service'
+    logConfig: auto
 
 services:
   framework: # 业务名称/模块名称
@@ -55,9 +56,9 @@ services:
         codeUri: ./code
         handler: index.handler
         instanceConcurrency: 4
-        memorySize: 2048
+        memorySize: 1024
         diskSize: 512
-        cpu: 2
+        cpu: 1
         timeout: 60
         environmentVariables:
           password: ${env(password)}

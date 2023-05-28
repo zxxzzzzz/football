@@ -1,6 +1,3987 @@
 {
 	"data": [
 		{
+			"dateTime": "2023-05-27 00:47:37",
+			"msg": "oss数据不存在，使用本地数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:47:34",
+			"msg": "oss数据不存在，使用本地数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:47:34",
+			"msg": "isWaitForNewDatafalse 使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:47:34",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-27 00:47:34",
+			"msg": "oss数据不存在，使用本地数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:47:29",
+			"msg": "oss数据不存在，使用本地数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:47:29",
+			"msg": "oss数据不存在，使用本地数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:47:29",
+			"msg": "匹配到 32 条数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:47:28",
+			"msg": {
+				"uid": "jg13veqwynm31149741l10973b0",
+				"url": "https://134.159.80.56/",
+				"ver": "-3ed5-forecast-0525-99881ae5676be2",
+				"msg": "使用缓存的login token"
+			}
+		},
+		{
+			"dateTime": "2023-05-27 00:47:28",
+			"msg": "oss数据不存在，使用本地数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:47:28",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-27 00:47:28",
+			"msg": "oss数据不存在，使用本地数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:47:18",
+			"msg": "oss数据不存在，使用本地数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:47:17",
+			"msg": "oss数据不存在，使用本地数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:47:17",
+			"msg": "isWaitForNewDatafalse 使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:47:17",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-27 00:47:17",
+			"msg": "oss数据不存在，使用本地数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:47:12",
+			"msg": "oss数据不存在，使用本地数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:47:12",
+			"msg": "isWaitForNewDatafalse 使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:47:12",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-27 00:47:12",
+			"msg": "oss数据不存在，使用本地数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:47:09",
+			"msg": "oss数据不存在，使用本地数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:47:09",
+			"msg": "isWaitForNewDatafalse 使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:47:09",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-27 00:47:09",
+			"msg": "oss数据不存在，使用本地数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:47:09",
+			"msg": "oss数据不存在，使用本地数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:47:09",
+			"msg": "isWaitForNewDatafalse 使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:47:09",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-27 00:47:09",
+			"msg": "oss数据不存在，使用本地数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:47:09",
+			"msg": "oss数据不存在，使用本地数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:47:09",
+			"msg": "isWaitForNewDatafalse 使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:47:09",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-27 00:47:09",
+			"msg": "oss数据不存在，使用本地数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:47:09",
+			"msg": "oss数据不存在，使用本地数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:47:09",
+			"msg": "oss数据不存在，使用本地数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:47:09",
+			"msg": "匹配到 32 条数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:47:08",
+			"msg": {
+				"uid": "jg13veqwynm31149741l10973b0",
+				"url": "https://134.159.80.56/",
+				"ver": "-3ed5-forecast-0525-99881ae5676be2",
+				"msg": "使用缓存的login token"
+			}
+		},
+		{
+			"dateTime": "2023-05-27 00:47:08",
+			"msg": "oss数据不存在，使用本地数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:47:08",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-27 00:47:08",
+			"msg": "oss数据不存在，使用本地数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:41:18",
+			"msg": "oss数据不存在，使用本地数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:41:18",
+			"msg": "isWaitForNewDatafalse 使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:41:18",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-27 00:41:18",
+			"msg": "oss数据不存在，使用本地数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:41:18",
+			"msg": "oss数据不存在，使用本地数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:41:18",
+			"msg": "isWaitForNewDatafalse 使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:41:18",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-27 00:41:18",
+			"msg": "oss数据不存在，使用本地数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:41:16",
+			"msg": "oss数据不存在，使用本地数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:41:16",
+			"msg": "isWaitForNewDatafalse 使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:41:16",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-27 00:41:16",
+			"msg": "oss数据不存在，使用本地数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:41:13",
+			"msg": "oss数据不存在，使用本地数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:41:13",
+			"msg": "oss数据不存在，使用本地数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:41:13",
+			"msg": "匹配到 32 条数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:41:12",
+			"msg": {
+				"uid": "jg13veqwynm31149741l10973b0",
+				"url": "https://134.159.80.56/",
+				"ver": "-3ed5-forecast-0525-99881ae5676be2",
+				"msg": "使用缓存的login token"
+			}
+		},
+		{
+			"dateTime": "2023-05-27 00:41:12",
+			"msg": "oss数据不存在，使用本地数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:41:12",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-27 00:41:12",
+			"msg": "oss数据不存在，使用本地数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:41:11",
+			"msg": "oss数据不存在，使用本地数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:41:11",
+			"msg": "isWaitForNewDatafalse 使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:41:11",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-27 00:41:11",
+			"msg": "oss数据不存在，使用本地数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:41:08",
+			"msg": "oss数据不存在，使用本地数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:41:07",
+			"msg": "oss数据不存在，使用本地数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:41:07",
+			"msg": "isWaitForNewDatafalse 使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:41:07",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-27 00:41:07",
+			"msg": "oss数据不存在，使用本地数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:41:06",
+			"msg": "oss数据不存在，使用本地数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:41:06",
+			"msg": "isWaitForNewDatafalse 使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:41:06",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-27 00:41:06",
+			"msg": "oss数据不存在，使用本地数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:41:04",
+			"msg": "oss数据不存在，使用本地数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:41:02",
+			"msg": "oss数据不存在，使用本地数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:41:02",
+			"msg": "isWaitForNewDatafalse 使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:41:02",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-27 00:41:02",
+			"msg": "oss数据不存在，使用本地数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:40:57",
+			"msg": "oss数据不存在，使用本地数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:40:57",
+			"msg": "isWaitForNewDatafalse 使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:40:57",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-27 00:40:57",
+			"msg": "oss数据不存在，使用本地数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:40:57",
+			"msg": "oss数据不存在，使用本地数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:40:57",
+			"msg": "isWaitForNewDatafalse 使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:40:57",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-27 00:40:57",
+			"msg": "oss数据不存在，使用本地数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:40:57",
+			"msg": "oss数据不存在，使用本地数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:40:57",
+			"msg": "isWaitForNewDatafalse 使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:40:57",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-27 00:40:57",
+			"msg": "oss数据不存在，使用本地数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:40:57",
+			"msg": "oss数据不存在，使用本地数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:40:57",
+			"msg": "oss数据不存在，使用本地数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:40:57",
+			"msg": "匹配到 32 条数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:40:55",
+			"msg": {
+				"uid": "jg13veqwynm31149741l10973b0",
+				"url": "https://134.159.80.56/",
+				"ver": "-3ed5-forecast-0525-99881ae5676be2",
+				"msg": "使用缓存的login token"
+			}
+		},
+		{
+			"dateTime": "2023-05-27 00:40:55",
+			"msg": "oss数据不存在，使用本地数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:40:55",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-27 00:40:55",
+			"msg": "oss数据不存在，使用本地数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:37:11",
+			"msg": "oss数据不存在，使用本地数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:37:11",
+			"msg": "isWaitForNewDatafalse 使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:37:11",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-27 00:37:11",
+			"msg": "oss数据不存在，使用本地数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:37:06",
+			"msg": "oss数据不存在，使用本地数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:37:06",
+			"msg": "oss数据不存在，使用本地数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:37:06",
+			"msg": "匹配到 32 条数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:37:04",
+			"msg": "oss数据不存在，使用本地数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:37:04",
+			"msg": {
+				"msg": "更新login token",
+				"uid": "jg13veqwynm31149741l10973b0",
+				"ver": "-3ed5-forecast-0525-99881ae5676be2",
+				"url": "https://134.159.80.56/"
+			}
+		},
+		{
+			"dateTime": "2023-05-27 00:37:02",
+			"msg": "oss数据不存在，使用本地数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:37:02",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-27 00:37:02",
+			"msg": "oss数据不存在，使用本地数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:35:01",
+			"msg": "oss数据不存在，使用本地数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:35:01",
+			"msg": "oss数据不存在，使用本地数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:34:44",
+			"msg": "oss数据不存在，使用本地数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:33:47",
+			"msg": "oss数据不存在，使用本地数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:32:49",
+			"msg": "oss数据不存在，使用本地数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:32:20",
+			"msg": "oss数据不存在，使用本地数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:32:09",
+			"msg": "oss数据不存在，使用本地数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:30:55",
+			"msg": "oss数据不存在，使用本地数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:28:26",
+			"msg": "local数据比较新，使用本地数据"
+		},
+		{
+			"dateTime": "2023-05-27 00:28:25",
+			"msg": "oss数据不存在，使用本地数据"
+		},
+		{
+			"dateTime": "2023-05-26 23:54:40",
+			"msg": "匹配到 32 条数据"
+		},
+		{
+			"dateTime": "2023-05-26 23:54:39",
+			"msg": {
+				"msg": "更新login token",
+				"uid": "x12kjpxxv0m31149741l10632b0",
+				"ver": "-3ed5-forecast-0525-99881ae5676be2",
+				"uidTimestamp": 1685087679062,
+				"url": "https://134.159.80.56/"
+			}
+		},
+		{
+			"dateTime": "2023-05-26 23:54:36",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 22:57:06",
+			"msg": "匹配到 32 条数据"
+		},
+		{
+			"dateTime": "2023-05-26 22:57:06",
+			"msg": {
+				"uid": "5q18qp9m31149741l10239b0",
+				"url": "https://134.159.80.56/",
+				"ver": "-3ed5-forecast-0525-99881ae5676be2",
+				"msg": "使用缓存的login token"
+			}
+		},
+		{
+			"dateTime": "2023-05-26 22:57:06",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 22:57:00",
+			"msg": "isWaitForNewDatafalse 使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 22:57:00",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 22:56:55",
+			"msg": "isWaitForNewDatafalse 使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 22:56:55",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 22:56:50",
+			"msg": "匹配到 32 条数据"
+		},
+		{
+			"dateTime": "2023-05-26 22:56:49",
+			"msg": {
+				"uid": "5q18qp9m31149741l10239b0",
+				"url": "https://134.159.80.56/",
+				"ver": "-3ed5-forecast-0525-99881ae5676be2",
+				"msg": "使用缓存的login token"
+			}
+		},
+		{
+			"dateTime": "2023-05-26 22:56:49",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 22:56:44",
+			"msg": "isWaitForNewDatafalse 使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 22:56:44",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 22:56:39",
+			"msg": "isWaitForNewDatafalse 使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 22:56:39",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 22:56:34",
+			"msg": "匹配到 32 条数据"
+		},
+		{
+			"dateTime": "2023-05-26 22:56:33",
+			"msg": {
+				"uid": "5q18qp9m31149741l10239b0",
+				"url": "https://134.159.80.56/",
+				"ver": "-3ed5-forecast-0525-99881ae5676be2",
+				"msg": "使用缓存的login token"
+			}
+		},
+		{
+			"dateTime": "2023-05-26 22:56:33",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 22:56:28",
+			"msg": "isWaitForNewDatafalse 使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 22:56:28",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 22:56:23",
+			"msg": "isWaitForNewDatafalse 使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 22:56:23",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 22:56:18",
+			"msg": "匹配到 32 条数据"
+		},
+		{
+			"dateTime": "2023-05-26 22:56:17",
+			"msg": {
+				"msg": "更新login token",
+				"uid": "5q18qp9m31149741l10239b0",
+				"ver": "-3ed5-forecast-0525-99881ae5676be2",
+				"uidTimestamp": 1685084177398,
+				"url": "https://134.159.80.56/"
+			}
+		},
+		{
+			"dateTime": "2023-05-26 22:56:16",
+			"msg": "获取extra数据domain失败"
+		},
+		{
+			"dateTime": "2023-05-26 22:56:08",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 22:56:08",
+			"msg": "长时间没更新，强制改变 isWaitForNewData"
+		},
+		{
+			"dateTime": "2023-05-26 22:56:07",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 22:55:27",
+			"msg": "匹配到 32 条数据"
+		},
+		{
+			"dateTime": "2023-05-26 22:55:26",
+			"msg": {
+				"msg": "更新login token",
+				"uid": "751wq8rwm31149741l10228b0",
+				"ver": "-3ed5-forecast-0525-99881ae5676be2",
+				"uidTimestamp": 1685084126384,
+				"url": "https://134.159.80.56/"
+			}
+		},
+		{
+			"dateTime": "2023-05-26 22:55:25",
+			"msg": "isWaitForNewDatatrue 使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 22:55:25",
+			"msg": "isWaitForNewData true"
+		},
+		{
+			"dateTime": "2023-05-26 22:55:25",
+			"msg": "获取不到匹配数据，强制更新token再获取一次"
+		},
+		{
+			"dateTime": "2023-05-26 22:55:25",
+			"msg": "isWaitForNewDatatrue 使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 22:55:25",
+			"msg": "isWaitForNewData true"
+		},
+		{
+			"dateTime": "2023-05-26 22:55:23",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 22:49:49",
+			"msg": "匹配到 32 条数据"
+		},
+		{
+			"dateTime": "2023-05-26 22:49:48",
+			"msg": {
+				"msg": "更新login token",
+				"uid": "3g0xj7t3m31149741l10199b0",
+				"ver": "-3ed5-forecast-0525-99881ae5676be2",
+				"uidTimestamp": 1685083788206,
+				"url": "https://134.159.80.56/"
+			}
+		},
+		{
+			"dateTime": "2023-05-26 22:49:45",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:36:51",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:36:51",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:36:46",
+			"msg": "匹配 5"
+		},
+		{
+			"dateTime": "2023-05-26 04:36:45",
+			"msg": {
+				"uid": "wsuk4fwjm31149741l1996b0",
+				"url": "https://134.159.80.56/",
+				"ver": "-3ed5-forecast-0525-99881ae5676be2",
+				"msg": "使用缓存的login token"
+			}
+		},
+		{
+			"dateTime": "2023-05-26 04:36:45",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:36:40",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:36:40",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:36:35",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:36:35",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:36:30",
+			"msg": "匹配 5"
+		},
+		{
+			"dateTime": "2023-05-26 04:36:30",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:36:30",
+			"msg": "isWaitForNewData true"
+		},
+		{
+			"dateTime": "2023-05-26 04:36:29",
+			"msg": {
+				"uid": "wsuk4fwjm31149741l1996b0",
+				"url": "https://134.159.80.56/",
+				"ver": "-3ed5-forecast-0525-99881ae5676be2",
+				"msg": "使用缓存的login token"
+			}
+		},
+		{
+			"dateTime": "2023-05-26 04:36:29",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:36:26",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:36:26",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:36:24",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:36:24",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:36:24",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:36:24",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:36:21",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:36:21",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:36:19",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:36:19",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:36:19",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:36:19",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:36:16",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:36:16",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:36:14",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:36:14",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:36:14",
+			"msg": "匹配 5"
+		},
+		{
+			"dateTime": "2023-05-26 04:36:13",
+			"msg": {
+				"uid": "wsuk4fwjm31149741l1996b0",
+				"url": "https://134.159.80.56/",
+				"ver": "-3ed5-forecast-0525-99881ae5676be2",
+				"msg": "使用缓存的login token"
+			}
+		},
+		{
+			"dateTime": "2023-05-26 04:36:13",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:36:10",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:36:10",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:36:08",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:36:08",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:36:08",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:36:08",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:36:05",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:36:05",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:36:03",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:36:03",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:36:03",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:36:03",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:36:00",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:36:00",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:35:58",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:35:58",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:35:58",
+			"msg": "匹配 5"
+		},
+		{
+			"dateTime": "2023-05-26 04:35:57",
+			"msg": {
+				"msg": "更新login token",
+				"uid": "wsuk4fwjm31149741l1996b0",
+				"ver": "-3ed5-forecast-0525-99881ae5676be2",
+				"uidTimestamp": 1685018157537,
+				"url": "https://134.159.80.56/"
+			}
+		},
+		{
+			"dateTime": "2023-05-26 04:35:54",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:35:54",
+			"msg": "长时间没更新，强制改变 isWaitForNewData"
+		},
+		{
+			"dateTime": "2023-05-26 04:35:54",
+			"msg": "获取不到匹配数据，强制更新token再获取一次"
+		},
+		{
+			"dateTime": "2023-05-26 04:35:54",
+			"msg": "获取不到联赛"
+		},
+		{
+			"dateTime": "2023-05-26 04:35:54",
+			"msg": {
+				"uid": "pv8zwptm31149741l1991b0",
+				"url": "https://134.159.80.56/",
+				"ver": "-3ed5-forecast-0525-99881ae5676be2",
+				"msg": "使用缓存的login token"
+			}
+		},
+		{
+			"dateTime": "2023-05-26 04:35:54",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:35:54",
+			"msg": "长时间没更新，强制改变 isWaitForNewData"
+		},
+		{
+			"dateTime": "2023-05-26 04:35:49",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:35:49",
+			"msg": "isWaitForNewData true"
+		},
+		{
+			"dateTime": "2023-05-26 04:35:49",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:35:49",
+			"msg": "isWaitForNewData true"
+		},
+		{
+			"dateTime": "2023-05-26 04:35:44",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:35:44",
+			"msg": "isWaitForNewData true"
+		},
+		{
+			"dateTime": "2023-05-26 04:35:44",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:35:44",
+			"msg": "isWaitForNewData true"
+		},
+		{
+			"dateTime": "2023-05-26 04:35:39",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:35:39",
+			"msg": "isWaitForNewData true"
+		},
+		{
+			"dateTime": "2023-05-26 04:35:39",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:35:39",
+			"msg": "isWaitForNewData true"
+		},
+		{
+			"dateTime": "2023-05-26 04:35:39",
+			"msg": "获取不到匹配数据，强制更新token再获取一次"
+		},
+		{
+			"dateTime": "2023-05-26 04:35:39",
+			"msg": "获取不到联赛"
+		},
+		{
+			"dateTime": "2023-05-26 04:35:39",
+			"msg": {
+				"uid": "pv8zwptm31149741l1991b0",
+				"url": "https://134.159.80.56/",
+				"ver": "-3ed5-forecast-0525-99881ae5676be2",
+				"msg": "使用缓存的login token"
+			}
+		},
+		{
+			"dateTime": "2023-05-26 04:35:39",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:35:34",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:35:34",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:35:34",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:35:34",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:35:29",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:35:29",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:35:29",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:35:29",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:35:24",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:35:24",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:35:24",
+			"msg": "匹配 5"
+		},
+		{
+			"dateTime": "2023-05-26 04:35:23",
+			"msg": {
+				"uid": "pv8zwptm31149741l1991b0",
+				"url": "https://134.159.80.56/",
+				"ver": "-3ed5-forecast-0525-99881ae5676be2",
+				"msg": "使用缓存的login token"
+			}
+		},
+		{
+			"dateTime": "2023-05-26 04:35:23",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:35:18",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:35:18",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:35:18",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:35:18",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:35:13",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:35:13",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:35:13",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:35:13",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:35:08",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:35:08",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:35:08",
+			"msg": "匹配 5"
+		},
+		{
+			"dateTime": "2023-05-26 04:35:07",
+			"msg": {
+				"msg": "更新login token",
+				"uid": "pv8zwptm31149741l1991b0",
+				"ver": "-3ed5-forecast-0525-99881ae5676be2",
+				"uidTimestamp": 1685018107470,
+				"url": "https://134.159.80.56/"
+			}
+		},
+		{
+			"dateTime": "2023-05-26 04:35:04",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:35:04",
+			"msg": "长时间没更新，强制改变 isWaitForNewData"
+		},
+		{
+			"dateTime": "2023-05-26 04:35:04",
+			"msg": "获取不到匹配数据，强制更新token再获取一次"
+		},
+		{
+			"dateTime": "2023-05-26 04:35:04",
+			"msg": "获取不到联赛"
+		},
+		{
+			"dateTime": "2023-05-26 04:35:04",
+			"msg": {
+				"uid": "yxsfyp0i4m31149741l1938b0",
+				"url": "https://134.159.80.56/",
+				"ver": "-3ed5-forecast-0525-99881ae5676be2",
+				"msg": "使用缓存的login token"
+			}
+		},
+		{
+			"dateTime": "2023-05-26 04:35:04",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:35:04",
+			"msg": "长时间没更新，强制改变 isWaitForNewData"
+		},
+		{
+			"dateTime": "2023-05-26 04:35:00",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:35:00",
+			"msg": "isWaitForNewData true"
+		},
+		{
+			"dateTime": "2023-05-26 04:34:59",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:34:59",
+			"msg": "isWaitForNewData true"
+		},
+		{
+			"dateTime": "2023-05-26 04:34:55",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:34:55",
+			"msg": "isWaitForNewData true"
+		},
+		{
+			"dateTime": "2023-05-26 04:34:54",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:34:54",
+			"msg": "isWaitForNewData true"
+		},
+		{
+			"dateTime": "2023-05-26 04:34:49",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:34:49",
+			"msg": "isWaitForNewData true"
+		},
+		{
+			"dateTime": "2023-05-26 04:34:49",
+			"msg": "获取不到匹配数据，强制更新token再获取一次"
+		},
+		{
+			"dateTime": "2023-05-26 04:34:49",
+			"msg": "获取不到联赛"
+		},
+		{
+			"dateTime": "2023-05-26 04:34:49",
+			"msg": {
+				"uid": "yxsfyp0i4m31149741l1938b0",
+				"url": "https://134.159.80.56/",
+				"ver": "-3ed5-forecast-0525-99881ae5676be2",
+				"msg": "使用缓存的login token"
+			}
+		},
+		{
+			"dateTime": "2023-05-26 04:34:49",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:34:43",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:34:43",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:34:37",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:34:37",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:34:31",
+			"msg": "匹配 5"
+		},
+		{
+			"dateTime": "2023-05-26 04:34:30",
+			"msg": {
+				"uid": "yxsfyp0i4m31149741l1938b0",
+				"url": "https://134.159.80.56/",
+				"ver": "-3ed5-forecast-0525-99881ae5676be2",
+				"msg": "使用缓存的login token"
+			}
+		},
+		{
+			"dateTime": "2023-05-26 04:34:30",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:34:24",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:34:24",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:34:18",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:34:18",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:34:12",
+			"msg": "匹配 5"
+		},
+		{
+			"dateTime": "2023-05-26 04:34:11",
+			"msg": {
+				"uid": "yxsfyp0i4m31149741l1938b0",
+				"url": "https://134.159.80.56/",
+				"ver": "-3ed5-forecast-0525-99881ae5676be2",
+				"msg": "使用缓存的login token"
+			}
+		},
+		{
+			"dateTime": "2023-05-26 04:34:11",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:34:05",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:34:05",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:33:59",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:33:59",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:33:53",
+			"msg": "匹配 5"
+		},
+		{
+			"dateTime": "2023-05-26 04:33:52",
+			"msg": {
+				"uid": "yxsfyp0i4m31149741l1938b0",
+				"url": "https://134.159.80.56/",
+				"ver": "-3ed5-forecast-0525-99881ae5676be2",
+				"msg": "使用缓存的login token"
+			}
+		},
+		{
+			"dateTime": "2023-05-26 04:33:52",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:33:46",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:33:46",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:33:40",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:33:40",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:33:34",
+			"msg": "匹配 5"
+		},
+		{
+			"dateTime": "2023-05-26 04:33:32",
+			"msg": {
+				"uid": "yxsfyp0i4m31149741l1938b0",
+				"url": "https://134.159.80.56/",
+				"ver": "-3ed5-forecast-0525-99881ae5676be2",
+				"msg": "使用缓存的login token"
+			}
+		},
+		{
+			"dateTime": "2023-05-26 04:33:32",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:33:27",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:33:27",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:33:22",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:33:22",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:33:17",
+			"msg": "匹配 5"
+		},
+		{
+			"dateTime": "2023-05-26 04:33:15",
+			"msg": {
+				"uid": "yxsfyp0i4m31149741l1938b0",
+				"url": "https://134.159.80.56/",
+				"ver": "-3ed5-forecast-0525-99881ae5676be2",
+				"msg": "使用缓存的login token"
+			}
+		},
+		{
+			"dateTime": "2023-05-26 04:33:15",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:33:10",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:33:10",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:33:05",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:33:05",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:33:00",
+			"msg": "匹配 5"
+		},
+		{
+			"dateTime": "2023-05-26 04:32:58",
+			"msg": {
+				"uid": "yxsfyp0i4m31149741l1938b0",
+				"url": "https://134.159.80.56/",
+				"ver": "-3ed5-forecast-0525-99881ae5676be2",
+				"msg": "使用缓存的login token"
+			}
+		},
+		{
+			"dateTime": "2023-05-26 04:32:58",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:32:53",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:32:53",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:32:48",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:32:48",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:32:42",
+			"msg": "匹配 5"
+		},
+		{
+			"dateTime": "2023-05-26 04:32:41",
+			"msg": "匹配 5"
+		},
+		{
+			"dateTime": "2023-05-26 04:32:41",
+			"msg": {
+				"uid": "yxsfyp0i4m31149741l1938b0",
+				"url": "https://134.159.80.56/",
+				"ver": "-3ed5-forecast-0525-99881ae5676be2",
+				"msg": "使用缓存的login token"
+			}
+		},
+		{
+			"dateTime": "2023-05-26 04:32:41",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:32:41",
+			"msg": "长时间没更新，强制改变 isWaitForNewData"
+		},
+		{
+			"dateTime": "2023-05-26 04:32:40",
+			"msg": {
+				"uid": "yxsfyp0i4m31149741l1938b0",
+				"url": "https://134.159.80.56/",
+				"ver": "-3ed5-forecast-0525-99881ae5676be2",
+				"msg": "使用缓存的login token"
+			}
+		},
+		{
+			"dateTime": "2023-05-26 04:32:40",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:31:47",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:31:47",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:31:41",
+			"msg": "匹配 5"
+		},
+		{
+			"dateTime": "2023-05-26 04:31:40",
+			"msg": {
+				"uid": "yxsfyp0i4m31149741l1938b0",
+				"url": "https://134.159.80.56/",
+				"ver": "-3ed5-forecast-0525-99881ae5676be2",
+				"msg": "使用缓存的login token"
+			}
+		},
+		{
+			"dateTime": "2023-05-26 04:31:40",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:31:35",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:31:35",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:31:30",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:31:30",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:31:24",
+			"msg": "匹配 5"
+		},
+		{
+			"dateTime": "2023-05-26 04:31:23",
+			"msg": {
+				"uid": "yxsfyp0i4m31149741l1938b0",
+				"url": "https://134.159.80.56/",
+				"ver": "-3ed5-forecast-0525-99881ae5676be2",
+				"msg": "使用缓存的login token"
+			}
+		},
+		{
+			"dateTime": "2023-05-26 04:31:23",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:30:50",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:30:50",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:30:45",
+			"msg": "匹配 5"
+		},
+		{
+			"dateTime": "2023-05-26 04:30:44",
+			"msg": {
+				"uid": "yxsfyp0i4m31149741l1938b0",
+				"url": "https://134.159.80.56/",
+				"ver": "-3ed5-forecast-0525-99881ae5676be2",
+				"msg": "使用缓存的login token"
+			}
+		},
+		{
+			"dateTime": "2023-05-26 04:30:44",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:30:39",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:30:39",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:30:33",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:30:33",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:30:27",
+			"msg": "匹配 5"
+		},
+		{
+			"dateTime": "2023-05-26 04:30:26",
+			"msg": {
+				"uid": "yxsfyp0i4m31149741l1938b0",
+				"url": "https://134.159.80.56/",
+				"ver": "-3ed5-forecast-0525-99881ae5676be2",
+				"msg": "使用缓存的login token"
+			}
+		},
+		{
+			"dateTime": "2023-05-26 04:30:26",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:30:21",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:30:21",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:30:16",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:30:16",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:30:10",
+			"msg": "匹配 5"
+		},
+		{
+			"dateTime": "2023-05-26 04:30:09",
+			"msg": {
+				"msg": "更新login token",
+				"uid": "yxsfyp0i4m31149741l1938b0",
+				"ver": "-3ed5-forecast-0525-99881ae5676be2",
+				"uidTimestamp": 1685017809596,
+				"url": "https://134.159.80.56/"
+			}
+		},
+		{
+			"dateTime": "2023-05-26 04:30:06",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:30:06",
+			"msg": "长时间没更新，强制改变 isWaitForNewData"
+		},
+		{
+			"dateTime": "2023-05-26 04:30:06",
+			"msg": "获取不到匹配数据，强制更新token再获取一次"
+		},
+		{
+			"dateTime": "2023-05-26 04:30:06",
+			"msg": "获取不到联赛"
+		},
+		{
+			"dateTime": "2023-05-26 04:30:06",
+			"msg": {
+				"uid": "grfx79qki1m31149741l1928b0",
+				"url": "https://134.159.80.56/",
+				"ver": "-3ed5-forecast-0525-99881ae5676be2",
+				"msg": "使用缓存的login token"
+			}
+		},
+		{
+			"dateTime": "2023-05-26 04:30:06",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:30:05",
+			"msg": "长时间没更新，强制改变 isWaitForNewData"
+		},
+		{
+			"dateTime": "2023-05-26 04:30:00",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:30:00",
+			"msg": "isWaitForNewData true"
+		},
+		{
+			"dateTime": "2023-05-26 04:29:55",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:29:55",
+			"msg": "isWaitForNewData true"
+		},
+		{
+			"dateTime": "2023-05-26 04:29:50",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:29:50",
+			"msg": "isWaitForNewData true"
+		},
+		{
+			"dateTime": "2023-05-26 04:29:50",
+			"msg": "获取不到匹配数据，强制更新token再获取一次"
+		},
+		{
+			"dateTime": "2023-05-26 04:29:50",
+			"msg": "获取不到联赛"
+		},
+		{
+			"dateTime": "2023-05-26 04:29:50",
+			"msg": {
+				"uid": "grfx79qki1m31149741l1928b0",
+				"url": "https://134.159.80.56/",
+				"ver": "-3ed5-forecast-0525-99881ae5676be2",
+				"msg": "使用缓存的login token"
+			}
+		},
+		{
+			"dateTime": "2023-05-26 04:29:50",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:29:45",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:29:44",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:29:39",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:29:39",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:29:34",
+			"msg": "匹配 5"
+		},
+		{
+			"dateTime": "2023-05-26 04:29:33",
+			"msg": {
+				"uid": "grfx79qki1m31149741l1928b0",
+				"url": "https://134.159.80.56/",
+				"ver": "-3ed5-forecast-0525-99881ae5676be2",
+				"msg": "使用缓存的login token"
+			}
+		},
+		{
+			"dateTime": "2023-05-26 04:29:33",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:29:28",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:29:28",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:29:22",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:29:22",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:29:17",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:29:17",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:29:17",
+			"msg": "匹配 5"
+		},
+		{
+			"dateTime": "2023-05-26 04:29:16",
+			"msg": {
+				"msg": "更新login token",
+				"uid": "grfx79qki1m31149741l1928b0",
+				"ver": "-3ed5-forecast-0525-99881ae5676be2",
+				"uidTimestamp": 1685017756143,
+				"url": "https://134.159.80.56/"
+			}
+		},
+		{
+			"dateTime": "2023-05-26 04:29:13",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:29:08",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:29:08",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:29:08",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:29:07",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:29:03",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:29:03",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:29:02",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:29:02",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:28:57",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:28:57",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:28:57",
+			"msg": "匹配 5"
+		},
+		{
+			"dateTime": "2023-05-26 04:28:56",
+			"msg": {
+				"msg": "更新login token",
+				"uid": "xugrt06nm31149741l1923b0",
+				"ver": "-3ed5-forecast-0525-99881ae5676be2",
+				"uidTimestamp": 1685017736275,
+				"url": "https://134.159.80.56/"
+			}
+		},
+		{
+			"dateTime": "2023-05-26 04:28:53",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:27:12",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:27:12",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:27:07",
+			"msg": "匹配 5"
+		},
+		{
+			"dateTime": "2023-05-26 04:27:06",
+			"msg": {
+				"uid": "5sqet73gm31149741l1904b0",
+				"url": "https://134.159.80.56/",
+				"ver": "-3ed5-forecast-0525-99881ae5676be2",
+				"msg": "使用缓存的login token"
+			}
+		},
+		{
+			"dateTime": "2023-05-26 04:27:06",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:27:00",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:27:00",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:26:50",
+			"msg": "匹配 5"
+		},
+		{
+			"dateTime": "2023-05-26 04:26:48",
+			"msg": {
+				"msg": "更新login token",
+				"uid": "5sqet73gm31149741l1904b0",
+				"ver": "-3ed5-forecast-0525-99881ae5676be2",
+				"uidTimestamp": 1685017608784,
+				"url": "https://134.159.80.56/"
+			}
+		},
+		{
+			"dateTime": "2023-05-26 04:26:45",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:26:45",
+			"msg": "长时间没更新，强制改变 isWaitForNewData"
+		},
+		{
+			"dateTime": "2023-05-26 04:26:45",
+			"msg": "获取不到匹配数据，强制更新token再获取一次"
+		},
+		{
+			"dateTime": "2023-05-26 04:26:45",
+			"msg": "获取不到联赛"
+		},
+		{
+			"dateTime": "2023-05-26 04:26:45",
+			"msg": {
+				"uid": "ng9ze5n7m31149741l1896b0",
+				"url": "https://134.159.80.56/",
+				"ver": "-3ed5-forecast-0525-99881ae5676be2",
+				"msg": "使用缓存的login token"
+			}
+		},
+		{
+			"dateTime": "2023-05-26 04:26:45",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:26:45",
+			"msg": "长时间没更新，强制改变 isWaitForNewData"
+		},
+		{
+			"dateTime": "2023-05-26 04:26:39",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:26:39",
+			"msg": "isWaitForNewData true"
+		},
+		{
+			"dateTime": "2023-05-26 04:26:33",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:26:33",
+			"msg": "isWaitForNewData true"
+		},
+		{
+			"dateTime": "2023-05-26 04:26:27",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:26:27",
+			"msg": "isWaitForNewData true"
+		},
+		{
+			"dateTime": "2023-05-26 04:26:27",
+			"msg": "获取不到匹配数据，强制更新token再获取一次"
+		},
+		{
+			"dateTime": "2023-05-26 04:26:27",
+			"msg": "获取不到联赛"
+		},
+		{
+			"dateTime": "2023-05-26 04:26:27",
+			"msg": {
+				"uid": "ng9ze5n7m31149741l1896b0",
+				"url": "https://134.159.80.56/",
+				"ver": "-3ed5-forecast-0525-99881ae5676be2",
+				"msg": "使用缓存的login token"
+			}
+		},
+		{
+			"dateTime": "2023-05-26 04:26:27",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:26:21",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:26:21",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:26:15",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:26:15",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:26:09",
+			"msg": "匹配 5"
+		},
+		{
+			"dateTime": "2023-05-26 04:26:07",
+			"msg": {
+				"msg": "更新login token",
+				"uid": "ng9ze5n7m31149741l1896b0",
+				"ver": "-3ed5-forecast-0525-99881ae5676be2",
+				"uidTimestamp": 1685017567823,
+				"url": "https://134.159.80.56/"
+			}
+		},
+		{
+			"dateTime": "2023-05-26 04:26:04",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:26:04",
+			"msg": "长时间没更新，强制改变 isWaitForNewData"
+		},
+		{
+			"dateTime": "2023-05-26 04:26:04",
+			"msg": "获取不到匹配数据，强制更新token再获取一次"
+		},
+		{
+			"dateTime": "2023-05-26 04:26:04",
+			"msg": "获取不到联赛"
+		},
+		{
+			"dateTime": "2023-05-26 04:26:04",
+			"msg": {
+				"uid": "gjyue17m31149741l1858b0",
+				"url": "https://134.159.80.56/",
+				"ver": "-3ed5-forecast-0525-99881ae5676be2",
+				"msg": "使用缓存的login token"
+			}
+		},
+		{
+			"dateTime": "2023-05-26 04:26:04",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:26:04",
+			"msg": "长时间没更新，强制改变 isWaitForNewData"
+		},
+		{
+			"dateTime": "2023-05-26 04:25:58",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:25:58",
+			"msg": "isWaitForNewData true"
+		},
+		{
+			"dateTime": "2023-05-26 04:25:52",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:25:52",
+			"msg": "isWaitForNewData true"
+		},
+		{
+			"dateTime": "2023-05-26 04:25:46",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:25:46",
+			"msg": "isWaitForNewData true"
+		},
+		{
+			"dateTime": "2023-05-26 04:25:46",
+			"msg": "获取不到匹配数据，强制更新token再获取一次"
+		},
+		{
+			"dateTime": "2023-05-26 04:25:46",
+			"msg": "获取不到联赛"
+		},
+		{
+			"dateTime": "2023-05-26 04:25:46",
+			"msg": {
+				"uid": "gjyue17m31149741l1858b0",
+				"url": "https://134.159.80.56/",
+				"ver": "-3ed5-forecast-0525-99881ae5676be2",
+				"msg": "使用缓存的login token"
+			}
+		},
+		{
+			"dateTime": "2023-05-26 04:25:46",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:25:40",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:25:40",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:25:34",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:25:34",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:25:28",
+			"msg": "匹配 0"
+		},
+		{
+			"dateTime": "2023-05-26 04:25:27",
+			"msg": {
+				"uid": "gjyue17m31149741l1858b0",
+				"url": "https://134.159.80.56/",
+				"ver": "-3ed5-forecast-0525-99881ae5676be2",
+				"msg": "使用缓存的login token"
+			}
+		},
+		{
+			"dateTime": "2023-05-26 04:25:27",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:25:21",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:25:21",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:25:15",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:25:15",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:25:09",
+			"msg": "匹配 5"
+		},
+		{
+			"dateTime": "2023-05-26 04:25:08",
+			"msg": {
+				"uid": "gjyue17m31149741l1858b0",
+				"url": "https://134.159.80.56/",
+				"ver": "-3ed5-forecast-0525-99881ae5676be2",
+				"msg": "使用缓存的login token"
+			}
+		},
+		{
+			"dateTime": "2023-05-26 04:25:08",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:25:02",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:25:02",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:24:56",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:24:56",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:24:50",
+			"msg": "匹配 5"
+		},
+		{
+			"dateTime": "2023-05-26 04:24:49",
+			"msg": {
+				"uid": "gjyue17m31149741l1858b0",
+				"url": "https://134.159.80.56/",
+				"ver": "-3ed5-forecast-0525-99881ae5676be2",
+				"msg": "使用缓存的login token"
+			}
+		},
+		{
+			"dateTime": "2023-05-26 04:24:49",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:24:43",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:24:43",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:24:37",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:24:37",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:24:31",
+			"msg": "匹配 5"
+		},
+		{
+			"dateTime": "2023-05-26 04:24:30",
+			"msg": {
+				"uid": "gjyue17m31149741l1858b0",
+				"url": "https://134.159.80.56/",
+				"ver": "-3ed5-forecast-0525-99881ae5676be2",
+				"msg": "使用缓存的login token"
+			}
+		},
+		{
+			"dateTime": "2023-05-26 04:24:30",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:24:24",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:24:24",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:24:18",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:24:18",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:24:12",
+			"msg": "匹配 5"
+		},
+		{
+			"dateTime": "2023-05-26 04:24:11",
+			"msg": {
+				"uid": "gjyue17m31149741l1858b0",
+				"url": "https://134.159.80.56/",
+				"ver": "-3ed5-forecast-0525-99881ae5676be2",
+				"msg": "使用缓存的login token"
+			}
+		},
+		{
+			"dateTime": "2023-05-26 04:24:11",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:24:05",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:24:05",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:23:59",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:23:59",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:23:53",
+			"msg": "匹配 5"
+		},
+		{
+			"dateTime": "2023-05-26 04:23:52",
+			"msg": {
+				"uid": "gjyue17m31149741l1858b0",
+				"url": "https://134.159.80.56/",
+				"ver": "-3ed5-forecast-0525-99881ae5676be2",
+				"msg": "使用缓存的login token"
+			}
+		},
+		{
+			"dateTime": "2023-05-26 04:23:52",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:23:46",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:23:46",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:23:40",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:23:40",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:23:34",
+			"msg": "匹配 5"
+		},
+		{
+			"dateTime": "2023-05-26 04:23:33",
+			"msg": {
+				"uid": "gjyue17m31149741l1858b0",
+				"url": "https://134.159.80.56/",
+				"ver": "-3ed5-forecast-0525-99881ae5676be2",
+				"msg": "使用缓存的login token"
+			}
+		},
+		{
+			"dateTime": "2023-05-26 04:23:33",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:23:27",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:23:27",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:23:21",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:23:21",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:23:15",
+			"msg": "匹配 5"
+		},
+		{
+			"dateTime": "2023-05-26 04:23:14",
+			"msg": {
+				"uid": "gjyue17m31149741l1858b0",
+				"url": "https://134.159.80.56/",
+				"ver": "-3ed5-forecast-0525-99881ae5676be2",
+				"msg": "使用缓存的login token"
+			}
+		},
+		{
+			"dateTime": "2023-05-26 04:23:14",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:23:08",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:23:08",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:23:02",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:23:02",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:22:56",
+			"msg": "匹配 5"
+		},
+		{
+			"dateTime": "2023-05-26 04:22:54",
+			"msg": {
+				"msg": "更新login token",
+				"uid": "gjyue17m31149741l1858b0",
+				"ver": "-3ed5-forecast-0525-99881ae5676be2",
+				"uidTimestamp": 1685017374795,
+				"url": "https://134.159.80.56/"
+			}
+		},
+		{
+			"dateTime": "2023-05-26 04:22:51",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:22:51",
+			"msg": "长时间没更新，强制改变 isWaitForNewData"
+		},
+		{
+			"dateTime": "2023-05-26 04:22:51",
+			"msg": "获取不到匹配数据，强制更新token再获取一次"
+		},
+		{
+			"dateTime": "2023-05-26 04:22:51",
+			"msg": "获取不到联赛"
+		},
+		{
+			"dateTime": "2023-05-26 04:22:51",
+			"msg": {
+				"uid": "j6sjjhnm31149741l1854b0",
+				"url": "https://134.159.80.56/",
+				"ver": "-3ed5-forecast-0525-99881ae5676be2",
+				"msg": "使用缓存的login token"
+			}
+		},
+		{
+			"dateTime": "2023-05-26 04:22:51",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:22:51",
+			"msg": "长时间没更新，强制改变 isWaitForNewData"
+		},
+		{
+			"dateTime": "2023-05-26 04:22:45",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:22:45",
+			"msg": "isWaitForNewData true"
+		},
+		{
+			"dateTime": "2023-05-26 04:22:39",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:22:39",
+			"msg": "isWaitForNewData true"
+		},
+		{
+			"dateTime": "2023-05-26 04:22:39",
+			"msg": "获取不到匹配数据，强制更新token再获取一次"
+		},
+		{
+			"dateTime": "2023-05-26 04:22:39",
+			"msg": "获取不到联赛"
+		},
+		{
+			"dateTime": "2023-05-26 04:22:39",
+			"msg": {
+				"uid": "j6sjjhnm31149741l1854b0",
+				"url": "https://134.159.80.56/",
+				"ver": "-3ed5-forecast-0525-99881ae5676be2",
+				"msg": "使用缓存的login token"
+			}
+		},
+		{
+			"dateTime": "2023-05-26 04:22:39",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:22:33",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:22:33",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:22:27",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:22:27",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:22:21",
+			"msg": "匹配 5"
+		},
+		{
+			"dateTime": "2023-05-26 04:22:19",
+			"msg": {
+				"msg": "更新login token",
+				"uid": "j6sjjhnm31149741l1854b0",
+				"ver": "-3ed5-forecast-0525-99881ae5676be2",
+				"uidTimestamp": 1685017339671,
+				"url": "https://134.159.80.56/"
+			}
+		},
+		{
+			"dateTime": "2023-05-26 04:22:16",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:22:16",
+			"msg": "长时间没更新，强制改变 isWaitForNewData"
+		},
+		{
+			"dateTime": "2023-05-26 04:22:16",
+			"msg": "获取不到匹配数据，强制更新token再获取一次"
+		},
+		{
+			"dateTime": "2023-05-26 04:22:16",
+			"msg": "获取不到联赛"
+		},
+		{
+			"dateTime": "2023-05-26 04:22:16",
+			"msg": {
+				"uid": "i0n6fitm31149741l1851b0",
+				"url": "https://134.159.80.56/",
+				"ver": "-3ed5-forecast-0525-99881ae5676be2",
+				"msg": "使用缓存的login token"
+			}
+		},
+		{
+			"dateTime": "2023-05-26 04:22:16",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:22:16",
+			"msg": "长时间没更新，强制改变 isWaitForNewData"
+		},
+		{
+			"dateTime": "2023-05-26 04:22:10",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:22:10",
+			"msg": "isWaitForNewData true"
+		},
+		{
+			"dateTime": "2023-05-26 04:22:05",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:22:05",
+			"msg": "isWaitForNewData true"
+		},
+		{
+			"dateTime": "2023-05-26 04:22:00",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:22:00",
+			"msg": "isWaitForNewData true"
+		},
+		{
+			"dateTime": "2023-05-26 04:22:00",
+			"msg": "获取不到匹配数据，强制更新token再获取一次"
+		},
+		{
+			"dateTime": "2023-05-26 04:22:00",
+			"msg": "获取不到联赛"
+		},
+		{
+			"dateTime": "2023-05-26 04:22:00",
+			"msg": {
+				"uid": "i0n6fitm31149741l1851b0",
+				"url": "https://134.159.80.56/",
+				"ver": "-3ed5-forecast-0525-99881ae5676be2",
+				"msg": "使用缓存的login token"
+			}
+		},
+		{
+			"dateTime": "2023-05-26 04:22:00",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:21:55",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:21:55",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:21:49",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:21:49",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:21:44",
+			"msg": "匹配 5"
+		},
+		{
+			"dateTime": "2023-05-26 04:21:42",
+			"msg": {
+				"msg": "更新login token",
+				"uid": "i0n6fitm31149741l1851b0",
+				"ver": "-3ed5-forecast-0525-99881ae5676be2",
+				"uidTimestamp": 1685017302911,
+				"url": "https://134.159.80.56/"
+			}
+		},
+		{
+			"dateTime": "2023-05-26 04:21:39",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:21:39",
+			"msg": "长时间没更新，强制改变 isWaitForNewData"
+		},
+		{
+			"dateTime": "2023-05-26 04:21:39",
+			"msg": "获取不到匹配数据，强制更新token再获取一次"
+		},
+		{
+			"dateTime": "2023-05-26 04:21:39",
+			"msg": "获取不到联赛"
+		},
+		{
+			"dateTime": "2023-05-26 04:21:39",
+			"msg": {
+				"uid": "53d1c34m31149741l1802b0",
+				"url": "https://134.159.80.56/",
+				"ver": "-3ed5-forecast-0525-99881ae5676be2",
+				"msg": "使用缓存的login token"
+			}
+		},
+		{
+			"dateTime": "2023-05-26 04:21:39",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:21:39",
+			"msg": "长时间没更新，强制改变 isWaitForNewData"
+		},
+		{
+			"dateTime": "2023-05-26 04:21:34",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:21:34",
+			"msg": "isWaitForNewData true"
+		},
+		{
+			"dateTime": "2023-05-26 04:21:28",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:21:28",
+			"msg": "isWaitForNewData true"
+		},
+		{
+			"dateTime": "2023-05-26 04:21:23",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:21:23",
+			"msg": "isWaitForNewData true"
+		},
+		{
+			"dateTime": "2023-05-26 04:21:23",
+			"msg": "获取不到匹配数据，强制更新token再获取一次"
+		},
+		{
+			"dateTime": "2023-05-26 04:21:23",
+			"msg": "获取不到联赛"
+		},
+		{
+			"dateTime": "2023-05-26 04:21:23",
+			"msg": {
+				"uid": "53d1c34m31149741l1802b0",
+				"url": "https://134.159.80.56/",
+				"ver": "-3ed5-forecast-0525-99881ae5676be2",
+				"msg": "使用缓存的login token"
+			}
+		},
+		{
+			"dateTime": "2023-05-26 04:21:23",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:21:18",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:21:18",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:21:13",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:21:13",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:21:07",
+			"msg": "匹配 5"
+		},
+		{
+			"dateTime": "2023-05-26 04:21:06",
+			"msg": {
+				"uid": "53d1c34m31149741l1802b0",
+				"url": "https://134.159.80.56/",
+				"ver": "-3ed5-forecast-0525-99881ae5676be2",
+				"msg": "使用缓存的login token"
+			}
+		},
+		{
+			"dateTime": "2023-05-26 04:21:06",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:20:59",
+			"msg": {
+				"uid": "53d1c34m31149741l1802b0",
+				"url": "https://134.159.80.56/",
+				"ver": "-3ed5-forecast-0525-99881ae5676be2",
+				"msg": "使用缓存的login token"
+			}
+		},
+		{
+			"dateTime": "2023-05-26 04:20:59",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:20:53",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:20:53",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:20:47",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:20:47",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:20:41",
+			"msg": "匹配 5"
+		},
+		{
+			"dateTime": "2023-05-26 04:20:40",
+			"msg": {
+				"uid": "53d1c34m31149741l1802b0",
+				"url": "https://134.159.80.56/",
+				"ver": "-3ed5-forecast-0525-99881ae5676be2",
+				"msg": "使用缓存的login token"
+			}
+		},
+		{
+			"dateTime": "2023-05-26 04:20:40",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:20:34",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:20:34",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:20:28",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:20:28",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:20:22",
+			"msg": "匹配 5"
+		},
+		{
+			"dateTime": "2023-05-26 04:20:21",
+			"msg": {
+				"uid": "53d1c34m31149741l1802b0",
+				"url": "https://134.159.80.56/",
+				"ver": "-3ed5-forecast-0525-99881ae5676be2",
+				"msg": "使用缓存的login token"
+			}
+		},
+		{
+			"dateTime": "2023-05-26 04:20:21",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:20:15",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:20:15",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:20:09",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:20:09",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:20:03",
+			"msg": "匹配 5"
+		},
+		{
+			"dateTime": "2023-05-26 04:20:02",
+			"msg": {
+				"uid": "53d1c34m31149741l1802b0",
+				"url": "https://134.159.80.56/",
+				"ver": "-3ed5-forecast-0525-99881ae5676be2",
+				"msg": "使用缓存的login token"
+			}
+		},
+		{
+			"dateTime": "2023-05-26 04:20:02",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:19:56",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:19:56",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:19:50",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:19:50",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:19:44",
+			"msg": "匹配 5"
+		},
+		{
+			"dateTime": "2023-05-26 04:19:43",
+			"msg": {
+				"uid": "53d1c34m31149741l1802b0",
+				"url": "https://134.159.80.56/",
+				"ver": "-3ed5-forecast-0525-99881ae5676be2",
+				"msg": "使用缓存的login token"
+			}
+		},
+		{
+			"dateTime": "2023-05-26 04:19:43",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:19:37",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:19:37",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:19:31",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:19:31",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:19:25",
+			"msg": "匹配 5"
+		},
+		{
+			"dateTime": "2023-05-26 04:19:24",
+			"msg": {
+				"uid": "53d1c34m31149741l1802b0",
+				"url": "https://134.159.80.56/",
+				"ver": "-3ed5-forecast-0525-99881ae5676be2",
+				"msg": "使用缓存的login token"
+			}
+		},
+		{
+			"dateTime": "2023-05-26 04:19:24",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:19:18",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:19:18",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:19:12",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:19:12",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:19:06",
+			"msg": "匹配 5"
+		},
+		{
+			"dateTime": "2023-05-26 04:19:05",
+			"msg": {
+				"uid": "53d1c34m31149741l1802b0",
+				"url": "https://134.159.80.56/",
+				"ver": "-3ed5-forecast-0525-99881ae5676be2",
+				"msg": "使用缓存的login token"
+			}
+		},
+		{
+			"dateTime": "2023-05-26 04:19:05",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:18:59",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:18:59",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:18:53",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:18:53",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:18:47",
+			"msg": "匹配 5"
+		},
+		{
+			"dateTime": "2023-05-26 04:18:46",
+			"msg": {
+				"uid": "53d1c34m31149741l1802b0",
+				"url": "https://134.159.80.56/",
+				"ver": "-3ed5-forecast-0525-99881ae5676be2",
+				"msg": "使用缓存的login token"
+			}
+		},
+		{
+			"dateTime": "2023-05-26 04:18:46",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:18:40",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:18:40",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:18:34",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:18:34",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:18:28",
+			"msg": "匹配 5"
+		},
+		{
+			"dateTime": "2023-05-26 04:18:27",
+			"msg": {
+				"uid": "53d1c34m31149741l1802b0",
+				"url": "https://134.159.80.56/",
+				"ver": "-3ed5-forecast-0525-99881ae5676be2",
+				"msg": "使用缓存的login token"
+			}
+		},
+		{
+			"dateTime": "2023-05-26 04:18:27",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:18:21",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:18:21",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:18:15",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:18:15",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:18:09",
+			"msg": "匹配 5"
+		},
+		{
+			"dateTime": "2023-05-26 04:18:08",
+			"msg": {
+				"uid": "53d1c34m31149741l1802b0",
+				"url": "https://134.159.80.56/",
+				"ver": "-3ed5-forecast-0525-99881ae5676be2",
+				"msg": "使用缓存的login token"
+			}
+		},
+		{
+			"dateTime": "2023-05-26 04:18:08",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:18:03",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:18:03",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:17:57",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:17:57",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:17:52",
+			"msg": "匹配 5"
+		},
+		{
+			"dateTime": "2023-05-26 04:17:51",
+			"msg": {
+				"uid": "53d1c34m31149741l1802b0",
+				"url": "https://134.159.80.56/",
+				"ver": "-3ed5-forecast-0525-99881ae5676be2",
+				"msg": "使用缓存的login token"
+			}
+		},
+		{
+			"dateTime": "2023-05-26 04:17:51",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:17:45",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:17:45",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:17:40",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:17:40",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:17:35",
+			"msg": "匹配 5"
+		},
+		{
+			"dateTime": "2023-05-26 04:17:33",
+			"msg": {
+				"uid": "53d1c34m31149741l1802b0",
+				"url": "https://134.159.80.56/",
+				"ver": "-3ed5-forecast-0525-99881ae5676be2",
+				"msg": "使用缓存的login token"
+			}
+		},
+		{
+			"dateTime": "2023-05-26 04:17:33",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:17:28",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:17:28",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:17:23",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:17:23",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:17:18",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:17:18",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:17:17",
+			"msg": "匹配 5"
+		},
+		{
+			"dateTime": "2023-05-26 04:17:15",
+			"msg": {
+				"uid": "53d1c34m31149741l1802b0",
+				"url": "https://134.159.80.56/",
+				"ver": "-3ed5-forecast-0525-99881ae5676be2",
+				"msg": "使用缓存的login token"
+			}
+		},
+		{
+			"dateTime": "2023-05-26 04:17:15",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:16:56",
+			"msg": "匹配 5"
+		},
+		{
+			"dateTime": "2023-05-26 04:16:54",
+			"msg": {
+				"msg": "更新login token",
+				"uid": "53d1c34m31149741l1802b0",
+				"ver": "-3ed5-forecast-0525-99881ae5676be2",
+				"uidTimestamp": 1685017014642,
+				"url": "https://134.159.80.56/"
+			}
+		},
+		{
+			"dateTime": "2023-05-26 04:16:51",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:16:51",
+			"msg": "长时间没更新，强制改变 isWaitForNewData"
+		},
+		{
+			"dateTime": "2023-05-26 04:16:51",
+			"msg": "获取不到匹配数据，强制更新token再获取一次"
+		},
+		{
+			"dateTime": "2023-05-26 04:16:51",
+			"msg": "获取不到联赛"
+		},
+		{
+			"dateTime": "2023-05-26 04:16:50",
+			"msg": {
+				"uid": "qxyqk04jm31149741l1791b0",
+				"url": "https://134.159.80.56/",
+				"ver": "-3ed5-forecast-0525-99881ae5676be2",
+				"msg": "使用缓存的login token"
+			}
+		},
+		{
+			"dateTime": "2023-05-26 04:16:50",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:16:50",
+			"msg": "长时间没更新，强制改变 isWaitForNewData"
+		},
+		{
+			"dateTime": "2023-05-26 04:16:45",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:16:45",
+			"msg": "isWaitForNewData true"
+		},
+		{
+			"dateTime": "2023-05-26 04:16:40",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:16:40",
+			"msg": "isWaitForNewData true"
+		},
+		{
+			"dateTime": "2023-05-26 04:16:40",
+			"msg": "获取不到匹配数据，强制更新token再获取一次"
+		},
+		{
+			"dateTime": "2023-05-26 04:16:40",
+			"msg": "获取不到联赛"
+		},
+		{
+			"dateTime": "2023-05-26 04:16:40",
+			"msg": {
+				"uid": "qxyqk04jm31149741l1791b0",
+				"url": "https://134.159.80.56/",
+				"ver": "-3ed5-forecast-0525-99881ae5676be2",
+				"msg": "使用缓存的login token"
+			}
+		},
+		{
+			"dateTime": "2023-05-26 04:16:40",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:16:17",
+			"msg": "匹配 5"
+		},
+		{
+			"dateTime": "2023-05-26 04:16:15",
+			"msg": {
+				"uid": "qxyqk04jm31149741l1791b0",
+				"url": "https://134.159.80.56/",
+				"ver": "-3ed5-forecast-0525-99881ae5676be2",
+				"msg": "使用缓存的login token"
+			}
+		},
+		{
+			"dateTime": "2023-05-26 04:16:15",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:16:10",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:16:10",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:16:05",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:16:05",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:15:59",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:15:59",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:15:59",
+			"msg": "匹配 5"
+		},
+		{
+			"dateTime": "2023-05-26 04:15:58",
+			"msg": {
+				"uid": "qxyqk04jm31149741l1791b0",
+				"url": "https://134.159.80.56/",
+				"ver": "-3ed5-forecast-0525-99881ae5676be2",
+				"msg": "使用缓存的login token"
+			}
+		},
+		{
+			"dateTime": "2023-05-26 04:15:58",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:15:53",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:15:52",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:15:50",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:15:50",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:15:45",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:15:45",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:15:40",
+			"msg": "匹配 5"
+		},
+		{
+			"dateTime": "2023-05-26 04:15:39",
+			"msg": {
+				"msg": "更新login token",
+				"uid": "qxyqk04jm31149741l1791b0",
+				"ver": "-3ed5-forecast-0525-99881ae5676be2",
+				"uidTimestamp": 1685016939068,
+				"url": "https://134.159.80.56/"
+			}
+		},
+		{
+			"dateTime": "2023-05-26 04:15:35",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:15:35",
+			"msg": "长时间没更新，强制改变 isWaitForNewData"
+		},
+		{
+			"dateTime": "2023-05-26 04:15:35",
+			"msg": "获取不到匹配数据，强制更新token再获取一次"
+		},
+		{
+			"dateTime": "2023-05-26 04:15:35",
+			"msg": "获取不到联赛"
+		},
+		{
+			"dateTime": "2023-05-26 04:15:35",
+			"msg": {
+				"uid": "dd106okm31149741l1780b0",
+				"url": "https://134.159.80.56/",
+				"ver": "-3ed5-forecast-0525-99881ae5676be2",
+				"msg": "使用缓存的login token"
+			}
+		},
+		{
+			"dateTime": "2023-05-26 04:15:35",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:15:35",
+			"msg": "长时间没更新，强制改变 isWaitForNewData"
+		},
+		{
+			"dateTime": "2023-05-26 04:15:30",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:15:30",
+			"msg": "isWaitForNewData true"
+		},
+		{
+			"dateTime": "2023-05-26 04:15:27",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:15:27",
+			"msg": "isWaitForNewData true"
+		},
+		{
+			"dateTime": "2023-05-26 04:15:22",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:15:22",
+			"msg": "isWaitForNewData true"
+		},
+		{
+			"dateTime": "2023-05-26 04:15:17",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:15:17",
+			"msg": "isWaitForNewData true"
+		},
+		{
+			"dateTime": "2023-05-26 04:15:17",
+			"msg": "获取不到匹配数据，强制更新token再获取一次"
+		},
+		{
+			"dateTime": "2023-05-26 04:15:17",
+			"msg": "获取不到联赛"
+		},
+		{
+			"dateTime": "2023-05-26 04:15:16",
+			"msg": {
+				"uid": "dd106okm31149741l1780b0",
+				"url": "https://134.159.80.56/",
+				"ver": "-3ed5-forecast-0525-99881ae5676be2",
+				"msg": "使用缓存的login token"
+			}
+		},
+		{
+			"dateTime": "2023-05-26 04:15:16",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:15:11",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:15:11",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:15:06",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:15:06",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:15:01",
+			"msg": "匹配 5"
+		},
+		{
+			"dateTime": "2023-05-26 04:14:59",
+			"msg": {
+				"uid": "dd106okm31149741l1780b0",
+				"url": "https://134.159.80.56/",
+				"ver": "-3ed5-forecast-0525-99881ae5676be2",
+				"msg": "使用缓存的login token"
+			}
+		},
+		{
+			"dateTime": "2023-05-26 04:14:59",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:14:42",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:14:42",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:14:37",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:14:37",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:14:32",
+			"msg": "匹配 5"
+		},
+		{
+			"dateTime": "2023-05-26 04:14:30",
+			"msg": {
+				"msg": "更新login token",
+				"uid": "dd106okm31149741l1780b0",
+				"ver": "-3ed5-forecast-0525-99881ae5676be2",
+				"uidTimestamp": 1685016870666,
+				"url": "https://134.159.80.56/"
+			}
+		},
+		{
+			"dateTime": "2023-05-26 04:14:27",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:14:27",
+			"msg": "长时间没更新，强制改变 isWaitForNewData"
+		},
+		{
+			"dateTime": "2023-05-26 04:14:27",
+			"msg": "获取不到匹配数据，强制更新token再获取一次"
+		},
+		{
+			"dateTime": "2023-05-26 04:14:27",
+			"msg": "获取不到联赛"
+		},
+		{
+			"dateTime": "2023-05-26 04:14:27",
+			"msg": {
+				"uid": "hrikde9qtm31149741l1771b0",
+				"url": "https://134.159.80.56/",
+				"ver": "-3ed5-forecast-0525-99881ae5676be2",
+				"msg": "使用缓存的login token"
+			}
+		},
+		{
+			"dateTime": "2023-05-26 04:14:27",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:14:27",
+			"msg": "长时间没更新，强制改变 isWaitForNewData"
+		},
+		{
+			"dateTime": "2023-05-26 04:14:21",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:14:21",
+			"msg": "isWaitForNewData true"
+		},
+		{
+			"dateTime": "2023-05-26 04:14:16",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:14:16",
+			"msg": "isWaitForNewData true"
+		},
+		{
+			"dateTime": "2023-05-26 04:14:11",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:14:11",
+			"msg": "isWaitForNewData true"
+		},
+		{
+			"dateTime": "2023-05-26 04:14:11",
+			"msg": "获取不到匹配数据，强制更新token再获取一次"
+		},
+		{
+			"dateTime": "2023-05-26 04:14:11",
+			"msg": "获取不到联赛"
+		},
+		{
+			"dateTime": "2023-05-26 04:14:11",
+			"msg": {
+				"uid": "hrikde9qtm31149741l1771b0",
+				"url": "https://134.159.80.56/",
+				"ver": "-3ed5-forecast-0525-99881ae5676be2",
+				"msg": "使用缓存的login token"
+			}
+		},
+		{
+			"dateTime": "2023-05-26 04:14:11",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:14:06",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:14:05",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:14:00",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:14:00",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:13:55",
+			"msg": "匹配 5"
+		},
+		{
+			"dateTime": "2023-05-26 04:13:53",
+			"msg": {
+				"uid": "hrikde9qtm31149741l1771b0",
+				"url": "https://134.159.80.56/",
+				"ver": "-3ed5-forecast-0525-99881ae5676be2",
+				"msg": "使用缓存的login token"
+			}
+		},
+		{
+			"dateTime": "2023-05-26 04:13:53",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:13:48",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:13:48",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:13:37",
+			"msg": "匹配 5"
+		},
+		{
+			"dateTime": "2023-05-26 04:13:35",
+			"msg": {
+				"msg": "更新login token",
+				"uid": "hrikde9qtm31149741l1771b0",
+				"ver": "-3ed5-forecast-0525-99881ae5676be2",
+				"uidTimestamp": 1685016815778,
+				"url": "https://134.159.80.56/"
+			}
+		},
+		{
+			"dateTime": "2023-05-26 04:13:32",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:13:32",
+			"msg": "长时间没更新，强制改变 isWaitForNewData"
+		},
+		{
+			"dateTime": "2023-05-26 04:13:32",
+			"msg": "获取不到匹配数据，强制更新token再获取一次"
+		},
+		{
+			"dateTime": "2023-05-26 04:13:32",
+			"msg": "获取不到联赛"
+		},
+		{
+			"dateTime": "2023-05-26 04:13:32",
+			"msg": {
+				"uid": "wc54ow50m31149741l1746b0",
+				"url": "https://134.159.80.56/",
+				"ver": "-3ed5-forecast-0525-99881ae5676be2",
+				"msg": "使用缓存的login token"
+			}
+		},
+		{
+			"dateTime": "2023-05-26 04:13:32",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:12:51",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:12:51",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:12:46",
+			"msg": "匹配 5"
+		},
+		{
+			"dateTime": "2023-05-26 04:12:44",
+			"msg": {
+				"uid": "wc54ow50m31149741l1746b0",
+				"url": "https://134.159.80.56/",
+				"ver": "-3ed5-forecast-0525-99881ae5676be2",
+				"msg": "使用缓存的login token"
+			}
+		},
+		{
+			"dateTime": "2023-05-26 04:12:44",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:12:39",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:12:39",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:12:33",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:12:33",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:12:27",
+			"msg": "匹配 5"
+		},
+		{
+			"dateTime": "2023-05-26 04:12:26",
+			"msg": {
+				"uid": "wc54ow50m31149741l1746b0",
+				"url": "https://134.159.80.56/",
+				"ver": "-3ed5-forecast-0525-99881ae5676be2",
+				"msg": "使用缓存的login token"
+			}
+		},
+		{
+			"dateTime": "2023-05-26 04:12:26",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:12:20",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:12:20",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:12:14",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:12:14",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:12:08",
+			"msg": "匹配 5"
+		},
+		{
+			"dateTime": "2023-05-26 04:12:07",
+			"msg": {
+				"uid": "wc54ow50m31149741l1746b0",
+				"url": "https://134.159.80.56/",
+				"ver": "-3ed5-forecast-0525-99881ae5676be2",
+				"msg": "使用缓存的login token"
+			}
+		},
+		{
+			"dateTime": "2023-05-26 04:12:07",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:12:01",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:12:01",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:11:56",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:11:56",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:11:51",
+			"msg": "匹配 5"
+		},
+		{
+			"dateTime": "2023-05-26 04:11:50",
+			"msg": {
+				"uid": "wc54ow50m31149741l1746b0",
+				"url": "https://134.159.80.56/",
+				"ver": "-3ed5-forecast-0525-99881ae5676be2",
+				"msg": "使用缓存的login token"
+			}
+		},
+		{
+			"dateTime": "2023-05-26 04:11:50",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:11:44",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:11:44",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:11:39",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:11:39",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:11:34",
+			"msg": "匹配 5"
+		},
+		{
+			"dateTime": "2023-05-26 04:11:33",
+			"msg": {
+				"uid": "wc54ow50m31149741l1746b0",
+				"url": "https://134.159.80.56/",
+				"ver": "-3ed5-forecast-0525-99881ae5676be2",
+				"msg": "使用缓存的login token"
+			}
+		},
+		{
+			"dateTime": "2023-05-26 04:11:33",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:11:27",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:11:27",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:11:22",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:11:22",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:11:17",
+			"msg": "匹配 5"
+		},
+		{
+			"dateTime": "2023-05-26 04:11:16",
+			"msg": {
+				"uid": "wc54ow50m31149741l1746b0",
+				"url": "https://134.159.80.56/",
+				"ver": "-3ed5-forecast-0525-99881ae5676be2",
+				"msg": "使用缓存的login token"
+			}
+		},
+		{
+			"dateTime": "2023-05-26 04:11:16",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:11:10",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:11:10",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:11:05",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:11:05",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:11:00",
+			"msg": "匹配 5"
+		},
+		{
+			"dateTime": "2023-05-26 04:10:58",
+			"msg": {
+				"msg": "更新login token",
+				"uid": "wc54ow50m31149741l1746b0",
+				"ver": "-3ed5-forecast-0525-99881ae5676be2",
+				"uidTimestamp": 1685016658897,
+				"url": "https://134.159.80.56/"
+			}
+		},
+		{
+			"dateTime": "2023-05-26 04:10:55",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:10:50",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:10:50",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:10:38",
+			"msg": "匹配 5"
+		},
+		{
+			"dateTime": "2023-05-26 04:10:37",
+			"msg": {
+				"msg": "更新login token",
+				"uid": "8fe06pdthzm31149741l1744b0",
+				"ver": "-3ed5-forecast-0525-99881ae5676be2",
+				"uidTimestamp": 1685016637393,
+				"url": "https://134.159.80.56/"
+			}
+		},
+		{
+			"dateTime": "2023-05-26 04:10:34",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:09:23",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:09:23",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:09:18",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:09:18",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:09:13",
+			"msg": "匹配 5"
+		},
+		{
+			"dateTime": "2023-05-26 04:09:11",
+			"msg": {
+				"msg": "更新login token",
+				"uid": "j9ntnoom31149741l1729b0",
+				"ver": "-3ed5-forecast-0525-99881ae5676be2",
+				"uidTimestamp": 1685016551476,
+				"url": "https://134.159.80.56/"
+			}
+		},
+		{
+			"dateTime": "2023-05-26 04:09:08",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:09:03",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:09:03",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:08:58",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:08:58",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:08:52",
+			"msg": "匹配 5"
+		},
+		{
+			"dateTime": "2023-05-26 04:08:50",
+			"msg": {
+				"msg": "更新login token",
+				"uid": "y1z01q0hcm31149741l1725b0",
+				"ver": "-3ed5-forecast-0525-99881ae5676be2",
+				"uidTimestamp": 1685016530652,
+				"url": "https://134.159.80.56/"
+			}
+		},
+		{
+			"dateTime": "2023-05-26 04:08:47",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:07:12",
+			"msg": "Cannot read properties of undefined (reading 'gc')"
+		},
+		{
+			"dateTime": "2023-05-26 04:07:12",
+			"msg": "匹配 5"
+		},
+		{
+			"dateTime": "2023-05-26 04:07:10",
+			"msg": {
+				"msg": "更新login token",
+				"uid": "1xc0r0q3m31149741l1713b0",
+				"ver": "-3ed5-forecast-0525-99881ae5676be2",
+				"uidTimestamp": 1685016430644,
+				"url": "https://134.159.80.56/"
+			}
+		},
+		{
+			"dateTime": "2023-05-26 04:07:07",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:07:02",
+			"msg": "Cannot read properties of undefined (reading 'gc')"
+		},
+		{
+			"dateTime": "2023-05-26 04:07:02",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:07:02",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:06:57",
+			"msg": "Cannot read properties of undefined (reading 'gc')"
+		},
+		{
+			"dateTime": "2023-05-26 04:06:57",
+			"msg": "使用缓存的匹配数据"
+		},
+		{
+			"dateTime": "2023-05-26 04:06:57",
+			"msg": "isWaitForNewData false"
+		},
+		{
+			"dateTime": "2023-05-26 04:06:52",
+			"msg": "Cannot read properties of undefined (reading 'gc')"
+		},
+		{
+			"dateTime": "2023-05-26 04:06:52",
+			"msg": "匹配 5"
+		},
+		{
+			"dateTime": "2023-05-26 04:06:50",
+			"msg": {
+				"msg": "更新login token",
+				"uid": "rh4yexoom31149741l1709b0",
+				"ver": "-3ed5-forecast-0525-99881ae5676be2",
+				"uidTimestamp": 1685016410265,
+				"url": "https://134.159.80.56/"
+			}
+		},
+		{
+			"dateTime": "2023-05-26 04:06:47",
+			"msg": "isWaitForNewData false"
+		},
+		{
 			"dateTime": "2023-05-21 22:10:35",
 			"msg": "{\"uid\":\"z4pxkfz99m31149741l342019b0\",\"url\":\"https://134.159.80.56/\",\"ver\":\"-3ed5-forecast-0518-97881ae5676be2\"}"
 		},

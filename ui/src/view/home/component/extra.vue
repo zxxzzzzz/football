@@ -1,17 +1,14 @@
 <template>
-  <div class="flex">
+  <div>
     <Ball :revList="props.revList" :itemList="ballItemList" class="flex-1"></Ball>
-    <!-- <div class="mx-4 titleContainer">
-      <div class="mb-2">&nbsp;</div>
-      <div class="mb-2">{{ props.teamList[0] }}</div>
-      <div>{{ props.teamList[1] }}</div>
-    </div> -->
-    <div v-for="item in itemListSort">
-      <div class="mr-4 mb-2">{{ item.oddsTitle }}</div>
-      <div class="flex mr-4 mb-2" v-for="oddItem in item.oddsItemList">
-        <div class="mr-1" v-for="(str, index) in oddItem">
-          <div v-if="index === 0">{{ str }}</div>
-          <Tag v-else>{{ str }}</Tag>
+    <div class="flex">
+      <div v-for="item in scoreItemList">
+        <div class="mr-4 mb-2">{{ item.title }}</div>
+        <div class="flex mr-4 mb-2" v-for="oddItem in item.itemList">
+          <div class="mr-1">
+            <div>{{ oddItem.content[0] }}</div>
+            <Highlight :content="oddItem.content[1]" :index="oddItem.index"></Highlight>
+          </div>
         </div>
       </div>
     </div>
@@ -21,6 +18,7 @@
 import { Tag } from 'ant-design-vue';
 import { computed } from 'vue';
 import Ball from './ball.vue';
+import Highlight from './highlight.vue';
 interface Item {
   oddsTitle: string;
   oddsItemList: string[][];
@@ -35,13 +33,35 @@ type Rev = {
   rev: number;
   isOnlyWin: boolean;
 };
-const props = withDefaults(defineProps<{ teamList: string[]; itemList: Item[]; revList: Rev[] }>(), {
+type Rev2 = {
+  tiCaiOdds: number;
+  extraOdds: number;
+  tiCai: string;
+  extra: string;
+  rev: number;
+};
+const props = withDefaults(defineProps<{ teamList: string[]; itemList: Item[]; revList: Rev[]; scoreRevList: Rev2[] }>(), {
   teamList: () => ['', ''],
   revList: () => [],
   itemList: () => [{ oddsTitle: '', oddsItemList: [] }],
 });
-const itemListSort = computed(() => {
-  return props.itemList.filter((a) => a.oddsTitle !== '让球' && a.oddsTitle !== '独赢');
+const scoreItemList = computed(() => {
+  return props.itemList
+    .filter((a) => a.oddsTitle === '得分')
+    .map((item) => {
+      return {
+        title: item.oddsTitle,
+        itemList: item.oddsItemList
+          .map((oddsItem) => {
+            const index = props.scoreRevList.findIndex((s) => oddsItem[0] === s.extra && parseFloat(oddsItem[1]) === s.extraOdds);
+            return {
+              index: index === -1 ? -1 : index + 2,
+              content: oddsItem,
+            };
+          })
+          .filter((d): d is Exclude<typeof d, undefined> => !!d),
+      };
+    });
 });
 const ballItemList = computed(() => {
   return props.itemList.filter((a) => a.oddsTitle === '让球' || a.oddsTitle === '独赢');

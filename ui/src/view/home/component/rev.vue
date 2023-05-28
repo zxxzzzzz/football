@@ -1,6 +1,9 @@
 <template>
   <div>
+    <div>胜平负</div>
     <Table :columns="columns" :dataSource="dataSource" :pagination="false"> </Table>
+    <div class="mt-4">得分</div>
+    <Table :columns="scoreColumns" :dataSource="scoreDataSource" :pagination="false"> </Table>
     <!-- <div>{{ dataSource }}</div> -->
   </div>
 </template>
@@ -24,12 +27,27 @@ const props = defineProps<{
     r: number;
     offset: number;
   }[];
+  scoreItemList: {
+    tiCaiOdds: number;
+    extraOdds: number;
+    tiCai: string;
+    extra: string;
+    rev: number;
+    gc: number;
+    vv: number;
+    r: number;
+    offset: number;
+  }[];
 }>();
 const dataSource = computed(() => {
-  return props.itemList
-    // .slice(0, 1);
+  return props.itemList;
+  // .slice(0, 1);
 });
-const columns: TableProps<typeof dataSource.value[0]>['columns'] = [
+const scoreDataSource = computed(() => {
+  return props.scoreItemList;
+  // .slice(0, 1);
+});
+const columns: TableProps<(typeof dataSource.value)[0]>['columns'] = [
   {
     title: 'GC',
     dataIndex: 'gc',
@@ -69,6 +87,43 @@ const columns: TableProps<typeof dataSource.value[0]>['columns'] = [
         return h(Highlight, { content: record.rev.toFixed(2), index: revIndex });
       }
       return record.rev.toFixed(2);
+    },
+  },
+];
+const scoreColumns: TableProps<(typeof scoreDataSource.value)[0]>['columns'] = [
+  {
+    title: 'GC',
+    dataIndex: 'gc',
+    customRender({ record }) {
+      return record.gc.toFixed(2);
+    },
+  },
+  {
+    title: 'VV',
+    dataIndex: 'vv',
+    customRender({ record }) {
+      return record.vv.toFixed(2);
+    },
+  },
+  {
+    title: 'Offset',
+    dataIndex: 'offset',
+    customRender({ record }) {
+      return record.offset.toFixed(2);
+    },
+  },
+  {
+    title: 'R',
+    dataIndex: 'r',
+    customRender({ record }) {
+      return record.r.toFixed(2);
+    },
+  },
+  {
+    title: 'Rev',
+    dataIndex: 'rev',
+    customRender({ record, index }) {
+      return h(Highlight, { content: record.rev.toFixed(2), index: index + 2 });
     },
   },
 ];

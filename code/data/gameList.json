@@ -1,760 +1,24 @@
 [
 	{
-		"league": "瑞典超级联赛",
+		"league": "荷兰乙组联赛-附加赛",
 		"source": "extra",
-		"ecid": "7030845",
+		"ecid": "7072703",
 		"num": "",
 		"singleList": [
 			false,
 			false
 		],
 		"strong": "H",
-		"dateTime": "05-23 01:00",
+		"dateTime": "05-27 02:00",
 		"itemList": [
 			{
 				"oddsTitle": "独赢",
 				"oddsItemList": [
 					[
-						"2.59"
+						"1.74"
 					],
 					[
-						"2.59"
-					],
-					[
-						"3.25"
-					]
-				]
-			}
-		],
-		"teamList": [
-			"渥那模",
-			"卡马亚"
-		]
-	},
-	{
-		"league": "瑞典超级联赛",
-		"source": "extra",
-		"ecid": "7030854",
-		"num": "",
-		"singleList": [
-			false,
-			false
-		],
-		"strong": "C",
-		"dateTime": "05-23 01:10",
-		"itemList": [
-			{
-				"oddsTitle": "独赢",
-				"oddsItemList": [
-					[
-						"2.90"
-					],
-					[
-						"2.21"
-					],
-					[
-						"3.50"
-					]
-				]
-			}
-		],
-		"teamList": [
-			"诺科平",
-			"埃尔夫斯堡"
-		]
-	},
-	{
-		"league": "瑞典超级联赛",
-		"source": "extra",
-		"ecid": "7037041",
-		"num": "",
-		"singleList": [
-			false,
-			false
-		],
-		"strong": "H",
-		"dateTime": "05-25 01:00",
-		"itemList": [
-			{
-				"oddsTitle": "独赢",
-				"oddsItemList": [
-					[
-						"2.32"
-					],
-					[
-						"2.62"
-					],
-					[
-						"3.75"
-					]
-				]
-			}
-		],
-		"teamList": [
-			"佐加顿斯",
-			"赫根"
-		]
-	},
-	{
-		"league": "瑞典超级联赛",
-		"source": "extra",
-		"ecid": "7039737",
-		"num": "",
-		"singleList": [
-			false,
-			false
-		],
-		"strong": "C",
-		"dateTime": "05-26 01:00",
-		"itemList": [
-			{
-				"oddsTitle": "独赢",
-				"oddsItemList": [
-					[
-						"3.50"
-					],
-					[
-						"1.90"
-					],
-					[
-						"3.75"
-					]
-				]
-			}
-		],
-		"teamList": [
-			"戴戈福斯",
-			"哈马比"
-		]
-	},
-	{
-		"league": "U20世界杯2023(在阿根廷)",
-		"source": "extra",
-		"ecid": "7033925",
-		"num": "",
-		"singleList": [
-			false,
-			false
-		],
-		"strong": "H",
-		"dateTime": "05-23 02:00",
-		"itemList": [
-			{
-				"oddsTitle": "独赢",
-				"oddsItemList": [
-					[
-						"1.32"
-					],
-					[
-						"6.60"
-					],
-					[
-						"4.75"
-					]
-				]
-			}
-		],
-		"teamList": [
-			"法国U20",
-			"韩国U20"
-		]
-	},
-	{
-		"league": "U20世界杯2023(在阿根廷)",
-		"source": "extra",
-		"ecid": "7033944",
-		"num": "",
-		"singleList": [
-			false,
-			false
-		],
-		"strong": "H",
-		"dateTime": "05-23 02:00",
-		"itemList": [
-			{
-				"oddsTitle": "独赢",
-				"oddsItemList": [
-					[
-						"1.16"
-					],
-					[
-						"11.00"
-					],
-					[
-						"5.90"
-					]
-				]
-			}
-		],
-		"teamList": [
-			"英格兰U20",
-			"突尼斯U20"
-		]
-	},
-	{
-		"league": "U20世界杯2023(在阿根廷)",
-		"source": "extra",
-		"ecid": "7033946",
-		"num": "",
-		"singleList": [
-			false,
-			false
-		],
-		"strong": "H",
-		"dateTime": "05-23 05:00",
-		"itemList": [
-			{
-				"oddsTitle": "独赢",
-				"oddsItemList": [
-					[
-						"1.32"
-					],
-					[
-						"7.40"
-					],
-					[
-						"4.40"
-					]
-				]
-			}
-		],
-		"teamList": [
-			"乌拉圭U20",
-			"伊拉克U20"
-		]
-	},
-	{
-		"league": "U20世界杯2023(在阿根廷)",
-		"source": "extra",
-		"ecid": "7033957",
-		"num": "",
-		"singleList": [
-			false,
-			false
-		],
-		"strong": "H",
-		"dateTime": "05-23 05:00",
-		"itemList": [
-			{
-				"oddsTitle": "独赢",
-				"oddsItemList": [
-					[
-						"1.49"
-					],
-					[
-						"5.40"
-					],
-					[
-						"3.80"
-					]
-				]
-			}
-		],
-		"teamList": [
-			"甘比亚 U20",
-			"洪都拉斯U20"
-		]
-	},
-	{
-		"league": "英格兰超级联赛",
-		"source": "extra",
-		"ecid": "7024919",
-		"num": "",
-		"singleList": [
-			false,
-			false
-		],
-		"strong": "H",
-		"dateTime": "05-23 03:00",
-		"itemList": [
-			{
-				"oddsTitle": "独赢",
-				"oddsItemList": [
-					[
-						"1.38"
-					],
-					[
-						"7.10"
-					],
-					[
-						"5.60"
-					]
-				]
-			}
-		],
-		"teamList": [
-			"纽卡斯尔",
-			"莱斯特城"
-		]
-	},
-	{
-		"league": "英格兰超级联赛",
-		"source": "extra",
-		"ecid": "7024962",
-		"num": "",
-		"singleList": [
-			false,
-			false
-		],
-		"strong": "C",
-		"dateTime": "05-25 03:00",
-		"itemList": [
-			{
-				"oddsTitle": "独赢",
-				"oddsItemList": [
-					[
-						"4.10"
-					],
-					[
-						"1.77"
-					],
-					[
-						"4.35"
-					]
-				]
-			}
-		],
-		"teamList": [
-			"布莱顿",
-			"曼城"
-		]
-	},
-	{
-		"league": "英格兰超级联赛",
-		"source": "extra",
-		"ecid": "7024965",
-		"num": "",
-		"singleList": [
-			false,
-			false
-		],
-		"strong": "H",
-		"dateTime": "05-26 03:00",
-		"itemList": [
-			{
-				"oddsTitle": "独赢",
-				"oddsItemList": [
-					[
-						"1.61"
-					],
-					[
-						"5.10"
-					],
-					[
-						"4.40"
-					]
-				]
-			}
-		],
-		"teamList": [
-			"曼联",
-			"切尔西"
-		]
-	},
-	{
-		"league": "英格兰超级联赛",
-		"source": "extra",
-		"ecid": "7048432",
-		"num": "",
-		"singleList": [
-			false,
-			false
-		],
-		"strong": "C",
-		"dateTime": "05-28 23:30",
-		"itemList": [
-			{
-				"oddsTitle": "独赢",
-				"oddsItemList": [
-					[
-						"6.40"
-					],
-					[
-						"1.43"
-					],
-					[
-						"5.40"
-					]
-				]
-			}
-		],
-		"teamList": [
-			"南安普敦",
-			"利物浦"
-		]
-	},
-	{
-		"league": "英格兰超级联赛",
-		"source": "extra",
-		"ecid": "7048438",
-		"num": "",
-		"singleList": [
-			false,
-			false
-		],
-		"strong": "C",
-		"dateTime": "05-28 23:30",
-		"itemList": [
-			{
-				"oddsTitle": "独赢",
-				"oddsItemList": [
-					[
-						"4.75"
-					],
-					[
-						"1.65"
-					],
-					[
-						"4.40"
-					]
-				]
-			}
-		],
-		"teamList": [
-			"布伦特福德",
-			"曼城"
-		]
-	},
-	{
-		"league": "英格兰超级联赛",
-		"source": "extra",
-		"ecid": "7048445",
-		"num": "",
-		"singleList": [
-			false,
-			false
-		],
-		"strong": "H",
-		"dateTime": "05-28 23:30",
-		"itemList": [
-			{
-				"oddsTitle": "独赢",
-				"oddsItemList": [
-					[
-						"1.42"
-					],
-					[
-						"6.90"
-					],
-					[
-						"5.20"
-					]
-				]
-			}
-		],
-		"teamList": [
-			"阿森纳",
-			"狼队"
-		]
-	},
-	{
-		"league": "英格兰超级联赛",
-		"source": "extra",
-		"ecid": "7048459",
-		"num": "",
-		"singleList": [
-			false,
-			false
-		],
-		"strong": "H",
-		"dateTime": "05-28 23:30",
-		"itemList": [
-			{
-				"oddsTitle": "独赢",
-				"oddsItemList": [
-					[
-						"1.48"
-					],
-					[
-						"5.90"
-					],
-					[
-						"5.10"
-					]
-				]
-			}
-		],
-		"teamList": [
-			"曼联",
-			"富勒姆"
-		]
-	},
-	{
-		"league": "英格兰超级联赛",
-		"source": "extra",
-		"ecid": "7048467",
-		"num": "",
-		"singleList": [
-			false,
-			false
-		],
-		"strong": "C",
-		"dateTime": "05-28 23:30",
-		"itemList": [
-			{
-				"oddsTitle": "独赢",
-				"oddsItemList": [
-					[
-						"2.89"
-					],
-					[
-						"2.33"
-					],
-					[
-						"3.80"
-					]
-				]
-			}
-		],
-		"teamList": [
-			"切尔西",
-			"纽卡斯尔"
-		]
-	},
-	{
-		"league": "英格兰超级联赛",
-		"source": "extra",
-		"ecid": "7048478",
-		"num": "",
-		"singleList": [
-			false,
-			false
-		],
-		"strong": "H",
-		"dateTime": "05-28 23:30",
-		"itemList": [
-			{
-				"oddsTitle": "独赢",
-				"oddsItemList": [
-					[
-						"2.25"
-					],
-					[
-						"2.91"
-					],
-					[
-						"4.00"
-					]
-				]
-			}
-		],
-		"teamList": [
-			"阿斯顿维拉",
-			"布莱顿"
-		]
-	},
-	{
-		"league": "英格兰超级联赛",
-		"source": "extra",
-		"ecid": "7048489",
-		"num": "",
-		"singleList": [
-			false,
-			false
-		],
-		"strong": "H",
-		"dateTime": "05-28 23:30",
-		"itemList": [
-			{
-				"oddsTitle": "独赢",
-				"oddsItemList": [
-					[
-						"1.73"
-					],
-					[
-						"4.50"
-					],
-					[
-						"4.15"
-					]
-				]
-			}
-		],
-		"teamList": [
-			"水晶宫",
-			"诺丁汉森林"
-		]
-	},
-	{
-		"league": "英格兰超级联赛",
-		"source": "extra",
-		"ecid": "7048500",
-		"num": "",
-		"singleList": [
-			false,
-			false
-		],
-		"strong": "H",
-		"dateTime": "05-28 23:30",
-		"itemList": [
-			{
-				"oddsTitle": "独赢",
-				"oddsItemList": [
-					[
-						"1.49"
-					],
-					[
-						"6.40"
-					],
-					[
-						"4.70"
-					]
-				]
-			}
-		],
-		"teamList": [
-			"埃弗顿",
-			"伯恩茅斯"
-		]
-	},
-	{
-		"league": "英格兰超级联赛",
-		"source": "extra",
-		"ecid": "7048512",
-		"num": "",
-		"singleList": [
-			false,
-			false
-		],
-		"strong": "C",
-		"dateTime": "05-28 23:30",
-		"itemList": [
-			{
-				"oddsTitle": "独赢",
-				"oddsItemList": [
-					[
-						"2.72"
-					],
-					[
-						"2.40"
-					],
-					[
-						"3.90"
-					]
-				]
-			}
-		],
-		"teamList": [
-			"利兹联",
-			"托特纳姆热刺"
-		]
-	},
-	{
-		"league": "英格兰超级联赛",
-		"source": "extra",
-		"ecid": "7048522",
-		"num": "",
-		"singleList": [
-			false,
-			false
-		],
-		"strong": "H",
-		"dateTime": "05-28 23:30",
-		"itemList": [
-			{
-				"oddsTitle": "独赢",
-				"oddsItemList": [
-					[
-						"2.12"
-					],
-					[
-						"3.20"
-					],
-					[
-						"3.85"
-					]
-				]
-			}
-		],
-		"teamList": [
-			"莱斯特城",
-			"西汉姆联"
-		]
-	},
-	{
-		"league": "意大利甲组联赛",
-		"source": "extra",
-		"ecid": "7025315",
-		"num": "",
-		"singleList": [
-			false,
-			false
-		],
-		"strong": "H",
-		"dateTime": "05-23 00:30",
-		"itemList": [
-			{
-				"oddsTitle": "独赢",
-				"oddsItemList": [
-					[
-						"1.44"
-					],
-					[
-						"8.40"
-					],
-					[
-						"4.45"
-					]
-				]
-			}
-		],
-		"teamList": [
-			"罗马",
-			"沙兰力坦拿"
-		]
-	},
-	{
-		"league": "意大利甲组联赛",
-		"source": "extra",
-		"ecid": "7025318",
-		"num": "",
-		"singleList": [
-			false,
-			false
-		],
-		"strong": "C",
-		"dateTime": "05-23 02:45",
-		"itemList": [
-			{
-				"oddsTitle": "独赢",
-				"oddsItemList": [
-					[
-						"5.10"
-					],
-					[
-						"1.73"
-					],
-					[
-						"3.70"
-					]
-				]
-			}
-		],
-		"teamList": [
-			"恩波利",
-			"尤文图斯"
-		]
-	},
-	{
-		"league": "意大利甲组联赛",
-		"source": "extra",
-		"ecid": "7062350",
-		"num": "",
-		"singleList": [
-			false,
-			false
-		],
-		"strong": "C",
-		"dateTime": "05-27 00:30",
-		"itemList": [
-			{
-				"oddsTitle": "独赢",
-				"oddsItemList": [
-					[
-						"2.74"
-					],
-					[
-						"2.49"
+						"4.30"
 					],
 					[
 						"3.65"
@@ -763,8 +27,1320 @@
 			}
 		],
 		"teamList": [
-			"沙兰力坦拿",
-			"乌甸尼斯"
+			"阿尔默勒城",
+			"埃因霍温"
+		]
+	},
+	{
+		"league": "荷兰乙组联赛-附加赛",
+		"source": "extra",
+		"ecid": "7072713",
+		"num": "",
+		"singleList": [
+			false,
+			false
+		],
+		"strong": "H",
+		"dateTime": "05-27 22:30",
+		"itemList": [
+			{
+				"oddsTitle": "独赢",
+				"oddsItemList": [
+					[
+						"1.47"
+					],
+					[
+						"5.70"
+					],
+					[
+						"4.45"
+					]
+				]
+			}
+		],
+		"teamList": [
+			"威廉二世",
+			"芬洛"
+		]
+	},
+	{
+		"league": "荷兰乙组联赛-附加赛",
+		"source": "extra",
+		"ecid": "7072721",
+		"num": "",
+		"singleList": [
+			false,
+			false
+		],
+		"strong": "C",
+		"dateTime": "05-28 02:00",
+		"itemList": [
+			{
+				"oddsTitle": "独赢",
+				"oddsItemList": [
+					[
+						"2.79"
+					],
+					[
+						"2.19"
+					],
+					[
+						"3.80"
+					]
+				]
+			}
+		],
+		"teamList": [
+			"马斯特里赫特",
+			"布雷达"
+		]
+	},
+	{
+		"league": "法国乙组联赛",
+		"source": "extra",
+		"ecid": "7060454",
+		"num": "",
+		"singleList": [
+			false,
+			false
+		],
+		"strong": "C",
+		"dateTime": "05-27 02:45",
+		"itemList": [
+			{
+				"oddsTitle": "独赢",
+				"oddsItemList": [
+					[
+						"4.95"
+					],
+					[
+						"1.50"
+					],
+					[
+						"4.30"
+					]
+				]
+			}
+		],
+		"teamList": [
+			"索肖",
+			"梅斯"
+		]
+	},
+	{
+		"league": "法国乙组联赛",
+		"source": "extra",
+		"ecid": "7060456",
+		"num": "",
+		"singleList": [
+			false,
+			false
+		],
+		"strong": "H",
+		"dateTime": "05-27 02:45",
+		"itemList": [
+			{
+				"oddsTitle": "独赢",
+				"oddsItemList": [
+					[
+						"2.23"
+					],
+					[
+						"2.84"
+					],
+					[
+						"3.35"
+					]
+				]
+			}
+		],
+		"teamList": [
+			"罗德兹",
+			"波城"
+		]
+	},
+	{
+		"league": "法国乙组联赛",
+		"source": "extra",
+		"ecid": "7060462",
+		"num": "",
+		"singleList": [
+			false,
+			false
+		],
+		"strong": "H",
+		"dateTime": "05-27 02:45",
+		"itemList": [
+			{
+				"oddsTitle": "独赢",
+				"oddsItemList": [
+					[
+						"1.80"
+					],
+					[
+						"4.05"
+					],
+					[
+						"3.35"
+					]
+				]
+			}
+		],
+		"teamList": [
+			"第戎",
+			"巴黎"
+		]
+	},
+	{
+		"league": "法国乙组联赛",
+		"source": "extra",
+		"ecid": "7060474",
+		"num": "",
+		"singleList": [
+			false,
+			false
+		],
+		"strong": "H",
+		"dateTime": "05-27 02:45",
+		"itemList": [
+			{
+				"oddsTitle": "独赢",
+				"oddsItemList": [
+					[
+						"2.29"
+					],
+					[
+						"2.66"
+					],
+					[
+						"3.45"
+					]
+				]
+			}
+		],
+		"teamList": [
+			"奎维利鲁昂",
+			"亚眠"
+		]
+	},
+	{
+		"league": "法国乙组联赛",
+		"source": "extra",
+		"ecid": "7060483",
+		"num": "",
+		"singleList": [
+			false,
+			false
+		],
+		"strong": "C",
+		"dateTime": "05-27 02:45",
+		"itemList": [
+			{
+				"oddsTitle": "独赢",
+				"oddsItemList": [
+					[
+						"3.65"
+					],
+					[
+						"1.85"
+					],
+					[
+						"3.50"
+					]
+				]
+			}
+		],
+		"teamList": [
+			"安尼茨",
+			"波尔多"
+		]
+	},
+	{
+		"league": "法国乙组联赛",
+		"source": "extra",
+		"ecid": "7060493",
+		"num": "",
+		"singleList": [
+			false,
+			false
+		],
+		"strong": "H",
+		"dateTime": "05-27 02:45",
+		"itemList": [
+			{
+				"oddsTitle": "独赢",
+				"oddsItemList": [
+					[
+						"1.43"
+					],
+					[
+						"5.80"
+					],
+					[
+						"4.35"
+					]
+				]
+			}
+		],
+		"teamList": [
+			"拉华尔",
+			"奈梅斯"
+		]
+	},
+	{
+		"league": "法国乙组联赛",
+		"source": "extra",
+		"ecid": "7060502",
+		"num": "",
+		"singleList": [
+			false,
+			false
+		],
+		"strong": "H",
+		"dateTime": "05-27 02:45",
+		"itemList": [
+			{
+				"oddsTitle": "独赢",
+				"oddsItemList": [
+					[
+						"1.50"
+					],
+					[
+						"5.00"
+					],
+					[
+						"4.30"
+					]
+				]
+			}
+		],
+		"teamList": [
+			"甘冈",
+			"尼奥尔"
+		]
+	},
+	{
+		"league": "法国乙组联赛",
+		"source": "extra",
+		"ecid": "7060511",
+		"num": "",
+		"singleList": [
+			false,
+			false
+		],
+		"strong": "H",
+		"dateTime": "05-27 02:45",
+		"itemList": [
+			{
+				"oddsTitle": "独赢",
+				"oddsItemList": [
+					[
+						"2.28"
+					],
+					[
+						"2.57"
+					],
+					[
+						"3.70"
+					]
+				]
+			}
+		],
+		"teamList": [
+			"卡昂",
+			"圣埃蒂安"
+		]
+	},
+	{
+		"league": "法国乙组联赛",
+		"source": "extra",
+		"ecid": "7060520",
+		"num": "",
+		"singleList": [
+			false,
+			false
+		],
+		"strong": "H",
+		"dateTime": "05-27 02:45",
+		"itemList": [
+			{
+				"oddsTitle": "独赢",
+				"oddsItemList": [
+					[
+						"1.97"
+					],
+					[
+						"3.45"
+					],
+					[
+						"3.30"
+					]
+				]
+			}
+		],
+		"teamList": [
+			"瓦朗谢讷",
+			"格勒诺布"
+		]
+	},
+	{
+		"league": "法国乙组联赛",
+		"source": "extra",
+		"ecid": "7060529",
+		"num": "",
+		"singleList": [
+			false,
+			false
+		],
+		"strong": "C",
+		"dateTime": "05-27 02:45",
+		"itemList": [
+			{
+				"oddsTitle": "独赢",
+				"oddsItemList": [
+					[
+						"2.77"
+					],
+					[
+						"2.40"
+					],
+					[
+						"3.10"
+					]
+				]
+			}
+		],
+		"teamList": [
+			"巴斯蒂亚",
+			"勒阿弗尔"
+		]
+	},
+	{
+		"league": "葡萄牙超级联赛",
+		"source": "extra",
+		"ecid": "7076349",
+		"num": "",
+		"singleList": [
+			false,
+			false
+		],
+		"strong": "C",
+		"dateTime": "05-27 02:00",
+		"itemList": [
+			{
+				"oddsTitle": "独赢",
+				"oddsItemList": [
+					[
+						"2.84"
+					],
+					[
+						"2.38"
+					],
+					[
+						"3.25"
+					]
+				]
+			}
+		],
+		"teamList": [
+			"里奥阿维",
+			"费马利卡奥"
+		]
+	},
+	{
+		"league": "葡萄牙超级联赛",
+		"source": "extra",
+		"ecid": "7076351",
+		"num": "",
+		"singleList": [
+			false,
+			false
+		],
+		"strong": "C",
+		"dateTime": "05-27 04:15",
+		"itemList": [
+			{
+				"oddsTitle": "独赢",
+				"oddsItemList": [
+					[
+						"5.60"
+					],
+					[
+						"1.45"
+					],
+					[
+						"4.70"
+					]
+				]
+			}
+		],
+		"teamList": [
+			"维赛拉",
+			"里斯本竞技"
+		]
+	},
+	{
+		"league": "葡萄牙超级联赛",
+		"source": "extra",
+		"ecid": "7076367",
+		"num": "",
+		"singleList": [
+			false,
+			false
+		],
+		"strong": "H",
+		"dateTime": "05-27 19:45",
+		"itemList": [
+			{
+				"oddsTitle": "独赢",
+				"oddsItemList": [
+					[
+						"2.19"
+					],
+					[
+						"2.99"
+					],
+					[
+						"3.45"
+					]
+				]
+			}
+		],
+		"teamList": [
+			"吉尔维森特",
+			"卡莎皮亚"
+		]
+	},
+	{
+		"league": "葡萄牙超级联赛",
+		"source": "extra",
+		"ecid": "7076370",
+		"num": "",
+		"singleList": [
+			false,
+			false
+		],
+		"strong": "H",
+		"dateTime": "05-27 22:30",
+		"itemList": [
+			{
+				"oddsTitle": "独赢",
+				"oddsItemList": [
+					[
+						"2.09"
+					],
+					[
+						"3.15"
+					],
+					[
+						"3.50"
+					]
+				]
+			}
+		],
+		"teamList": [
+			"查维斯",
+			"博阿维斯塔"
+		]
+	},
+	{
+		"league": "葡萄牙超级联赛",
+		"source": "extra",
+		"ecid": "7076379",
+		"num": "",
+		"singleList": [
+			false,
+			false
+		],
+		"strong": "H",
+		"dateTime": "05-27 22:30",
+		"itemList": [
+			{
+				"oddsTitle": "独赢",
+				"oddsItemList": [
+					[
+						"2.25"
+					],
+					[
+						"2.98"
+					],
+					[
+						"3.35"
+					]
+				]
+			}
+		],
+		"teamList": [
+			"伊斯托里尔",
+			"马里迪莫"
+		]
+	},
+	{
+		"league": "葡萄牙超级联赛",
+		"source": "extra",
+		"ecid": "7076387",
+		"num": "",
+		"singleList": [
+			false,
+			false
+		],
+		"strong": "H",
+		"dateTime": "05-28 01:00",
+		"itemList": [
+			{
+				"oddsTitle": "独赢",
+				"oddsItemList": [
+					[
+						"1.07"
+					],
+					[
+						"21.00"
+					],
+					[
+						"10.50"
+					]
+				]
+			}
+		],
+		"teamList": [
+			"本菲卡",
+			"圣塔克莱拉"
+		]
+	},
+	{
+		"league": "葡萄牙超级联赛",
+		"source": "extra",
+		"ecid": "7076403",
+		"num": "",
+		"singleList": [
+			false,
+			false
+		],
+		"strong": "C",
+		"dateTime": "05-28 01:00",
+		"itemList": [
+			{
+				"oddsTitle": "独赢",
+				"oddsItemList": [
+					[
+						"2.76"
+					],
+					[
+						"2.36"
+					],
+					[
+						"3.40"
+					]
+				]
+			}
+		],
+		"teamList": [
+			"波蒂蒙尼斯",
+			"阿鲁卡"
+		]
+	},
+	{
+		"league": "葡萄牙超级联赛",
+		"source": "extra",
+		"ecid": "7076405",
+		"num": "",
+		"singleList": [
+			false,
+			false
+		],
+		"strong": "H",
+		"dateTime": "05-28 01:00",
+		"itemList": [
+			{
+				"oddsTitle": "独赢",
+				"oddsItemList": [
+					[
+						"1.21"
+					],
+					[
+						"11.00"
+					],
+					[
+						"6.20"
+					]
+				]
+			}
+		],
+		"teamList": [
+			"波尔图",
+			"甘马雷斯"
+		]
+	},
+	{
+		"league": "葡萄牙超级联赛",
+		"source": "extra",
+		"ecid": "7076418",
+		"num": "",
+		"singleList": [
+			false,
+			false
+		],
+		"strong": "H",
+		"dateTime": "05-28 03:30",
+		"itemList": [
+			{
+				"oddsTitle": "独赢",
+				"oddsItemList": [
+					[
+						"1.22"
+					],
+					[
+						"9.80"
+					],
+					[
+						"6.20"
+					]
+				]
+			}
+		],
+		"teamList": [
+			"布拉加",
+			"费雷拉"
+		]
+	},
+	{
+		"league": "日本J2联赛",
+		"source": "extra",
+		"ecid": "7047103",
+		"num": "",
+		"singleList": [
+			false,
+			false
+		],
+		"strong": "C",
+		"dateTime": "05-27 13:00",
+		"itemList": [
+			{
+				"oddsTitle": "独赢",
+				"oddsItemList": [
+					[
+						"3.20"
+					],
+					[
+						"2.11"
+					],
+					[
+						"3.45"
+					]
+				]
+			}
+		],
+		"teamList": [
+			"长崎成功丸",
+			"磐田山叶"
+		]
+	},
+	{
+		"league": "日本J2联赛",
+		"source": "extra",
+		"ecid": "7047114",
+		"num": "",
+		"singleList": [
+			false,
+			false
+		],
+		"strong": "H",
+		"dateTime": "05-27 13:00",
+		"itemList": [
+			{
+				"oddsTitle": "独赢",
+				"oddsItemList": [
+					[
+						"2.02"
+					],
+					[
+						"3.40"
+					],
+					[
+						"3.45"
+					]
+				]
+			}
+		],
+		"teamList": [
+			"甲府风林",
+			"大宫松鼠"
+		]
+	},
+	{
+		"league": "日本J2联赛",
+		"source": "extra",
+		"ecid": "7049196",
+		"num": "",
+		"singleList": [
+			false,
+			false
+		],
+		"strong": "H",
+		"dateTime": "05-28 13:00",
+		"itemList": [
+			{
+				"oddsTitle": "独赢",
+				"oddsItemList": [
+					[
+						"2.41"
+					],
+					[
+						"2.73"
+					],
+					[
+						"3.35"
+					]
+				]
+			}
+		],
+		"teamList": [
+			"仙台维加泰",
+			"千叶市原"
+		]
+	},
+	{
+		"league": "日本J2联赛",
+		"source": "extra",
+		"ecid": "7049205",
+		"num": "",
+		"singleList": [
+			false,
+			false
+		],
+		"strong": "C",
+		"dateTime": "05-28 13:00",
+		"itemList": [
+			{
+				"oddsTitle": "独赢",
+				"oddsItemList": [
+					[
+						"2.80"
+					],
+					[
+						"2.53"
+					],
+					[
+						"3.05"
+					]
+				]
+			}
+		],
+		"teamList": [
+			"秋田蓝色闪电",
+			"大分三神 "
+		]
+	},
+	{
+		"league": "日本J2联赛",
+		"source": "extra",
+		"ecid": "7049208",
+		"num": "",
+		"singleList": [
+			false,
+			false
+		],
+		"strong": "C",
+		"dateTime": "05-28 13:00",
+		"itemList": [
+			{
+				"oddsTitle": "独赢",
+				"oddsItemList": [
+					[
+						"3.10"
+					],
+					[
+						"2.35"
+					],
+					[
+						"3.05"
+					]
+				]
+			}
+		],
+		"teamList": [
+			"栃木SC",
+			"冈山绿雉"
+		]
+	},
+	{
+		"league": "日本J2联赛",
+		"source": "extra",
+		"ecid": "7049219",
+		"num": "",
+		"singleList": [
+			false,
+			false
+		],
+		"strong": "C",
+		"dateTime": "05-28 13:00",
+		"itemList": [
+			{
+				"oddsTitle": "独赢",
+				"oddsItemList": [
+					[
+						"2.57"
+					],
+					[
+						"2.43"
+					],
+					[
+						"3.60"
+					]
+				]
+			}
+		],
+		"teamList": [
+			"草津温泉群马",
+			"藤枝MYFC"
+		]
+	},
+	{
+		"league": "日本J2联赛",
+		"source": "extra",
+		"ecid": "7049228",
+		"num": "",
+		"singleList": [
+			false,
+			false
+		],
+		"strong": "H",
+		"dateTime": "05-28 13:00",
+		"itemList": [
+			{
+				"oddsTitle": "独赢",
+				"oddsItemList": [
+					[
+						"1.94"
+					],
+					[
+						"3.75"
+					],
+					[
+						"3.35"
+					]
+				]
+			}
+		],
+		"teamList": [
+			"东京绿茵",
+			"磐城"
+		]
+	},
+	{
+		"league": "日本J2联赛",
+		"source": "extra",
+		"ecid": "7049239",
+		"num": "",
+		"singleList": [
+			false,
+			false
+		],
+		"strong": "H",
+		"dateTime": "05-28 13:00",
+		"itemList": [
+			{
+				"oddsTitle": "独赢",
+				"oddsItemList": [
+					[
+						"1.35"
+					],
+					[
+						"7.10"
+					],
+					[
+						"5.00"
+					]
+				]
+			}
+		],
+		"teamList": [
+			"清水心跳",
+			"金泽萨维根"
+		]
+	},
+	{
+		"league": "日本J2联赛",
+		"source": "extra",
+		"ecid": "7049253",
+		"num": "",
+		"singleList": [
+			false,
+			false
+		],
+		"strong": "C",
+		"dateTime": "05-28 13:00",
+		"itemList": [
+			{
+				"oddsTitle": "独赢",
+				"oddsItemList": [
+					[
+						"3.65"
+					],
+					[
+						"2.01"
+					],
+					[
+						"3.25"
+					]
+				]
+			}
+		],
+		"teamList": [
+			"德岛漩涡",
+			"町田泽维亚"
+		]
+	},
+	{
+		"league": "日本J2联赛",
+		"source": "extra",
+		"ecid": "7049260",
+		"num": "",
+		"singleList": [
+			false,
+			false
+		],
+		"strong": "H",
+		"dateTime": "05-28 13:00",
+		"itemList": [
+			{
+				"oddsTitle": "独赢",
+				"oddsItemList": [
+					[
+						"2.35"
+					],
+					[
+						"2.67"
+					],
+					[
+						"3.55"
+					]
+				]
+			}
+		],
+		"teamList": [
+			"熊本深红",
+			"山形山神"
+		]
+	},
+	{
+		"league": "日本J2联赛",
+		"source": "extra",
+		"ecid": "7049269",
+		"num": "",
+		"singleList": [
+			false,
+			false
+		],
+		"strong": "H",
+		"dateTime": "05-28 14:00",
+		"itemList": [
+			{
+				"oddsTitle": "独赢",
+				"oddsItemList": [
+					[
+						"2.08"
+					],
+					[
+						"3.20"
+					],
+					[
+						"3.50"
+					]
+				]
+			}
+		],
+		"teamList": [
+			"水户蜀葵",
+			"山口雷法"
+		]
+	},
+	{
+		"league": "日本J1联赛",
+		"source": "extra",
+		"ecid": "7047100",
+		"num": "",
+		"singleList": [
+			false,
+			false
+		],
+		"strong": "H",
+		"dateTime": "05-27 12:01",
+		"itemList": [
+			{
+				"oddsTitle": "独赢",
+				"oddsItemList": [
+					[
+						"2.55"
+					],
+					[
+						"2.72"
+					],
+					[
+						"3.40"
+					]
+				]
+			}
+		],
+		"teamList": [
+			"北海道札幌冈萨多",
+			"名古屋鲸鱼"
+		]
+	},
+	{
+		"league": "日本J1联赛",
+		"source": "extra",
+		"ecid": "7047123",
+		"num": "",
+		"singleList": [
+			false,
+			false
+		],
+		"strong": "H",
+		"dateTime": "05-27 13:00",
+		"itemList": [
+			{
+				"oddsTitle": "独赢",
+				"oddsItemList": [
+					[
+						"1.67"
+					],
+					[
+						"4.70"
+					],
+					[
+						"4.20"
+					]
+				]
+			}
+		],
+		"teamList": [
+			"广岛三箭",
+			"湘南比马"
+		]
+	},
+	{
+		"league": "日本J1联赛",
+		"source": "extra",
+		"ecid": "7047133",
+		"num": "",
+		"singleList": [
+			false,
+			false
+		],
+		"strong": "H",
+		"dateTime": "05-27 13:00",
+		"itemList": [
+			{
+				"oddsTitle": "独赢",
+				"oddsItemList": [
+					[
+						"1.86"
+					],
+					[
+						"4.25"
+					],
+					[
+						"3.65"
+					]
+				]
+			}
+		],
+		"teamList": [
+			"神户胜利船",
+			"东京"
+		]
+	},
+	{
+		"league": "日本J1联赛",
+		"source": "extra",
+		"ecid": "7047156",
+		"num": "",
+		"singleList": [
+			false,
+			false
+		],
+		"strong": "C",
+		"dateTime": "05-27 16:00",
+		"itemList": [
+			{
+				"oddsTitle": "独赢",
+				"oddsItemList": [
+					[
+						"4.15"
+					],
+					[
+						"1.91"
+					],
+					[
+						"3.50"
+					]
+				]
+			}
+		],
+		"teamList": [
+			"鸟栖沙岩",
+			"鹿岛鹿角"
+		]
+	},
+	{
+		"league": "日本J1联赛",
+		"source": "extra",
+		"ecid": "7047177",
+		"num": "",
+		"singleList": [
+			false,
+			false
+		],
+		"strong": "C",
+		"dateTime": "05-27 18:00",
+		"itemList": [
+			{
+				"oddsTitle": "独赢",
+				"oddsItemList": [
+					[
+						"3.80"
+					],
+					[
+						"1.95"
+					],
+					[
+						"3.65"
+					]
+				]
+			}
+		],
+		"teamList": [
+			"京都不死鸟",
+			"浦和红钻"
+		]
+	},
+	{
+		"league": "日本J1联赛",
+		"source": "extra",
+		"ecid": "7049150",
+		"num": "",
+		"singleList": [
+			false,
+			false
+		],
+		"strong": "H",
+		"dateTime": "05-28 13:00",
+		"itemList": [
+			{
+				"oddsTitle": "独赢",
+				"oddsItemList": [
+					[
+						"1.76"
+					],
+					[
+						"4.35"
+					],
+					[
+						"3.95"
+					]
+				]
+			}
+		],
+		"teamList": [
+			"横滨水手",
+			"福冈黄蜂"
+		]
+	},
+	{
+		"league": "日本J1联赛",
+		"source": "extra",
+		"ecid": "7049161",
+		"num": "",
+		"singleList": [
+			false,
+			false
+		],
+		"strong": "H",
+		"dateTime": "05-28 13:00",
+		"itemList": [
+			{
+				"oddsTitle": "独赢",
+				"oddsItemList": [
+					[
+						"2.61"
+					],
+					[
+						"2.76"
+					],
+					[
+						"3.30"
+					]
+				]
+			}
+		],
+		"teamList": [
+			"新泻天鹅",
+			"大阪飞脚"
+		]
+	},
+	{
+		"league": "日本J1联赛",
+		"source": "extra",
+		"ecid": "7049164",
+		"num": "",
+		"singleList": [
+			false,
+			false
+		],
+		"strong": "H",
+		"dateTime": "05-28 13:00",
+		"itemList": [
+			{
+				"oddsTitle": "独赢",
+				"oddsItemList": [
+					[
+						"1.63"
+					],
+					[
+						"4.95"
+					],
+					[
+						"4.25"
+					]
+				]
+			}
+		],
+		"teamList": [
+			"大阪樱花",
+			"横滨"
+		]
+	},
+	{
+		"league": "日本J1联赛",
+		"source": "extra",
+		"ecid": "7049176",
+		"num": "",
+		"singleList": [
+			false,
+			false
+		],
+		"strong": "H",
+		"dateTime": "05-28 16:00",
+		"itemList": [
+			{
+				"oddsTitle": "独赢",
+				"oddsItemList": [
+					[
+						"1.77"
+					],
+					[
+						"4.35"
+					],
+					[
+						"3.90"
+					]
+				]
+			}
+		],
+		"teamList": [
+			"川崎前锋",
+			"柏雷素尔"
 		]
 	},
 	{
@@ -783,13 +1359,13 @@
 				"oddsTitle": "独赢",
 				"oddsItemList": [
 					[
-						"3.70"
+						"3.90"
 					],
 					[
-						"1.93"
+						"1.86"
 					],
 					[
-						"3.95"
+						"4.00"
 					]
 				]
 			}
@@ -797,6 +1373,38 @@
 		"teamList": [
 			"森多利亚",
 			"萨索洛"
+		]
+	},
+	{
+		"league": "意大利甲组联赛",
+		"source": "extra",
+		"ecid": "7062350",
+		"num": "",
+		"singleList": [
+			false,
+			false
+		],
+		"strong": "C",
+		"dateTime": "05-27 21:00",
+		"itemList": [
+			{
+				"oddsTitle": "独赢",
+				"oddsItemList": [
+					[
+						"2.76"
+					],
+					[
+						"2.53"
+					],
+					[
+						"3.55"
+					]
+				]
+			}
+		],
+		"teamList": [
+			"沙兰力坦拿",
+			"乌甸尼斯"
 		]
 	},
 	{
@@ -815,13 +1423,13 @@
 				"oddsTitle": "独赢",
 				"oddsItemList": [
 					[
-						"2.49"
+						"2.39"
 					],
 					[
-						"2.98"
+						"3.15"
 					],
 					[
-						"3.30"
+						"3.25"
 					]
 				]
 			}
@@ -847,10 +1455,10 @@
 				"oddsTitle": "独赢",
 				"oddsItemList": [
 					[
-						"2.50"
+						"2.09"
 					],
 					[
-						"2.85"
+						"3.70"
 					],
 					[
 						"3.45"
@@ -879,13 +1487,13 @@
 				"oddsTitle": "独赢",
 				"oddsItemList": [
 					[
-						"1.81"
+						"1.87"
 					],
 					[
-						"4.15"
+						"4.05"
 					],
 					[
-						"3.95"
+						"3.90"
 					]
 				]
 			}
@@ -911,13 +1519,13 @@
 				"oddsTitle": "独赢",
 				"oddsItemList": [
 					[
-						"1.73"
+						"1.70"
 					],
 					[
-						"4.90"
+						"4.95"
 					],
 					[
-						"3.90"
+						"3.95"
 					]
 				]
 			}
@@ -943,13 +1551,13 @@
 				"oddsTitle": "独赢",
 				"oddsItemList": [
 					[
-						"3.55"
+						"3.40"
 					],
 					[
-						"2.11"
+						"2.19"
 					],
 					[
-						"3.50"
+						"3.45"
 					]
 				]
 			}
@@ -975,10 +1583,10 @@
 				"oddsTitle": "独赢",
 				"oddsItemList": [
 					[
-						"2.71"
+						"2.50"
 					],
 					[
-						"2.83"
+						"3.10"
 					],
 					[
 						"3.15"
@@ -1007,13 +1615,13 @@
 				"oddsTitle": "独赢",
 				"oddsItemList": [
 					[
-						"1.27"
+						"1.24"
 					],
 					[
-						"11.00"
+						"12.50"
 					],
 					[
-						"6.00"
+						"6.50"
 					]
 				]
 			}
@@ -1039,234 +1647,10 @@
 				"oddsTitle": "独赢",
 				"oddsItemList": [
 					[
-						"2.34"
+						"2.38"
 					],
 					[
-						"3.05"
-					],
-					[
-						"3.50"
-					]
-				]
-			}
-		],
-		"teamList": [
-			"尤文图斯",
-			"AC米兰"
-		]
-	},
-	{
-		"league": "法国甲组联赛",
-		"source": "extra",
-		"ecid": "7049049",
-		"num": "",
-		"singleList": [
-			false,
-			false
-		],
-		"strong": "C",
-		"dateTime": "05-28 03:00",
-		"itemList": [
-			{
-				"oddsTitle": "独赢",
-				"oddsItemList": [
-					[
-						"4.65"
-					],
-					[
-						"1.64"
-					],
-					[
-						"4.45"
-					]
-				]
-			}
-		],
-		"teamList": [
-			"史特拉斯堡",
-			"巴黎圣日耳曼"
-		]
-	},
-	{
-		"league": "法国甲组联赛",
-		"source": "extra",
-		"ecid": "7049052",
-		"num": "",
-		"singleList": [
-			false,
-			false
-		],
-		"strong": "H",
-		"dateTime": "05-28 03:00",
-		"itemList": [
-			{
-				"oddsTitle": "独赢",
-				"oddsItemList": [
-					[
-						"1.71"
-					],
-					[
-						"4.20"
-					],
-					[
-						"4.40"
-					]
-				]
-			}
-		],
-		"teamList": [
-			"里昂",
-			"兰斯"
-		]
-	},
-	{
-		"league": "法国甲组联赛",
-		"source": "extra",
-		"ecid": "7049061",
-		"num": "",
-		"singleList": [
-			false,
-			false
-		],
-		"strong": "H",
-		"dateTime": "05-28 03:00",
-		"itemList": [
-			{
-				"oddsTitle": "独赢",
-				"oddsItemList": [
-					[
-						"1.37"
-					],
-					[
-						"7.70"
-					],
-					[
-						"5.20"
-					]
-				]
-			}
-		],
-		"teamList": [
-			"马赛",
-			"布雷斯特"
-		]
-	},
-	{
-		"league": "法国甲组联赛",
-		"source": "extra",
-		"ecid": "7049079",
-		"num": "",
-		"singleList": [
-			false,
-			false
-		],
-		"strong": "H",
-		"dateTime": "05-28 03:00",
-		"itemList": [
-			{
-				"oddsTitle": "独赢",
-				"oddsItemList": [
-					[
-						"1.43"
-					],
-					[
-						"7.00"
-					],
-					[
-						"4.85"
-					]
-				]
-			}
-		],
-		"teamList": [
-			"里尔",
-			"南特"
-		]
-	},
-	{
-		"league": "法国甲组联赛",
-		"source": "extra",
-		"ecid": "7049081",
-		"num": "",
-		"singleList": [
-			false,
-			false
-		],
-		"strong": "H",
-		"dateTime": "05-28 03:00",
-		"itemList": [
-			{
-				"oddsTitle": "独赢",
-				"oddsItemList": [
-					[
-						"2.05"
-					],
-					[
-						"3.25"
-					],
-					[
-						"3.90"
-					]
-				]
-			}
-		],
-		"teamList": [
-			"雷恩",
-			"摩纳哥"
-		]
-	},
-	{
-		"league": "法国甲组联赛",
-		"source": "extra",
-		"ecid": "7049092",
-		"num": "",
-		"singleList": [
-			false,
-			false
-		],
-		"strong": "H",
-		"dateTime": "05-28 03:00",
-		"itemList": [
-			{
-				"oddsTitle": "独赢",
-				"oddsItemList": [
-					[
-						"2.07"
-					],
-					[
-						"3.40"
-					],
-					[
-						"3.70"
-					]
-				]
-			}
-		],
-		"teamList": [
-			"昂热",
-			"特鲁瓦"
-		]
-	},
-	{
-		"league": "法国甲组联赛",
-		"source": "extra",
-		"ecid": "7049102",
-		"num": "",
-		"singleList": [
-			false,
-			false
-		],
-		"strong": "H",
-		"dateTime": "05-28 03:00",
-		"itemList": [
-			{
-				"oddsTitle": "独赢",
-				"oddsItemList": [
-					[
-						"2.16"
-					],
-					[
-						"3.40"
+						"3.00"
 					],
 					[
 						"3.45"
@@ -1275,104 +1659,8 @@
 			}
 		],
 		"teamList": [
-			"克莱蒙特",
-			"洛里昂"
-		]
-	},
-	{
-		"league": "法国甲组联赛",
-		"source": "extra",
-		"ecid": "7049112",
-		"num": "",
-		"singleList": [
-			false,
-			false
-		],
-		"strong": "H",
-		"dateTime": "05-28 03:00",
-		"itemList": [
-			{
-				"oddsTitle": "独赢",
-				"oddsItemList": [
-					[
-						"1.16"
-					],
-					[
-						"18.00"
-					],
-					[
-						"7.40"
-					]
-				]
-			}
-		],
-		"teamList": [
-			"朗斯",
-			"阿雅克肖"
-		]
-	},
-	{
-		"league": "法国甲组联赛",
-		"source": "extra",
-		"ecid": "7049122",
-		"num": "",
-		"singleList": [
-			false,
-			false
-		],
-		"strong": "H",
-		"dateTime": "05-28 03:00",
-		"itemList": [
-			{
-				"oddsTitle": "独赢",
-				"oddsItemList": [
-					[
-						"2.54"
-					],
-					[
-						"2.67"
-					],
-					[
-						"3.55"
-					]
-				]
-			}
-		],
-		"teamList": [
-			"蒙彼利埃",
-			"尼斯"
-		]
-	},
-	{
-		"league": "法国甲组联赛",
-		"source": "extra",
-		"ecid": "7049140",
-		"num": "",
-		"singleList": [
-			false,
-			false
-		],
-		"strong": "H",
-		"dateTime": "05-28 03:00",
-		"itemList": [
-			{
-				"oddsTitle": "独赢",
-				"oddsItemList": [
-					[
-						"2.13"
-					],
-					[
-						"3.20"
-					],
-					[
-						"3.75"
-					]
-				]
-			}
-		],
-		"teamList": [
-			"图鲁兹",
-			"欧塞尔"
+			"尤文图斯",
+			"AC米兰"
 		]
 	},
 	{
@@ -1391,13 +1679,13 @@
 				"oddsTitle": "独赢",
 				"oddsItemList": [
 					[
-						"8.00"
+						"7.90"
 					],
 					[
-						"1.31"
+						"1.33"
 					],
 					[
-						"6.40"
+						"6.20"
 					]
 				]
 			}
@@ -1455,13 +1743,13 @@
 				"oddsTitle": "独赢",
 				"oddsItemList": [
 					[
-						"1.69"
+						"1.60"
 					],
 					[
-						"4.20"
+						"4.65"
 					],
 					[
-						"4.75"
+						"4.95"
 					]
 				]
 			}
@@ -1487,10 +1775,10 @@
 				"oddsTitle": "独赢",
 				"oddsItemList": [
 					[
-						"1.43"
+						"1.47"
 					],
 					[
-						"7.40"
+						"6.60"
 					],
 					[
 						"4.80"
@@ -1519,13 +1807,13 @@
 				"oddsTitle": "独赢",
 				"oddsItemList": [
 					[
-						"1.40"
+						"1.36"
 					],
 					[
-						"7.10"
+						"7.60"
 					],
 					[
-						"5.30"
+						"5.70"
 					]
 				]
 			}
@@ -1551,13 +1839,13 @@
 				"oddsTitle": "独赢",
 				"oddsItemList": [
 					[
-						"3.30"
+						"3.20"
 					],
 					[
-						"2.02"
+						"2.04"
 					],
 					[
-						"4.15"
+						"4.25"
 					]
 				]
 			}
@@ -1583,10 +1871,10 @@
 				"oddsTitle": "独赢",
 				"oddsItemList": [
 					[
-						"1.56"
+						"1.61"
 					],
 					[
-						"5.30"
+						"4.90"
 					],
 					[
 						"4.70"
@@ -1615,13 +1903,13 @@
 				"oddsTitle": "独赢",
 				"oddsItemList": [
 					[
-						"2.45"
+						"2.39"
 					],
 					[
-						"2.63"
+						"2.70"
 					],
 					[
-						"3.90"
+						"4.00"
 					]
 				]
 			}
@@ -1647,13 +1935,13 @@
 				"oddsTitle": "独赢",
 				"oddsItemList": [
 					[
-						"2.25"
+						"2.22"
 					],
 					[
 						"2.95"
 					],
 					[
-						"3.85"
+						"3.95"
 					]
 				]
 			}
@@ -1664,400 +1952,16 @@
 		]
 	},
 	{
-		"league": "俄罗斯超级联赛",
+		"league": "法国甲组联赛",
 		"source": "extra",
-		"ecid": "7030835",
-		"num": "",
-		"singleList": [
-			false,
-			false
-		],
-		"strong": "H",
-		"dateTime": "05-23 00:00",
-		"itemList": [
-			{
-				"oddsTitle": "独赢",
-				"oddsItemList": [
-					[
-						"2.62"
-					],
-					[
-						"2.65"
-					],
-					[
-						"3.10"
-					]
-				]
-			}
-		],
-		"teamList": [
-			"诺夫哥罗德",
-			"PFC索治"
-		]
-	},
-	{
-		"league": "俄罗斯超级联赛",
-		"source": "extra",
-		"ecid": "7047186",
+		"ecid": "7049049",
 		"num": "",
 		"singleList": [
 			false,
 			false
 		],
 		"strong": "C",
-		"dateTime": "05-27 19:00",
-		"itemList": [
-			{
-				"oddsTitle": "独赢",
-				"oddsItemList": [
-					[
-						"3.25"
-					],
-					[
-						"2.05"
-					],
-					[
-						"3.55"
-					]
-				]
-			}
-		],
-		"teamList": [
-			"希姆基",
-			"乌拉尔"
-		]
-	},
-	{
-		"league": "俄罗斯超级联赛",
-		"source": "extra",
-		"ecid": "7047314",
-		"num": "",
-		"singleList": [
-			false,
-			false
-		],
-		"strong": "C",
-		"dateTime": "05-27 21:30",
-		"itemList": [
-			{
-				"oddsTitle": "独赢",
-				"oddsItemList": [
-					[
-						"3.55"
-					],
-					[
-						"1.81"
-					],
-					[
-						"4.10"
-					]
-				]
-			}
-		],
-		"teamList": [
-			"莫斯科鱼雷",
-			"奥伦堡"
-		]
-	},
-	{
-		"league": "俄罗斯超级联赛",
-		"source": "extra",
-		"ecid": "7047430",
-		"num": "",
-		"singleList": [
-			false,
-			false
-		],
-		"strong": "C",
-		"dateTime": "05-28 00:00",
-		"itemList": [
-			{
-				"oddsTitle": "独赢",
-				"oddsItemList": [
-					[
-						"2.74"
-					],
-					[
-						"2.26"
-					],
-					[
-						"3.65"
-					]
-				]
-			}
-		],
-		"teamList": [
-			"克拉斯诺达尔",
-			"莫斯科中央陆军"
-		]
-	},
-	{
-		"league": "俄罗斯超级联赛",
-		"source": "extra",
-		"ecid": "7047440",
-		"num": "",
-		"singleList": [
-			false,
-			false
-		],
-		"strong": "C",
-		"dateTime": "05-28 00:00",
-		"itemList": [
-			{
-				"oddsTitle": "独赢",
-				"oddsItemList": [
-					[
-						"3.55"
-					],
-					[
-						"1.81"
-					],
-					[
-						"4.05"
-					]
-				]
-			}
-		],
-		"teamList": [
-			"PFC索治",
-			"圣彼得堡泽尼特"
-		]
-	},
-	{
-		"league": "俄罗斯超级联赛",
-		"source": "extra",
-		"ecid": "7049973",
-		"num": "",
-		"singleList": [
-			false,
-			false
-		],
-		"strong": "H",
-		"dateTime": "05-28 19:00",
-		"itemList": [
-			{
-				"oddsTitle": "独赢",
-				"oddsItemList": [
-					[
-						"1.40"
-					],
-					[
-						"6.70"
-					],
-					[
-						"4.55"
-					]
-				]
-			}
-		],
-		"teamList": [
-			"莫斯科斯巴达",
-			"诺夫哥罗德"
-		]
-	},
-	{
-		"league": "俄罗斯超级联赛",
-		"source": "extra",
-		"ecid": "7049976",
-		"num": "",
-		"singleList": [
-			false,
-			false
-		],
-		"strong": "H",
-		"dateTime": "05-28 21:30",
-		"itemList": [
-			{
-				"oddsTitle": "独赢",
-				"oddsItemList": [
-					[
-						"2.09"
-					],
-					[
-						"2.98"
-					],
-					[
-						"3.75"
-					]
-				]
-			}
-		],
-		"teamList": [
-			"莫斯科迪纳摩",
-			"莫斯科火车头"
-		]
-	},
-	{
-		"league": "俄罗斯超级联赛",
-		"source": "extra",
-		"ecid": "7049985",
-		"num": "",
-		"singleList": [
-			false,
-			false
-		],
-		"strong": "C",
-		"dateTime": "05-28 21:30",
-		"itemList": [
-			{
-				"oddsTitle": "独赢",
-				"oddsItemList": [
-					[
-						"2.60"
-					],
-					[
-						"2.51"
-					],
-					[
-						"3.35"
-					]
-				]
-			}
-		],
-		"teamList": [
-			"沃罗涅日火炬",
-			"苏维杜夫"
-		]
-	},
-	{
-		"league": "俄罗斯超级联赛",
-		"source": "extra",
-		"ecid": "7049993",
-		"num": "",
-		"singleList": [
-			false,
-			false
-		],
-		"strong": "H",
-		"dateTime": "05-29 00:00",
-		"itemList": [
-			{
-				"oddsTitle": "独赢",
-				"oddsItemList": [
-					[
-						"2.21"
-					],
-					[
-						"2.88"
-					],
-					[
-						"3.55"
-					]
-				]
-			}
-		],
-		"teamList": [
-			"罗斯托夫",
-			"格罗兹尼艾哈迈德"
-		]
-	},
-	{
-		"league": "西班牙甲组联赛",
-		"source": "extra",
-		"ecid": "7037994",
-		"num": "",
-		"singleList": [
-			false,
-			false
-		],
-		"strong": "H",
-		"dateTime": "05-24 01:30",
-		"itemList": [
-			{
-				"oddsTitle": "独赢",
-				"oddsItemList": [
-					[
-						"2.09"
-					],
-					[
-						"3.45"
-					],
-					[
-						"3.60"
-					]
-				]
-			}
-		],
-		"teamList": [
-			"维戈塞尔塔",
-			"赫罗纳"
-		]
-	},
-	{
-		"league": "西班牙甲组联赛",
-		"source": "extra",
-		"ecid": "7038005",
-		"num": "",
-		"singleList": [
-			false,
-			false
-		],
-		"strong": "H",
-		"dateTime": "05-24 01:30",
-		"itemList": [
-			{
-				"oddsTitle": "独赢",
-				"oddsItemList": [
-					[
-						"1.45"
-					],
-					[
-						"7.10"
-					],
-					[
-						"4.70"
-					]
-				]
-			}
-		],
-		"teamList": [
-			"皇家苏斯达",
-			"阿尔梅里亚"
-		]
-	},
-	{
-		"league": "西班牙甲组联赛",
-		"source": "extra",
-		"ecid": "7037991",
-		"num": "",
-		"singleList": [
-			false,
-			false
-		],
-		"strong": "C",
-		"dateTime": "05-24 04:00",
-		"itemList": [
-			{
-				"oddsTitle": "独赢",
-				"oddsItemList": [
-					[
-						"3.60"
-					],
-					[
-						"1.96"
-					],
-					[
-						"4.00"
-					]
-				]
-			}
-		],
-		"teamList": [
-			"巴拉多利德",
-			"巴塞罗那"
-		]
-	},
-	{
-		"league": "西班牙甲组联赛",
-		"source": "extra",
-		"ecid": "7038025",
-		"num": "",
-		"singleList": [
-			false,
-			false
-		],
-		"strong": "C",
-		"dateTime": "05-25 01:30",
+		"dateTime": "05-28 03:00",
 		"itemList": [
 			{
 				"oddsTitle": "独赢",
@@ -2066,103 +1970,295 @@
 						"4.50"
 					],
 					[
-						"1.78"
+						"1.67"
 					],
 					[
-						"3.90"
+						"4.30"
 					]
 				]
 			}
 		],
 		"teamList": [
-			"艾尔切",
-			"塞维利亚"
+			"史特拉斯堡",
+			"巴黎圣日耳曼"
 		]
 	},
 	{
-		"league": "西班牙甲组联赛",
+		"league": "法国甲组联赛",
 		"source": "extra",
-		"ecid": "7038028",
+		"ecid": "7049052",
 		"num": "",
 		"singleList": [
 			false,
 			false
 		],
 		"strong": "H",
-		"dateTime": "05-25 01:30",
+		"dateTime": "05-28 03:00",
 		"itemList": [
 			{
 				"oddsTitle": "独赢",
 				"oddsItemList": [
 					[
-						"1.55"
+						"1.62"
 					],
 					[
-						"5.60"
+						"4.70"
 					],
 					[
-						"4.60"
+						"4.55"
 					]
 				]
 			}
 		],
 		"teamList": [
-			"维拉利尔",
-			"卡迪斯"
+			"里昂",
+			"兰斯"
 		]
 	},
 	{
-		"league": "西班牙甲组联赛",
+		"league": "法国甲组联赛",
 		"source": "extra",
-		"ecid": "7038085",
+		"ecid": "7049061",
 		"num": "",
 		"singleList": [
 			false,
 			false
 		],
 		"strong": "H",
-		"dateTime": "05-25 01:30",
+		"dateTime": "05-28 03:00",
 		"itemList": [
 			{
 				"oddsTitle": "独赢",
 				"oddsItemList": [
 					[
-						"1.71"
+						"1.38"
 					],
 					[
-						"4.85"
+						"7.50"
 					],
 					[
-						"4.05"
+						"5.10"
 					]
 				]
 			}
 		],
 		"teamList": [
-			"皇家马德里",
-			"巴列卡诺"
+			"马赛",
+			"布雷斯特"
 		]
 	},
 	{
-		"league": "西班牙甲组联赛",
+		"league": "法国甲组联赛",
 		"source": "extra",
-		"ecid": "7038048",
+		"ecid": "7049079",
 		"num": "",
 		"singleList": [
 			false,
 			false
 		],
-		"strong": "C",
-		"dateTime": "05-25 04:00",
+		"strong": "H",
+		"dateTime": "05-28 03:00",
 		"itemList": [
 			{
 				"oddsTitle": "独赢",
 				"oddsItemList": [
 					[
-						"2.89"
+						"1.45"
 					],
 					[
-						"2.38"
+						"6.50"
+					],
+					[
+						"4.80"
+					]
+				]
+			}
+		],
+		"teamList": [
+			"里尔",
+			"南特"
+		]
+	},
+	{
+		"league": "法国甲组联赛",
+		"source": "extra",
+		"ecid": "7049081",
+		"num": "",
+		"singleList": [
+			false,
+			false
+		],
+		"strong": "H",
+		"dateTime": "05-28 03:00",
+		"itemList": [
+			{
+				"oddsTitle": "独赢",
+				"oddsItemList": [
+					[
+						"2.08"
+					],
+					[
+						"3.30"
+					],
+					[
+						"3.80"
+					]
+				]
+			}
+		],
+		"teamList": [
+			"雷恩",
+			"摩纳哥"
+		]
+	},
+	{
+		"league": "法国甲组联赛",
+		"source": "extra",
+		"ecid": "7049092",
+		"num": "",
+		"singleList": [
+			false,
+			false
+		],
+		"strong": "H",
+		"dateTime": "05-28 03:00",
+		"itemList": [
+			{
+				"oddsTitle": "独赢",
+				"oddsItemList": [
+					[
+						"2.02"
+					],
+					[
+						"3.45"
+					],
+					[
+						"3.75"
+					]
+				]
+			}
+		],
+		"teamList": [
+			"昂热",
+			"特鲁瓦"
+		]
+	},
+	{
+		"league": "法国甲组联赛",
+		"source": "extra",
+		"ecid": "7049102",
+		"num": "",
+		"singleList": [
+			false,
+			false
+		],
+		"strong": "H",
+		"dateTime": "05-28 03:00",
+		"itemList": [
+			{
+				"oddsTitle": "独赢",
+				"oddsItemList": [
+					[
+						"2.15"
+					],
+					[
+						"3.30"
+					],
+					[
+						"3.55"
+					]
+				]
+			}
+		],
+		"teamList": [
+			"克莱蒙特",
+			"洛里昂"
+		]
+	},
+	{
+		"league": "法国甲组联赛",
+		"source": "extra",
+		"ecid": "7049112",
+		"num": "",
+		"singleList": [
+			false,
+			false
+		],
+		"strong": "H",
+		"dateTime": "05-28 03:00",
+		"itemList": [
+			{
+				"oddsTitle": "独赢",
+				"oddsItemList": [
+					[
+						"1.13"
+					],
+					[
+						"21.00"
+					],
+					[
+						"8.30"
+					]
+				]
+			}
+		],
+		"teamList": [
+			"朗斯",
+			"阿雅克肖"
+		]
+	},
+	{
+		"league": "法国甲组联赛",
+		"source": "extra",
+		"ecid": "7049122",
+		"num": "",
+		"singleList": [
+			false,
+			false
+		],
+		"strong": "H",
+		"dateTime": "05-28 03:00",
+		"itemList": [
+			{
+				"oddsTitle": "独赢",
+				"oddsItemList": [
+					[
+						"2.41"
+					],
+					[
+						"2.80"
+					],
+					[
+						"3.60"
+					]
+				]
+			}
+		],
+		"teamList": [
+			"蒙彼利埃",
+			"尼斯"
+		]
+	},
+	{
+		"league": "法国甲组联赛",
+		"source": "extra",
+		"ecid": "7049140",
+		"num": "",
+		"singleList": [
+			false,
+			false
+		],
+		"strong": "H",
+		"dateTime": "05-28 03:00",
+		"itemList": [
+			{
+				"oddsTitle": "独赢",
+				"oddsItemList": [
+					[
+						"2.24"
+					],
+					[
+						"3.05"
 					],
 					[
 						"3.65"
@@ -2171,719 +2267,597 @@
 			}
 		],
 		"teamList": [
-			"爱斯宾奴",
-			"马德里体育会"
+			"图鲁兹",
+			"欧塞尔"
 		]
 	},
 	{
-		"league": "西班牙甲组联赛",
+		"league": "荷兰甲组联赛",
 		"source": "extra",
-		"ecid": "7038051",
+		"ecid": "7049297",
 		"num": "",
 		"singleList": [
 			false,
 			false
 		],
 		"strong": "H",
-		"dateTime": "05-25 04:00",
+		"dateTime": "05-28 20:30",
 		"itemList": [
 			{
 				"oddsTitle": "独赢",
 				"oddsItemList": [
 					[
-						"2.06"
+						"2.53"
 					],
 					[
-						"4.10"
+						"2.53"
 					],
 					[
-						"3.25"
+						"3.85"
 					]
 				]
 			}
 		],
 		"teamList": [
-			"皇家贝迪斯",
-			"赫塔费"
+			"锡塔德命运",
+			"奈梅亨"
 		]
 	},
 	{
-		"league": "西班牙甲组联赛",
+		"league": "荷兰甲组联赛",
 		"source": "extra",
-		"ecid": "7038074",
+		"ecid": "7049300",
+		"num": "",
+		"singleList": [
+			false,
+			false
+		],
+		"strong": "H",
+		"dateTime": "05-28 20:30",
+		"itemList": [
+			{
+				"oddsTitle": "独赢",
+				"oddsItemList": [
+					[
+						"1.30"
+					],
+					[
+						"8.40"
+					],
+					[
+						"6.10"
+					]
+				]
+			}
+		],
+		"teamList": [
+			"费耶诺德",
+			"维迪斯"
+		]
+	},
+	{
+		"league": "荷兰甲组联赛",
+		"source": "extra",
+		"ecid": "7049310",
 		"num": "",
 		"singleList": [
 			false,
 			false
 		],
 		"strong": "C",
-		"dateTime": "05-26 01:30",
+		"dateTime": "05-28 20:30",
 		"itemList": [
 			{
 				"oddsTitle": "独赢",
 				"oddsItemList": [
 					[
-						"3.55"
+						"2.65"
 					],
 					[
-						"2.37"
+						"2.42"
 					],
 					[
-						"2.95"
+						"3.85"
 					]
 				]
 			}
 		],
 		"teamList": [
-			"马略卡",
-			"华伦西亚"
+			"阿尔克马尔",
+			"PSV埃因霍温"
 		]
 	},
 	{
-		"league": "西班牙甲组联赛",
+		"league": "荷兰甲组联赛",
 		"source": "extra",
-		"ecid": "7038063",
-		"num": "",
-		"singleList": [
-			false,
-			false
-		],
-		"strong": "C",
-		"dateTime": "05-26 03:30",
-		"itemList": [
-			{
-				"oddsTitle": "独赢",
-				"oddsItemList": [
-					[
-						"2.96"
-					],
-					[
-						"2.43"
-					],
-					[
-						"3.45"
-					]
-				]
-			}
-		],
-		"teamList": [
-			"奥萨苏纳",
-			"毕尔巴鄂竞技"
-		]
-	},
-	{
-		"league": "意大利甲组联赛",
-		"source": "extra",
-		"ecid": "7025274",
+		"ecid": "7049319",
 		"num": "",
 		"singleList": [
 			false,
 			false
 		],
 		"strong": "H",
-		"dateTime": "05-21 21:00",
+		"dateTime": "05-28 20:30",
 		"itemList": [
 			{
 				"oddsTitle": "独赢",
 				"oddsItemList": [
 					[
-						"2.16"
+						"2.04"
 					],
 					[
-						"3.70"
-					],
-					[
-						"3.25"
-					]
-				]
-			},
-			{
-				"oddsTitle": "让球",
-				"oddsItemList": [
-					[
-						"-0/0.5",
-						"1.830"
-					],
-					[
-						"+0/0.5",
-						"2.070"
-					]
-				]
-			},
-			{
-				"oddsTitle": "得分",
-				"oddsItemList": [
-					[
-						"-2/2.5",
-						"2.050"
-					],
-					[
-						"+2/2.5",
-						"1.850"
-					]
-				]
-			},
-			{
-				"oddsTitle": "让球",
-				"oddsItemList": [
-					[
-						"-0.5",
-						"2.160"
-					],
-					[
-						"+0.5",
-						"1.760"
-					]
-				]
-			},
-			{
-				"oddsTitle": "得分",
-				"oddsItemList": [
-					[
-						"-2",
-						"1.730"
-					],
-					[
-						"+2",
-						"2.200"
-					]
-				]
-			},
-			{
-				"oddsTitle": "让球",
-				"oddsItemList": [
-					[
-						"-0.5/1",
-						"2.560"
-					],
-					[
-						"+0.5/1",
-						"1.550"
-					]
-				]
-			},
-			{
-				"oddsTitle": "得分",
-				"oddsItemList": [
-					[
-						"-2.5",
-						"2.330"
-					],
-					[
-						"+2.5",
-						"1.650"
-					]
-				]
-			},
-			{
-				"oddsTitle": "让球",
-				"oddsItemList": [
-					[
-						"-0",
-						"1.540"
-					],
-					[
-						"+0",
-						"2.580"
-					]
-				]
-			},
-			{
-				"oddsTitle": "得分",
-				"oddsItemList": [
-					[
-						"-1.5/2",
-						"1.540"
-					],
-					[
-						"+1.5/2",
-						"2.560"
-					]
-				]
-			}
-		],
-		"teamList": [
-			"都灵",
-			"佛罗伦萨"
-		]
-	},
-	{
-		"league": "瑞典超级联赛",
-		"source": "extra",
-		"ecid": "7028185",
-		"num": "",
-		"singleList": [
-			false,
-			false
-		],
-		"strong": "H",
-		"dateTime": "05-21 21:00",
-		"itemList": [
-			{
-				"oddsTitle": "独赢",
-				"oddsItemList": [
-					[
-						"1.76"
-					],
-					[
-						"3.75"
+						"3.20"
 					],
 					[
 						"4.05"
 					]
 				]
-			},
+			}
+		],
+		"teamList": [
+			"海伦维恩",
+			"前进之鹰"
+		]
+	},
+	{
+		"league": "荷兰甲组联赛",
+		"source": "extra",
+		"ecid": "7049337",
+		"num": "",
+		"singleList": [
+			false,
+			false
+		],
+		"strong": "C",
+		"dateTime": "05-28 20:30",
+		"itemList": [
 			{
-				"oddsTitle": "让球",
+				"oddsTitle": "独赢",
 				"oddsItemList": [
 					[
-						"-0.5/1",
-						"1.960"
+						"3.15"
 					],
 					[
-						"+0.5/1",
-						"1.930"
-					]
-				]
-			},
-			{
-				"oddsTitle": "得分",
-				"oddsItemList": [
-					[
-						"-3",
-						"1.810"
+						"2.12"
 					],
 					[
-						"+3",
-						"2.060"
-					]
-				]
-			},
-			{
-				"oddsTitle": "让球",
-				"oddsItemList": [
-					[
-						"-0.5",
-						"1.770"
-					],
-					[
-						"+0.5",
-						"2.140"
-					]
-				]
-			},
-			{
-				"oddsTitle": "得分",
-				"oddsItemList": [
-					[
-						"-3/3.5",
-						"2.060"
-					],
-					[
-						"+3/3.5",
-						"1.810"
-					]
-				]
-			},
-			{
-				"oddsTitle": "让球",
-				"oddsItemList": [
-					[
-						"-1",
-						"2.290"
-					],
-					[
-						"+1",
-						"1.670"
-					]
-				]
-			},
-			{
-				"oddsTitle": "得分",
-				"oddsItemList": [
-					[
-						"-2.5/3",
-						"1.650"
-					],
-					[
-						"+2.5/3",
-						"2.280"
+						"3.80"
 					]
 				]
 			}
 		],
 		"teamList": [
-			"马尔默",
-			"赫根"
+			"格罗宁根",
+			"鹿特丹斯巴达"
 		]
 	},
 	{
-		"league": "瑞典超级联赛",
+		"league": "荷兰甲组联赛",
 		"source": "extra",
-		"ecid": "7028203",
+		"ecid": "7049340",
+		"num": "",
+		"singleList": [
+			false,
+			false
+		],
+		"strong": "C",
+		"dateTime": "05-28 20:30",
+		"itemList": [
+			{
+				"oddsTitle": "独赢",
+				"oddsItemList": [
+					[
+						"3.35"
+					],
+					[
+						"1.97"
+					],
+					[
+						"4.10"
+					]
+				]
+			}
+		],
+		"teamList": [
+			"坎布尔",
+			"瓦尔维克"
+		]
+	},
+	{
+		"league": "荷兰甲组联赛",
+		"source": "extra",
+		"ecid": "7049349",
 		"num": "",
 		"singleList": [
 			false,
 			false
 		],
 		"strong": "H",
-		"dateTime": "05-21 21:00",
+		"dateTime": "05-28 20:30",
 		"itemList": [
 			{
 				"oddsTitle": "独赢",
 				"oddsItemList": [
 					[
-						"1.55"
+						"1.73"
 					],
 					[
-						"5.30"
+						"4.05"
 					],
 					[
-						"4.00"
-					]
-				]
-			},
-			{
-				"oddsTitle": "让球",
-				"oddsItemList": [
-					[
-						"-1",
-						"2.060"
-					],
-					[
-						"+1",
-						"1.840"
-					]
-				]
-			},
-			{
-				"oddsTitle": "得分",
-				"oddsItemList": [
-					[
-						"-2.5",
-						"2.030"
-					],
-					[
-						"+2.5",
-						"1.840"
-					]
-				]
-			},
-			{
-				"oddsTitle": "让球",
-				"oddsItemList": [
-					[
-						"-0.5/1",
-						"1.770"
-					],
-					[
-						"+0.5/1",
-						"2.140"
-					]
-				]
-			},
-			{
-				"oddsTitle": "得分",
-				"oddsItemList": [
-					[
-						"-2/2.5",
-						"1.770"
-					],
-					[
-						"+2/2.5",
-						"2.110"
-					]
-				]
-			},
-			{
-				"oddsTitle": "让球",
-				"oddsItemList": [
-					[
-						"-1/1.5",
-						"2.420"
-					],
-					[
-						"+1/1.5",
-						"1.600"
-					]
-				]
-			},
-			{
-				"oddsTitle": "得分",
-				"oddsItemList": [
-					[
-						"-2.5/3",
-						"2.290"
-					],
-					[
-						"+2.5/3",
-						"1.640"
+						"4.45"
 					]
 				]
 			}
 		],
 		"teamList": [
-			"佐加顿斯",
-			"米亚尔比"
+			"沃伦丹",
+			"SBV精英队"
+		]
+	},
+	{
+		"league": "荷兰甲组联赛",
+		"source": "extra",
+		"ecid": "7049359",
+		"num": "",
+		"singleList": [
+			false,
+			false
+		],
+		"strong": "C",
+		"dateTime": "05-28 20:30",
+		"itemList": [
+			{
+				"oddsTitle": "独赢",
+				"oddsItemList": [
+					[
+						"4.00"
+					],
+					[
+						"1.75"
+					],
+					[
+						"4.35"
+					]
+				]
+			}
+		],
+		"teamList": [
+			"特温特",
+			"阿贾克斯"
+		]
+	},
+	{
+		"league": "荷兰甲组联赛",
+		"source": "extra",
+		"ecid": "7049369",
+		"num": "",
+		"singleList": [
+			false,
+			false
+		],
+		"strong": "H",
+		"dateTime": "05-28 20:30",
+		"itemList": [
+			{
+				"oddsTitle": "独赢",
+				"oddsItemList": [
+					[
+						"1.53"
+					],
+					[
+						"5.40"
+					],
+					[
+						"4.70"
+					]
+				]
+			}
+		],
+		"teamList": [
+			"乌德勒支",
+			"埃门"
+		]
+	},
+	{
+		"league": "德国乙组联赛",
+		"source": "extra",
+		"ecid": "7048841",
+		"num": "",
+		"singleList": [
+			false,
+			false
+		],
+		"strong": "C",
+		"dateTime": "05-28 21:30",
+		"itemList": [
+			{
+				"oddsTitle": "独赢",
+				"oddsItemList": [
+					[
+						"5.60"
+					],
+					[
+						"1.52"
+					],
+					[
+						"4.65"
+					]
+				]
+			}
+		],
+		"teamList": [
+			"雷根斯堡",
+			"海登海默"
+		]
+	},
+	{
+		"league": "德国乙组联赛",
+		"source": "extra",
+		"ecid": "7048827",
+		"num": "",
+		"singleList": [
+			false,
+			false
+		],
+		"strong": "C",
+		"dateTime": "05-28 21:30",
+		"itemList": [
+			{
+				"oddsTitle": "独赢",
+				"oddsItemList": [
+					[
+						"7.10"
+					],
+					[
+						"1.36"
+					],
+					[
+						"5.70"
+					]
+				]
+			}
+		],
+		"teamList": [
+			"桑德豪森",
+			"汉堡"
+		]
+	},
+	{
+		"league": "德国乙组联赛",
+		"source": "extra",
+		"ecid": "7048784",
+		"num": "",
+		"singleList": [
+			false,
+			false
+		],
+		"strong": "C",
+		"dateTime": "05-28 21:30",
+		"itemList": [
+			{
+				"oddsTitle": "独赢",
+				"oddsItemList": [
+					[
+						"2.63"
+					],
+					[
+						"2.46"
+					],
+					[
+						"3.80"
+					]
+				]
+			}
+		],
+		"teamList": [
+			"菲尔特",
+			"达姆斯塔特"
+		]
+	},
+	{
+		"league": "德国乙组联赛",
+		"source": "extra",
+		"ecid": "7048798",
+		"num": "",
+		"singleList": [
+			false,
+			false
+		],
+		"strong": "H",
+		"dateTime": "05-28 21:30",
+		"itemList": [
+			{
+				"oddsTitle": "独赢",
+				"oddsItemList": [
+					[
+						"1.97"
+					],
+					[
+						"3.35"
+					],
+					[
+						"4.05"
+					]
+				]
+			}
+		],
+		"teamList": [
+			"帕德博恩",
+			"纽伦堡"
+		]
+	},
+	{
+		"league": "德国乙组联赛",
+		"source": "extra",
+		"ecid": "7048852",
+		"num": "",
+		"singleList": [
+			false,
+			false
+		],
+		"strong": "C",
+		"dateTime": "05-28 21:30",
+		"itemList": [
+			{
+				"oddsTitle": "独赢",
+				"oddsItemList": [
+					[
+						"3.10"
+					],
+					[
+						"2.04"
+					],
+					[
+						"4.20"
+					]
+				]
+			}
+		],
+		"teamList": [
+			"马格德堡",
+			"比勒费尔德"
+		]
+	},
+	{
+		"league": "德国乙组联赛",
+		"source": "extra",
+		"ecid": "7048819",
+		"num": "",
+		"singleList": [
+			false,
+			false
+		],
+		"strong": "H",
+		"dateTime": "05-28 21:30",
+		"itemList": [
+			{
+				"oddsTitle": "独赢",
+				"oddsItemList": [
+					[
+						"2.54"
+					],
+					[
+						"2.55"
+					],
+					[
+						"3.75"
+					]
+				]
+			}
+		],
+		"teamList": [
+			"汉莎罗斯托克",
+			"布轮斯维克"
+		]
+	},
+	{
+		"league": "德国乙组联赛",
+		"source": "extra",
+		"ecid": "7048786",
+		"num": "",
+		"singleList": [
+			false,
+			false
+		],
+		"strong": "H",
+		"dateTime": "05-28 21:30",
+		"itemList": [
+			{
+				"oddsTitle": "独赢",
+				"oddsItemList": [
+					[
+						"1.84"
+					],
+					[
+						"3.65"
+					],
+					[
+						"4.30"
+					]
+				]
+			}
+		],
+		"teamList": [
+			"圣保利",
+			"卡尔斯鲁厄"
+		]
+	},
+	{
+		"league": "德国乙组联赛",
+		"source": "extra",
+		"ecid": "7048806",
+		"num": "",
+		"singleList": [
+			false,
+			false
+		],
+		"strong": "H",
+		"dateTime": "05-28 21:30",
+		"itemList": [
+			{
+				"oddsTitle": "独赢",
+				"oddsItemList": [
+					[
+						"2.18"
+					],
+					[
+						"2.82"
+					],
+					[
+						"4.25"
+					]
+				]
+			}
+		],
+		"teamList": [
+			"汉诺威96",
+			"荷尔斯泰因"
+		]
+	},
+	{
+		"league": "德国乙组联赛",
+		"source": "extra",
+		"ecid": "7048862",
+		"num": "",
+		"singleList": [
+			false,
+			false
+		],
+		"strong": "H",
+		"dateTime": "05-28 21:30",
+		"itemList": [
+			{
+				"oddsTitle": "独赢",
+				"oddsItemList": [
+					[
+						"2.48"
+					],
+					[
+						"2.56"
+					],
+					[
+						"3.90"
+					]
+				]
+			}
+		],
+		"teamList": [
+			"凯泽斯劳滕",
+			"杜塞尔多夫"
 		]
 	},
 	{
 		"league": "英格兰超级联赛",
 		"source": "extra",
-		"ecid": "7024910",
-		"num": "",
-		"singleList": [
-			false,
-			false
-		],
-		"strong": "H",
-		"dateTime": "05-21 23:00",
-		"itemList": [
-			{
-				"oddsTitle": "独赢",
-				"oddsItemList": [
-					[
-						"1.36"
-					],
-					[
-						"8.50"
-					],
-					[
-						"5.30"
-					]
-				]
-			},
-			{
-				"oddsTitle": "让球",
-				"oddsItemList": [
-					[
-						"-1.5",
-						"2.060"
-					],
-					[
-						"+1.5",
-						"1.840"
-					]
-				]
-			},
-			{
-				"oddsTitle": "得分",
-				"oddsItemList": [
-					[
-						"-3",
-						"2.070"
-					],
-					[
-						"+3",
-						"1.830"
-					]
-				]
-			},
-			{
-				"oddsTitle": "让球",
-				"oddsItemList": [
-					[
-						"-1/1.5",
-						"1.810"
-					],
-					[
-						"+1/1.5",
-						"2.090"
-					]
-				]
-			},
-			{
-				"oddsTitle": "得分",
-				"oddsItemList": [
-					[
-						"-2.5/3",
-						"1.800"
-					],
-					[
-						"+2.5/3",
-						"2.110"
-					]
-				]
-			},
-			{
-				"oddsTitle": "让球",
-				"oddsItemList": [
-					[
-						"-1.5/2",
-						"2.350"
-					],
-					[
-						"+1.5/2",
-						"1.640"
-					]
-				]
-			},
-			{
-				"oddsTitle": "得分",
-				"oddsItemList": [
-					[
-						"-2.5",
-						"1.640"
-					],
-					[
-						"+2.5",
-						"2.350"
-					]
-				]
-			},
-			{
-				"oddsTitle": "让球",
-				"oddsItemList": [
-					[
-						"-1",
-						"1.550"
-					],
-					[
-						"+1",
-						"2.560"
-					]
-				]
-			},
-			{
-				"oddsTitle": "得分",
-				"oddsItemList": [
-					[
-						"-3/3.5",
-						"2.360"
-					],
-					[
-						"+3/3.5",
-						"1.630"
-					]
-				]
-			}
-		],
-		"teamList": [
-			"曼城",
-			"切尔西"
-		]
-	},
-	{
-		"league": "法国甲组联赛",
-		"source": "extra",
-		"ecid": "7025971",
+		"ecid": "7048432",
 		"num": "",
 		"singleList": [
 			false,
 			false
 		],
 		"strong": "C",
-		"dateTime": "05-21 23:05",
-		"itemList": [
-			{
-				"oddsTitle": "独赢",
-				"oddsItemList": [
-					[
-						"4.90"
-					],
-					[
-						"1.65"
-					],
-					[
-						"4.15"
-					]
-				]
-			},
-			{
-				"oddsTitle": "让球",
-				"oddsItemList": [
-					[
-						"+0.5/1",
-						"2.070"
-					],
-					[
-						"-0.5/1",
-						"1.830"
-					]
-				]
-			},
-			{
-				"oddsTitle": "得分",
-				"oddsItemList": [
-					[
-						"-2.5/3",
-						"1.940"
-					],
-					[
-						"+2.5/3",
-						"1.940"
-					]
-				]
-			},
-			{
-				"oddsTitle": "让球",
-				"oddsItemList": [
-					[
-						"+1",
-						"1.780"
-					],
-					[
-						"-1",
-						"2.130"
-					]
-				]
-			},
-			{
-				"oddsTitle": "得分",
-				"oddsItemList": [
-					[
-						"-2.5",
-						"1.740"
-					],
-					[
-						"+2.5",
-						"2.160"
-					]
-				]
-			},
-			{
-				"oddsTitle": "让球",
-				"oddsItemList": [
-					[
-						"+0.5",
-						"2.330"
-					],
-					[
-						"-0.5",
-						"1.650"
-					]
-				]
-			},
-			{
-				"oddsTitle": "得分",
-				"oddsItemList": [
-					[
-						"-3",
-						"2.250"
-					],
-					[
-						"+3",
-						"1.680"
-					]
-				]
-			}
-		],
-		"teamList": [
-			"洛里昂",
-			"朗斯"
-		]
-	},
-	{
-		"league": "德国甲组联赛",
-		"source": "extra",
-		"ecid": "7025091",
-		"num": "",
-		"singleList": [
-			false,
-			false
-		],
-		"strong": "C",
-		"dateTime": "05-21 23:30",
+		"dateTime": "05-28 23:30",
 		"itemList": [
 			{
 				"oddsTitle": "独赢",
@@ -2892,962 +2866,254 @@
 						"6.30"
 					],
 					[
-						"1.42"
+						"1.43"
 					],
 					[
-						"5.50"
-					]
-				]
-			},
-			{
-				"oddsTitle": "让球",
-				"oddsItemList": [
-					[
-						"+1/1.5",
-						"2.060"
-					],
-					[
-						"-1/1.5",
-						"1.840"
-					]
-				]
-			},
-			{
-				"oddsTitle": "得分",
-				"oddsItemList": [
-					[
-						"-3.5",
-						"1.880"
-					],
-					[
-						"+3.5",
-						"2.020"
-					]
-				]
-			},
-			{
-				"oddsTitle": "让球",
-				"oddsItemList": [
-					[
-						"+1.5",
-						"1.800"
-					],
-					[
-						"-1.5",
-						"2.110"
-					]
-				]
-			},
-			{
-				"oddsTitle": "得分",
-				"oddsItemList": [
-					[
-						"-3.5/4",
-						"2.130"
-					],
-					[
-						"+3.5/4",
-						"1.780"
-					]
-				]
-			},
-			{
-				"oddsTitle": "让球",
-				"oddsItemList": [
-					[
-						"+1",
-						"2.380"
-					],
-					[
-						"-1",
-						"1.620"
-					]
-				]
-			},
-			{
-				"oddsTitle": "得分",
-				"oddsItemList": [
-					[
-						"-3/3.5",
-						"1.680"
-					],
-					[
-						"+3/3.5",
-						"2.280"
-					]
-				]
-			},
-			{
-				"oddsTitle": "让球",
-				"oddsItemList": [
-					[
-						"+1.5/2",
-						"1.620"
-					],
-					[
-						"-1.5/2",
-						"2.380"
-					]
-				]
-			},
-			{
-				"oddsTitle": "得分",
-				"oddsItemList": [
-					[
-						"-4",
-						"2.470"
-					],
-					[
-						"+4",
-						"1.580"
+						"5.40"
 					]
 				]
 			}
 		],
 		"teamList": [
-			"奥斯堡",
-			"多特蒙德"
+			"南安普敦",
+			"利物浦"
 		]
 	},
 	{
-		"league": "瑞典超级联赛",
+		"league": "英格兰超级联赛",
 		"source": "extra",
-		"ecid": "7028282",
-		"num": "",
-		"singleList": [
-			false,
-			false
-		],
-		"strong": "H",
-		"dateTime": "05-21 23:30",
-		"itemList": [
-			{
-				"oddsTitle": "独赢",
-				"oddsItemList": [
-					[
-						"1.89"
-					],
-					[
-						"3.70"
-					],
-					[
-						"3.55"
-					]
-				]
-			},
-			{
-				"oddsTitle": "让球",
-				"oddsItemList": [
-					[
-						"-0.5",
-						"1.890"
-					],
-					[
-						"+0.5",
-						"2.000"
-					]
-				]
-			},
-			{
-				"oddsTitle": "得分",
-				"oddsItemList": [
-					[
-						"-2.5",
-						"1.890"
-					],
-					[
-						"+2.5",
-						"1.980"
-					]
-				]
-			},
-			{
-				"oddsTitle": "让球",
-				"oddsItemList": [
-					[
-						"-0.5/1",
-						"2.170"
-					],
-					[
-						"+0.5/1",
-						"1.750"
-					]
-				]
-			},
-			{
-				"oddsTitle": "得分",
-				"oddsItemList": [
-					[
-						"-2.5/3",
-						"2.110"
-					],
-					[
-						"+2.5/3",
-						"1.770"
-					]
-				]
-			}
-		],
-		"teamList": [
-			"天狼星",
-			"哈尔姆斯塔德"
-		]
-	},
-	{
-		"league": "瑞典超级联赛",
-		"source": "extra",
-		"ecid": "7028273",
+		"ecid": "7048438",
 		"num": "",
 		"singleList": [
 			false,
 			false
 		],
 		"strong": "C",
-		"dateTime": "05-21 23:30",
+		"dateTime": "05-28 23:30",
 		"itemList": [
 			{
 				"oddsTitle": "独赢",
 				"oddsItemList": [
 					[
-						"2.78"
+						"3.75"
+					],
+					[
+						"1.87"
+					],
+					[
+						"4.15"
+					]
+				]
+			}
+		],
+		"teamList": [
+			"布伦特福德",
+			"曼城"
+		]
+	},
+	{
+		"league": "英格兰超级联赛",
+		"source": "extra",
+		"ecid": "7048445",
+		"num": "",
+		"singleList": [
+			false,
+			false
+		],
+		"strong": "H",
+		"dateTime": "05-28 23:30",
+		"itemList": [
+			{
+				"oddsTitle": "独赢",
+				"oddsItemList": [
+					[
+						"1.38"
+					],
+					[
+						"7.60"
+					],
+					[
+						"5.40"
+					]
+				]
+			}
+		],
+		"teamList": [
+			"阿森纳",
+			"狼队"
+		]
+	},
+	{
+		"league": "英格兰超级联赛",
+		"source": "extra",
+		"ecid": "7048459",
+		"num": "",
+		"singleList": [
+			false,
+			false
+		],
+		"strong": "H",
+		"dateTime": "05-28 23:30",
+		"itemList": [
+			{
+				"oddsTitle": "独赢",
+				"oddsItemList": [
+					[
+						"1.55"
+					],
+					[
+						"5.40"
+					],
+					[
+						"4.70"
+					]
+				]
+			}
+		],
+		"teamList": [
+			"曼联",
+			"富勒姆"
+		]
+	},
+	{
+		"league": "英格兰超级联赛",
+		"source": "extra",
+		"ecid": "7048467",
+		"num": "",
+		"singleList": [
+			false,
+			false
+		],
+		"strong": "C",
+		"dateTime": "05-28 23:30",
+		"itemList": [
+			{
+				"oddsTitle": "独赢",
+				"oddsItemList": [
+					[
+						"2.86"
 					],
 					[
 						"2.36"
 					],
 					[
-						"3.35"
-					]
-				]
-			},
-			{
-				"oddsTitle": "让球",
-				"oddsItemList": [
-					[
-						"+0/0.5",
-						"1.810"
-					],
-					[
-						"-0/0.5",
-						"2.090"
-					]
-				]
-			},
-			{
-				"oddsTitle": "得分",
-				"oddsItemList": [
-					[
-						"-2.5",
-						"2.000"
-					],
-					[
-						"+2.5",
-						"1.870"
-					]
-				]
-			},
-			{
-				"oddsTitle": "让球",
-				"oddsItemList": [
-					[
-						"+0",
-						"2.160"
-					],
-					[
-						"-0",
-						"1.760"
-					]
-				]
-			},
-			{
-				"oddsTitle": "得分",
-				"oddsItemList": [
-					[
-						"-2/2.5",
-						"1.720"
-					],
-					[
-						"+2/2.5",
-						"2.170"
-					]
-				]
-			}
-		],
-		"teamList": [
-			"IFK哥德堡",
-			"哈马比"
-		]
-	},
-	{
-		"league": "俄罗斯超级联赛",
-		"source": "extra",
-		"ecid": "7028292",
-		"num": "",
-		"singleList": [
-			false,
-			false
-		],
-		"strong": "H",
-		"dateTime": "05-22 00:00",
-		"itemList": [
-			{
-				"oddsTitle": "独赢",
-				"oddsItemList": [
-					[
-						"1.94"
-					],
-					[
-						"3.35"
-					],
-					[
 						"3.75"
 					]
 				]
-			},
-			{
-				"oddsTitle": "让球",
-				"oddsItemList": [
-					[
-						"-0.5",
-						"1.940"
-					],
-					[
-						"+0.5",
-						"1.950"
-					]
-				]
-			},
-			{
-				"oddsTitle": "得分",
-				"oddsItemList": [
-					[
-						"-2.5/3",
-						"1.880"
-					],
-					[
-						"+2.5/3",
-						"1.990"
-					]
-				]
-			},
-			{
-				"oddsTitle": "让球",
-				"oddsItemList": [
-					[
-						"-0.5/1",
-						"2.200"
-					],
-					[
-						"+0.5/1",
-						"1.730"
-					]
-				]
-			},
-			{
-				"oddsTitle": "得分",
-				"oddsItemList": [
-					[
-						"-3",
-						"2.140"
-					],
-					[
-						"+3",
-						"1.740"
-					]
-				]
 			}
 		],
 		"teamList": [
-			"克拉斯诺达尔",
-			"罗斯托夫"
+			"切尔西",
+			"纽卡斯尔"
 		]
 	},
 	{
-		"league": "葡萄牙超级联赛",
+		"league": "英格兰超级联赛",
 		"source": "extra",
-		"ecid": "7026410",
+		"ecid": "7048478",
 		"num": "",
 		"singleList": [
 			false,
 			false
 		],
 		"strong": "H",
-		"dateTime": "05-22 01:00",
+		"dateTime": "05-28 23:30",
 		"itemList": [
 			{
 				"oddsTitle": "独赢",
 				"oddsItemList": [
 					[
-						"2.40"
+						"2.04"
 					],
 					[
-						"2.85"
+						"3.40"
 					],
 					[
-						"3.20"
-					]
-				]
-			},
-			{
-				"oddsTitle": "让球",
-				"oddsItemList": [
-					[
-						"-0/0.5",
-						"2.120"
-					],
-					[
-						"+0/0.5",
-						"1.790"
-					]
-				]
-			},
-			{
-				"oddsTitle": "得分",
-				"oddsItemList": [
-					[
-						"-2/2.5",
-						"1.820"
-					],
-					[
-						"+2/2.5",
-						"2.050"
-					]
-				]
-			},
-			{
-				"oddsTitle": "让球",
-				"oddsItemList": [
-					[
-						"-0",
-						"1.760"
-					],
-					[
-						"+0",
-						"2.160"
-					]
-				]
-			},
-			{
-				"oddsTitle": "得分",
-				"oddsItemList": [
-					[
-						"-2.5",
-						"2.060"
-					],
-					[
-						"+2.5",
-						"1.810"
+						"3.90"
 					]
 				]
 			}
 		],
 		"teamList": [
-			"费雷拉",
-			"里奥阿维"
+			"阿斯顿维拉",
+			"布莱顿"
 		]
 	},
 	{
-		"league": "葡萄牙超级联赛",
+		"league": "英格兰超级联赛",
 		"source": "extra",
-		"ecid": "7026392",
+		"ecid": "7048489",
 		"num": "",
 		"singleList": [
 			false,
 			false
 		],
 		"strong": "H",
-		"dateTime": "05-22 01:00",
+		"dateTime": "05-28 23:30",
 		"itemList": [
 			{
 				"oddsTitle": "独赢",
 				"oddsItemList": [
 					[
-						"2.25"
+						"1.69"
 					],
 					[
-						"3.10"
+						"4.65"
 					],
 					[
-						"3.15"
-					]
-				]
-			},
-			{
-				"oddsTitle": "让球",
-				"oddsItemList": [
-					[
-						"-0/0.5",
-						"1.930"
-					],
-					[
-						"+0/0.5",
-						"1.960"
-					]
-				]
-			},
-			{
-				"oddsTitle": "得分",
-				"oddsItemList": [
-					[
-						"-2/2.5",
-						"1.970"
-					],
-					[
-						"+2/2.5",
-						"1.900"
-					]
-				]
-			},
-			{
-				"oddsTitle": "让球",
-				"oddsItemList": [
-					[
-						"-0.5",
-						"2.250"
-					],
-					[
-						"+0.5",
-						"1.700"
-					]
-				]
-			},
-			{
-				"oddsTitle": "得分",
-				"oddsItemList": [
-					[
-						"-2.5",
-						"2.210"
-					],
-					[
-						"+2.5",
-						"1.690"
+						"4.30"
 					]
 				]
 			}
 		],
 		"teamList": [
-			"卡莎皮亚",
-			"伊斯托里尔"
+			"水晶宫",
+			"诺丁汉森林"
 		]
 	},
 	{
-		"league": "德国甲组联赛",
+		"league": "英格兰超级联赛",
 		"source": "extra",
-		"ecid": "7025093",
+		"ecid": "7048500",
 		"num": "",
 		"singleList": [
 			false,
 			false
 		],
 		"strong": "H",
-		"dateTime": "05-22 01:30",
+		"dateTime": "05-28 23:30",
 		"itemList": [
 			{
 				"oddsTitle": "独赢",
 				"oddsItemList": [
 					[
-						"1.32"
+						"1.49"
 					],
 					[
-						"8.30"
+						"6.30"
 					],
 					[
-						"6.00"
-					]
-				]
-			},
-			{
-				"oddsTitle": "让球",
-				"oddsItemList": [
-					[
-						"-1.5",
-						"1.850"
-					],
-					[
-						"+1.5",
-						"2.050"
-					]
-				]
-			},
-			{
-				"oddsTitle": "得分",
-				"oddsItemList": [
-					[
-						"-3.5",
-						"2.040"
-					],
-					[
-						"+3.5",
-						"1.860"
-					]
-				]
-			},
-			{
-				"oddsTitle": "让球",
-				"oddsItemList": [
-					[
-						"-1.5/2",
-						"2.080"
-					],
-					[
-						"+1.5/2",
-						"1.820"
-					]
-				]
-			},
-			{
-				"oddsTitle": "得分",
-				"oddsItemList": [
-					[
-						"-3/3.5",
-						"1.800"
-					],
-					[
-						"+3/3.5",
-						"2.110"
-					]
-				]
-			},
-			{
-				"oddsTitle": "让球",
-				"oddsItemList": [
-					[
-						"-1/1.5",
-						"1.650"
-					],
-					[
-						"+1/1.5",
-						"2.330"
-					]
-				]
-			},
-			{
-				"oddsTitle": "得分",
-				"oddsItemList": [
-					[
-						"-3.5/4",
-						"2.280"
-					],
-					[
-						"+3.5/4",
-						"1.680"
-					]
-				]
-			},
-			{
-				"oddsTitle": "让球",
-				"oddsItemList": [
-					[
-						"-2",
-						"2.380"
-					],
-					[
-						"+2",
-						"1.620"
-					]
-				]
-			},
-			{
-				"oddsTitle": "得分",
-				"oddsItemList": [
-					[
-						"-3",
-						"1.580"
-					],
-					[
-						"+3",
-						"2.470"
+						"4.75"
 					]
 				]
 			}
 		],
 		"teamList": [
-			"勒沃库森",
-			"门兴格拉德巴赫"
+			"埃弗顿",
+			"伯恩茅斯"
 		]
 	},
 	{
-		"league": "意大利甲组联赛",
+		"league": "英格兰超级联赛",
 		"source": "extra",
-		"ecid": "7025296",
+		"ecid": "7048512",
 		"num": "",
 		"singleList": [
 			false,
 			false
 		],
 		"strong": "C",
-		"dateTime": "05-22 02:45",
-		"itemList": [
-			{
-				"oddsTitle": "独赢",
-				"oddsItemList": [
-					[
-						"4.05"
-					],
-					[
-						"1.98"
-					],
-					[
-						"3.45"
-					]
-				]
-			},
-			{
-				"oddsTitle": "让球",
-				"oddsItemList": [
-					[
-						"+0.5",
-						"1.910"
-					],
-					[
-						"-0.5",
-						"1.980"
-					]
-				]
-			},
-			{
-				"oddsTitle": "得分",
-				"oddsItemList": [
-					[
-						"-2.5",
-						"2.040"
-					],
-					[
-						"+2.5",
-						"1.860"
-					]
-				]
-			},
-			{
-				"oddsTitle": "让球",
-				"oddsItemList": [
-					[
-						"+0/0.5",
-						"2.210"
-					],
-					[
-						"-0/0.5",
-						"1.720"
-					]
-				]
-			},
-			{
-				"oddsTitle": "得分",
-				"oddsItemList": [
-					[
-						"-2/2.5",
-						"1.780"
-					],
-					[
-						"+2/2.5",
-						"2.130"
-					]
-				]
-			},
-			{
-				"oddsTitle": "让球",
-				"oddsItemList": [
-					[
-						"+0.5/1",
-						"1.680"
-					],
-					[
-						"-0.5/1",
-						"2.280"
-					]
-				]
-			},
-			{
-				"oddsTitle": "得分",
-				"oddsItemList": [
-					[
-						"-2.5/3",
-						"2.330"
-					],
-					[
-						"+2.5/3",
-						"1.650"
-					]
-				]
-			},
-			{
-				"oddsTitle": "让球",
-				"oddsItemList": [
-					[
-						"+0",
-						"2.850"
-					],
-					[
-						"-0",
-						"1.450"
-					]
-				]
-			},
-			{
-				"oddsTitle": "得分",
-				"oddsItemList": [
-					[
-						"-2",
-						"1.520"
-					],
-					[
-						"+2",
-						"2.610"
-					]
-				]
-			}
-		],
-		"teamList": [
-			"乌甸尼斯",
-			"拉齐奥"
-		]
-	},
-	{
-		"league": "西班牙甲组联赛",
-		"source": "extra",
-		"ecid": "7025208",
-		"num": "",
-		"singleList": [
-			false,
-			false
-		],
-		"strong": "H",
-		"dateTime": "05-22 03:00",
-		"itemList": [
-			{
-				"oddsTitle": "独赢",
-				"oddsItemList": [
-					[
-						"2.03"
-					],
-					[
-						"3.75"
-					],
-					[
-						"3.55"
-					]
-				]
-			},
-			{
-				"oddsTitle": "让球",
-				"oddsItemList": [
-					[
-						"-0.5",
-						"2.030"
-					],
-					[
-						"+0.5",
-						"1.870"
-					]
-				]
-			},
-			{
-				"oddsTitle": "得分",
-				"oddsItemList": [
-					[
-						"-2.5",
-						"1.950"
-					],
-					[
-						"+2.5",
-						"1.940"
-					]
-				]
-			},
-			{
-				"oddsTitle": "让球",
-				"oddsItemList": [
-					[
-						"-0/0.5",
-						"1.750"
-					],
-					[
-						"+0/0.5",
-						"2.170"
-					]
-				]
-			},
-			{
-				"oddsTitle": "得分",
-				"oddsItemList": [
-					[
-						"-2.5/3",
-						"2.190"
-					],
-					[
-						"+2.5/3",
-						"1.740"
-					]
-				]
-			},
-			{
-				"oddsTitle": "让球",
-				"oddsItemList": [
-					[
-						"-0.5/1",
-						"2.360"
-					],
-					[
-						"+0.5/1",
-						"1.630"
-					]
-				]
-			},
-			{
-				"oddsTitle": "得分",
-				"oddsItemList": [
-					[
-						"-2/2.5",
-						"1.720"
-					],
-					[
-						"+2/2.5",
-						"2.210"
-					]
-				]
-			},
-			{
-				"oddsTitle": "让球",
-				"oddsItemList": [
-					[
-						"-0",
-						"1.500"
-					],
-					[
-						"+0",
-						"2.690"
-					]
-				]
-			},
-			{
-				"oddsTitle": "得分",
-				"oddsItemList": [
-					[
-						"-3",
-						"2.610"
-					],
-					[
-						"+3",
-						"1.520"
-					]
-				]
-			}
-		],
-		"teamList": [
-			"塞维利亚",
-			"皇家贝迪斯"
-		]
-	},
-	{
-		"league": "葡萄牙超级联赛",
-		"source": "extra",
-		"ecid": "7026416",
-		"num": "",
-		"singleList": [
-			false,
-			false
-		],
-		"strong": "C",
-		"dateTime": "05-22 03:30",
+		"dateTime": "05-28 23:30",
 		"itemList": [
 			{
 				"oddsTitle": "独赢",
@@ -3859,312 +3125,398 @@
 						"2.39"
 					],
 					[
-						"3.45"
-					]
-				]
-			},
-			{
-				"oddsTitle": "让球",
-				"oddsItemList": [
-					[
-						"+0",
-						"2.080"
-					],
-					[
-						"-0",
-						"1.820"
-					]
-				]
-			},
-			{
-				"oddsTitle": "得分",
-				"oddsItemList": [
-					[
-						"-2.5",
-						"1.940"
-					],
-					[
-						"+2.5",
-						"1.930"
-					]
-				]
-			},
-			{
-				"oddsTitle": "让球",
-				"oddsItemList": [
-					[
-						"+0/0.5",
-						"1.770"
-					],
-					[
-						"-0/0.5",
-						"2.140"
-					]
-				]
-			},
-			{
-				"oddsTitle": "得分",
-				"oddsItemList": [
-					[
-						"-2.5/3",
-						"2.190"
-					],
-					[
-						"+2.5/3",
-						"1.710"
+						"4.00"
 					]
 				]
 			}
 		],
 		"teamList": [
-			"里斯本竞技",
-			"本菲卡"
-		]
-	},
-	{
-		"league": "瑞典超级联赛",
-		"source": "extra",
-		"ecid": "7030854",
-		"num": "",
-		"singleList": [
-			false,
-			false
-		],
-		"strong": "C",
-		"dateTime": "05-23 01:10",
-		"itemList": [
-			{
-				"oddsTitle": "独赢",
-				"oddsItemList": [
-					[
-						"2.81"
-					],
-					[
-						"2.23"
-					],
-					[
-						"3.60"
-					]
-				]
-			},
-			{
-				"oddsTitle": "让球",
-				"oddsItemList": [
-					[
-						"+0/0.5",
-						"1.890"
-					],
-					[
-						"-0/0.5",
-						"1.990"
-					]
-				]
-			},
-			{
-				"oddsTitle": "得分",
-				"oddsItemList": [
-					[
-						"-2.5/3",
-						"1.990"
-					],
-					[
-						"+2.5/3",
-						"1.880"
-					]
-				]
-			},
-			{
-				"oddsTitle": "让球",
-				"oddsItemList": [
-					[
-						"+0",
-						"2.230"
-					],
-					[
-						"-0",
-						"1.690"
-					]
-				]
-			},
-			{
-				"oddsTitle": "得分",
-				"oddsItemList": [
-					[
-						"-2.5",
-						"1.770"
-					],
-					[
-						"+2.5",
-						"2.100"
-					]
-				]
-			},
-			{
-				"oddsTitle": "让球",
-				"oddsItemList": [
-					[
-						"+0.5",
-						"1.690"
-					],
-					[
-						"-0.5",
-						"2.230"
-					]
-				]
-			},
-			{
-				"oddsTitle": "得分",
-				"oddsItemList": [
-					[
-						"-3",
-						"2.290"
-					],
-					[
-						"+3",
-						"1.640"
-					]
-				]
-			}
-		],
-		"teamList": [
-			"诺科平",
-			"埃尔夫斯堡"
+			"利兹联",
+			"托特纳姆热刺"
 		]
 	},
 	{
 		"league": "英格兰超级联赛",
 		"source": "extra",
-		"ecid": "7024919",
+		"ecid": "7048522",
 		"num": "",
 		"singleList": [
 			false,
 			false
 		],
 		"strong": "H",
-		"dateTime": "05-23 03:00",
+		"dateTime": "05-28 23:30",
 		"itemList": [
 			{
 				"oddsTitle": "独赢",
 				"oddsItemList": [
 					[
-						"1.38"
+						"1.97"
 					],
 					[
-						"7.40"
+						"3.50"
 					],
 					[
-						"5.50"
-					]
-				]
-			},
-			{
-				"oddsTitle": "让球",
-				"oddsItemList": [
-					[
-						"-1.5",
-						"2.010"
-					],
-					[
-						"+1.5",
-						"1.870"
-					]
-				]
-			},
-			{
-				"oddsTitle": "得分",
-				"oddsItemList": [
-					[
-						"-3/3.5",
-						"2.010"
-					],
-					[
-						"+3/3.5",
-						"1.870"
-					]
-				]
-			},
-			{
-				"oddsTitle": "让球",
-				"oddsItemList": [
-					[
-						"-1/1.5",
-						"1.790"
-					],
-					[
-						"+1/1.5",
-						"2.090"
-					]
-				]
-			},
-			{
-				"oddsTitle": "得分",
-				"oddsItemList": [
-					[
-						"-3",
-						"1.770"
-					],
-					[
-						"+3",
-						"2.120"
-					]
-				]
-			},
-			{
-				"oddsTitle": "让球",
-				"oddsItemList": [
-					[
-						"-1.5/2",
-						"2.250"
-					],
-					[
-						"+1.5/2",
-						"1.680"
-					]
-				]
-			},
-			{
-				"oddsTitle": "得分",
-				"oddsItemList": [
-					[
-						"-3.5",
-						"2.210"
-					],
-					[
-						"+3.5",
-						"1.700"
-					]
-				]
-			},
-			{
-				"oddsTitle": "让球",
-				"oddsItemList": [
-					[
-						"-1",
-						"1.560"
-					],
-					[
-						"+1",
-						"2.470"
-					]
-				]
-			},
-			{
-				"oddsTitle": "得分",
-				"oddsItemList": [
-					[
-						"-2.5/3",
-						"1.600"
-					],
-					[
-						"+2.5/3",
-						"2.380"
+						"4.05"
 					]
 				]
 			}
 		],
 		"teamList": [
-			"纽卡斯尔",
-			"莱斯特城"
+			"莱斯特城",
+			"西汉姆联"
+		]
+	},
+	{
+		"league": "西班牙甲组联赛",
+		"source": "extra",
+		"ecid": "7073512",
+		"num": "",
+		"singleList": [
+			false,
+			false
+		],
+		"strong": "C",
+		"dateTime": "05-28 01:00",
+		"itemList": [
+			{
+				"oddsTitle": "独赢",
+				"oddsItemList": [
+					[
+						"2.83"
+					],
+					[
+						"2.46"
+					],
+					[
+						"3.50"
+					]
+				]
+			}
+		],
+		"teamList": [
+			"塞维利亚",
+			"皇家马德里"
+		]
+	},
+	{
+		"league": "西班牙甲组联赛",
+		"source": "extra",
+		"ecid": "7048608",
+		"num": "",
+		"singleList": [
+			false,
+			false
+		],
+		"strong": "H",
+		"dateTime": "05-29 01:00",
+		"itemList": [
+			{
+				"oddsTitle": "独赢",
+				"oddsItemList": [
+					[
+						"1.34"
+					],
+					[
+						"8.50"
+					],
+					[
+						"5.60"
+					]
+				]
+			}
+		],
+		"teamList": [
+			"巴塞罗那",
+			"马略卡"
+		]
+	},
+	{
+		"league": "西班牙甲组联赛",
+		"source": "extra",
+		"ecid": "7048622",
+		"num": "",
+		"singleList": [
+			false,
+			false
+		],
+		"strong": "H",
+		"dateTime": "05-29 01:00",
+		"itemList": [
+			{
+				"oddsTitle": "独赢",
+				"oddsItemList": [
+					[
+						"2.07"
+					],
+					[
+						"3.50"
+					],
+					[
+						"3.70"
+					]
+				]
+			}
+		],
+		"teamList": [
+			"马德里体育会",
+			"皇家苏斯达"
+		]
+	},
+	{
+		"league": "西班牙甲组联赛",
+		"source": "extra",
+		"ecid": "7048638",
+		"num": "",
+		"singleList": [
+			false,
+			false
+		],
+		"strong": "H",
+		"dateTime": "05-29 01:00",
+		"itemList": [
+			{
+				"oddsTitle": "独赢",
+				"oddsItemList": [
+					[
+						"2.13"
+					],
+					[
+						"3.45"
+					],
+					[
+						"3.55"
+					]
+				]
+			}
+		],
+		"teamList": [
+			"华伦西亚",
+			"爱斯宾奴"
+		]
+	},
+	{
+		"league": "西班牙甲组联赛",
+		"source": "extra",
+		"ecid": "7048643",
+		"num": "",
+		"singleList": [
+			false,
+			false
+		],
+		"strong": "H",
+		"dateTime": "05-29 01:00",
+		"itemList": [
+			{
+				"oddsTitle": "独赢",
+				"oddsItemList": [
+					[
+						"1.34"
+					],
+					[
+						"8.70"
+					],
+					[
+						"5.50"
+					]
+				]
+			}
+		],
+		"teamList": [
+			"毕尔巴鄂竞技",
+			"艾尔切"
+		]
+	},
+	{
+		"league": "西班牙甲组联赛",
+		"source": "extra",
+		"ecid": "7048654",
+		"num": "",
+		"singleList": [
+			false,
+			false
+		],
+		"strong": "H",
+		"dateTime": "05-29 01:00",
+		"itemList": [
+			{
+				"oddsTitle": "独赢",
+				"oddsItemList": [
+					[
+						"2.26"
+					],
+					[
+						"3.50"
+					],
+					[
+						"3.20"
+					]
+				]
+			}
+		],
+		"teamList": [
+			"赫塔费",
+			"奥萨苏纳"
+		]
+	},
+	{
+		"league": "西班牙甲组联赛",
+		"source": "extra",
+		"ecid": "7048666",
+		"num": "",
+		"singleList": [
+			false,
+			false
+		],
+		"strong": "H",
+		"dateTime": "05-29 01:00",
+		"itemList": [
+			{
+				"oddsTitle": "独赢",
+				"oddsItemList": [
+					[
+						"2.58"
+					],
+					[
+						"2.85"
+					],
+					[
+						"3.30"
+					]
+				]
+			}
+		],
+		"teamList": [
+			"卡迪斯",
+			"维戈塞尔塔"
+		]
+	},
+	{
+		"league": "西班牙甲组联赛",
+		"source": "extra",
+		"ecid": "7048677",
+		"num": "",
+		"singleList": [
+			false,
+			false
+		],
+		"strong": "C",
+		"dateTime": "05-29 01:00",
+		"itemList": [
+			{
+				"oddsTitle": "独赢",
+				"oddsItemList": [
+					[
+						"2.96"
+					],
+					[
+						"2.25"
+					],
+					[
+						"3.85"
+					]
+				]
+			}
+		],
+		"teamList": [
+			"巴列卡诺",
+			"维拉利尔"
+		]
+	},
+	{
+		"league": "西班牙甲组联赛",
+		"source": "extra",
+		"ecid": "7048696",
+		"num": "",
+		"singleList": [
+			false,
+			false
+		],
+		"strong": "H",
+		"dateTime": "05-29 01:00",
+		"itemList": [
+			{
+				"oddsTitle": "独赢",
+				"oddsItemList": [
+					[
+						"2.25"
+					],
+					[
+						"3.05"
+					],
+					[
+						"3.75"
+					]
+				]
+			}
+		],
+		"teamList": [
+			"阿尔梅里亚",
+			"巴拉多利德"
+		]
+	},
+	{
+		"league": "西班牙甲组联赛",
+		"source": "extra",
+		"ecid": "7048698",
+		"num": "",
+		"singleList": [
+			false,
+			false
+		],
+		"strong": "H",
+		"dateTime": "05-29 01:00",
+		"itemList": [
+			{
+				"oddsTitle": "独赢",
+				"oddsItemList": [
+					[
+						"2.01"
+					],
+					[
+						"3.75"
+					],
+					[
+						"3.60"
+					]
+				]
+			}
+		],
+		"teamList": [
+			"赫罗纳",
+			"皇家贝迪斯"
+		]
+	},
+	{
+		"league": "英格兰甲组联赛-附加赛",
+		"source": "extra",
+		"ecid": "7067541",
+		"num": "",
+		"singleList": [
+			false,
+			false
+		],
+		"strong": "C",
+		"dateTime": "05-29 22:00",
+		"itemList": [
+			{
+				"oddsTitle": "独赢",
+				"oddsItemList": [
+					[
+						"3.25"
+					],
+					[
+						"2.16"
+					],
+					[
+						"3.25"
+					]
+				]
+			}
+		],
+		"teamList": [
+			"巴恩斯利",
+			"谢周三"
 		]
 	}
 ]

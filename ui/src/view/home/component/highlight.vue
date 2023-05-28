@@ -1,6 +1,11 @@
 <template>
-  <div :style="{ background: color }" class="text-white p-1">
-    {{ props.content }}
+  <div>
+    <div  v-if="color" :style="{ background: color }" class="text-white p-1">
+      {{ props.content }}
+    </div>
+    <div v-else class="p-1">
+      {{ props.content }}
+    </div>
   </div>
 </template>
 <script lang="ts" setup>
@@ -30,6 +35,6 @@ const color = computed(() => {
       ')'
     );
   }
-  return colorList[props.index] || 'red';
+  return colorList[props.index] || '';
 });
 </script>
