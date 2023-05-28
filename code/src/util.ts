@@ -125,6 +125,7 @@ export function toData(tiCaiList: TiCaiItem[], extraList: ExtraItem[], _R = 0.12
         }),
       };
     }
+    const oneMinute = 60 * 1000;
     return {
       league: ti.league,
       num: ti.num || '',
@@ -132,7 +133,10 @@ export function toData(tiCaiList: TiCaiItem[], extraList: ExtraItem[], _R = 0.12
       // @ts-ignore
       rate: matchedExtra.rate,
       // 体彩的时间不对，使用extra的时间作为基准
-      dateTime: matchedExtra?.dateTime || '',
+      dateTime:
+        Math.abs(dayjs(matchedExtra.dateTime).valueOf() - dayjs(ti.dateTime).add(24, 'hour').valueOf()) <= 10 * oneMinute
+          ? dayjs(ti.dateTime).add(24, 'hour').format('MM-DD HH:ss')
+          : dayjs(ti.dateTime).format('MM-DD HH:ss'),
       tiCaiTeamList: ti.teamList,
       extraTeamList: matchedExtra?.teamList || ti.teamList,
       tiCaiItemList: ti.itemList,
@@ -373,7 +377,7 @@ type Store = {
   scoreRev: number;
   data: any;
 };
-export async function getStore():Promise<Partial<Store>> {
+export async function getStore(): Promise<Partial<Store>> {
   const initData: Partial<Store> = {
     R: 0.12,
     A: 1,
@@ -387,7 +391,7 @@ export async function getStore():Promise<Partial<Store>> {
       const res = await client.get(`store.json`);
       return JSON.parse(res.content);
     } catch (error) {
-      return initData
+      return initData;
     }
   }
   const path = './data/store.json';
@@ -395,7 +399,7 @@ export async function getStore():Promise<Partial<Store>> {
   if (fs.existsSync(path)) {
     return JSON.parse(fs.readFileSync(path, { encoding: 'utf-8' }));
   }
-  return initData
+  return initData;
 }
 
 export const saveStore = async (s: Partial<Store>) => {
@@ -412,7 +416,6 @@ export const saveStore = async (s: Partial<Store>) => {
   } catch (error) {}
   return tStore;
 };
-
 
 export const getLogHistory = () => {
   const path = './data/log.json';
