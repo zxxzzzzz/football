@@ -132,6 +132,8 @@ export function toData(tiCaiList: TiCaiItem[], extraList: ExtraItem[], _R = 0.12
       singleList: ti.singleList,
       // @ts-ignore
       rate: matchedExtra.rate,
+      tiCaiDateTime: ti.dateTime,
+      extraDateTime: matchedExtra.dateTime,
       // 体彩的时间不对，使用extra的时间作为基准
       dateTime:
         Math.abs(dayjs(matchedExtra.dateTime).valueOf() - dayjs(ti.dateTime).add(24, 'hour').valueOf()) <= 10 * oneMinute
