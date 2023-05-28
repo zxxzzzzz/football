@@ -137,8 +137,8 @@ export function toData(tiCaiList: TiCaiItem[], extraList: ExtraItem[], _R = 0.12
       // 体彩的时间不对，使用extra的时间作为基准
       dateTime:
         Math.abs(dayjs(matchedExtra.dateTime).valueOf() - dayjs(ti.dateTime).add(24, 'hour').valueOf()) <= 10 * oneMinute
-          ? dayjs(ti.dateTime).add(24, 'hour').format('MM-DD HH:ss')
-          : dayjs(ti.dateTime).format('MM-DD HH:ss'),
+          ? dayjs(ti.dateTime).add(24, 'hour').format('MM-DD HH:mm')
+          : dayjs(ti.dateTime).format('MM-DD HH:mm'),
       tiCaiTeamList: ti.teamList,
       extraTeamList: matchedExtra?.teamList || ti.teamList,
       tiCaiItemList: ti.itemList,
