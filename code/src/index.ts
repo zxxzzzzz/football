@@ -152,7 +152,8 @@ async function getData(username: string, password: string) {
   }
   let leagueList: { name: string; id: string }[] = [];
   try {
-    leagueList = await retryGetLeagueListAllByNodeFetch(url, uid, ver);
+   console.log('请求联赛', { url, uid, ver });
+   leagueList = await retryGetLeagueListAllByNodeFetch(url, uid, ver);
   } catch (error) {
     if ((error as CError).code === Code.uidExpire) {
       const d = await retryLoginByNodeFetch(username, password);
@@ -161,6 +162,7 @@ async function getData(username: string, password: string) {
       uid = d.uid;
       ver = d.ver;
       url = d.url;
+      console.log('uid重新获取后请求联赛', { url, uid, ver });
       leagueList = await retryGetLeagueListAllByNodeFetch(url, uid, ver);
     } else {
       throw error;

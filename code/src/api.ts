@@ -317,7 +317,6 @@ export async function getGameOBTByNodeFetch(
 export const retryGetGameOBTByNodeFetch = retryWrap(getGameOBTByNodeFetch, 3);
 
 export async function getLeagueListAllByNodeFetch(url: string, uid: string, ver: string): Promise<{ name: string; id: string }[]> {
-  console.log('请求联赛', { url, uid, ver });
   const body = {
     p: 'get_league_list_All',
     uid: uid,
