@@ -440,7 +440,7 @@ export function getMessage1List(data: ReturnType<typeof toData>, rev: number) {
       const rev = d.revList[0];
       // 胜，负，让胜，让负
       const desc = rev.type === 'win' ? `${rev.tiCai === 0 ? '胜' : '让胜'}` : `${rev.tiCai === 0 ? '负' : '让负'}`;
-      return `${rev.single ? '【单】' : ''}${d.num} ${dayjs(d.dateTime, 'MM-DD HH:mm').format('MM-DD\u2002HH:ss')} ${d.tiCaiTeamList.join(
+      return `${rev.single ? '【单】' : ''}${d.num} ${dayjs(d.dateTime, 'MM-DD HH:mm').format('MM-DD\u2002HH:mm')} ${d.tiCaiTeamList.join(
         ' '
       )} ${desc} GC:${rev.gc.toFixed(2)} VV:${rev.vv.toFixed(2)} offset:${rev.offset.toFixed(2)} rev:${rev.rev.toFixed(2)}`;
     });
@@ -455,7 +455,7 @@ export function getMessage3List(data: ReturnType<typeof toData>, scoreRev: numbe
     })
     .map((d) => {
       const rev = d.scoreRevList[0];
-      return `${d.num} ${dayjs(d.dateTime, 'MM-DD HH:mm').format('MM-DD\u2002HH:ss')} ${d.tiCaiTeamList.join(' ')} GC:${rev.gc.toFixed(
+      return `${d.num} ${dayjs(d.dateTime, 'MM-DD HH:mm').format('MM-DD\u2002HH:mm')} ${d.tiCaiTeamList.join(' ')} GC:${rev.gc.toFixed(
         2
       )} VV:${rev.vv.toFixed(2)} offset:${rev.offset.toFixed(2)} rev:${rev.rev.toFixed(2)} 0球(${rev.score?.c?.toFixed(
         2
@@ -475,17 +475,17 @@ export function getMessage2List(data: ReturnType<typeof toData>, C: number, A: n
       const wl = ['周日', '周一', '周二', '周三', '周四', '周五', '周六'];
       // 两个比赛的日期得是一致或者连续的 且有一场在当天
       const isToday = Math.abs(dy1.date() - dy2.date()) <= 1 && dy1Num === wl[dayjs().add(8, 'hour').day()];
-      return bet > 2 * 60 * 60 * 1000 && isToday;
+      return bet >= 2 * 60 * 60 * 1000 && isToday;
     })
     .map((cd, index) => {
       return [
         `NO.${index}${cd.single1 ? '【单】' : ''} ${cd.d1.num} ${dayjs(cd.d1.dateTime, 'MM-DD HH:mm').format(
-          'MM-DD\u2002HH:ss'
+          'MM-DD\u2002HH:mm'
         )} ${cd.d1.tiCaiTeamList.join(' ')} GC:${cd.gc1.toFixed(2)} VV:${cd.vv1.toFixed(2)} offset:${cd.offset1.toFixed(
           2
         )} rev:${cd.rev1.toFixed(2)}`,
         `NO.${index}${cd.single2 ? '【单】' : ''} ${cd.d2.num} ${dayjs(cd.d2.dateTime, 'MM-DD HH:mm').format(
-          'MM-DD\u2002HH:ss'
+          'MM-DD\u2002HH:mm'
         )} ${cd.d2.tiCaiTeamList.join(' ')} GC:${cd.gc2.toFixed(2)} VV:${cd.vv2.toFixed(2)} offset:${cd.offset2.toFixed(
           2
         )} rev:${cd.rev2.toFixed(2)}`,
