@@ -225,7 +225,7 @@ async function getData(username: string, password: string) {
         },
         [{}, -Infinity] as [Game, number]
       );
-      if (!game[0]) {
+      if (!game?.[0]) {
         return void 0;
       }
       tiCai.ecid = game[0].ecid;
