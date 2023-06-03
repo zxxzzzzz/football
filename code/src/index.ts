@@ -17,8 +17,8 @@ import cors from 'cors';
 import { CError, Code, createError } from './error';
 
 // console.log(cors);
-// process.env.username = 'jixiang123';
-// process.env.password = 'ming326391';
+process.env.username = 'jixiang123';
+process.env.password = 'ming326391';
 
 type FirstOfGeneric<T> = T extends Promise<infer F> ? F : never;
 
@@ -213,7 +213,7 @@ async function getData(username: string, password: string) {
           // 联赛必须匹配上
           const re: [typeof extra, number] = [extra, rate];
           return re;
-        })
+        }).filter(([_,rate] ) => rate >= 110)
       // 选出匹配度最高的一场比赛
       const game = _extraGameList.reduce(
         (re, cur) => {
@@ -224,7 +224,7 @@ async function getData(username: string, password: string) {
         },
         [{}, -Infinity] as [Game, number]
       );
-      if (!game?.[0]) {
+      if (!game?.[0]?.ecid) {
         return void 0;
       }
       tiCai.ecid = game[0].ecid;
