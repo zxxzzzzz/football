@@ -17,8 +17,8 @@ import cors from 'cors';
 import { CError, Code, createError } from './error';
 
 // console.log(cors);
-process.env.username = 'jixiang123';
-process.env.password = 'ming326391';
+// process.env.username = 'jixiang123';
+// process.env.password = 'ming326391';
 
 type FirstOfGeneric<T> = T extends Promise<infer F> ? F : never;
 
@@ -214,7 +214,6 @@ async function getData(username: string, password: string) {
           const re: [typeof extra, number] = [extra, rate];
           return re;
         })
-        .filter(([_, rate]) => rate >= 110);
       // 选出匹配度最高的一场比赛
       const game = _extraGameList.reduce(
         (re, cur) => {
