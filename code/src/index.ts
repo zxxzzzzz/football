@@ -15,6 +15,7 @@ import {
 import { getStore, saveStore, saveFile, getLogHistory, getMessage1List, getMessage2List, getMessage3List } from './util';
 import cors from 'cors';
 import { CError, Code, createError } from './error';
+import compression from 'compression';
 
 // console.log(cors);
 // process.env.username = 'jixiang123';
@@ -24,6 +25,7 @@ type FirstOfGeneric<T> = T extends Promise<infer F> ? F : never;
 
 const app = express();
 app.use(cors());
+app.use(compression())
 
 export default app;
 
@@ -153,8 +155,8 @@ async function getData(username: string, password: string) {
   }
   let leagueList: { name: string; id: string }[] = [];
   try {
-   console.log('请求联赛', { url, uid, ver });
-   leagueList = await retryGetLeagueListAllByNodeFetch(url, uid, ver);
+    console.log('请求联赛', { url, uid, ver });
+    leagueList = await retryGetLeagueListAllByNodeFetch(url, uid, ver);
   } catch (error) {
     if ((error as CError).code === Code.uidExpire) {
       const d = await retryLoginByNodeFetch(username, password);
@@ -213,7 +215,7 @@ async function getData(username: string, password: string) {
           // 联赛必须匹配上
           const re: [typeof extra, number] = [extra, rate];
           return re;
-        });
+        }).filter(([_,rate] ) => rate >= 110)
       // 选出匹配度最高的一场比赛
       const game = _extraGameList.reduce(
         (re, cur) => {
@@ -224,7 +226,7 @@ async function getData(username: string, password: string) {
         },
         [{}, -Infinity] as [Game, number]
       );
-      if (!game[0]) {
+      if (!game?.[0]?.ecid) {
         return void 0;
       }
       tiCai.ecid = game[0].ecid;

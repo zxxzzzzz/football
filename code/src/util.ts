@@ -128,6 +128,8 @@ export function toData(tiCaiList: TiCaiItem[], extraList: ExtraItem[], _R = 0.12
     const oneMinute = 60 * 1000;
     return {
       league: ti.league,
+      tiCaiLeague:ti.league,
+      extraLeague:matchedExtra.league,
       num: ti.num || '',
       singleList: ti.singleList,
       // @ts-ignore

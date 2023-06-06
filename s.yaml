@@ -55,10 +55,10 @@ services:
         runtime: nodejs16
         codeUri: ./code
         handler: index.handler
-        instanceConcurrency: 4
+        instanceConcurrency: 10
         memorySize: 512
         diskSize: 512
-        cpu: 0.5
+        cpu: 0.3
         timeout: 60
         environmentVariables:
           password: ${env(password)}

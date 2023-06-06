@@ -304,7 +304,8 @@ const columns: TableProps<Record>['columns'] = [
     customRender({ record }) {
       return h(Match, {
         dateTime: record.dateTime,
-        teamList: record.tiCaiTeamList,
+        tiCaiTeamList: record.tiCaiTeamList,
+        extraTeamList: record.extraTeamList,
         leagueName: record.league,
         num: record.num,
       });
