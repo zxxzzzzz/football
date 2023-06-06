@@ -128,8 +128,8 @@ export function toData(tiCaiList: TiCaiItem[], extraList: ExtraItem[], _R = 0.12
     const oneMinute = 60 * 1000;
     return {
       league: ti.league,
-      tiCaiLeague:ti.league,
-      extraLeague:matchedExtra.league,
+      tiCaiLeague: ti.league,
+      extraLeague: matchedExtra.league,
       num: ti.num || '',
       singleList: ti.singleList,
       // @ts-ignore
@@ -432,7 +432,7 @@ export const getLogHistory = () => {
 
 export function getMessage1List(data: ReturnType<typeof toData>, rev: number) {
   return data
-    .filter((d) => d?.revList?.[0]?.rev > rev)
+    .filter((d) => d?.revList?.[0]?.rev > rev && d?.revList?.[0]?.rev < 3000)
     .sort((a, b) => {
       const rev1 = a.revList[0];
       const rev2 = b.revList[0];
