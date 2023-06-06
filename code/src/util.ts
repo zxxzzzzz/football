@@ -381,7 +381,11 @@ type Store = {
   scoreRev: number;
   data: any;
 };
+let g_store: Partial<Store> | undefined = void 0;
 export async function getStore(): Promise<Partial<Store>> {
+  if (g_store) {
+    return g_store;
+  }
   const initData: Partial<Store> = {
     R: 0.12,
     A: 1,
@@ -398,8 +402,8 @@ export async function getStore(): Promise<Partial<Store>> {
       return initData;
     }
   }
+  // 查看本地是否有数据,如果本地有数据，直接使用本地数据(dev时使用)
   const path = './data/store.json';
-  // 首先查看本地是否有数据,如果本地有数据，直接使用本地数据
   if (fs.existsSync(path)) {
     return JSON.parse(fs.readFileSync(path, { encoding: 'utf-8' }));
   }
@@ -407,10 +411,12 @@ export async function getStore(): Promise<Partial<Store>> {
 }
 
 export const saveStore = async (s: Partial<Store>) => {
-  // 本地先存
   const path = './data/store.json';
   const store = await getStore();
   const tStore: Partial<Store> = { ...store, ...s };
+  // 内存保存
+  g_store = tStore
+  // 本地先存
   fs.writeFileSync(path, Format(tStore), { encoding: 'utf-8' });
   // oss保存
   try {
