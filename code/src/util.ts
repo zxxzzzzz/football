@@ -307,7 +307,7 @@ export function toData(tiCaiList: TiCaiItem[], extraList: ExtraItem[], _R = 0.12
 export function compare(dataList: ReturnType<typeof toData>, c = 0.13, a = 1, cRev = 430) {
   const filterDataList = dataList
     .filter((d) => {
-      return d.revList?.[0]?.rev > cRev;
+      return d.revList?.[0]?.rev > cRev && d.revList?.[0]?.rev < 3000;
     })
     .sort((a, b) => {
       const dy1 = dayjs(a.dateTime, 'MM-DD HH:mm').valueOf();
