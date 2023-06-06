@@ -15,6 +15,7 @@ import {
 import { getStore, saveStore, saveFile, getLogHistory, getMessage1List, getMessage2List, getMessage3List } from './util';
 import cors from 'cors';
 import { CError, Code, createError } from './error';
+import compression from 'compression';
 
 // console.log(cors);
 // process.env.username = 'jixiang123';
@@ -24,6 +25,7 @@ type FirstOfGeneric<T> = T extends Promise<infer F> ? F : never;
 
 const app = express();
 app.use(cors());
+app.use(compression())
 
 export default app;
 
