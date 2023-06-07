@@ -402,25 +402,17 @@ export async function getStore(): Promise<Partial<Store>> {
       return initData;
     }
   }
-  // 查看本地是否有数据,如果本地有数据，直接使用本地数据(dev时使用)
-  const path = './data/store.json';
-  if (fs.existsSync(path)) {
-    return JSON.parse(fs.readFileSync(path, { encoding: 'utf-8' }));
-  }
   return initData;
 }
 
-export const saveStore = async (s: Partial<Store>) => {
-  const path = './data/store.json';
+export const saveStore = async (s: Partial<Store>, upload = false) => {
   const store = await getStore();
   const tStore: Partial<Store> = { ...store, ...s };
   // 内存保存
-  g_store = tStore
-  // 本地先存
-  fs.writeFileSync(path, Format(tStore), { encoding: 'utf-8' });
+  g_store = tStore;
   // oss保存
   try {
-    if (client) {
+    if (client && upload) {
       await client.put(`store.json`, Buffer.from(Format(tStore)));
     }
   } catch (error) {}
