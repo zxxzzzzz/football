@@ -104,7 +104,7 @@ const columns: TableProps<(typeof dataSource.value)[0]>['columns'] = [
         })
         .map((d) => d[1] + 4);
       if ([...revIndexList, ...halfRevIndexList].length) {
-        return h(Highlight, { content: record.win, index: [...revIndexList, ...halfRevIndexList] });
+        return h(Highlight, { content: record.lose, index: [...revIndexList, ...halfRevIndexList] });
       }
       return record.lose;
     },

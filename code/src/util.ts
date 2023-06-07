@@ -6,6 +6,11 @@ import { resolve, parse } from 'path';
 // @ts-ignore
 import Format from 'json-format';
 import OSS from 'ali-oss';
+import { pinyin } from 'pinyin-pro';
+import { stringSimilarity } from 'string-similarity-js';
+
+// Rearranged words
+stringSimilarity('Lorem ipsum', 'Ipsum lorem');
 
 let client: OSS | undefined = void 0;
 if (process.env.key) {
@@ -20,11 +25,10 @@ if (process.env.key) {
 }
 
 export function sim_jaccard(s1: string, s2: string): number {
-  const _s1 = new Set(s1);
-  const _s2 = new Set(s2);
-  const ret1 = new Set([..._s1].filter((x) => _s2.has(x)));
-  const ret2 = new Set([..._s1, ..._s2]);
-  return (1.0 * ret1.size) / ret2.size;
+  const _s1 = pinyin(s1, { toneType: 'none' });
+  const _s2 = pinyin(s2, { toneType: 'none' });
+
+  return stringSimilarity(_s1, _s2);
 }
 
 const isMatch = (a: string, b: string): number => {
@@ -566,14 +570,14 @@ export function getMessage4List(data: ReturnType<typeof toData>, halfRev: number
     })
     .map((d) => {
       const rev = d.halfRevList[0];
-      const tList = rev.type === 'win' ? ['胜胜','平胜','负胜'] : ['胜负','平负','负负']
+      const tList = rev.type === 'win' ? ['胜胜', '平胜', '负胜'] : ['胜负', '平负', '负负'];
       return `${d.num} ${dayjs(d.dateTime, 'MM-DD HH:mm').format('MM-DD\u2002HH:mm')} ${d.tiCaiTeamList.join(' ')} GC:${rev.gc.toFixed(
         2
       )} VV:${rev.vv.toFixed(2)} offset:${rev.offset.toFixed(2)} rev:${rev.rev.toFixed(2)} ${tList[0]}(${rev.score?.c?.toFixed(2)})-${(
         (rev.score?.Z || 0) * 2
-      )?.toFixed(2)}\u2002${tList[1]}(${rev.score?.b?.toFixed(2)})-${((rev.score?.Y || 0) * 2)?.toFixed(2)}\u2002${tList[2]}(${rev.score?.a?.toFixed(
-        2
-      )})-${((rev.score?.X || 0) * 2)?.toFixed(2)}`;
+      )?.toFixed(2)}\u2002${tList[1]}(${rev.score?.b?.toFixed(2)})-${((rev.score?.Y || 0) * 2)?.toFixed(2)}\u2002${
+        tList[2]
+      }(${rev.score?.a?.toFixed(2)})-${((rev.score?.X || 0) * 2)?.toFixed(2)}`;
     });
 }
 export function getMessage2List(data: ReturnType<typeof toData>, C: number, A: number, compareRev: number) {

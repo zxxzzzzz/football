@@ -18,8 +18,8 @@ import { CError, Code, createError } from './error';
 import compression from 'compression';
 
 // console.log(cors);
-// process.env.username = 'jixiang123';
-// process.env.password = 'ming326391';
+process.env.username = 'jixiang123';
+process.env.password = 'ming326391';
 
 type FirstOfGeneric<T> = T extends Promise<infer F> ? F : never;
 
