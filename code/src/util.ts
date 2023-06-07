@@ -19,6 +19,15 @@ if (process.env.key) {
   });
 }
 
+export function sim_jaccard(s1: string, s2: string): number {
+  const _s1 = new Set(s1);
+  const _s2 = new Set(s2);
+  const ret1 = new Set([..._s1].filter(x => _s2.has(x)));
+  const ret2 = new Set([..._s1, ..._s2]);
+  return 1.0 * ret1.size / ret2.size;
+}
+
+
 const isMatch = (a: string, b: string): number => {
   const matchList = R.range(0, Math.min(a.length, b.length)).map((index) => {
     return a[index] === b[index];
@@ -49,7 +58,7 @@ export const isTeamEqu = (a: string[], b: string[]) => {
   const lList = a.map((aStr) => {
     return Math.max(
       ...b.map((bStr) => {
-        return isMatch(aStr, bStr);
+        return sim_jaccard(aStr, bStr);
       })
     );
   });
