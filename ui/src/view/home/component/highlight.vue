@@ -21,6 +21,8 @@ const colorList = [
   'hsl(100,80%, 20%)',
   'hsl(190, 90%, 50%)',
   'hsl(270, 100%, 40%)',
+  'hsl(160, 40%, 50%)',
+  'hsl(120, 20%, 30%)',
 ];
 const props = defineProps<{ content: string | number; index: number | number[] }>();
 const color = computed(() => {

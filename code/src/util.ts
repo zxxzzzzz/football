@@ -200,14 +200,14 @@ export function toData(tiCaiList: TiCaiItem[], extraList: ExtraItem[], _R = 0.12
                   filter: (d: number, isOnlyWin: boolean) => d === -0.5,
                   // 胜
                   type: 'win',
-                  tiCai: parseFloat(oddsItem[0]),
+                  tiCai: oddsItem[0],
                   tiCaiOdds: parseFloat(oddsItem[1]),
                 };
               }
               return {
                 filter: (d: number, isOnlyWin: boolean) => d === 0.5,
                 type: 'lose',
-                tiCai: parseFloat(oddsItem[0]),
+                tiCai: oddsItem[0],
                 // 负
                 tiCaiOdds: parseFloat(oddsItem[3]),
               };
