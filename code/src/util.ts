@@ -28,7 +28,7 @@ export function sim_jaccard(s1: string, s2: string): number {
   const _s1 = pinyin(s1, { toneType: 'none' });
   const _s2 = pinyin(s2, { toneType: 'none' });
 
-  return stringSimilarity(_s1, _s2);
+  return stringSimilarity(s1, s2);
 }
 
 const isMatch = (a: string, b: string): number => {
