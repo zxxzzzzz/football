@@ -4,7 +4,7 @@
     <div class="flex">
       <div v-for="item in scoreItemList">
         <div class="mr-4 mb-2">{{ item.title }}</div>
-        <div class="flex mr-4 mb-2" v-for="oddItem in item.itemList">
+        <div class="flex mr-4 mb-2" v-for="oddItem in item.itemList.slice(0,1)">
           <div class="mr-1">
             <div>{{ oddItem.content[0] }}</div>
             <Highlight :content="oddItem.content[1]" :index="oddItem.index"></Highlight>

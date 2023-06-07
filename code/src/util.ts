@@ -22,11 +22,10 @@ if (process.env.key) {
 export function sim_jaccard(s1: string, s2: string): number {
   const _s1 = new Set(s1);
   const _s2 = new Set(s2);
-  const ret1 = new Set([..._s1].filter(x => _s2.has(x)));
+  const ret1 = new Set([..._s1].filter((x) => _s2.has(x)));
   const ret2 = new Set([..._s1, ..._s2]);
-  return 1.0 * ret1.size / ret2.size;
+  return (1.0 * ret1.size) / ret2.size;
 }
-
 
 const isMatch = (a: string, b: string): number => {
   const matchList = R.range(0, Math.min(a.length, b.length)).map((index) => {
@@ -470,13 +469,11 @@ type Store = {
   Rev: number;
   compareRev: number;
   scoreRev: number;
+  halfRev: number;
   data: any;
 };
 let g_store: Partial<Store> | undefined = void 0;
 export async function getStore(): Promise<Partial<Store>> {
-  if (g_store) {
-    return g_store;
-  }
   const initData: Partial<Store> = {
     R: 0.12,
     A: 1,
@@ -484,11 +481,15 @@ export async function getStore(): Promise<Partial<Store>> {
     Rev: 400,
     compareRev: 430,
     scoreRev: 200,
+    halfRev: 400,
   };
+  if (g_store) {
+    return { ...initData, ...g_store };
+  }
   if (client) {
     try {
       const res = await client.get(`store.json`);
-      return JSON.parse(res.content);
+      return { ...initData, ...JSON.parse(res.content) };
     } catch (error) {
       return initData;
     }
@@ -548,11 +549,31 @@ export function getMessage3List(data: ReturnType<typeof toData>, scoreRev: numbe
       const rev = d.scoreRevList[0];
       return `${d.num} ${dayjs(d.dateTime, 'MM-DD HH:mm').format('MM-DD\u2002HH:mm')} ${d.tiCaiTeamList.join(' ')} GC:${rev.gc.toFixed(
         2
-      )} VV:${rev.vv.toFixed(2)} offset:${rev.offset.toFixed(2)} rev:${rev.rev.toFixed(2)} 0球(${rev.score?.c?.toFixed(
+      )} VV:${rev.vv.toFixed(2)} offset:${rev.offset.toFixed(2)} rev:${rev.rev.toFixed(2)} 0球(${rev.score?.c?.toFixed(2)})-${(
+        (rev.score?.Z || 0) * 2
+      ).toFixed(2)}\u20021球(${rev.score?.b?.toFixed(2)})-${((rev.score?.Y || 0) * 2).toFixed(2)}\u20022球(${rev.score?.a?.toFixed(2)})-${(
+        (rev.score?.X || 0) * 2
+      ).toFixed(2)}`;
+    });
+}
+export function getMessage4List(data: ReturnType<typeof toData>, halfRev: number) {
+  return data
+    .filter((d) => d?.halfRevList?.[0]?.rev > halfRev)
+    .sort((a, b) => {
+      const rev1 = a.halfRevList[0];
+      const rev2 = b.halfRevList[0];
+      return rev2.rev - rev1.rev;
+    })
+    .map((d) => {
+      const rev = d.halfRevList[0];
+      const tList = rev.type === 'win' ? ['胜胜','平胜','负胜'] : ['胜负','平负','负负']
+      return `${d.num} ${dayjs(d.dateTime, 'MM-DD HH:mm').format('MM-DD\u2002HH:mm')} ${d.tiCaiTeamList.join(' ')} GC:${rev.gc.toFixed(
         2
-      )})-${rev.score?.Z?.toFixed(2)}\u20021球(${rev.score?.b?.toFixed(2)})-${rev.score?.Y?.toFixed(2)}\u20022球(${rev.score?.a?.toFixed(
+      )} VV:${rev.vv.toFixed(2)} offset:${rev.offset.toFixed(2)} rev:${rev.rev.toFixed(2)} ${tList[0]}(${rev.score?.c?.toFixed(2)})-${(
+        (rev.score?.Z || 0) * 2
+      )?.toFixed(2)}\u2002${tList[1]}(${rev.score?.b?.toFixed(2)})-${((rev.score?.Y || 0) * 2)?.toFixed(2)}\u2002${tList[2]}(${rev.score?.a?.toFixed(
         2
-      )})-${rev.score?.X?.toFixed(2)}`;
+      )})-${((rev.score?.X || 0) * 2)?.toFixed(2)}`;
     });
 }
 export function getMessage2List(data: ReturnType<typeof toData>, C: number, A: number, compareRev: number) {
@@ -583,18 +604,4 @@ export function getMessage2List(data: ReturnType<typeof toData>, C: number, A: n
       ];
     });
   return { messageList, compareDataList };
-}
-
-export async function cInter(cb: () => Promise<boolean>, n: number) {
-  try {
-    const d = await cb();
-    if (!d) {
-      return;
-    }
-  } catch (error) {}
-  setTimeout(async () => {
-    try {
-      await cInter(cb, n);
-    } catch (error) {}
-  }, n);
 }

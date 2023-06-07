@@ -42,6 +42,16 @@
           </div>
         </template>
       </List>
+      <Divider></Divider>
+      <List item-layout="horizontal" :data-source="message4List">
+        <template #renderItem="{ item }">
+          <div class="flex flex-wrap mb-2">
+            <div v-for="(t, index) in item.split(' ')" :style="{ color: colors[index], margin: '0 4px' }" class="whitespace-nowrap">
+              {{ t }}
+            </div>
+          </div>
+        </template>
+      </List>
     </Drawer>
     <Affix :offsetBottom="400" :style="{ position: 'absolute', right: 0 + 'px' }">
       <div class="flex flex-col">
@@ -201,6 +211,7 @@ const sortDataSource = computed(() => {
 const message1List = ref<string[]>([]);
 const message2List = ref<string[]>([]);
 const message3List = ref<string[]>([]);
+const message4List = ref<string[]>([]);
 let timeId: ReturnType<typeof setTimeout> | undefined = void 0;
 // 是否按照rev排序
 const enum SortType {
@@ -253,6 +264,7 @@ async function getData() {
     message1List.value = data.data.message1List;
     message2List.value = data.data.message2List;
     message3List.value = data.data.message3List;
+    message4List.value = data.data.message4List;
   }
   return true;
 }
@@ -357,6 +369,7 @@ const columns: TableProps<Record>['columns'] = [
       return h(Rev, {
         itemList: record.revList,
         scoreItemList: record.scoreRevList,
+        halfItemList: record.halfRevList,
       });
     },
   },

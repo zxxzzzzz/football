@@ -12,20 +12,20 @@ import {
   retryLoginByNodeFetch,
 } from './api';
 // import { say } from './chaty';
-import { getStore, saveStore, saveFile, getLogHistory, getMessage1List, getMessage2List, getMessage3List } from './util';
+import { getStore, saveStore, saveFile, getLogHistory, getMessage1List, getMessage2List, getMessage3List,getMessage4List } from './util';
 import cors from 'cors';
 import { CError, Code, createError } from './error';
 import compression from 'compression';
 
 // console.log(cors);
-// process.env.username = 'jixiang123';
-// process.env.password = 'ming326391';
+process.env.username = 'jixiang123';
+process.env.password = 'ming326391';
 
 type FirstOfGeneric<T> = T extends Promise<infer F> ? F : never;
 
 const app = express();
 app.use(cors());
-app.use(compression())
+app.use(compression());
 
 export default app;
 
@@ -46,11 +46,12 @@ app.get('/data', async (req, res) => {
     const store = await getStore();
     const message1List = getMessage1List(data, store.Rev || 400);
     const message3List = getMessage3List(data, store.scoreRev || 200);
+    const message4List = getMessage4List(data, store.halfRev || 400);
     const { messageList: message2List, compareDataList } = getMessage2List(data, store.C || 0.13, store.A || 1, store.compareRev || 430);
     res.send({
       code: 200,
       msg: 'success',
-      data: { timestamp: store.timestamp || 0, matchData: data, message1List, message2List, message3List, compareDataList },
+      data: { timestamp: store.timestamp || 0, matchData: data, message1List, message2List, message3List, compareDataList, message4List },
     });
     return;
   }
@@ -66,11 +67,20 @@ app.get('/data', async (req, res) => {
       const store = await getStore();
       const message1List = getMessage1List(_data, store.Rev || 400);
       const message3List = getMessage3List(_data, store.scoreRev || 200);
+      const message4List = getMessage4List(_data, store.halfRev || 400);
       const { messageList: message2List, compareDataList } = getMessage2List(_data, store.C || 0.13, store.A || 1, store.compareRev || 430);
       res.send({
         code: 200,
         msg: 'success',
-        data: { timestamp: store.timestamp || 0, matchData: _data, message1List, message2List, message3List, compareDataList },
+        data: {
+          timestamp: store.timestamp || 0,
+          matchData: _data,
+          message1List,
+          message2List,
+          message3List,
+          compareDataList,
+          message4List,
+        },
       });
       isWait = false;
       return;
@@ -84,11 +94,12 @@ app.get('/data', async (req, res) => {
     const store = await getStore();
     const message1List = getMessage1List(data, store.Rev || 400);
     const message3List = getMessage3List(data, store.scoreRev || 200);
+    const message4List = getMessage4List(data, store.halfRev || 400);
     const { messageList: message2List, compareDataList } = getMessage2List(data, store.C || 0.13, store.A || 1, store.compareRev || 430);
     res.send({
       code: 200,
       msg: 'success',
-      data: { timestamp: store.timestamp || 0, matchData: data, message1List, message2List, message3List, compareDataList },
+      data: { timestamp: store.timestamp || 0, matchData: data, message1List, message2List, message3List, compareDataList, message4List },
     });
     return;
   }
@@ -111,6 +122,7 @@ app.get('/setting', async (req, res) => {
         Rev: store.Rev,
         compareRev: store.compareRev,
         scoreRev: store.scoreRev,
+        halfRev: store.halfRev,
       },
     });
   } catch (error) {
@@ -215,7 +227,8 @@ async function getData(username: string, password: string) {
           // 联赛必须匹配上
           const re: [typeof extra, number] = [extra, rate];
           return re;
-        }).filter(([_,rate] ) => rate >= 110)
+        })
+        .filter(([_, rate]) => rate >= 110);
       // 选出匹配度最高的一场比赛
       const game = _extraGameList.reduce(
         (re, cur) => {
