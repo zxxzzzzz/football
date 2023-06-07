@@ -74,7 +74,7 @@ const columns: TableProps<(typeof dataSource.value)[0]>['columns'] = [
       const halfRevIndexList = props.halfRevList
         .map((d, i) => [d, i] as const)
         .filter(([r, i]) => {
-          return r.extra === record.scoreText && r.extraOdds === record.win && r.type === 'lose' && !r.isOnlyWin;
+          return parseFloat(r.extra) === record.score && r.extraOdds === record.win && r.type === 'lose' && !r.isOnlyWin;
         })
         .map((d) => d[1]);
       if ([...revIndexList, ...halfRevIndexList].length) {
@@ -100,7 +100,7 @@ const columns: TableProps<(typeof dataSource.value)[0]>['columns'] = [
       const halfRevIndexList = props.halfRevList
         .map((d, i) => [d, i] as const)
         .filter(([r, i]) => {
-          return r.extra === record.scoreText && r.extraOdds === record.win && r.type === 'win' && !r.isOnlyWin;
+          return parseFloat(r.extra) === record.score && r.extraOdds === record.win && r.type === 'win' && !r.isOnlyWin;
         })
         .map((d) => d[1]);
       if ([...revIndexList, ...halfRevIndexList].length) {
