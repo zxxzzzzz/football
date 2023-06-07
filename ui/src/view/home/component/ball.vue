@@ -76,7 +76,7 @@ const columns: TableProps<(typeof dataSource.value)[0]>['columns'] = [
         .filter(([r, i]) => {
           return parseFloat(r.extra) === record.score && r.type === 'lose' && !r.isOnlyWin;
         })
-        .map((d) => d[1]);
+        .map((d) => d[1] + 4);
       if ([...revIndexList, ...halfRevIndexList].length) {
         return h(Highlight, { content: record.win, index: [...revIndexList, ...halfRevIndexList] });
       }
@@ -102,7 +102,7 @@ const columns: TableProps<(typeof dataSource.value)[0]>['columns'] = [
         .filter(([r, i]) => {
           return parseFloat(r.extra) === record.score  && r.type === 'win' && !r.isOnlyWin;
         })
-        .map((d) => d[1]);
+        .map((d) => d[1] + 4);
       if ([...revIndexList, ...halfRevIndexList].length) {
         return h(Highlight, { content: record.win, index: [...revIndexList, ...halfRevIndexList] });
       }
