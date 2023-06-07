@@ -5,7 +5,7 @@
     <div class="mx-4">
       <Table :dataSource="sortDataSource" :columns="columns" bordered :rowClassName="rowClassName" :pagination="pagination"></Table>
     </div>
-    <Drawer width="840" placement="right" :closable="true" :visible="drawerVisible" :mask="true" @close="onClose">
+    <!-- <Drawer width="840" placement="right" :closable="true" :visible="drawerVisible" :mask="true" @close="onClose">
       <List item-layout="horizontal" :data-source="message1List">
         <template #renderItem="{ item }">
           <div class="flex flex-wrap mb-2">
@@ -42,7 +42,7 @@
           </div>
         </template>
       </List>
-    </Drawer>
+    </Drawer> -->
     <Affix :offsetBottom="400" :style="{ position: 'absolute', right: 0 + 'px' }">
       <div class="flex flex-col">
         <Button type="primary" @click="() => (drawerVisible = true)" class="my-2"> 消息</Button>
@@ -86,7 +86,21 @@ type D = {
   scoreRevList: {
     teamList: string[];
     num: string | undefined;
-    ecid: '6841929';
+    ecid: string;
+    tiCaiOdds: number;
+    extraOdds: number;
+    tiCai: string;
+    extra: string;
+    rev: number;
+    gc: number;
+    vv: number;
+    r: number;
+    offset: number;
+  }[];
+  halfRevList: {
+    teamList: string[];
+    num: string | undefined;
+    ecid: string;
     tiCaiOdds: number;
     extraOdds: number;
     tiCai: string;
@@ -100,7 +114,7 @@ type D = {
   revList: {
     teamList: string[];
     num: string | undefined;
-    ecid: '6841929';
+    ecid: string;
     isMatch: boolean;
     isOnlyWin: boolean;
     type: string;
@@ -319,6 +333,7 @@ const columns: TableProps<Record>['columns'] = [
         itemList: record.tiCaiItemList,
         revList: record.revList,
         scoreRevList: record.scoreRevList,
+        halfRevList: record.halfRevList,
       });
     },
   },
