@@ -186,6 +186,88 @@ export function toData(tiCaiList: TiCaiItem[], extraList: ExtraItem[], _R = 0.12
         .filter((a): a is Exclude<typeof a, undefined> => !!a)
         .sort((a, b) => b.rev - a.rev)
         .slice(0, 1),
+      halfRevList: ti.itemList
+        .filter((item) => item.oddsTitle === '半场')
+        .map((tiCaiItem) => {
+          if (!matchedExtra) {
+            return void 0;
+          }
+          const filterList = tiCaiItem.oddsItemList
+            .map((oddsItem) => {
+              // 体彩让球  [主胜对立面，主负对立面]
+              if (oddsItem[0] === '+0.5') {
+                return {
+                  filter: (d: number, isOnlyWin: boolean) => d === -0.5,
+                  // 胜
+                  type: 'win',
+                  tiCai: parseFloat(oddsItem[0]),
+                  tiCaiOdds: parseFloat(oddsItem[1]),
+                };
+              }
+              return {
+                filter: (d: number, isOnlyWin: boolean) => d === 0.5,
+                type: 'lose',
+                tiCai: parseFloat(oddsItem[0]),
+                // 负
+                tiCaiOdds: parseFloat(oddsItem[3]),
+              };
+            })
+            .flat();
+          const matchList = matchedExtra.itemList
+            .filter((item) => {
+              const r = [parseFloat(item.oddsItemList[0][0]), parseFloat(item.oddsItemList[0][1]), parseFloat(item.oddsItemList[1][1])];
+              if (!['让球', '独赢'].includes(item.oddsTitle)) {
+                return false;
+              }
+              if (item.oddsItemList[0][0]?.includes('/')) {
+                return false;
+              }
+              if (r[0] === Math.round(r[0])) {
+                return false;
+              }
+              return true;
+            })
+            .map((item) => {
+              // 比分 胜 负
+              let r = [parseFloat(item.oddsItemList[0][0]), parseFloat(item.oddsItemList[0][1]), parseFloat(item.oddsItemList[1][1])];
+              if (item.oddsTitle === '独赢') {
+                // 独赢没有让球，随便填个值
+                r = [0, parseFloat(item.oddsItemList[0][0]), parseFloat(item.oddsItemList[1][0])];
+              }
+              return filterList
+                .map((f) => {
+                  if (!matchedExtra) {
+                    return void 0;
+                  }
+                  const { GC, VV, Offset, Rev } = getRev(f.tiCaiOdds, f.type === 'win' ? r[2] : r[1], _R);
+                  return {
+                    score: tiCaiItem.score,
+                    teamList: matchedExtra.teamList,
+                    num: ti.num,
+                    ecid: matchedExtra.ecid,
+                    isMatch: f.filter(r[0], item.oddsTitle === '独赢'),
+                    isOnlyWin: item.oddsTitle === '独赢',
+                    type: f.type,
+                    tiCaiOdds: f.tiCaiOdds,
+                    extraOdds: f.type === 'win' ? r[2] : r[1],
+                    tiCai: f.tiCai,
+                    extra: r[0],
+                    rev: Rev,
+                    gc: GC,
+                    vv: VV,
+                    r: _R,
+                    offset: Offset,
+                  };
+                })
+                .filter((d): d is Exclude<typeof d, undefined> => !!d?.isMatch);
+            })
+            .flat();
+          return matchList;
+        })
+        .flat()
+        .filter((a): a is Exclude<typeof a, undefined> => !!a)
+        .sort((a, b) => b.rev - a.rev)
+        .slice(0, 1),
       revList: ti.itemList
         .filter((item) => item.oddsTitle === '胜平负')
         .map((item) => {
