@@ -209,7 +209,7 @@ export function toData(tiCaiList: TiCaiItem[], extraList: ExtraItem[], _R = 0.12
                 type: 'lose',
                 tiCai: oddsItem[0],
                 // 负
-                tiCaiOdds: parseFloat(oddsItem[3]),
+                tiCaiOdds: parseFloat(oddsItem[1]),
               };
             })
             .flat();

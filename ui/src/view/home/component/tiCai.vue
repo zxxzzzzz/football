@@ -85,7 +85,7 @@ const halfItemList = computed(() => {
       return {
         title: item.oddsTitle,
         itemList: item.oddsItemList.map((oddsItem) => {
-          const index = props.halfRevList.findIndex((s) => oddsItem[0] === s.tiCai && parseFloat(oddsItem[1]) === s.tiCaiOdds);
+          const index = props.halfRevList.findIndex((s) => oddsItem[0] === s.tiCai);
           return {
             index: index === -1 ? -1 : index + 4,
             content: oddsItem,
