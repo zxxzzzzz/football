@@ -24,7 +24,16 @@ type Rev = {
   rev: number;
   isOnlyWin: boolean;
 };
-const props = defineProps<{ itemList: Item[]; revList: Rev[] }>();
+type Rev2 = {
+  type: string;
+  isOnlyWin: boolean;
+  tiCaiOdds: number;
+  extraOdds: number;
+  tiCai: string;
+  extra: string;
+  rev: number;
+};
+const props = defineProps<{ itemList: Item[]; revList: Rev[]; halfRevList: Rev2[] }>();
 const dataSource = computed(() => {
   return props.itemList.map((item) => {
     const oddsItemList = item.oddsItemList;
@@ -46,7 +55,7 @@ const dataSource = computed(() => {
     };
   });
 });
-const columns: TableProps<typeof dataSource.value[0]>['columns'] = [
+const columns: TableProps<(typeof dataSource.value)[0]>['columns'] = [
   // {title:'球队', customRender(){return '-'}},
   { title: '让球', dataIndex: 'scoreText', minWidth: 48 },
   {
@@ -62,8 +71,14 @@ const columns: TableProps<typeof dataSource.value[0]>['columns'] = [
           return r.extra === record.score && r.extraOdds === record.win && r.type === 'lose' && !r.isOnlyWin;
         })
         .map((d) => d[1]);
-      if (revIndexList.length) {
-        return h(Highlight, { content: record.win, index: revIndexList });
+      const halfRevIndexList = props.halfRevList
+        .map((d, i) => [d, i] as const)
+        .filter(([r, i]) => {
+          return r.extra === record.scoreText && r.extraOdds === record.win && r.type === 'lose' && !r.isOnlyWin;
+        })
+        .map((d) => d[1]);
+      if ([...revIndexList, ...halfRevIndexList].length) {
+        return h(Highlight, { content: record.win, index: [...revIndexList, ...halfRevIndexList] });
       }
       return record.win;
     },
@@ -82,8 +97,14 @@ const columns: TableProps<typeof dataSource.value[0]>['columns'] = [
           return r.extra === record.score && r.extraOdds === record.lose && r.type === 'win' && !r.isOnlyWin;
         })
         .map((d) => d[1]);
-      if (revIndexList.length) {
-        return h(Highlight, { content: record.lose, index: revIndexList });
+      const halfRevIndexList = props.halfRevList
+        .map((d, i) => [d, i] as const)
+        .filter(([r, i]) => {
+          return r.extra === record.scoreText && r.extraOdds === record.win && r.type === 'win' && !r.isOnlyWin;
+        })
+        .map((d) => d[1]);
+      if ([...revIndexList, ...halfRevIndexList].length) {
+        return h(Highlight, { content: record.win, index: [...revIndexList, ...halfRevIndexList] });
       }
       return record.lose;
     },
