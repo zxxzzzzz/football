@@ -251,7 +251,7 @@ export function toData(tiCaiList: TiCaiItem[], extraList: ExtraItem[], _R = 0.12
                     tiCaiOdds: f.tiCaiOdds,
                     extraOdds: f.type === 'win' ? r[2] : r[1],
                     tiCai: f.tiCai,
-                    extra: r[0],
+                    extra: item.oddsItemList[0][0],
                     rev: Rev,
                     gc: GC,
                     vv: VV,
