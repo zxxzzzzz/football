@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "pnpm exec tsx ./src/index.ts",
-    "build": "cd football_view && pnpm build"
+    "dev": "pnpm exec tsx ./src/index.ts",
+    "build": "npx tsc --project tsconfig.build.json"
   },
   "keywords": [],
   "author": "",
@@ -26,7 +26,9 @@
     "express": "^4.18.2",
     "json-format": "^1.0.1",
     "node-fetch": "^3.3.1",
+    "pinyin-pro": "^3.15.0",
     "ramda": "^0.28.0",
+    "string-similarity-js": "^2.1.4",
     "tsx": "^3.12.6",
     "typescript": "^5.0.4",
     "xml-js": "^1.6.11"

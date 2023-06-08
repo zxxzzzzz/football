@@ -1,10 +1,10 @@
 <template>
   <div>
-    <Ball :revList="props.revList" :itemList="ballItemList" class="flex-1"></Ball>
+    <Ball :revList="props.revList" :halfRevList="props.halfRevList" :itemList="ballItemList" class="flex-1"></Ball>
     <div class="flex">
       <div v-for="item in scoreItemList">
         <div class="mr-4 mb-2">{{ item.title }}</div>
-        <div class="flex mr-4 mb-2" v-for="oddItem in item.itemList">
+        <div class="flex mr-4 mb-2" v-for="oddItem in item.itemList.slice(0,1)">
           <div class="mr-1">
             <div>{{ oddItem.content[0] }}</div>
             <Highlight :content="oddItem.content[1]" :index="oddItem.index"></Highlight>
@@ -40,11 +40,17 @@ type Rev2 = {
   extra: string;
   rev: number;
 };
-const props = withDefaults(defineProps<{ teamList: string[]; itemList: Item[]; revList: Rev[]; scoreRevList: Rev2[] }>(), {
-  teamList: () => ['', ''],
-  revList: () => [],
-  itemList: () => [{ oddsTitle: '', oddsItemList: [] }],
-});
+type Rev3 = {
+  type: string;
+  isOnlyWin: boolean;
+  tiCaiOdds: number;
+  extraOdds: number;
+  tiCai: string;
+  extra: string;
+  rev: number;
+};
+const props = defineProps<{ teamList: string[]; itemList: Item[]; revList: Rev[]; scoreRevList: Rev2[]; halfRevList: Rev3[] }>();
+
 const scoreItemList = computed(() => {
   return props.itemList
     .filter((a) => a.oddsTitle === '得分')

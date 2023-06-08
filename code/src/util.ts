@@ -6,6 +6,11 @@ import { resolve, parse } from 'path';
 // @ts-ignore
 import Format from 'json-format';
 import OSS from 'ali-oss';
+import { pinyin } from 'pinyin-pro';
+import { stringSimilarity } from 'string-similarity-js';
+
+// Rearranged words
+stringSimilarity('Lorem ipsum', 'Ipsum lorem');
 
 let client: OSS | undefined = void 0;
 if (process.env.key) {
@@ -17,6 +22,14 @@ if (process.env.key) {
     accessKeySecret: process.env.secret || '',
     bucket: 'footballc',
   });
+}
+
+export function sim_jaccard(s1: string, s2: string): number {
+  const _s1 = new Set(s1);
+  const _s2 = new Set(s2);
+  const ret1 = new Set([..._s1].filter(x => _s2.has(x)));
+  const ret2 = new Set([..._s1, ..._s2]);
+  return 1.0 * ret1.size / ret2.size;
 }
 
 const isMatch = (a: string, b: string): number => {
@@ -49,7 +62,7 @@ export const isTeamEqu = (a: string[], b: string[]) => {
   const lList = a.map((aStr) => {
     return Math.max(
       ...b.map((bStr) => {
-        return isMatch(aStr, bStr);
+        return sim_jaccard(aStr, bStr);
       })
     );
   });
@@ -128,8 +141,8 @@ export function toData(tiCaiList: TiCaiItem[], extraList: ExtraItem[], _R = 0.12
     const oneMinute = 60 * 1000;
     return {
       league: ti.league,
-      tiCaiLeague:ti.league,
-      extraLeague:matchedExtra.league,
+      tiCaiLeague: ti.league,
+      extraLeague: matchedExtra.league,
       num: ti.num || '',
       singleList: ti.singleList,
       // @ts-ignore
@@ -183,6 +196,88 @@ export function toData(tiCaiList: TiCaiItem[], extraList: ExtraItem[], _R = 0.12
             offset: Offset,
           };
         })
+        .filter((a): a is Exclude<typeof a, undefined> => !!a)
+        .sort((a, b) => b.rev - a.rev)
+        .slice(0, 1),
+      halfRevList: ti.itemList
+        .filter((item) => item.oddsTitle === '半场')
+        .map((tiCaiItem) => {
+          if (!matchedExtra) {
+            return void 0;
+          }
+          const filterList = tiCaiItem.oddsItemList
+            .map((oddsItem) => {
+              // 体彩让球  [主胜对立面，主负对立面]
+              if (oddsItem[0] === '+0.5') {
+                return {
+                  filter: (d: number, isOnlyWin: boolean) => d === -0.5,
+                  // 胜
+                  type: 'win',
+                  tiCai: oddsItem[0],
+                  tiCaiOdds: parseFloat(oddsItem[1]),
+                };
+              }
+              return {
+                filter: (d: number, isOnlyWin: boolean) => d === 0.5,
+                type: 'lose',
+                tiCai: oddsItem[0],
+                // 负
+                tiCaiOdds: parseFloat(oddsItem[1]),
+              };
+            })
+            .flat();
+          const matchList = matchedExtra.itemList
+            .filter((item) => {
+              const r = [parseFloat(item.oddsItemList[0][0]), parseFloat(item.oddsItemList[0][1]), parseFloat(item.oddsItemList[1][1])];
+              if (!['让球', '独赢'].includes(item.oddsTitle)) {
+                return false;
+              }
+              if (item.oddsItemList[0][0]?.includes('/')) {
+                return false;
+              }
+              if (r[0] === Math.round(r[0])) {
+                return false;
+              }
+              return true;
+            })
+            .map((item) => {
+              // 比分 胜 负
+              let r = [parseFloat(item.oddsItemList[0][0]), parseFloat(item.oddsItemList[0][1]), parseFloat(item.oddsItemList[1][1])];
+              if (item.oddsTitle === '独赢') {
+                // 独赢没有让球，随便填个值
+                r = [0, parseFloat(item.oddsItemList[0][0]), parseFloat(item.oddsItemList[1][0])];
+              }
+              return filterList
+                .map((f) => {
+                  if (!matchedExtra) {
+                    return void 0;
+                  }
+                  const { GC, VV, Offset, Rev } = getRev(f.tiCaiOdds, f.type === 'win' ? r[2] : r[1], _R);
+                  return {
+                    score: tiCaiItem.score,
+                    teamList: matchedExtra.teamList,
+                    num: ti.num,
+                    ecid: matchedExtra.ecid,
+                    isMatch: f.filter(r[0], item.oddsTitle === '独赢'),
+                    isOnlyWin: item.oddsTitle === '独赢',
+                    type: f.type,
+                    tiCaiOdds: f.tiCaiOdds,
+                    extraOdds: f.type === 'win' ? r[2] : r[1],
+                    tiCai: f.tiCai,
+                    extra: item.oddsItemList[0][0],
+                    rev: Rev,
+                    gc: GC,
+                    vv: VV,
+                    r: _R,
+                    offset: Offset,
+                  };
+                })
+                .filter((d): d is Exclude<typeof d, undefined> => !!d?.isMatch);
+            })
+            .flat();
+          return matchList;
+        })
+        .flat()
         .filter((a): a is Exclude<typeof a, undefined> => !!a)
         .sort((a, b) => b.rev - a.rev)
         .slice(0, 1),
@@ -307,7 +402,7 @@ export function toData(tiCaiList: TiCaiItem[], extraList: ExtraItem[], _R = 0.12
 export function compare(dataList: ReturnType<typeof toData>, c = 0.13, a = 1, cRev = 430) {
   const filterDataList = dataList
     .filter((d) => {
-      return d.revList?.[0]?.rev > cRev;
+      return d.revList?.[0]?.rev > cRev && d.revList?.[0]?.rev < 3000;
     })
     .sort((a, b) => {
       const dy1 = dayjs(a.dateTime, 'MM-DD HH:mm').valueOf();
@@ -379,8 +474,10 @@ type Store = {
   Rev: number;
   compareRev: number;
   scoreRev: number;
+  halfRev: number;
   data: any;
 };
+let g_store: Partial<Store> | undefined = void 0;
 export async function getStore(): Promise<Partial<Store>> {
   const initData: Partial<Store> = {
     R: 0.12,
@@ -389,32 +486,30 @@ export async function getStore(): Promise<Partial<Store>> {
     Rev: 400,
     compareRev: 430,
     scoreRev: 200,
+    halfRev: 400,
   };
+  if (g_store) {
+    return { ...initData, ...g_store };
+  }
   if (client) {
     try {
       const res = await client.get(`store.json`);
-      return JSON.parse(res.content);
+      return { ...initData, ...JSON.parse(res.content) };
     } catch (error) {
       return initData;
     }
   }
-  const path = './data/store.json';
-  // 首先查看本地是否有数据,如果本地有数据，直接使用本地数据
-  if (fs.existsSync(path)) {
-    return JSON.parse(fs.readFileSync(path, { encoding: 'utf-8' }));
-  }
   return initData;
 }
 
-export const saveStore = async (s: Partial<Store>) => {
-  // 本地先存
-  const path = './data/store.json';
+export const saveStore = async (s: Partial<Store>, upload = false) => {
   const store = await getStore();
   const tStore: Partial<Store> = { ...store, ...s };
-  fs.writeFileSync(path, Format(tStore), { encoding: 'utf-8' });
+  // 内存保存
+  g_store = tStore;
   // oss保存
   try {
-    if (client) {
+    if (client && upload) {
       await client.put(`store.json`, Buffer.from(Format(tStore)));
     }
   } catch (error) {}
@@ -432,7 +527,7 @@ export const getLogHistory = () => {
 
 export function getMessage1List(data: ReturnType<typeof toData>, rev: number) {
   return data
-    .filter((d) => d?.revList?.[0]?.rev > rev)
+    .filter((d) => d?.revList?.[0]?.rev > rev && d?.revList?.[0]?.rev < 3000)
     .sort((a, b) => {
       const rev1 = a.revList[0];
       const rev2 = b.revList[0];
@@ -459,11 +554,31 @@ export function getMessage3List(data: ReturnType<typeof toData>, scoreRev: numbe
       const rev = d.scoreRevList[0];
       return `${d.num} ${dayjs(d.dateTime, 'MM-DD HH:mm').format('MM-DD\u2002HH:mm')} ${d.tiCaiTeamList.join(' ')} GC:${rev.gc.toFixed(
         2
-      )} VV:${rev.vv.toFixed(2)} offset:${rev.offset.toFixed(2)} rev:${rev.rev.toFixed(2)} 0球(${rev.score?.c?.toFixed(
+      )} VV:${rev.vv.toFixed(2)} offset:${rev.offset.toFixed(2)} rev:${rev.rev.toFixed(2)} 0球(${rev.score?.c?.toFixed(2)})-${(
+        (rev.score?.Z || 0) * 2
+      ).toFixed(2)}\u20021球(${rev.score?.b?.toFixed(2)})-${((rev.score?.Y || 0) * 2).toFixed(2)}\u20022球(${rev.score?.a?.toFixed(2)})-${(
+        (rev.score?.X || 0) * 2
+      ).toFixed(2)}`;
+    });
+}
+export function getMessage4List(data: ReturnType<typeof toData>, halfRev: number) {
+  return data
+    .filter((d) => d?.halfRevList?.[0]?.rev > halfRev)
+    .sort((a, b) => {
+      const rev1 = a.halfRevList[0];
+      const rev2 = b.halfRevList[0];
+      return rev2.rev - rev1.rev;
+    })
+    .map((d) => {
+      const rev = d.halfRevList[0];
+      const tList = rev.type === 'win' ? ['胜胜', '平胜', '负胜'] : ['胜负', '平负', '负负'];
+      return `${d.num} ${dayjs(d.dateTime, 'MM-DD HH:mm').format('MM-DD\u2002HH:mm')} ${d.tiCaiTeamList.join(' ')} GC:${rev.gc.toFixed(
         2
-      )})-${rev.score?.Z?.toFixed(2)}\u20021球(${rev.score?.b?.toFixed(2)})-${rev.score?.Y?.toFixed(2)}\u20022球(${rev.score?.a?.toFixed(
-        2
-      )})-${rev.score?.X?.toFixed(2)}`;
+      )} VV:${rev.vv.toFixed(2)} offset:${rev.offset.toFixed(2)} rev:${rev.rev.toFixed(2)} ${tList[0]}(${rev.score?.c?.toFixed(2)})-${(
+        (rev.score?.Z || 0) * 2
+      )?.toFixed(2)}\u2002${tList[1]}(${rev.score?.b?.toFixed(2)})-${((rev.score?.Y || 0) * 2)?.toFixed(2)}\u2002${
+        tList[2]
+      }(${rev.score?.a?.toFixed(2)})-${((rev.score?.X || 0) * 2)?.toFixed(2)}`;
     });
 }
 export function getMessage2List(data: ReturnType<typeof toData>, C: number, A: number, compareRev: number) {
@@ -494,18 +609,4 @@ export function getMessage2List(data: ReturnType<typeof toData>, C: number, A: n
       ];
     });
   return { messageList, compareDataList };
-}
-
-export async function cInter(cb: () => Promise<boolean>, n: number) {
-  try {
-    const d = await cb();
-    if (!d) {
-      return;
-    }
-  } catch (error) {}
-  setTimeout(async () => {
-    try {
-      await cInter(cb, n);
-    } catch (error) {}
-  }, n);
 }

@@ -50,24 +50,27 @@ export async function getTiCaiByFetch() {
   const fetch = (await _fetch).default;
   let data: any = void 0;
   try {
-    const res = await fetch('https://webapi.sporttery.cn/gateway/jc/football/getMatchCalculatorV1.qry?poolCode=hhad,had,ttg&channel=c', {
-      headers: {
-        accept: 'application/json, text/javascript, */*; q=0.01',
-        'accept-language': 'zh-CN,zh;q=0.9',
-        'cache-control': 'no-cache',
-        pragma: 'no-cache',
-        'sec-ch-ua': '"Google Chrome";v="111", "Not(A:Brand";v="8", "Chromium";v="111"',
-        'sec-ch-ua-mobile': '?0',
-        'sec-ch-ua-platform': '"Windows"',
-        'sec-fetch-dest': 'empty',
-        'sec-fetch-mode': 'cors',
-        'sec-fetch-site': 'same-site',
-        Referer: 'https://www.sporttery.cn/',
-        'Referrer-Policy': 'strict-origin-when-cross-origin',
-      },
-      body: null,
-      method: 'GET',
-    });
+    const res = await fetch(
+      'https://webapi.sporttery.cn/gateway/jc/football/getMatchCalculatorV1.qry?poolCode=hhad,had,ttg,hafu&channel=c',
+      {
+        headers: {
+          accept: 'application/json, text/javascript, */*; q=0.01',
+          'accept-language': 'zh-CN,zh;q=0.9',
+          'cache-control': 'no-cache',
+          pragma: 'no-cache',
+          'sec-ch-ua': '"Google Chrome";v="111", "Not(A:Brand";v="8", "Chromium";v="111"',
+          'sec-ch-ua-mobile': '?0',
+          'sec-ch-ua-platform': '"Windows"',
+          'sec-fetch-dest': 'empty',
+          'sec-fetch-mode': 'cors',
+          'sec-fetch-site': 'same-site',
+          Referer: 'https://www.sporttery.cn/',
+          'Referrer-Policy': 'strict-origin-when-cross-origin',
+        },
+        body: null,
+        method: 'GET',
+      }
+    );
     data = (await res.json()) as any;
   } catch (error) {
     throw createError('获取体彩数据失败', Code.dataFail);
@@ -81,12 +84,16 @@ export async function getTiCaiByFetch() {
       .flat()
       .map((m) => {
         const leagueAllName = m.leagueAllName;
+        // 得分计算
         const ttg = m.ttg;
         const a = parseFloat(ttg.s2);
         const b = parseFloat(ttg.s1);
         const c = parseFloat(ttg.s0);
         const get25G = (a: number, b: number, c: number) => {
           if (!a || !b || !c) {
+            return void 0;
+          }
+          if (Number.isNaN(a) || Number.isNaN(b) || Number.isNaN(c)) {
             return void 0;
           }
           // X+aX/b+aX/c=5000  aX=bY=cZ X+Y+Z=5000
@@ -99,6 +106,9 @@ export async function getTiCaiByFetch() {
           if (!a || !b || !c) {
             return void 0;
           }
+          if (Number.isNaN(a) || Number.isNaN(b) || Number.isNaN(c)) {
+            return void 0;
+          }
           const X = 9200 / 2 / a;
           // Y+Z = 5000 - X  bY = cZ  Z=bY/c   Y+bY/c = 5000 -X  Y = (5000-X)/(1+b/c)
           const Y = (5000 - X) / (1 + b / c);
@@ -107,6 +117,11 @@ export async function getTiCaiByFetch() {
         };
         const _25G = get25G(a, b, c);
         const _2G = get2G(a, b, c);
+        // 半场计算 胜胜 平胜 负胜
+        const { hh, dh, ah, ha, da, aa } = m.hafu || {};
+        const _05Plus = get25G(parseFloat(hh), parseFloat(dh), parseFloat(ah));
+        // 半场计算 胜负 平负 负负
+        const _05Minus = get25G(parseFloat(ha), parseFloat(da), parseFloat(aa));
         return {
           dateTime: dayjs(m.businessDate + ' ' + m.matchTime, 'YYYY-MM-DD HH:mm:ss').format('MM-DD HH:mm'),
           num: m.matchNumStr,
@@ -131,6 +146,30 @@ export async function getTiCaiByFetch() {
               oddsTitle: '得分',
               oddsItemList: [[`+2`, _2G?.rate || '0']],
               score: { a, b, c, X: _2G?.X || 0, Y: _2G?.Y || 0, Z: _2G?.Z || 0 },
+            },
+            {
+              oddsTitle: '半场',
+              oddsItemList: [['+0.5', _05Plus?.rate || '0']],
+              score: {
+                a: parseFloat(hh),
+                b: parseFloat(dh),
+                c: parseFloat(ah),
+                X: _05Plus?.X || 0,
+                Y: _05Plus?.Y || 0,
+                Z: _05Plus?.Z || 0,
+              },
+            },
+            {
+              oddsTitle: '半场',
+              oddsItemList: [['-0.5', _05Minus?.rate || '0']],
+              score: {
+                a: parseFloat(ha),
+                b: parseFloat(da),
+                c: parseFloat(aa),
+                X: _05Minus?.X || 0,
+                Y: _05Minus?.Y || 0,
+                Z: _05Minus?.Z || 0,
+              },
             },
           ] as {
             oddsTitle: string;

@@ -2,27 +2,31 @@
   <div class="pt-12 px-4">
     <div class="flex mb-4">
       <div class="w-[13rem] text-right mr-2">R</div>
-      <Input v-model:value="setting.R"></Input>
+      <Input v-model:value="store.setting.R"></Input>
     </div>
     <div class="flex mb-4">
       <div class="w-[13rem] text-right mr-2">A</div>
-      <Input v-model:value="setting.A"></Input>
+      <Input v-model:value="store.setting.A"></Input>
     </div>
     <div class="flex mb-4">
       <div class="w-[13rem] text-right mr-2">C</div>
-      <Input v-model:value="setting.C"></Input>
+      <Input v-model:value="store.setting.C"></Input>
     </div>
     <div class="flex mb-4">
       <div class="whitespace-nowrap w-[13rem] text-right mr-2">胜平负Rev</div>
-      <Input v-model:value="setting.Rev"></Input>
+      <Input v-model:value="store.setting.Rev"></Input>
     </div>
     <div class="flex mb-4">
       <div class="whitespace-nowrap w-[13rem] text-right mr-2">两场比赛比较的Rev</div>
-      <Input v-model:value="setting.compareRev"></Input>
+      <Input v-model:value="store.setting.compareRev"></Input>
     </div>
     <div class="flex mb-4">
       <div class="whitespace-nowrap w-[13rem] text-right mr-2">得分Rev</div>
-      <Input v-model:value="setting.scoreRev"></Input>
+      <Input v-model:value="store.setting.scoreRev"></Input>
+    </div>
+    <div class="flex mb-4">
+      <div class="whitespace-nowrap w-[13rem] text-right mr-2">半场Rev</div>
+      <Input v-model:value="store.setting.halfRev"></Input>
     </div>
     <div class="flex mb-4 justify-end">
       <Button @click="handleBack" class="mr-4"> 返回数据页 </Button>
@@ -34,17 +38,11 @@
 import { Input, message, Button } from 'ant-design-vue';
 import { computed, h, ref, onMounted, watch } from 'vue';
 import { useRouter } from 'vue-router';
+import store from "@/store/index";
 
 const router = useRouter();
 
-const setting = ref({
-  R: 0.12,
-  A: 1,
-  C: 0.13,
-  Rev: 400,
-  compareRev: 430,
-  scoreRev: 200,
-});
+
 
 async function getSetting() {
   const origin = import.meta.env.DEV ? 'http://127.0.0.1:9000' : location.origin;
@@ -58,7 +56,7 @@ async function getSetting() {
   if (res) {
     const d = await res.json();
     if (d.code === 200) {
-      setting.value = {
+      store.setting = {
         ...d.data,
       };
     }
@@ -67,7 +65,7 @@ async function getSetting() {
     }
   }
 }
-type Setting = typeof setting.value;
+type Setting = typeof store.setting;
 async function setSetting(setting: Setting) {
   const origin = import.meta.env.DEV ? 'http://127.0.0.1:9000' : location.origin;
   const res = await fetch(`${origin}/setting`, {
@@ -94,10 +92,11 @@ const handleSave = async () => {
     Rev: '胜平负Rev',
     compareRev: '两场比赛比较的Rev',
     scoreRev: '得分Rev',
+    halfRev: '半场Rev',
   };
-  type Keys = keyof typeof setting.value;
-  const isValid = Object.keys(setting.value).every((k) => {
-    const v = setting.value[k as Keys];
+  type Keys = keyof typeof store.setting;
+  const isValid = Object.keys(store.setting).every((k) => {
+    const v = store.setting[k as Keys];
     const n = parseFloat(`${v}`);
     if (Number.isNaN(n)) {
       message.error(m[k as Keys] + '填写的非法值，无法保存', 10);
@@ -106,8 +105,8 @@ const handleSave = async () => {
     return true;
   });
   if (isValid) {
-    const _setting = Object.keys(setting.value).reduce((re, k) => {
-      const v = setting.value[k as Keys];
+    const _setting = Object.keys(store.setting).reduce((re, k) => {
+      const v = store.setting[k as Keys];
       const n = parseFloat(`${v}`);
       return { ...re, [k]: n };
     }, {} as Setting);

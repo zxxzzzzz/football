@@ -11,6 +11,15 @@
           </div>
         </div>
       </div>
+      <div v-for="item in halfItemList">
+        <div class="mr-4 mb-2">{{ item.title }}</div>
+        <div class="flex mr-4 mb-2" v-for="oddItem in item.itemList">
+          <div class="mr-1">
+            <div>{{ oddItem.content[0] }}</div>
+            <Highlight :content="oddItem.content[1]" :index="oddItem.index"></Highlight>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -41,7 +50,7 @@ type Rev2 = {
   extra: string;
   rev: number;
 };
-const props = defineProps<{ itemList: Item[]; revList: Rev[]; scoreRevList: Rev2[] }>();
+const props = defineProps<{ itemList: Item[]; revList: Rev[]; scoreRevList: Rev2[]; halfRevList: Rev2[] }>();
 const dataSource = computed(() => {
   return (props.itemList.filter((item) => item.oddsTitle === '胜平负')?.[0]?.oddsItemList || []).map((odds) => {
     return {
@@ -63,6 +72,22 @@ const scoreItemList = computed(() => {
           const index = props.scoreRevList.findIndex((s) => oddsItem[0] === s.tiCai && parseFloat(oddsItem[1]) === s.tiCaiOdds);
           return {
             index: index === -1 ? -1 : index + 2,
+            content: oddsItem,
+          };
+        }),
+      };
+    });
+});
+const halfItemList = computed(() => {
+  return props.itemList
+    .filter((a) => a.oddsTitle === '半场')
+    .map((item) => {
+      return {
+        title: item.oddsTitle,
+        itemList: item.oddsItemList.map((oddsItem) => {
+          const index = props.halfRevList.findIndex((s) => oddsItem[0] === s.tiCai);
+          return {
+            index: index === -1 ? -1 : index + 4,
             content: oddsItem,
           };
         }),
