@@ -554,11 +554,11 @@ export function getMessage3List(data: ReturnType<typeof toData>, scoreRev: numbe
       const rev = d.scoreRevList[0];
       return `${d.num} ${dayjs(d.dateTime, 'MM-DD HH:mm').format('MM-DD\u2002HH:mm')} ${d.tiCaiTeamList.join(' ')} GC:${rev.gc.toFixed(
         2
-      )} VV:${rev.vv.toFixed(2)} offset:${rev.offset.toFixed(2)} rev:${rev.rev.toFixed(2)} 0球(${rev.score?.c?.toFixed(2)})-${(
+      )} VV:${rev.vv.toFixed(3)} offset:${rev.offset.toFixed(3)} rev:${rev.rev.toFixed(3)} 0球(${rev.score?.c?.toFixed(3)})-${(
         (rev.score?.Z || 0) * 2
-      ).toFixed(2)}\u20021球(${rev.score?.b?.toFixed(2)})-${((rev.score?.Y || 0) * 2).toFixed(2)}\u20022球(${rev.score?.a?.toFixed(2)})-${(
+      ).toFixed(3)}\u20021球(${rev.score?.b?.toFixed(3)})-${((rev.score?.Y || 0) * 2).toFixed(3)}\u20022球(${rev.score?.a?.toFixed(3)})-${(
         (rev.score?.X || 0) * 2
-      ).toFixed(2)}`;
+      ).toFixed(3)}`;
     });
 }
 export function getMessage4List(data: ReturnType<typeof toData>, halfRev: number) {
