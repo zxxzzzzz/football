@@ -27,9 +27,9 @@ if (process.env.key) {
 export function sim_jaccard(s1: string, s2: string): number {
   const _s1 = new Set(s1);
   const _s2 = new Set(s2);
-  const ret1 = new Set([..._s1].filter(x => _s2.has(x)));
+  const ret1 = new Set([..._s1].filter((x) => _s2.has(x)));
   const ret2 = new Set([..._s1, ..._s2]);
-  return 1.0 * ret1.size / ret2.size;
+  return (1.0 * ret1.size) / ret2.size;
 }
 
 const isMatch = (a: string, b: string): number => {
@@ -563,7 +563,7 @@ export function getMessage3List(data: ReturnType<typeof toData>, scoreRev: numbe
 }
 export function getMessage4List(data: ReturnType<typeof toData>, halfRev: number) {
   return data
-    .filter((d) => d?.halfRevList?.[0]?.rev > halfRev)
+    .filter((d) => d?.halfRevList?.[0]?.rev > halfRev && d?.halfRevList?.[0]?.rev < 1500)
     .sort((a, b) => {
       const rev1 = a.halfRevList[0];
       const rev2 = b.halfRevList[0];
@@ -574,11 +574,11 @@ export function getMessage4List(data: ReturnType<typeof toData>, halfRev: number
       const tList = rev.type === 'win' ? ['胜胜', '平胜', '负胜'] : ['胜负', '平负', '负负'];
       return `${d.num} ${dayjs(d.dateTime, 'MM-DD HH:mm').format('MM-DD\u2002HH:mm')} ${d.tiCaiTeamList.join(' ')} GC:${rev.gc.toFixed(
         2
-      )} VV:${rev.vv.toFixed(2)} offset:${rev.offset.toFixed(2)} rev:${rev.rev.toFixed(2)} ${tList[0]}(${rev.score?.c?.toFixed(2)})-${(
+      )} VV:${rev.vv.toFixed(3)} offset:${rev.offset.toFixed(3)} rev:${rev.rev.toFixed(3)} ${tList[0]}(${rev.score?.a?.toFixed(3)})-${(
         (rev.score?.Z || 0) * 2
-      )?.toFixed(2)}\u2002${tList[1]}(${rev.score?.b?.toFixed(2)})-${((rev.score?.Y || 0) * 2)?.toFixed(2)}\u2002${
+      )?.toFixed(3)}\u2002${tList[1]}(${rev.score?.b?.toFixed(3)})-${((rev.score?.Y || 0) * 2)?.toFixed(3)}\u2002${
         tList[2]
-      }(${rev.score?.a?.toFixed(2)})-${((rev.score?.X || 0) * 2)?.toFixed(2)}`;
+      }(${rev.score?.c?.toFixed(3)})-${((rev.score?.X || 0) * 2)?.toFixed(3)}`;
     });
 }
 export function getMessage2List(data: ReturnType<typeof toData>, C: number, A: number, compareRev: number) {
