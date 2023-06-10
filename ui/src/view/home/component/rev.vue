@@ -187,7 +187,7 @@ const halfColumns: TableProps<(typeof halfDataSource.value)[0]>['columns'] = [
     title: 'Rev',
     dataIndex: 'rev',
     customRender({ record, index }) {
-      const isRev = record.rev >= store.setting.halfRev;
+      const isRev = record.rev >= store.setting.halfRev && record.rev < 1500;
       return h(Highlight, { content: record.rev.toFixed(2), index: isRev ? index + 4 : -1 });
     },
   },
