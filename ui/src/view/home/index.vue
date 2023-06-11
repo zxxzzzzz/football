@@ -258,7 +258,10 @@ async function getData() {
       return false;
     }
     if (data.code === Code.forbidden) {
-      router.push('/login');
+      store.password = ''
+      localStorage.setItem('ps', '')
+      console.log('goto login');
+      router.push({path: '/login'});
       return false;
     }
   }
