@@ -47,6 +47,7 @@
 import { Table, Drawer, List, Button, Affix, Divider, message } from 'ant-design-vue';
 import { computed, h, ref, onMounted, watch, onUnmounted } from 'vue';
 import { useRouter } from 'vue-router';
+import store from '@/store';
 
 const router = useRouter();
 // defineProps<{}>();
@@ -115,11 +116,13 @@ const colors = [
 ];
 
 enum Code {
-  maintain = 619,
   success = 200,
   wrongAccount = 403,
-  accountUnknownFail = 401,
   dataFail = 404,
+  accountUnknownFail = 601,
+  maintain = 619,
+  uidExpire = 801,
+  forbidden = 401,
 }
 
 // const dataList = ref<Game[]>([]);
@@ -132,9 +135,8 @@ let timeId: ReturnType<typeof setTimeout> | undefined = void 0;
 
 async function getData() {
   const origin = import.meta.env.DEV ? 'http://127.0.0.1:9000' : location.origin;
-  const url = new URL(location.href);
   const res = await fetch(
-    `${origin}/data?username=${url.searchParams.get('username') || ''}&password=${url.searchParams.get('password') || ''}`
+    `${origin}/data?p=${store.password}`
   );
   const data = (await res.json()) as { code: number; msg: string; data?: any };
   if (data.code !== 200) {
@@ -146,6 +148,12 @@ async function getData() {
     }
     if (data?.code === Code.accountUnknownFail) {
       message.info('为了保证账号安全，已停止数据自动更新。刷新页面可开始继续自动更新', 10);
+      return false;
+    }
+    if (data.code === Code.forbidden) {
+      store.password = ''
+      localStorage.setItem('ps', '')
+      router.push({path: '/login'});
       return false;
     }
   }
