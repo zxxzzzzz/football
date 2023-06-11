@@ -36,6 +36,16 @@
         </div>
       </template>
     </List>
+    <Divider></Divider>
+      <List item-layout="horizontal" :data-source="message4List">
+        <template #renderItem="{ item }">
+          <div class="flex flex-wrap mb-2">
+            <div v-for="(t, index) in item.split(' ')" :style="{ color: colors[index], margin: '0 4px' }" class="whitespace-nowrap">
+              {{ t }}
+            </div>
+          </div>
+        </template>
+      </List>
     <Affix :offsetBottom="400" :style="{ position: 'absolute', right: 0 + 'px' }">
       <div class="flex flex-col">
         <Button class="my-2" @click="handleSetting"> 设置</Button>
@@ -131,13 +141,12 @@ const dataSource = ref<D[]>([]);
 const message1List = ref<string[]>([]);
 const message2List = ref<string[]>([]);
 const message3List = ref<string[]>([]);
+const message4List = ref<string[]>([]);
 let timeId: ReturnType<typeof setTimeout> | undefined = void 0;
 
 async function getData() {
   const origin = import.meta.env.DEV ? 'http://127.0.0.1:9000' : location.origin;
-  const res = await fetch(
-    `${origin}/data?p=${store.password}`
-  );
+  const res = await fetch(`${origin}/data?p=${store.password}`);
   const data = (await res.json()) as { code: number; msg: string; data?: any };
   if (data.code !== 200) {
     message.error(data?.msg || '更新出错', 20);
@@ -151,9 +160,9 @@ async function getData() {
       return false;
     }
     if (data.code === Code.forbidden) {
-      store.password = ''
-      localStorage.setItem('ps', '')
-      router.push({path: '/login'});
+      store.password = '';
+      localStorage.setItem('ps', '');
+      router.push({ path: '/login' });
       return false;
     }
   }
@@ -163,6 +172,7 @@ async function getData() {
     message1List.value = data.data.message1List;
     message2List.value = data.data.message2List;
     message3List.value = data.data.message3List;
+    message4List.value = data.data.message4List;
   }
   return true;
 }
