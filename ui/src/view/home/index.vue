@@ -75,6 +75,7 @@ import Extra from './component/extra.vue';
 import Rev from './component/rev.vue';
 import dayjs from 'dayjs';
 import { useRouter } from 'vue-router';
+import store from '@/store';
 
 const router = useRouter();
 
@@ -160,11 +161,13 @@ const colors = [
 ];
 
 enum Code {
-  maintain = 619,
   success = 200,
   wrongAccount = 403,
-  accountUnknownFail = 401,
   dataFail = 404,
+  accountUnknownFail = 601,
+  maintain = 619,
+  uidExpire = 801,
+  forbidden = 401,
 }
 
 // const dataList = ref<Game[]>([]);
@@ -241,7 +244,7 @@ const pagination: TableProps['pagination'] = {
 
 async function getData() {
   const origin = import.meta.env.DEV ? 'http://127.0.0.1:9000' : location.origin;
-  const res = await fetch(`${origin}/data`, { cache: 'default' });
+  const res = await fetch(`${origin}/data?p=${store.password}`, { cache: 'default' });
   const data = (await res.json()) as { code: number; msg: string; data?: any };
   if (data.code !== 200) {
     message.error(data?.msg || '更新出错', 20);
@@ -252,6 +255,10 @@ async function getData() {
     }
     if (data?.code === Code.accountUnknownFail) {
       message.info('为了保证账号安全，已停止数据自动更新。刷新页面可开始继续自动更新', 10);
+      return false;
+    }
+    if (data.code === Code.forbidden) {
+      router.push('/login');
       return false;
     }
   }

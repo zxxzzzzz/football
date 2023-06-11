@@ -1,7 +1,6 @@
-import * as R from 'ramda';
 // @ts-ignore
 import Format from 'json-format';
-import { isTeamEqu, isLeagueEqual, toData, compare } from './util';
+import { isTeamEqu, isLeagueEqual, toData } from './util';
 import dayjs from 'dayjs';
 import express from 'express';
 import {
@@ -12,7 +11,7 @@ import {
   retryLoginByNodeFetch,
 } from './api';
 // import { say } from './chaty';
-import { getStore, saveStore, saveFile, getLogHistory, getMessage1List, getMessage2List, getMessage3List,getMessage4List } from './util';
+import { getStore, saveStore, saveFile, getMessage1List, getMessage2List, getMessage3List,getMessage4List } from './util';
 import cors from 'cors';
 import { CError, Code, createError } from './error';
 import compression from 'compression';
@@ -36,6 +35,11 @@ app.listen(9000);
 let isWait = false;
 app.get('/data', async (req, res) => {
   console.log(dayjs().valueOf());
+  const p = req.query.p as string
+  if(!['XD_ivan'].includes(p)){
+    res.send({ code: Code.forbidden, msg: '没有权限，请重新登陆' });
+    return
+  }
   const username = (process.env.username || '') as string;
   const password = (process.env.password || '') as string;
   type PromiseType<T> = T extends Promise<infer U> ? U : never;
