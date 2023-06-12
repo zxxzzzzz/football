@@ -33,11 +33,15 @@ export default app;
 app.use(express.static('./public'));
 app.use(express.json());
 app.listen(9000);
-
+         
 const accountList = [
   { password: 'XD_ivan', token: '' },
   { password: 'XD_ivan1', token: '' },
-  { password: 'test123', token: '' },
+  { password: 'LJ111', token: '' },
+  { password: 'LJ222', token: '' },
+  { password: 'XIAO111', token: '' },
+  { password: 'XIAO222', token: '' },
+  { password: 'test_123@', token: '' },
 ];
 let isWait = false;
 app.get('/data', async (req, res) => {
