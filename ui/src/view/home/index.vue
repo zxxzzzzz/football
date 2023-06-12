@@ -75,6 +75,7 @@ import Extra from './component/extra.vue';
 import Rev from './component/rev.vue';
 import dayjs from 'dayjs';
 import { useRouter } from 'vue-router';
+import store from '@/store';
 
 const router = useRouter();
 
@@ -160,11 +161,13 @@ const colors = [
 ];
 
 enum Code {
-  maintain = 619,
   success = 200,
   wrongAccount = 403,
-  accountUnknownFail = 401,
   dataFail = 404,
+  accountUnknownFail = 601,
+  maintain = 619,
+  uidExpire = 801,
+  forbidden = 401,
 }
 
 // const dataList = ref<Game[]>([]);
@@ -212,6 +215,7 @@ const message1List = ref<string[]>([]);
 const message2List = ref<string[]>([]);
 const message3List = ref<string[]>([]);
 const message4List = ref<string[]>([]);
+// 在线人数
 let timeId: ReturnType<typeof setTimeout> | undefined = void 0;
 // 是否按照rev排序
 const enum SortType {
@@ -241,7 +245,8 @@ const pagination: TableProps['pagination'] = {
 
 async function getData() {
   const origin = import.meta.env.DEV ? 'http://127.0.0.1:9000' : location.origin;
-  const res = await fetch(`${origin}/data`, { cache: 'default' });
+  document.cookie = `password=${store.password}`;
+  const res = await fetch(`${origin}/data`, { credentials: 'include' });
   const data = (await res.json()) as { code: number; msg: string; data?: any };
   if (data.code !== 200) {
     message.error(data?.msg || '更新出错', 20);
@@ -254,10 +259,19 @@ async function getData() {
       message.info('为了保证账号安全，已停止数据自动更新。刷新页面可开始继续自动更新', 10);
       return false;
     }
+    if (data.code === Code.forbidden) {
+      store.password = '';
+      localStorage.setItem('ps', '');
+      console.log('goto login');
+      router.push({ path: '/login' });
+      return false;
+    }
   }
   if (data.data?.matchData?.length) {
     message.success(
-      `数据更新 ${data?.data?.timestamp ? '距离当前' + (dayjs().valueOf() - dayjs(data.data.timestamp).valueOf()) / 1000 + '秒' : ''}`,
+      `数据更新 ${
+        data?.data?.timestamp ? '距离当前' + (dayjs().valueOf() - dayjs(data.data.timestamp).valueOf()) / 1000 + '秒' : ''
+      }, 在线人数${data?.data?.liveCount || 0}`,
       5
     );
     dataSource.value = data.data.matchData;

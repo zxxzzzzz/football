@@ -5,6 +5,7 @@ export enum Code {
   accountUnknownFail = 601,
   maintain = 619,
   uidExpire = 801,
+  forbidden = 401
 }
 
 export function createError(msg: string, code: Code) {

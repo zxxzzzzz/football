@@ -36,6 +36,16 @@
         </div>
       </template>
     </List>
+    <Divider></Divider>
+      <List item-layout="horizontal" :data-source="message4List">
+        <template #renderItem="{ item }">
+          <div class="flex flex-wrap mb-2">
+            <div v-for="(t, index) in item.split(' ')" :style="{ color: colors[index], margin: '0 4px' }" class="whitespace-nowrap">
+              {{ t }}
+            </div>
+          </div>
+        </template>
+      </List>
     <Affix :offsetBottom="400" :style="{ position: 'absolute', right: 0 + 'px' }">
       <div class="flex flex-col">
         <Button class="my-2" @click="handleSetting"> 设置</Button>
@@ -47,6 +57,8 @@
 import { Table, Drawer, List, Button, Affix, Divider, message } from 'ant-design-vue';
 import { computed, h, ref, onMounted, watch, onUnmounted } from 'vue';
 import { useRouter } from 'vue-router';
+import store from '@/store';
+import dayjs from 'dayjs';
 
 const router = useRouter();
 // defineProps<{}>();
@@ -115,11 +127,13 @@ const colors = [
 ];
 
 enum Code {
-  maintain = 619,
   success = 200,
   wrongAccount = 403,
-  accountUnknownFail = 401,
   dataFail = 404,
+  accountUnknownFail = 601,
+  maintain = 619,
+  uidExpire = 801,
+  forbidden = 401,
 }
 
 // const dataList = ref<Game[]>([]);
@@ -128,14 +142,12 @@ const dataSource = ref<D[]>([]);
 const message1List = ref<string[]>([]);
 const message2List = ref<string[]>([]);
 const message3List = ref<string[]>([]);
+const message4List = ref<string[]>([]);
 let timeId: ReturnType<typeof setTimeout> | undefined = void 0;
 
 async function getData() {
   const origin = import.meta.env.DEV ? 'http://127.0.0.1:9000' : location.origin;
-  const url = new URL(location.href);
-  const res = await fetch(
-    `${origin}/data?username=${url.searchParams.get('username') || ''}&password=${url.searchParams.get('password') || ''}`
-  );
+  const res = await fetch(`${origin}/data`, { credentials: 'include' });
   const data = (await res.json()) as { code: number; msg: string; data?: any };
   if (data.code !== 200) {
     message.error(data?.msg || '更新出错', 20);
@@ -148,13 +160,25 @@ async function getData() {
       message.info('为了保证账号安全，已停止数据自动更新。刷新页面可开始继续自动更新', 10);
       return false;
     }
+    if (data.code === Code.forbidden) {
+      store.password = '';
+      localStorage.setItem('ps', '');
+      router.push({ path: '/login' });
+      return false;
+    }
   }
   if (data.data?.matchData?.length) {
-    message.success('数据更新成功');
+    message.success(
+      `数据更新 ${
+        data?.data?.timestamp ? '距离当前' + (dayjs().valueOf() - dayjs(data.data.timestamp).valueOf()) / 1000 + '秒' : ''
+      }, 在线人数${data?.data?.liveCount || 0}`,
+      5
+    );
     dataSource.value = data.data.matchData;
     message1List.value = data.data.message1List;
     message2List.value = data.data.message2List;
     message3List.value = data.data.message3List;
+    message4List.value = data.data.message4List;
   }
   return true;
 }
