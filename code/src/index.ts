@@ -15,16 +15,18 @@ import { getStore, saveStore, saveFile, getMessage1List, getMessage2List, getMes
 import cors from 'cors';
 import { CError, Code, createError } from './error';
 import compression from 'compression';
+import cookieParser from 'cookie-parser';
 
 // console.log(cors);
-// process.env.username = 'jixiang123';
-// process.env.password = 'ming326391';
+process.env.username = 'XDivan4';
+process.env.password = 'Jxd9061912';
 
 type FirstOfGeneric<T> = T extends Promise<infer F> ? F : never;
 
 const app = express();
-app.use(cors());
+app.use(cors({ origin: true, credentials: true, allowedHeaders: ['Cookie'] }));
 app.use(compression());
+app.use(cookieParser());
 
 export default app;
 
@@ -45,7 +47,8 @@ app.get('/data', async (req, res) => {
     if (Number.isNaN(tokenV)) {
       return;
     }
-    if (dayjs().valueOf() - tokenV > 10 * 1000) {
+    // 半小时清除一次token
+    if (dayjs().valueOf() - tokenV > 30 * 60 * 1000) {
       account.token = '';
     }
   });
@@ -61,7 +64,7 @@ app.get('/data', async (req, res) => {
     return;
   }
   account.token = dayjs().valueOf().toString();
-  res.cookie('token', account.token, { expires: new Date(Date.now() + 10 * 1000), httpOnly: true });
+  res.cookie('token', account.token, { httpOnly: true });
   const liveCount = accountList.filter((a) => a.token).length;
   const username = (process.env.username || '') as string;
   const password = (process.env.password || '') as string;

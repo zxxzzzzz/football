@@ -1,805 +1,5 @@
 [
 	{
-		"league": "欧洲协会联赛",
-		"source": "extra",
-		"ecid": "7063191",
-		"num": "",
-		"singleList": [
-			false,
-			false
-		],
-		"strong": "C",
-		"dateTime": "06-08 03:00",
-		"itemList": [
-			{
-				"oddsTitle": "独赢",
-				"oddsItemList": [
-					[
-						"2.80"
-					],
-					[
-						"2.71"
-					],
-					[
-						"3.15"
-					]
-				]
-			}
-		],
-		"teamList": [
-			"佛罗伦萨",
-			"西汉姆联"
-		]
-	},
-	{
-		"league": "南美自由杯",
-		"source": "extra",
-		"ecid": "7093042",
-		"num": "",
-		"singleList": [
-			false,
-			false
-		],
-		"strong": "H",
-		"dateTime": "06-08 06:00",
-		"itemList": [
-			{
-				"oddsTitle": "独赢",
-				"oddsItemList": [
-					[
-						"1.69"
-					],
-					[
-						"4.70"
-					],
-					[
-						"3.40"
-					]
-				]
-			}
-		],
-		"teamList": [
-			"瓦伦独立",
-			"哥连泰斯SP"
-		]
-	},
-	{
-		"league": "南美自由杯",
-		"source": "extra",
-		"ecid": "7093048",
-		"num": "",
-		"singleList": [
-			false,
-			false
-		],
-		"strong": "H",
-		"dateTime": "06-08 06:00",
-		"itemList": [
-			{
-				"oddsTitle": "独赢",
-				"oddsItemList": [
-					[
-						"1.26"
-					],
-					[
-						"8.70"
-					],
-					[
-						"5.20"
-					]
-				]
-			}
-		],
-		"teamList": [
-			"小阿根廷人",
-			"利物浦蒙特维多"
-		]
-	},
-	{
-		"league": "南美自由杯",
-		"source": "extra",
-		"ecid": "7093058",
-		"num": "",
-		"singleList": [
-			false,
-			false
-		],
-		"strong": "C",
-		"dateTime": "06-08 06:00",
-		"itemList": [
-			{
-				"oddsTitle": "独赢",
-				"oddsItemList": [
-					[
-						"2.70"
-					],
-					[
-						"2.43"
-					],
-					[
-						"3.15"
-					]
-				]
-			}
-		],
-		"teamList": [
-			"蒙特维多国民队",
-			"国际体育会RS"
-		]
-	},
-	{
-		"league": "南美自由杯",
-		"source": "extra",
-		"ecid": "7093068",
-		"num": "",
-		"singleList": [
-			false,
-			false
-		],
-		"strong": "H",
-		"dateTime": "06-08 08:00",
-		"itemList": [
-			{
-				"oddsTitle": "独赢",
-				"oddsItemList": [
-					[
-						"1.54"
-					],
-					[
-						"5.10"
-					],
-					[
-						"3.90"
-					]
-				]
-			}
-		],
-		"teamList": [
-			"奥卡斯",
-			"纽柏莱斯"
-		]
-	},
-	{
-		"league": "南美自由杯",
-		"source": "extra",
-		"ecid": "7093078",
-		"num": "",
-		"singleList": [
-			false,
-			false
-		],
-		"strong": "H",
-		"dateTime": "06-08 08:30",
-		"itemList": [
-			{
-				"oddsTitle": "独赢",
-				"oddsItemList": [
-					[
-						"1.68"
-					],
-					[
-						"4.35"
-					],
-					[
-						"3.65"
-					]
-				]
-			}
-		],
-		"teamList": [
-			"河床",
-			"富明尼斯RJ"
-		]
-	},
-	{
-		"league": "南美自由杯",
-		"source": "extra",
-		"ecid": "7093089",
-		"num": "",
-		"singleList": [
-			false,
-			false
-		],
-		"strong": "H",
-		"dateTime": "06-08 08:30",
-		"itemList": [
-			{
-				"oddsTitle": "独赢",
-				"oddsItemList": [
-					[
-						"1.18"
-					],
-					[
-						"11.00"
-					],
-					[
-						"6.10"
-					]
-				]
-			}
-		],
-		"teamList": [
-			"彭美拉斯SP",
-			"巴塞隆拿SC"
-		]
-	},
-	{
-		"league": "南美自由杯",
-		"source": "extra",
-		"ecid": "7093100",
-		"num": "",
-		"singleList": [
-			false,
-			false
-		],
-		"strong": "H",
-		"dateTime": "06-08 10:00",
-		"itemList": [
-			{
-				"oddsTitle": "独赢",
-				"oddsItemList": [
-					[
-						"1.37"
-					],
-					[
-						"6.50"
-					],
-					[
-						"4.55"
-					]
-				]
-			}
-		],
-		"teamList": [
-			"史庄格斯特",
-			"水晶竞技"
-		]
-	},
-	{
-		"league": "南美自由杯",
-		"source": "extra",
-		"ecid": "7093117",
-		"num": "",
-		"singleList": [
-			false,
-			false
-		],
-		"strong": "C",
-		"dateTime": "06-09 06:00",
-		"itemList": [
-			{
-				"oddsTitle": "独赢",
-				"oddsItemList": [
-					[
-						"4.95"
-					],
-					[
-						"1.60"
-					],
-					[
-						"3.65"
-					]
-				]
-			}
-		],
-		"teamList": [
-			"麦罗波利塔诺斯",
-			"曼特宁独立"
-		]
-	},
-	{
-		"league": "南美自由杯",
-		"source": "extra",
-		"ecid": "7093119",
-		"num": "",
-		"singleList": [
-			false,
-			false
-		],
-		"strong": "H",
-		"dateTime": "06-09 08:00",
-		"itemList": [
-			{
-				"oddsTitle": "独赢",
-				"oddsItemList": [
-					[
-						"2.04"
-					],
-					[
-						"3.45"
-					],
-					[
-						"3.10"
-					]
-				]
-			}
-		],
-		"teamList": [
-			"奥林匹亚",
-			"国家体育会"
-		]
-	},
-	{
-		"league": "南美自由杯",
-		"source": "extra",
-		"ecid": "7093130",
-		"num": "",
-		"singleList": [
-			false,
-			false
-		],
-		"strong": "H",
-		"dateTime": "06-09 08:00",
-		"itemList": [
-			{
-				"oddsTitle": "独赢",
-				"oddsItemList": [
-					[
-						"1.36"
-					],
-					[
-						"7.00"
-					],
-					[
-						"4.45"
-					]
-				]
-			}
-		],
-		"teamList": [
-			"法林明高RJ",
-			"竞赛会"
-		]
-	},
-	{
-		"league": "美国职业大联盟",
-		"source": "extra",
-		"ecid": "7089084",
-		"num": "",
-		"singleList": [
-			false,
-			false
-		],
-		"strong": "H",
-		"dateTime": "06-08 10:30",
-		"itemList": [
-			{
-				"oddsTitle": "独赢",
-				"oddsItemList": [
-					[
-						"1.68"
-					],
-					[
-						"4.45"
-					],
-					[
-						"4.35"
-					]
-				]
-			}
-		],
-		"teamList": [
-			"洛杉矶",
-			"亚特兰大联"
-		]
-	},
-	{
-		"league": "美国职业大联盟",
-		"source": "extra",
-		"ecid": "7089094",
-		"num": "",
-		"singleList": [
-			false,
-			false
-		],
-		"strong": "H",
-		"dateTime": "06-11 07:30",
-		"itemList": [
-			{
-				"oddsTitle": "独赢",
-				"oddsItemList": [
-					[
-						"1.80"
-					],
-					[
-						"3.95"
-					],
-					[
-						"4.15"
-					]
-				]
-			}
-		],
-		"teamList": [
-			"亚特兰大联",
-			"华盛顿特区联"
-		]
-	},
-	{
-		"league": "美国职业大联盟",
-		"source": "extra",
-		"ecid": "7089096",
-		"num": "",
-		"singleList": [
-			false,
-			false
-		],
-		"strong": "H",
-		"dateTime": "06-11 07:30",
-		"itemList": [
-			{
-				"oddsTitle": "独赢",
-				"oddsItemList": [
-					[
-						"2.48"
-					],
-					[
-						"2.87"
-					],
-					[
-						"3.35"
-					]
-				]
-			}
-		],
-		"teamList": [
-			"夏洛特",
-			"西雅图海湾人"
-		]
-	},
-	{
-		"league": "美国职业大联盟",
-		"source": "extra",
-		"ecid": "7089106",
-		"num": "",
-		"singleList": [
-			false,
-			false
-		],
-		"strong": "H",
-		"dateTime": "06-11 07:30",
-		"itemList": [
-			{
-				"oddsTitle": "独赢",
-				"oddsItemList": [
-					[
-						"2.12"
-					],
-					[
-						"3.40"
-					],
-					[
-						"3.50"
-					]
-				]
-			}
-		],
-		"teamList": [
-			"蒙特利尔",
-			"明尼苏达联"
-		]
-	},
-	{
-		"league": "美国职业大联盟",
-		"source": "extra",
-		"ecid": "7089117",
-		"num": "",
-		"singleList": [
-			false,
-			false
-		],
-		"strong": "H",
-		"dateTime": "06-11 07:30",
-		"itemList": [
-			{
-				"oddsTitle": "独赢",
-				"oddsItemList": [
-					[
-						"1.55"
-					],
-					[
-						"5.40"
-					],
-					[
-						"4.50"
-					]
-				]
-			}
-		],
-		"teamList": [
-			"新英格兰革命",
-			"国际迈阿密"
-		]
-	},
-	{
-		"league": "美国职业大联盟",
-		"source": "extra",
-		"ecid": "7089126",
-		"num": "",
-		"singleList": [
-			false,
-			false
-		],
-		"strong": "H",
-		"dateTime": "06-11 07:30",
-		"itemList": [
-			{
-				"oddsTitle": "独赢",
-				"oddsItemList": [
-					[
-						"1.85"
-					],
-					[
-						"3.95"
-					],
-					[
-						"3.90"
-					]
-				]
-			}
-		],
-		"teamList": [
-			"奥兰多城",
-			"科罗拉多急流"
-		]
-	},
-	{
-		"league": "美国职业大联盟",
-		"source": "extra",
-		"ecid": "7089139",
-		"num": "",
-		"singleList": [
-			false,
-			false
-		],
-		"strong": "H",
-		"dateTime": "06-11 07:30",
-		"itemList": [
-			{
-				"oddsTitle": "独赢",
-				"oddsItemList": [
-					[
-						"2.63"
-					],
-					[
-						"2.70"
-					],
-					[
-						"3.35"
-					]
-				]
-			}
-		],
-		"teamList": [
-			"多伦多",
-			"纳什维尔SC"
-		]
-	},
-	{
-		"league": "美国职业大联盟",
-		"source": "extra",
-		"ecid": "7094359",
-		"num": "",
-		"singleList": [
-			false,
-			false
-		],
-		"strong": "C",
-		"dateTime": "06-11 08:30",
-		"itemList": [
-			{
-				"oddsTitle": "独赢",
-				"oddsItemList": [
-					[
-						"2.95"
-					],
-					[
-						"2.31"
-					],
-					[
-						"3.60"
-					]
-				]
-			}
-		],
-		"teamList": [
-			"休斯顿迪纳摩",
-			"洛杉矶"
-		]
-	},
-	{
-		"league": "美国职业大联盟",
-		"source": "extra",
-		"ecid": "7094363",
-		"num": "",
-		"singleList": [
-			false,
-			false
-		],
-		"strong": "H",
-		"dateTime": "06-11 08:30",
-		"itemList": [
-			{
-				"oddsTitle": "独赢",
-				"oddsItemList": [
-					[
-						"1.95"
-					],
-					[
-						"3.65"
-					],
-					[
-						"3.80"
-					]
-				]
-			}
-		],
-		"teamList": [
-			"堪萨斯城体育会",
-			"奥斯丁"
-		]
-	},
-	{
-		"league": "美国职业大联盟",
-		"source": "extra",
-		"ecid": "7094372",
-		"num": "",
-		"singleList": [
-			false,
-			false
-		],
-		"strong": "H",
-		"dateTime": "06-11 08:30",
-		"itemList": [
-			{
-				"oddsTitle": "独赢",
-				"oddsItemList": [
-					[
-						"2.46"
-					],
-					[
-						"2.72"
-					],
-					[
-						"3.60"
-					]
-				]
-			}
-		],
-		"teamList": [
-			"芝加哥火焰",
-			"哥伦布机员"
-		]
-	},
-	{
-		"league": "美国职业大联盟",
-		"source": "extra",
-		"ecid": "7094383",
-		"num": "",
-		"singleList": [
-			false,
-			false
-		],
-		"strong": "H",
-		"dateTime": "06-11 09:30",
-		"itemList": [
-			{
-				"oddsTitle": "独赢",
-				"oddsItemList": [
-					[
-						"2.19"
-					],
-					[
-						"3.15"
-					],
-					[
-						"3.60"
-					]
-				]
-			}
-		],
-		"teamList": [
-			"皇家盐湖城",
-			"纽约城"
-		]
-	},
-	{
-		"league": "美国职业大联盟",
-		"source": "extra",
-		"ecid": "7094392",
-		"num": "",
-		"singleList": [
-			false,
-			false
-		],
-		"strong": "H",
-		"dateTime": "06-11 10:30",
-		"itemList": [
-			{
-				"oddsTitle": "独赢",
-				"oddsItemList": [
-					[
-						"2.38"
-					],
-					[
-						"2.83"
-					],
-					[
-						"3.60"
-					]
-				]
-			}
-		],
-		"teamList": [
-			"圣荷西地震",
-			"费城联"
-		]
-	},
-	{
-		"league": "美国职业大联盟",
-		"source": "extra",
-		"ecid": "7094402",
-		"num": "",
-		"singleList": [
-			false,
-			false
-		],
-		"strong": "H",
-		"dateTime": "06-11 10:30",
-		"itemList": [
-			{
-				"oddsTitle": "独赢",
-				"oddsItemList": [
-					[
-						"1.99"
-					],
-					[
-						"3.50"
-					],
-					[
-						"3.80"
-					]
-				]
-			}
-		],
-		"teamList": [
-			"温哥华白帽",
-			"辛辛那堤"
-		]
-	},
-	{
-		"league": "美国职业大联盟",
-		"source": "extra",
-		"ecid": "7094714",
-		"num": "",
-		"singleList": [
-			false,
-			false
-		],
-		"strong": "H",
-		"dateTime": "06-12 01:00",
-		"itemList": [
-			{
-				"oddsTitle": "独赢",
-				"oddsItemList": [
-					[
-						"2.01"
-					],
-					[
-						"3.30"
-					],
-					[
-						"4.00"
-					]
-				]
-			}
-		],
-		"teamList": [
-			"圣路易斯城",
-			"洛杉矶银河"
-		]
-	},
-	{
 		"league": "美国职业大联盟",
 		"source": "extra",
 		"ecid": "7097483",
@@ -809,19 +9,19 @@
 			false
 		],
 		"strong": "H",
-		"dateTime": "06-12 10:00",
+		"dateTime": "06-12 10:25",
 		"itemList": [
 			{
 				"oddsTitle": "独赢",
 				"oddsItemList": [
 					[
-						"2.06"
+						"1.26"
 					],
 					[
-						"3.55"
+						"13.00"
 					],
 					[
-						"3.55"
+						"4.75"
 					]
 				]
 			}
@@ -832,57 +32,57 @@
 		]
 	},
 	{
-		"league": "U20世界杯2023(在阿根廷)",
+		"league": "美国职业大联盟",
 		"source": "extra",
-		"ecid": "7114715",
+		"ecid": "7104328",
 		"num": "",
 		"singleList": [
 			false,
 			false
 		],
 		"strong": "H",
-		"dateTime": "06-09 01:30",
+		"dateTime": "06-15 10:30",
 		"itemList": [
 			{
 				"oddsTitle": "独赢",
 				"oddsItemList": [
 					[
-						"1.84"
+						"1.41"
 					],
 					[
-						"3.85"
+						"7.00"
 					],
 					[
-						"3.40"
+						"5.00"
 					]
 				]
 			}
 		],
 		"teamList": [
-			"乌拉圭U20",
-			"以色列U20"
+			"洛杉矶",
+			"休斯顿迪纳摩"
 		]
 	},
 	{
-		"league": "U20世界杯2023(在阿根廷)",
+		"league": "美国职业大联盟",
 		"source": "extra",
-		"ecid": "7114717",
+		"ecid": "7110800",
 		"num": "",
 		"singleList": [
 			false,
 			false
 		],
 		"strong": "H",
-		"dateTime": "06-09 05:00",
+		"dateTime": "06-18 03:30",
 		"itemList": [
 			{
 				"oddsTitle": "独赢",
 				"oddsItemList": [
 					[
-						"1.66"
+						"2.20"
 					],
 					[
-						"4.35"
+						"3.05"
 					],
 					[
 						"3.75"
@@ -891,40 +91,136 @@
 			}
 		],
 		"teamList": [
-			"意大利U20",
-			"韩国U20"
+			"纽约城",
+			"哥伦布机员"
 		]
 	},
 	{
-		"league": "荷兰甲组联赛-附加赛",
+		"league": "美国职业大联盟",
 		"source": "extra",
-		"ecid": "7114771",
+		"ecid": "7110808",
 		"num": "",
 		"singleList": [
 			false,
 			false
 		],
-		"strong": "C",
-		"dateTime": "06-09 02:00",
+		"strong": "H",
+		"dateTime": "06-18 07:30",
 		"itemList": [
 			{
 				"oddsTitle": "独赢",
 				"oddsItemList": [
 					[
-						"3.95"
-					],
-					[
 						"1.88"
 					],
 					[
-						"3.80"
+						"3.85"
+					],
+					[
+						"3.90"
 					]
 				]
 			}
 		],
 		"teamList": [
-			"鹿特丹斯巴达",
-			"特温特"
+			"新英格兰革命",
+			"奥兰多城"
+		]
+	},
+	{
+		"league": "美国职业大联盟",
+		"source": "extra",
+		"ecid": "7110819",
+		"num": "",
+		"singleList": [
+			false,
+			false
+		],
+		"strong": "H",
+		"dateTime": "06-18 07:30",
+		"itemList": [
+			{
+				"oddsTitle": "独赢",
+				"oddsItemList": [
+					[
+						"1.69"
+					],
+					[
+						"4.60"
+					],
+					[
+						"4.15"
+					]
+				]
+			}
+		],
+		"teamList": [
+			"华盛顿特区联",
+			"皇家盐湖城"
+		]
+	},
+	{
+		"league": "美国职业大联盟",
+		"source": "extra",
+		"ecid": "7113210",
+		"num": "",
+		"singleList": [
+			false,
+			false
+		],
+		"strong": "H",
+		"dateTime": "06-18 08:30",
+		"itemList": [
+			{
+				"oddsTitle": "独赢",
+				"oddsItemList": [
+					[
+						"1.64"
+					],
+					[
+						"4.90"
+					],
+					[
+						"4.25"
+					]
+				]
+			}
+		],
+		"teamList": [
+			"纳什维尔SC",
+			"圣路易斯城"
+		]
+	},
+	{
+		"league": "美国职业大联盟",
+		"source": "extra",
+		"ecid": "7113219",
+		"num": "",
+		"singleList": [
+			false,
+			false
+		],
+		"strong": "H",
+		"dateTime": "06-18 10:30",
+		"itemList": [
+			{
+				"oddsTitle": "独赢",
+				"oddsItemList": [
+					[
+						"1.98"
+					],
+					[
+						"3.40"
+					],
+					[
+						"3.95"
+					]
+				]
+			}
+		],
+		"teamList": [
+			"圣荷西地震",
+			"波特兰木材"
 		]
 	}
 ]

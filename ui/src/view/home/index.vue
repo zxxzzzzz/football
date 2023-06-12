@@ -215,6 +215,7 @@ const message1List = ref<string[]>([]);
 const message2List = ref<string[]>([]);
 const message3List = ref<string[]>([]);
 const message4List = ref<string[]>([]);
+// 在线人数
 let timeId: ReturnType<typeof setTimeout> | undefined = void 0;
 // 是否按照rev排序
 const enum SortType {
@@ -244,7 +245,8 @@ const pagination: TableProps['pagination'] = {
 
 async function getData() {
   const origin = import.meta.env.DEV ? 'http://127.0.0.1:9000' : location.origin;
-  const res = await fetch(`${origin}/data`, { headers: { cookie: `password=${store.password}` } });
+  document.cookie = `password=${store.password}`;
+  const res = await fetch(`${origin}/data`, { credentials: 'include' });
   const data = (await res.json()) as { code: number; msg: string; data?: any };
   if (data.code !== 200) {
     message.error(data?.msg || '更新出错', 20);
@@ -267,7 +269,9 @@ async function getData() {
   }
   if (data.data?.matchData?.length) {
     message.success(
-      `数据更新 ${data?.data?.timestamp ? '距离当前' + (dayjs().valueOf() - dayjs(data.data.timestamp).valueOf()) / 1000 + '秒' : ''}`,
+      `数据更新 ${
+        data?.data?.timestamp ? '距离当前' + (dayjs().valueOf() - dayjs(data.data.timestamp).valueOf()) / 1000 + '秒' : ''
+      }, 在线人数${data?.data?.liveCount || 0}`,
       5
     );
     dataSource.value = data.data.matchData;

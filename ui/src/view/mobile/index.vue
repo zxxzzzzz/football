@@ -58,6 +58,7 @@ import { Table, Drawer, List, Button, Affix, Divider, message } from 'ant-design
 import { computed, h, ref, onMounted, watch, onUnmounted } from 'vue';
 import { useRouter } from 'vue-router';
 import store from '@/store';
+import dayjs from 'dayjs';
 
 const router = useRouter();
 // defineProps<{}>();
@@ -146,7 +147,7 @@ let timeId: ReturnType<typeof setTimeout> | undefined = void 0;
 
 async function getData() {
   const origin = import.meta.env.DEV ? 'http://127.0.0.1:9000' : location.origin;
-  const res = await fetch(`${origin}/data`, { headers: { cookie: `password=${store.password}` } });
+  const res = await fetch(`${origin}/data`, { credentials: 'include' });
   const data = (await res.json()) as { code: number; msg: string; data?: any };
   if (data.code !== 200) {
     message.error(data?.msg || '更新出错', 20);
@@ -167,7 +168,12 @@ async function getData() {
     }
   }
   if (data.data?.matchData?.length) {
-    message.success('数据更新成功');
+    message.success(
+      `数据更新 ${
+        data?.data?.timestamp ? '距离当前' + (dayjs().valueOf() - dayjs(data.data.timestamp).valueOf()) / 1000 + '秒' : ''
+      }, 在线人数${data?.data?.liveCount || 0}`,
+      5
+    );
     dataSource.value = data.data.matchData;
     message1List.value = data.data.message1List;
     message2List.value = data.data.message2List;
