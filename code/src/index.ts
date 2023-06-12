@@ -33,7 +33,7 @@ export default app;
 app.use(express.static('./public'));
 app.use(express.json());
 app.listen(9000);
-         
+
 const accountList = [
   { password: 'XD_ivan', token: '' },
   { password: 'XD_ivan1', token: '' },
@@ -45,6 +45,12 @@ const accountList = [
 ];
 let isWait = false;
 app.get('/data', async (req, res) => {
+  console.log(
+    accountList.map((a) => {
+      const t = Number.isNaN(parseFloat(a.token)) ? 0 : parseFloat(a.token);
+      return `${a.password} ${dayjs(t).format('YYYY-MM-DD HH:mm:ss')}`;
+    })
+  );
   // 清除过期token
   accountList.forEach((account) => {
     const tokenV = parseFloat(account.token);

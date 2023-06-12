@@ -34,5 +34,3 @@ export const isTeamEqu = (a: string[], b: string[]) => {
     });
   });
 };
-
-// console.log(isTeamEqu(['阿尔克马尔', '海伦维恩'], ['阿尔克马','海伦芬']));

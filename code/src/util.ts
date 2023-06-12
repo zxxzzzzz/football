@@ -86,8 +86,6 @@ export const isLeagueEqual = (l1: string, l2: string) => {
   return _l1 === _l2 || _l1 + '-附加赛' === _l2 || _l1 === _l2 + '-附加赛' || _l1 + '-升级附加赛' === _l2 || _l1 === _l2 + '-升级附加赛';
 };
 
-// console.log(isTeamEqu(['阿尔克马尔', '海伦维恩'], ['阿尔克马','海伦芬']));
-
 function getRev(tiCai: number, extra: number, R: number = 0.12) {
   const GC = tiCai;
   const VV = tiCai * extra > 3 ? extra - 1 : extra;
