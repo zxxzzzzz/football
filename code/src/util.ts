@@ -6,11 +6,6 @@ import { resolve, parse } from 'path';
 // @ts-ignore
 import Format from 'json-format';
 import OSS from 'ali-oss';
-import { pinyin } from 'pinyin-pro';
-import { stringSimilarity } from 'string-similarity-js';
-
-// Rearranged words
-stringSimilarity('Lorem ipsum', 'Ipsum lorem');
 
 let client: OSS | undefined = void 0;
 if (process.env.key) {

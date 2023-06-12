@@ -11,7 +11,7 @@ import {
   retryLoginByNodeFetch,
 } from './api';
 // import { say } from './chaty';
-import { getStore, saveStore, saveFile, getMessage1List, getMessage2List, getMessage3List,getMessage4List } from './util';
+import { getStore, saveStore, saveFile, getMessage1List, getMessage2List, getMessage3List, getMessage4List } from './util';
 import cors from 'cors';
 import { CError, Code, createError } from './error';
 import compression from 'compression';
@@ -32,14 +32,37 @@ app.use(express.static('./public'));
 app.use(express.json());
 app.listen(9000);
 
+const accountList = [
+  { password: 'XD_ivan', token: '' },
+  { password: 'XD_ivan1', token: '' },
+  { password: 'test123', token: '' },
+];
 let isWait = false;
 app.get('/data', async (req, res) => {
-  console.log(dayjs().valueOf());
-  const p = req.query.p as string
-  if(!['XD_ivan'].includes(p)){
-    res.send({ code: Code.forbidden, msg: '没有权限，请重新登陆' });
-    return
+  // 清除过期token
+  accountList.forEach((account) => {
+    const tokenV = parseFloat(account.token);
+    if (Number.isNaN(tokenV)) {
+      return;
+    }
+    if (dayjs().valueOf() - tokenV > 10 * 1000) {
+      account.token = '';
+    }
+  });
+  const cookiePassword = req.cookies['password'] as string;
+  const token = req.cookies['token'];
+  const account = accountList.find((a) => a.password === cookiePassword);
+  if (!account) {
+    res.send({ code: Code.forbidden, msg: '该通行码不存在，请重新登陆' });
+    return;
   }
+  if (account.token && account.token !== token) {
+    res.send({ code: Code.forbidden, msg: '该通行码正在被使用，请重新登陆换个通行码' });
+    return;
+  }
+  account.token = dayjs().valueOf().toString();
+  res.cookie('token', account.token, { expires: new Date(Date.now() + 10 * 1000), httpOnly: true });
+  const liveCount = accountList.filter((a) => a.token).length;
   const username = (process.env.username || '') as string;
   const password = (process.env.password || '') as string;
   type PromiseType<T> = T extends Promise<infer U> ? U : never;
@@ -55,7 +78,16 @@ app.get('/data', async (req, res) => {
     res.send({
       code: 200,
       msg: 'success',
-      data: { timestamp: store.timestamp || 0, matchData: data, message1List, message2List, message3List, compareDataList, message4List },
+      data: {
+        timestamp: store.timestamp || 0,
+        matchData: data,
+        message1List,
+        message2List,
+        message3List,
+        compareDataList,
+        message4List,
+        liveCount,
+      },
     });
     return;
   }
@@ -84,6 +116,7 @@ app.get('/data', async (req, res) => {
           message3List,
           compareDataList,
           message4List,
+          liveCount,
         },
       });
       isWait = false;
@@ -103,7 +136,16 @@ app.get('/data', async (req, res) => {
     res.send({
       code: 200,
       msg: 'success',
-      data: { timestamp: store.timestamp || 0, matchData: data, message1List, message2List, message3List, compareDataList, message4List },
+      data: {
+        timestamp: store.timestamp || 0,
+        matchData: data,
+        message1List,
+        message2List,
+        message3List,
+        compareDataList,
+        message4List,
+        liveCount,
+      },
     });
     return;
   }

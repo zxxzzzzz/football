@@ -19,12 +19,9 @@ const router = useRouter();
 const password = ref('');
 
 const handleLogin = () => {
-  if (['XD_ivan'].includes(password.value)) {
-    store.password = password.value;
-    localStorage.setItem('ps', store.password);
-    router.push({ path: '/home' });
-    return
-  }
-  message.error('通行码错误')
+  store.password = password.value;
+  localStorage.setItem('ps', store.password);
+  router.push({ path: '/home' });
+  return;
 };
 </script>
