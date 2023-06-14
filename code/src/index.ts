@@ -48,7 +48,7 @@ app.get('/data', async (req, res) => {
   console.log(
     accountList.map((a) => {
       const t = Number.isNaN(parseFloat(a.token)) ? 0 : parseFloat(a.token);
-      return `${a.password} ${dayjs(t).format('YYYY-MM-DD HH:mm:ss')}`;
+      return `${a.password} ${t === 0 ? 0 : dayjs(t).add(8, 'hour').format('YYYY-MM-DD HH:mm:ss')}`;
     })
   );
   // 清除过期token
