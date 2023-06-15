@@ -79,6 +79,7 @@ export const isLeagueEqual = (l1: string, l2: string) => {
     ['欧洲国家联赛', '欧洲国家联赛A'],
     ['欧洲杯预选赛', '欧洲足球锦标赛2024外围赛'],
     ['国际赛', '国际友谊赛'],
+    ['国际赛', '美洲国家联赛'],
   ];
   const isEqual = !!equalNameList.find((d) => d.includes(l1) && d.includes(l2));
   if (isEqual) {
