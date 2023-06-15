@@ -76,6 +76,7 @@ export const isLeagueEqual = (l1: string, l2: string) => {
     ['世界U20锦标赛', 'U20世界杯2023(在阿根廷)'],
     ['美国公开赛冠军杯', '美国公开赛杯'],
     ['南美解放者杯', '南美自由杯'],
+    ['欧洲国家联赛', '欧洲国家联赛A'],
   ];
   const isEqual = !!equalNameList.find((d) => d.includes(l1) && d.includes(l2));
   if (isEqual) {
@@ -85,8 +86,6 @@ export const isLeagueEqual = (l1: string, l2: string) => {
   const _l2 = l2.replace(/[组]/g, '级');
   return _l1 === _l2 || _l1 + '-附加赛' === _l2 || _l1 === _l2 + '-附加赛' || _l1 + '-升级附加赛' === _l2 || _l1 === _l2 + '-升级附加赛';
 };
-
-// console.log(isTeamEqu(['阿尔克马尔', '海伦维恩'], ['阿尔克马','海伦芬']));
 
 function getRev(tiCai: number, extra: number, R: number = 0.12) {
   const GC = tiCai;

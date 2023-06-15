@@ -147,6 +147,7 @@ let timeId: ReturnType<typeof setTimeout> | undefined = void 0;
 
 async function getData() {
   const origin = import.meta.env.DEV ? 'http://127.0.0.1:9000' : location.origin;
+  document.cookie = `password=${store.password}`;
   const res = await fetch(`${origin}/data`, { credentials: 'include' });
   const data = (await res.json()) as { code: number; msg: string; data?: any };
   if (data.code !== 200) {
