@@ -18,7 +18,7 @@ import compression from 'compression';
 import cookieParser from 'cookie-parser';
 
 // console.log(cors);
-process.env.username = 'XDivan4';
+process.env.username = 'qp27268899';
 process.env.password = 'Jxd9061912';
 
 type FirstOfGeneric<T> = T extends Promise<infer F> ? F : never;
