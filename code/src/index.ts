@@ -58,7 +58,7 @@ app.get('/data', async (req, res) => {
       return;
     }
     // 半小时清除一次token
-    if (dayjs().valueOf() - tokenV > 30 * 60 * 1000) {
+    if (dayjs().valueOf() - tokenV > 5 * 60 * 1000) {
       account.token = '';
     }
   });
@@ -74,7 +74,7 @@ app.get('/data', async (req, res) => {
     return;
   }
   account.token = dayjs().valueOf().toString();
-  res.cookie('token', account.token, { httpOnly: true });
+  res.cookie('token', account.token, { httpOnly: true, maxAge: 5 * 60 * 1000 });
   const liveCount = accountList.filter((a) => a.token).length;
   const username = (process.env.username || '') as string;
   const password = (process.env.password || '') as string;
