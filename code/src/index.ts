@@ -70,7 +70,7 @@ app.get('/data', async (req, res) => {
     return;
   }
   if (account.token && account.token !== token) {
-    res.send({ code: Code.forbidden, msg: '该通行码正在被使用，请重新登陆换个通行码' });
+    res.send({ code: Code.forbidden, msg: `该通行码正在被使用，请重新登陆换个通行码 ${account.token} ${token}` });
     return;
   }
   account.token = dayjs().valueOf().toString();
