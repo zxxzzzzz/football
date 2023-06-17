@@ -62,8 +62,8 @@ app.get('/data', async (req, res) => {
       account.token = '';
     }
   });
-  const cookiePassword = req.cookies['password'] as string;
-  const token = req.cookies['token'];
+  const cookiePassword = req.query.p;
+  const token = req.query.token as string;
   const account = accountList.find((a) => a.password === cookiePassword);
   if (!account) {
     res.send({ code: Code.forbidden, msg: '该通行码不存在，请重新登陆' });
@@ -74,7 +74,6 @@ app.get('/data', async (req, res) => {
     return;
   }
   account.token = dayjs().valueOf().toString();
-  res.cookie('token', account.token, { httpOnly: true, maxAge: 5 * 60 * 1000 });
   const liveCount = accountList.filter((a) => a.token).length;
   const username = (process.env.username || '') as string;
   const password = (process.env.password || '') as string;
@@ -100,6 +99,7 @@ app.get('/data', async (req, res) => {
         compareDataList,
         message4List,
         liveCount,
+        token: account.token,
       },
     });
     return;
@@ -130,6 +130,7 @@ app.get('/data', async (req, res) => {
           compareDataList,
           message4List,
           liveCount,
+          token: account.token,
         },
       });
       isWait = false;
@@ -158,6 +159,7 @@ app.get('/data', async (req, res) => {
         compareDataList,
         message4List,
         liveCount,
+        token: account.token,
       },
     });
     return;
