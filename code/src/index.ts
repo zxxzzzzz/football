@@ -74,6 +74,7 @@ app.get('/data', async (req, res) => {
   if (!account.token) {
     account.token = (Math.random() + 10).toString();
   }
+  account.timestamp = dayjs().valueOf()
   const liveCount = accountList.filter((a) => a.token).length;
   const username = (process.env.username || '') as string;
   const password = (process.env.password || '') as string;
