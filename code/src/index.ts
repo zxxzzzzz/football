@@ -35,31 +35,29 @@ app.use(express.json());
 app.listen(9000);
 
 const accountList = [
-  { password: 'XD_ivan', token: '' },
-  { password: 'XD_ivan1', token: '' },
-  { password: 'LJ111', token: '' },
-  { password: 'LJ222', token: '' },
-  { password: 'XIAO111', token: '' },
-  { password: 'XIAO222', token: '' },
-  { password: 'test_123@', token: '' },
+  { password: 'XD_ivan', token: '', timestamp: 0 },
+  { password: 'XD_ivan1', token: '', timestamp: 0 },
+  { password: 'LJ111', token: '', timestamp: 0 },
+  { password: 'LJ222', token: '', timestamp: 0 },
+  { password: 'XIAO111', token: '', timestamp: 0 },
+  { password: 'XIAO222', token: '', timestamp: 0 },
+  { password: 'test_123@', token: '', timestamp: 0 },
 ];
 let isWait = false;
 app.get('/data', async (req, res) => {
   console.log(
     accountList.map((a) => {
-      const t = Number.isNaN(parseFloat(a.token)) ? 0 : parseFloat(a.token);
-      return `${a.password} ${t === 0 ? 0 : dayjs(t).add(8, 'hour').format('YYYY-MM-DD HH:mm:ss')}`;
+      const t = a.timestamp;
+      return `${a.password} ${t === 0 ? 0 : dayjs(t).add(8, 'hour').format('YYYY-MM-DD HH:mm:ss')} ${a.token}`;
     })
   );
   // 清除过期token
   accountList.forEach((account) => {
-    const tokenV = parseFloat(account.token);
-    if (Number.isNaN(tokenV)) {
-      return;
-    }
-    // 半小时清除一次token
-    if (dayjs().valueOf() - tokenV > 5 * 60 * 1000) {
+    const t = account.timestamp;
+    // 5min清除一次token
+    if (dayjs().valueOf() - t > 5 * 60 * 1000) {
       account.token = '';
+      account.timestamp = 0;
     }
   });
   const cookiePassword = req.query.p;
@@ -73,7 +71,9 @@ app.get('/data', async (req, res) => {
     res.send({ code: Code.forbidden, msg: `该通行码正在被使用，请重新登陆换个通行码 ${account.token} ${token}` });
     return;
   }
-  account.token = dayjs().valueOf().toString();
+  if (!account.token) {
+    account.token = (Math.random() + 10).toString();
+  }
   const liveCount = accountList.filter((a) => a.token).length;
   const username = (process.env.username || '') as string;
   const password = (process.env.password || '') as string;
@@ -87,7 +87,6 @@ app.get('/data', async (req, res) => {
     const message3List = getMessage3List(data, store.scoreRev || 200);
     const message4List = getMessage4List(data, store.halfRev || 400);
     const { messageList: message2List, compareDataList } = getMessage2List(data, store.C || 0.13, store.A || 1, store.compareRev || 430);
-    account.token = dayjs().valueOf().toString();
     res.send({
       code: 200,
       msg: 'success',
@@ -119,7 +118,6 @@ app.get('/data', async (req, res) => {
       const message3List = getMessage3List(_data, store.scoreRev || 200);
       const message4List = getMessage4List(_data, store.halfRev || 400);
       const { messageList: message2List, compareDataList } = getMessage2List(_data, store.C || 0.13, store.A || 1, store.compareRev || 430);
-      account.token = dayjs().valueOf().toString();
       res.send({
         code: 200,
         msg: 'success',
@@ -149,7 +147,6 @@ app.get('/data', async (req, res) => {
     const message3List = getMessage3List(data, store.scoreRev || 200);
     const message4List = getMessage4List(data, store.halfRev || 400);
     const { messageList: message2List, compareDataList } = getMessage2List(data, store.C || 0.13, store.A || 1, store.compareRev || 430);
-    account.token = dayjs().valueOf().toString();
     res.send({
       code: 200,
       msg: 'success',
