@@ -87,6 +87,7 @@ app.get('/data', async (req, res) => {
     const message3List = getMessage3List(data, store.scoreRev || 200);
     const message4List = getMessage4List(data, store.halfRev || 400);
     const { messageList: message2List, compareDataList } = getMessage2List(data, store.C || 0.13, store.A || 1, store.compareRev || 430);
+    account.token = dayjs().valueOf().toString();
     res.send({
       code: 200,
       msg: 'success',
@@ -118,6 +119,7 @@ app.get('/data', async (req, res) => {
       const message3List = getMessage3List(_data, store.scoreRev || 200);
       const message4List = getMessage4List(_data, store.halfRev || 400);
       const { messageList: message2List, compareDataList } = getMessage2List(_data, store.C || 0.13, store.A || 1, store.compareRev || 430);
+      account.token = dayjs().valueOf().toString();
       res.send({
         code: 200,
         msg: 'success',
@@ -147,6 +149,7 @@ app.get('/data', async (req, res) => {
     const message3List = getMessage3List(data, store.scoreRev || 200);
     const message4List = getMessage4List(data, store.halfRev || 400);
     const { messageList: message2List, compareDataList } = getMessage2List(data, store.C || 0.13, store.A || 1, store.compareRev || 430);
+    account.token = dayjs().valueOf().toString();
     res.send({
       code: 200,
       msg: 'success',
