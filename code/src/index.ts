@@ -18,7 +18,7 @@ import compression from 'compression';
 import cookieParser from 'cookie-parser';
 
 // console.log(cors);
-process.env.username = 'XDivan4';
+process.env.username = 'qp27268899';
 process.env.password = 'Jxd9061912';
 
 type FirstOfGeneric<T> = T extends Promise<infer F> ? F : never;
@@ -35,46 +35,46 @@ app.use(express.json());
 app.listen(9000);
 
 const accountList = [
-  { password: 'XD_ivan', token: '' },
-  { password: 'XD_ivan1', token: '' },
-  { password: 'LJ111', token: '' },
-  { password: 'LJ222', token: '' },
-  { password: 'XIAO111', token: '' },
-  { password: 'XIAO222', token: '' },
-  { password: 'test_123@', token: '' },
+  { password: 'XD_ivan', token: '', timestamp: 0 },
+  { password: 'XD_ivan1', token: '', timestamp: 0 },
+  { password: 'LJ111', token: '', timestamp: 0 },
+  { password: 'LJ222', token: '', timestamp: 0 },
+  { password: 'XIAO111', token: '', timestamp: 0 },
+  { password: 'XIAO222', token: '', timestamp: 0 },
+  { password: 'test_123@', token: '', timestamp: 0 },
 ];
 let isWait = false;
 app.get('/data', async (req, res) => {
   console.log(
     accountList.map((a) => {
-      const t = Number.isNaN(parseFloat(a.token)) ? 0 : parseFloat(a.token);
-      return `${a.password} ${t === 0 ? 0 : dayjs(t).add(8, 'hour').format('YYYY-MM-DD HH:mm:ss')}`;
+      const t = a.timestamp;
+      return `${a.password} ${t === 0 ? 0 : dayjs(t).add(8, 'hour').format('YYYY-MM-DD HH:mm:ss')} ${a.token}`;
     })
   );
   // 清除过期token
   accountList.forEach((account) => {
-    const tokenV = parseFloat(account.token);
-    if (Number.isNaN(tokenV)) {
-      return;
-    }
-    // 半小时清除一次token
-    if (dayjs().valueOf() - tokenV > 30 * 60 * 1000) {
+    const t = account.timestamp;
+    // 5min清除一次token
+    if (dayjs().valueOf() - t > 5 * 60 * 1000) {
       account.token = '';
+      account.timestamp = 0;
     }
   });
-  const cookiePassword = req.cookies['password'] as string;
-  const token = req.cookies['token'];
+  const cookiePassword = req.query.p;
+  const token = req.query.token as string;
   const account = accountList.find((a) => a.password === cookiePassword);
   if (!account) {
     res.send({ code: Code.forbidden, msg: '该通行码不存在，请重新登陆' });
     return;
   }
   if (account.token && account.token !== token) {
-    res.send({ code: Code.forbidden, msg: '该通行码正在被使用，请重新登陆换个通行码' });
+    res.send({ code: Code.forbidden, msg: `该通行码正在被使用，请重新登陆换个通行码 ${account.token} ${token}` });
     return;
   }
-  account.token = dayjs().valueOf().toString();
-  res.cookie('token', account.token, { httpOnly: true });
+  if (!account.token) {
+    account.token = (Math.random() + 10).toString();
+  }
+  account.timestamp = dayjs().valueOf()
   const liveCount = accountList.filter((a) => a.token).length;
   const username = (process.env.username || '') as string;
   const password = (process.env.password || '') as string;
@@ -100,6 +100,7 @@ app.get('/data', async (req, res) => {
         compareDataList,
         message4List,
         liveCount,
+        token: account.token,
       },
     });
     return;
@@ -130,6 +131,7 @@ app.get('/data', async (req, res) => {
           compareDataList,
           message4List,
           liveCount,
+          token: account.token,
         },
       });
       isWait = false;
@@ -158,6 +160,7 @@ app.get('/data', async (req, res) => {
         compareDataList,
         message4List,
         liveCount,
+        token: account.token,
       },
     });
     return;
@@ -243,14 +246,14 @@ async function getData(username: string, password: string) {
     }
   }
   const tiCaiDataList = await retryGetTiCaiByFetch();
-  const matchedLeagueList = tiCaiDataList
-    .map((t) => {
-      const t1 = leagueList.find((l) => {
-        return isLeagueEqual(t.league, l.name);
-      }) || { name: t.league, id: '' };
-      return { ...t1 };
+  const matchedLeagueList = leagueList
+    .map((l) => {
+      if (tiCaiDataList.find((t) => isLeagueEqual(t.league, l.name))) {
+        return l;
+      }
+      return void 0;
     })
-    .filter((d) => d.id)
+    .filter((d): d is Exclude<typeof d, undefined> => !!d)
     .reduce((re, cur) => {
       // 去除重复联赛
       if (re.find((r) => r.id === cur.id)) {
@@ -258,6 +261,21 @@ async function getData(username: string, password: string) {
       }
       return [...re, cur];
     }, [] as { name: string; id: string }[]);
+  // const matchedLeagueList = tiCaiDataList
+  //   .map((t) => {
+  //     const t1 = leagueList.find((l) => {
+  //       return isLeagueEqual(t.league, l.name);
+  //     }) || { name: t.league, id: '' };
+  //     return { ...t1 };
+  //   })
+  //   .filter((d) => d.id)
+  //   .reduce((re, cur) => {
+  //     // 去除重复联赛
+  //     if (re.find((r) => r.id === cur.id)) {
+  //       return re;
+  //     }
+  //     return [...re, cur];
+  //   }, [] as { name: string; id: string }[]);
   const extraGameList = (
     await Promise.all(
       matchedLeagueList.map((m) => {

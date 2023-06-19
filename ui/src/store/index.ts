@@ -3,6 +3,7 @@ import { message } from 'ant-design-vue';
 
 const store = reactive({
   password: '',
+  token: '',
   setting: {
     R: 0.12,
     A: 1,
@@ -15,8 +16,12 @@ const store = reactive({
 });
 
 const ps = localStorage.getItem('ps');
+const token = localStorage.getItem('token');
 if (ps) {
   store.password = ps;
+}
+if (token) {
+  store.token = token;
 }
 
 async function getSetting() {
