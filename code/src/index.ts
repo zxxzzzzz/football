@@ -106,7 +106,7 @@ app.get('/data', async (req, res) => {
     return;
   }
   // store缓存不存在  或者 数据过期后，更新数据
-  if (!data || (data && dayjs().valueOf() - (store.timestamp || 0) > 15 * 1000)) {
+  if (!data || (data && dayjs().valueOf() - (store.timestamp || 0) > 60 * 1000)) {
     isWait = true;
     try {
       const _data = await getData(username, password);
@@ -242,6 +242,7 @@ async function getData(username: string, password: string) {
       console.log('uid重新获取后请求联赛', { url, uid, ver });
       leagueList = await retryGetLeagueListAllByNodeFetch(url, uid, ver);
     } else {
+      console.log(error);
       throw error;
     }
   }

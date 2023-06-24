@@ -94,8 +94,8 @@ export const isLeagueEqual = (l1: string, l2: string) => {
 function getRev(tiCai: number, extra: number, R: number = 0.12) {
   const GC = tiCai;
   const VV = tiCai * extra > 3 ? extra - 1 : extra;
-  const Offset = (10000 * GC) / (1.028 * VV + 0.972);
-  const Rev = GC * 10000 - 10000 * (1 - R) - 0.972 * Offset;
+  const Offset = (10000 * GC) / (1.027 * VV + 0.973);
+  const Rev = GC * 10000 - 10000 * (1 - R) - 0.973 * Offset;
   return {
     GC,
     VV,
@@ -431,10 +431,10 @@ export function compare(dataList: ReturnType<typeof toData>, c = 0.13, a = 1, cR
       const vv1 = d1.revList[0].vv;
       const vv2 = d2.revList[0].vv;
       const gc2 = d2.revList[0].gc;
-      const offset2 = (gc1 * gc2 * 10000) / (1.028 * vv2 + 0.972);
-      const offset1 = (1.028 * vv2 * offset2 - (10000 * (1 - c) * 7) / 8) / ((1.028 * vv1) / 8 + 0.972);
-      const rev1 = offset1 * vv1 * 1.028 - 10000 * (1 - c);
-      const rev2 = offset2 * vv2 * 1.028 - offset1 * 0.972 - 10000 * (1 - c);
+      const offset2 = (gc1 * gc2 * 10000) / (1.027 * vv2 + 0.973);
+      const offset1 = (1.027 * vv2 * offset2 - (10000 * (1 - c) * 7) / 8) / ((1.027 * vv1) / 8 + 0.973);
+      const rev1 = offset1 * vv1 * 1.027 - 10000 * (1 - c);
+      const rev2 = offset2 * vv2 * 1.027 - offset1 * 0.973 - 10000 * (1 - c);
       mDataList = [...mDataList, { d1, d2, gc1, gc2, vv1, vv2, offset1, offset2, rev1, rev2, single1, single2 }];
     }
   }
