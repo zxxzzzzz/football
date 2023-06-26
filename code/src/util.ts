@@ -16,6 +16,7 @@ if (process.env.key) {
     accessKeyId: process.env.key || '',
     accessKeySecret: process.env.secret || '',
     bucket: 'footballc',
+    internal: true,
   });
 }
 
@@ -80,6 +81,7 @@ export const isLeagueEqual = (l1: string, l2: string) => {
     ['欧洲杯预选赛', '欧洲足球锦标赛2024外围赛'],
     ['国际赛', '国际友谊赛'],
     ['国际赛', '美洲国家联赛A'],
+    ['欧洲U21锦标赛', '欧洲U21青年锦标赛2023(在罗马尼亚和格鲁吉亚)'],
   ];
   const isEqual = !!equalNameList.find((d) => d.includes(l1) && d.includes(l2));
   if (isEqual) {
@@ -93,8 +95,8 @@ export const isLeagueEqual = (l1: string, l2: string) => {
 function getRev(tiCai: number, extra: number, R: number = 0.12) {
   const GC = tiCai;
   const VV = tiCai * extra > 3 ? extra - 1 : extra;
-  const Offset = (10000 * GC) / (1.028 * VV + 0.972);
-  const Rev = GC * 10000 - 10000 * (1 - R) - 0.972 * Offset;
+  const Offset = (10000 * GC) / (1.027 * VV + 0.973);
+  const Rev = GC * 10000 - 10000 * (1 - R) - 0.973 * Offset;
   return {
     GC,
     VV,
@@ -430,10 +432,10 @@ export function compare(dataList: ReturnType<typeof toData>, c = 0.13, a = 1, cR
       const vv1 = d1.revList[0].vv;
       const vv2 = d2.revList[0].vv;
       const gc2 = d2.revList[0].gc;
-      const offset2 = (gc1 * gc2 * 10000) / (1.028 * vv2 + 0.972);
-      const offset1 = (1.028 * vv2 * offset2 - (10000 * (1 - c) * 7) / 8) / ((1.028 * vv1) / 8 + 0.972);
-      const rev1 = offset1 * vv1 * 1.028 - 10000 * (1 - c);
-      const rev2 = offset2 * vv2 * 1.028 - offset1 * 0.972 - 10000 * (1 - c);
+      const offset2 = (gc1 * gc2 * 10000) / (1.027 * vv2 + 0.973);
+      const offset1 = (1.027 * vv2 * offset2 - (10000 * (1 - c) * 7) / 8) / ((1.027 * vv1) / 8 + 0.973);
+      const rev1 = offset1 * vv1 * 1.027 - 10000 * (1 - c);
+      const rev2 = offset2 * vv2 * 1.027 - offset1 * 0.973 - 10000 * (1 - c);
       mDataList = [...mDataList, { d1, d2, gc1, gc2, vv1, vv2, offset1, offset2, rev1, rev2, single1, single2 }];
     }
   }
@@ -455,7 +457,11 @@ export const saveFile = (fileName: string, data: string) => {
     return;
   }
   if (client) {
-    client.put(pPath.name + `_${dayjs().add(8, 'h').format('YYYY-MM-DD')}` + pPath.ext, Buffer.from(data));
+    try {
+      client.put(pPath.name + `_${dayjs().add(8, 'h').format('YYYY-MM-DD')}` + pPath.ext, Buffer.from(data));
+    } catch (error) {
+      console.log(error);
+    }
   }
   fs.writeFileSync(resolve(path, fileName), data, { encoding: 'utf-8' });
 };
@@ -507,7 +513,11 @@ export const saveStore = async (s: Partial<Store>, upload = false) => {
   // oss保存
   try {
     if (client && upload) {
-      await client.put(`store.json`, Buffer.from(Format(tStore)));
+      try {
+        await client.put(`store.json`, Buffer.from(Format(tStore)));
+      } catch (error) {
+        console.log(error);
+      }
     }
   } catch (error) {}
   return tStore;

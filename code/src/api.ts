@@ -495,7 +495,7 @@ export async function loginByNodeFetch(username: string, password: string) {
     throw createError('获取ver失败', Code.dataFail);
   }
   const ver = m[1];
-
+  console.log(ver, 'ver');
   const body2 = {
     p: 'chk_login',
     langx: 'zh-cn',
@@ -531,6 +531,7 @@ export async function loginByNodeFetch(username: string, password: string) {
   const text2 = await res2.text();
   const mixObj = Convert.xml2js(text2, { compact: true }) as any;
   const uid = mixObj?.serverresponse?.uid?._text as string;
+  console.log(uid, 'uid');
   const _username = mixObj?.serverresponse?.username?._text;
   if (!uid) {
     const d = await getServiceMainget(ver);
