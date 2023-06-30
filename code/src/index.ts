@@ -37,8 +37,10 @@ app.listen(9000);
 const accountList = [
   { password: 'XD_ivan', token: '', timestamp: 0 },
   { password: 'XD_ivan1', token: '', timestamp: 0 },
+  { password: 'XD_ivan2', token: '', timestamp: 0 },
   { password: 'LJ111', token: '', timestamp: 0 },
   { password: 'LJ222', token: '', timestamp: 0 },
+  { password: 'LJ333', token: '', timestamp: 0 },
   { password: 'XIAO111', token: '', timestamp: 0 },
   { password: 'XIAO222', token: '', timestamp: 0 },
   { password: 'test_123@', token: '', timestamp: 0 },
