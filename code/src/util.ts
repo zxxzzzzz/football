@@ -16,6 +16,7 @@ if (process.env.key) {
     accessKeyId: process.env.key || '',
     accessKeySecret: process.env.secret || '',
     bucket: 'footballc',
+    internal: true,
   });
 }
 
@@ -443,7 +444,7 @@ export function compare(dataList: ReturnType<typeof toData>, c = 0.13, a = 1, cR
   });
 }
 
-export const saveFile = (fileName: string, data: string) => {
+export const saveFile = async (fileName: string, data: string) => {
   const path = './';
   const pPath = parse(resolve(path, fileName));
   // 如果开启了oss,保存数据到oss
@@ -456,7 +457,11 @@ export const saveFile = (fileName: string, data: string) => {
     return;
   }
   if (client) {
-    client.put(pPath.name + `_${dayjs().add(8, 'h').format('YYYY-MM-DD')}` + pPath.ext, Buffer.from(data));
+    try {
+      await client.put(pPath.name + `_${dayjs().add(8, 'h').format('YYYY-MM-DD')}` + pPath.ext, Buffer.from(data));
+    } catch (error) {
+      console.log(error);
+    }
   }
   fs.writeFileSync(resolve(path, fileName), data, { encoding: 'utf-8' });
 };
@@ -508,7 +513,11 @@ export const saveStore = async (s: Partial<Store>, upload = false) => {
   // oss保存
   try {
     if (client && upload) {
-      await client.put(`store.json`, Buffer.from(Format(tStore)));
+      try {
+        await client.put(`store.json`, Buffer.from(Format(tStore)));
+      } catch (error) {
+        console.log(error);
+      }
     }
   } catch (error) {}
   return tStore;
