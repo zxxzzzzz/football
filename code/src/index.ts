@@ -127,14 +127,41 @@ app.get('/data', async (req, res) => {
         const message1List = getMessage1List(_data, 650);
         const message3List = getMessage3List(_data, 400);
         const message4List = getMessage4List(_data, 400);
-        if(message1List?.length || message3List?.length || message4List?.length){
+        if (message1List?.length || message3List?.length || message4List?.length) {
           sendDingDing(message1List.join('\n') + '\n\n' + message3List.join('\n') + '\n\n' + message4List.join('\n'));
         }
       } else {
-        const message1List = getMessage1List(_data, 650);
-        const message3List = getMessage3List(_data, 400);
-        const message4List = getMessage4List(_data, 400);
-        if(message1List?.length || message3List?.length || message4List?.length){
+        const list1 = _data
+          .filter((d) => {
+            return d?.revList?.[0]?.rev > 650 && d?.revList?.[0]?.rev < 3000;
+          })
+          .filter((d) => {
+            const findD = data.find((_d) => _d.num === d.num);
+            if (!findD) return true;
+            return d?.revList?.[0]?.rev > findD?.revList?.[0]?.rev;
+          });
+        const list3 = _data
+          .filter((d) => {
+            return d?.scoreRevList?.[0]?.rev > 400;
+          })
+          .filter((d) => {
+            const findD = data.find((_d) => _d.num === d.num);
+            if (!findD) return true;
+            return d?.scoreRevList?.[0]?.rev > findD?.scoreRevList?.[0]?.rev;
+          });
+        const list4 = _data
+          .filter((d) => {
+            return d?.halfRevList?.[0]?.rev > 400 && d?.halfRevList?.[0]?.rev < 1500;
+          })
+          .filter((d) => {
+            const findD = data.find((_d) => _d.num === d.num);
+            if (!findD) return true;
+            return d?.halfRevList?.[0]?.rev > findD?.halfRevList?.[0]?.rev;
+          });
+        const message1List = getMessage1List(list1, 650);
+        const message3List = getMessage3List(list3, 400);
+        const message4List = getMessage4List(list4, 400);
+        if (message1List?.length || message3List?.length || message4List?.length) {
           sendDingDing(message1List.join('\n') + '\n\n' + message3List.join('\n') + '\n\n' + message4List.join('\n'));
         }
       }
