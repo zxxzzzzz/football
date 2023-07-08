@@ -60,6 +60,7 @@ services:
           username: ${env(username)}
           key: ${env(key)}
           secret: ${env(secret)}
+          webhook: ${env(webhook)}
       triggers:
         - name: httpTrigger
           type: http
@@ -93,8 +94,6 @@ services:
         diskSize: 512
         cpu: 0.05
         timeout: 60
-        environmentVariables:
-          webhook: ${env(webhook)}
       triggers:
         - name: cron-tab-trigger
           type: timer
