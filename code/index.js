@@ -5,6 +5,7 @@ const { saveStore } = require('./dist/util');
 exports.handler = serverless(app);
 exports.infoHandler = () => {
   console.log(123);
+  return true
 };
 
 module.exports.preStop = function (context, callback) {
