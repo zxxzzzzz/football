@@ -16,4 +16,5 @@ exports.handler = () => {
   //     "method": "GET"
   //   });
   // })
+  return true
 }
