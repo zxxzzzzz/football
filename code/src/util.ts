@@ -82,6 +82,7 @@ export const isLeagueEqual = (l1: string, l2: string) => {
     ['国际赛', '国际友谊赛'],
     ['国际赛', '美洲国家联赛A'],
     ['欧洲U21锦标赛', '欧洲U21青年锦标赛2023(在罗马尼亚和格鲁吉亚)'],
+    ['中北美金杯赛', '美洲金杯2023(在美国和加拿大)'],
   ];
   const isEqual = !!equalNameList.find((d) => d.includes(l1) && d.includes(l2));
   if (isEqual) {
