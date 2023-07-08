@@ -88,7 +88,7 @@ services:
         description: 'info warning'
         runtime: nodejs16
         codeUri: ./code
-        handler: index.infoHandler
+        handler: infoIndex.handler
         instanceConcurrency: 1
         memorySize: 512
         diskSize: 512

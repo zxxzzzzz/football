@@ -1,6 +1,6 @@
-const _fetch = import('node-fetch');
+// const _fetch = import('node-fetch');
 
-exports.handler = () => {
+exports.handler = (event, context) => {
   // _fetch.then((_) => {
   //   const fetch = _.default
   //   fetch("http://todolist.web-framework.1048992591952509.cn-hangzhou.fc.devsapp.net/data?p=trigger_123@", {
@@ -16,5 +16,6 @@ exports.handler = () => {
   //     "method": "GET"
   //   });
   // })
+  console.log('2342341111');
   return true
 }
