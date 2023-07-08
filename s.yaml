@@ -93,6 +93,8 @@ services:
         diskSize: 512
         cpu: 0.05
         timeout: 60
+        environmentVariables:
+          webhook: ${env(webhook)}
       triggers:
         - name: cron-tab-trigger
           type: timer
