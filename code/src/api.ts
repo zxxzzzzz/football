@@ -585,3 +585,21 @@ export async function loginByNodeFetch(username: string, password: string) {
 }
 
 export const retryLoginByNodeFetch = retryWrap(loginByNodeFetch, 3);
+
+export async function sendDingDing(msg: string) {
+  const fetch = (await _fetch).default;
+  const body = {
+    msgtype: 'markdown',
+    markdown: {
+      title: '足足',
+      text: msg,
+    },
+  };
+  await fetch(process.env.webhook || '', {
+    method: 'post',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(body),
+  });
+}

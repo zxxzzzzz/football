@@ -9,6 +9,7 @@ import {
   retryGetGameOBTByNodeFetch,
   retryGetTiCaiByFetch,
   retryLoginByNodeFetch,
+  sendDingDing,
 } from './api';
 // import { say } from './chaty';
 import { getStore, saveStore, saveFile, getMessage1List, getMessage2List, getMessage3List, getMessage4List } from './util';
@@ -77,7 +78,7 @@ app.get('/data', async (req, res) => {
   if (!account.token) {
     account.token = (Math.random() + 10).toString();
   }
-  account.timestamp = dayjs().valueOf()
+  account.timestamp = dayjs().valueOf();
   const liveCount = accountList.filter((a) => a.token).length;
   const username = (process.env.username || '') as string;
   const password = (process.env.password || '') as string;
@@ -122,6 +123,21 @@ app.get('/data', async (req, res) => {
       const message3List = getMessage3List(_data, store.scoreRev || 200);
       const message4List = getMessage4List(_data, store.halfRev || 400);
       const { messageList: message2List, compareDataList } = getMessage2List(_data, store.C || 0.13, store.A || 1, store.compareRev || 430);
+      if (!data) {
+        const message1List = getMessage1List(_data, 650);
+        const message3List = getMessage3List(_data, 400);
+        const message4List = getMessage4List(_data, 400);
+        if(message1List?.length || message3List?.length || message4List?.length){
+          sendDingDing(message1List.join('\n') + '\n\n' + message3List.join('\n') + '\n\n' + message4List.join('\n'));
+        }
+      } else {
+        const message1List = getMessage1List(_data, 650);
+        const message3List = getMessage3List(_data, 400);
+        const message4List = getMessage4List(_data, 400);
+        if(message1List?.length || message3List?.length || message4List?.length){
+          sendDingDing(message1List.join('\n') + '\n\n' + message3List.join('\n') + '\n\n' + message4List.join('\n'));
+        }
+      }
       res.send({
         code: 200,
         msg: 'success',
