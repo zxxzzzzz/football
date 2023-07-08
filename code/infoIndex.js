@@ -1,8 +1,8 @@
-const _fetch = require('node-fetch');
-
+const _fetch = import('node-fetch');
 
 exports.handler = async () => {
-  const res = await _fetch("http://todolist.web-framework.1048992591952509.cn-hangzhou.fc.devsapp.net/data?p=trigger_123@", {
+  const fetch = (await _fetch).default;
+  const res = await fetch("http://todolist.web-framework.1048992591952509.cn-hangzhou.fc.devsapp.net/data?p=trigger_123@", {
     "headers": {
       "accept": "*/*",
       "accept-language": "zh-CN,zh;q=0.9",
