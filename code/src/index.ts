@@ -85,6 +85,13 @@ app.get('/data', async (req, res) => {
   type PromiseType<T> = T extends Promise<infer U> ? U : never;
   const store = await getStore();
   const data: PromiseType<ReturnType<typeof getData>> | undefined = store.data;
+  // 对于定时器的请求，如果有其他人在用，提前结束
+  if (account.password === 'trigger_123@' && data && dayjs().valueOf() - (store.timestamp || 0) < 60 * 1000) {
+    res.send({
+      code: 200,
+    });
+    return;
+  }
   // 如果在等待数据 直接返回缓存数据
   if (isWait && data) {
     const store = await getStore();
@@ -124,11 +131,14 @@ app.get('/data', async (req, res) => {
       const message4List = getMessage4List(_data, store.halfRev || 400);
       const { messageList: message2List, compareDataList } = getMessage2List(_data, store.C || 0.13, store.A || 1, store.compareRev || 430);
       if (!data) {
-        const message1List = getMessage1List(_data, 650);
-        const message3List = getMessage3List(_data, 400);
-        const message4List = getMessage4List(_data, 400);
-        if (message1List?.length || message3List?.length || message4List?.length) {
-          sendDingDing(message1List.join(' \n ') + ' \n \n ' + message3List.join(' \n ') + ' \n \n ' + message4List.join(' \n '));
+        const _message1List = getMessage1List(_data, 650);
+        const _message3List = getMessage3List(_data, 400);
+        const _message4List = getMessage4List(_data, 400);
+        const _list = [..._message1List, ..._message3List, ..._message4List];
+        if (_list?.length) {
+          for (const _item of _list) {
+            await sendDingDing(_item);
+          }
         }
       } else {
         const list1 = _data
@@ -158,11 +168,15 @@ app.get('/data', async (req, res) => {
             if (!findD) return true;
             return d?.halfRevList?.[0]?.rev > findD?.halfRevList?.[0]?.rev;
           });
-        const message1List = getMessage1List(list1, 650);
-        const message3List = getMessage3List(list3, 400);
-        const message4List = getMessage4List(list4, 400);
-        if (message1List?.length || message3List?.length || message4List?.length) {
-          sendDingDing(message1List.join(' \n ') + ' \n \n ' + message3List.join(' \n ') + ' \n \n ' + message4List.join(' \n '));
+
+        const _message1List = getMessage1List(list1, 650);
+        const _message3List = getMessage3List(list3, 400);
+        const _message4List = getMessage4List(list4, 400);
+        const _list = [..._message1List, ..._message3List, ..._message4List];
+        if (_list?.length) {
+          for (const _item of _list) {
+            await sendDingDing(_item);
+          }
         }
       }
       res.send({
