@@ -14,9 +14,10 @@ exports.handler = (event, context, callback) => {
       },
       "body": null,
       "method": "GET"
-    }).then(() => {
-      callback(null, '');
     })
+    setTimeout(() => {
+      callback(null, '');
+    }, 1000);
   })
   return true
 }

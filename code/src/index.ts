@@ -128,7 +128,7 @@ app.get('/data', async (req, res) => {
         const message3List = getMessage3List(_data, 400);
         const message4List = getMessage4List(_data, 400);
         if (message1List?.length || message3List?.length || message4List?.length) {
-          sendDingDing(message1List.join('\n') + '\n\n' + message3List.join('\n') + '\n\n' + message4List.join('\n'));
+          sendDingDing(message1List.join(' \n ') + ' \n \n ' + message3List.join(' \n ') + ' \n \n ' + message4List.join(' \n '));
         }
       } else {
         const list1 = _data
@@ -162,7 +162,7 @@ app.get('/data', async (req, res) => {
         const message3List = getMessage3List(list3, 400);
         const message4List = getMessage4List(list4, 400);
         if (message1List?.length || message3List?.length || message4List?.length) {
-          sendDingDing(message1List.join('\n') + '\n\n' + message3List.join('\n') + '\n\n' + message4List.join('\n'));
+          sendDingDing(message1List.join(' \n ') + ' \n \n ' + message3List.join(' \n ') + ' \n \n ' + message4List.join(' \n '));
         }
       }
       res.send({
