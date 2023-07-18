@@ -268,7 +268,7 @@ async function getData() {
       return false;
     }
   }
-  if (data.data?.matchData?.length) {
+  if (data.data?.matchData) {
     message.success(
       `数据更新 ${
         data?.data?.timestamp ? '距离当前' + (dayjs().valueOf() - dayjs(data.data.timestamp).valueOf()) / 1000 + '秒' : ''
