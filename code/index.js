@@ -10,7 +10,7 @@ exports.infoHandler = () => {
 
 module.exports.preStop = function (context, callback) {
   saveStore({}, true).then(() => {
-    console.log('销毁前上传数据1');
+    console.log('销毁前上传数据');
     callback(null, '');
   })
 };
