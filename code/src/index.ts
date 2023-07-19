@@ -75,9 +75,6 @@ app.get('/data', async (req, res) => {
     res.send({ code: Code.forbidden, msg: `该通行码正在被使用，请重新登陆换个通行码 ${account.token} ${token}` });
     return;
   }
-  if (!account.token) {
-    account.token = (Math.random() + 10).toString();
-  }
   account.timestamp = dayjs().valueOf();
   const liveCount = accountList.filter((a) => a.token).length;
   const username = (process.env.username || '') as string;
@@ -93,12 +90,15 @@ app.get('/data', async (req, res) => {
     return;
   }
   // 如果在等待数据 直接返回缓存数据
-  if (isWait && data &&  dayjs().valueOf() - (store.timestamp || 0) < 60 * 1000) {
+  if (isWait && data && dayjs().valueOf() - (store.timestamp || 0) < 60 * 1000) {
     const store = await getStore();
     const message1List = getMessage1List(data, store.Rev || 400);
     const message3List = getMessage3List(data, store.scoreRev || 200);
     const message4List = getMessage4List(data, store.halfRev || 400);
     const { messageList: message2List, compareDataList } = getMessage2List(data, store.C || 0.13, store.A || 1, store.compareRev || 430);
+    if (!account.token) {
+      account.token = (Math.random() + 10).toString();
+    }
     res.send({
       code: 200,
       msg: 'success',
@@ -185,6 +185,9 @@ app.get('/data', async (req, res) => {
           }
         }
       }
+      if (!account.token) {
+        account.token = (Math.random() + 10).toString();
+      }
       res.send({
         code: 200,
         msg: 'success',
@@ -214,6 +217,9 @@ app.get('/data', async (req, res) => {
     const message3List = getMessage3List(data, store.scoreRev || 200);
     const message4List = getMessage4List(data, store.halfRev || 400);
     const { messageList: message2List, compareDataList } = getMessage2List(data, store.C || 0.13, store.A || 1, store.compareRev || 430);
+    if (!account.token) {
+      account.token = (Math.random() + 10).toString();
+    }
     res.send({
       code: 200,
       msg: 'success',
