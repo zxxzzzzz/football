@@ -93,7 +93,7 @@ app.get('/data', async (req, res) => {
     return;
   }
   // 如果在等待数据 直接返回缓存数据
-  if (isWait && data) {
+  if (isWait && data &&  dayjs().valueOf() - (store.timestamp || 0) < 60 * 1000) {
     const store = await getStore();
     const message1List = getMessage1List(data, store.Rev || 400);
     const message3List = getMessage3List(data, store.scoreRev || 200);
