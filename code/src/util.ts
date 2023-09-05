@@ -22,6 +22,7 @@ if (process.env.key) {
 const extraTeam = [
   ['谢里夫', '舒列夫'],
   ['康斯塔查灯塔', '法乌尔'],
+  // ['北安普敦', '法乌尔'],
 ];
 export function sim_jaccard(s1: string, s2: string): number {
   const extraFind = extraTeam.find((e) => e.includes(s1));
@@ -92,6 +93,7 @@ export const isLeagueEqual = (l1: string, l2: string) => {
     ['中北美金杯赛', '美洲金杯2023(在美国和加拿大)'],
     ['欧洲冠军联赛外围赛', '欧洲冠军联赛'],
     ['女足世界杯', '女子世界杯2023(在澳大利亚和纽西兰)'],
+    ['英格兰联赛锦标赛', '英格兰锦标赛'],
   ];
   const isEqual = !!equalNameList.find((d) => d.includes(l1) && d.includes(l2));
   if (isEqual) {
