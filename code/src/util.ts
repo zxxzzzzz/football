@@ -94,6 +94,8 @@ export const isLeagueEqual = (l1: string, l2: string) => {
     ['欧洲冠军联赛外围赛', '欧洲冠军联赛'],
     ['女足世界杯', '女子世界杯2023(在澳大利亚和纽西兰)'],
     ['英格兰联赛锦标赛', '英格兰锦标赛'],
+    ['欧罗巴联赛', '欧洲联赛'],
+    ['欧罗巴联赛', '欧洲联赛外围赛'],
   ];
   const isEqual = !!equalNameList.find((d) => d.includes(l1) && d.includes(l2));
   if (isEqual) {
