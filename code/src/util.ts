@@ -96,6 +96,7 @@ export const isLeagueEqual = (l1: string, l2: string) => {
     ['英格兰联赛锦标赛', '英格兰锦标赛'],
     ['欧罗巴联赛', '欧洲联赛'],
     ['欧罗巴联赛', '欧洲联赛外围赛'],
+    ['世界杯2026南美洲外围赛', '世界杯预选赛'],
   ];
   const isEqual = !!equalNameList.find((d) => d.includes(l1) && d.includes(l2));
   if (isEqual) {
