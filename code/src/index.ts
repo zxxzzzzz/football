@@ -131,9 +131,6 @@ app.get('/data', async (req, res) => {
       const message4List = getMessage4List(_data, store.halfRev || 400);
       const { messageList: message2List, compareDataList } = getMessage2List(_data, store.C || 0.13, store.A || 1, store.compareRev || 430);
       if (!data) {
-        if (dayjs().add(8, 'hour').hour() < 11) {
-          return;
-        }
         const _message1List = getMessage1List(_data, 650);
         const _message3List = getMessage3List(_data, 400);
         const _message4List = getMessage4List(_data, 400);
@@ -144,9 +141,6 @@ app.get('/data', async (req, res) => {
           }
         }
       } else {
-        if (dayjs().add(8, 'hour').hour() < 11) {
-          return;
-        }
         const list1 = _data
           .filter((d) => {
             return d?.revList?.[0]?.rev > 650 && d?.revList?.[0]?.rev < 3000;
