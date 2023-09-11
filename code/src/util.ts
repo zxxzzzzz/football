@@ -331,8 +331,13 @@ export function toData(tiCaiList: TiCaiItem[], extraList: ExtraItem[], _R = 0.12
                   tiCaiOdds: parseFloat(oddsItem[1]),
                 },
                 {
-                  filter: (d: number, isOnlyWin: boolean) =>
-                    isOnlyWin ? parseFloat(oddsItem[0]) === -1 : filterMap[parseFloat(oddsItem[0])][1] === d,
+                  filter: (d: number, isOnlyWin: boolean) => {
+                    if (Math.abs(parseFloat(oddsItem[0])) > 3) {
+                      return false;
+                    }
+                    return isOnlyWin ? parseFloat(oddsItem[0]) === -1 : filterMap[parseFloat(oddsItem[0])][1] === d
+
+                  },
                   type: 'lose',
                   single,
                   tiCai: parseFloat(oddsItem[0]),
