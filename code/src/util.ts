@@ -317,8 +317,13 @@ export function toData(tiCaiList: TiCaiItem[], extraList: ExtraItem[], _R = 0.12
               };
               return [
                 {
-                  filter: (d: number, isOnlyWin: boolean) =>
-                    isOnlyWin ? parseFloat(oddsItem[0]) === 1 : filterMap[parseFloat(oddsItem[0])][0] === d,
+                  filter: (d: number, isOnlyWin: boolean) => {
+                    // 让球大于四的忽略
+                    if (Math.abs(parseFloat(oddsItem[0])) > 3) {
+                      return false;
+                    }
+                    return isOnlyWin ? parseFloat(oddsItem[0]) === 1 : filterMap[parseFloat(oddsItem[0])][0] === d;
+                  },
                   // 胜
                   type: 'win',
                   single,
