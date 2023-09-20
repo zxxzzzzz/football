@@ -42,8 +42,10 @@ const accountList = [
   { password: 'LJ111', token: '', timestamp: 0 },
   { password: 'LJ222', token: '', timestamp: 0 },
   { password: 'LJ333', token: '', timestamp: 0 },
-  { password: 'XIAO111', token: '', timestamp: 0 },
   { password: 'XIAO222', token: '', timestamp: 0 },
+  { password: 'XIAO8888', token: '', timestamp: 0 },
+  { password: 'XIAO9999', token: '', timestamp: 0 },
+  { password: 'XIAO0000', token: '', timestamp: 0 },
   { password: 'test_123@', token: '', timestamp: 0 },
   { password: 'trigger_123@', token: '', timestamp: 0 },
 ];
