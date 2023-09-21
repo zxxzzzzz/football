@@ -202,7 +202,7 @@ app.get('/data', async (req, res) => {
       isWait = false;
       return;
     } catch (error) {
-      res.send({ code: (error as CError).code, msg: (error as CError).message });
+      res.send({ code: (error as CError).code, msg: (error as CError).message+' \r\n'+(error as CError).stack });
       isWait = false;
       return;
     }

@@ -239,7 +239,7 @@ async function getGameListByNodeFetch(url: string, ver: string, uid: string, lid
   }
   const gameList: Game[] = ([] as any[])
     .concat(mixObj?.serverresponse?.ec)
-    .filter((e) => e)
+    .filter((e) => e && e.game.IOR_RMH?._tex && e.game.IOR_RMC?._text && e.game.IOR_RMN?._text)
     .map((ec): Game => {
       const game = ec.game;
       const vDateTime = game.DATETIME._text.slice(0, -1) + ' ' + game.DATETIME._text.slice(-1)[0] + 'm';
@@ -254,6 +254,7 @@ async function getGameListByNodeFetch(url: string, ver: string, uid: string, lid
         itemList: [
           {
             oddsTitle: '独赢',
+            // 0 1 和
             oddsItemList: [[game.IOR_RMH._text], [game.IOR_RMC._text], [game.IOR_RMN._text]],
           },
         ],
@@ -329,19 +330,19 @@ export async function getGameOBTByNodeFetch(
     return [
       strong === 'H'
         ? {
-            oddsTitle: '让球',
-            oddsItemList: [
-              [`-${(g?.RATIO_RE?._text || '').replace(/[\s]/g, '')}`, g?.IOR_REH?._text],
-              [`+${(g?.RATIO_RE?._text || '').replace(/[\s]/g, '')}`, g?.IOR_REC?._text],
-            ],
-          }
+          oddsTitle: '让球',
+          oddsItemList: [
+            [`-${(g?.RATIO_RE?._text || '').replace(/[\s]/g, '')}`, g?.IOR_REH?._text],
+            [`+${(g?.RATIO_RE?._text || '').replace(/[\s]/g, '')}`, g?.IOR_REC?._text],
+          ],
+        }
         : {
-            oddsTitle: '让球',
-            oddsItemList: [
-              [`+${(g?.RATIO_RE?._text || '').replace(/[\s]/g, '')}`, g?.IOR_REH?._text],
-              [`-${(g?.RATIO_RE?._text || '').replace(/[\s]/g, '')}`, g?.IOR_REC?._text],
-            ],
-          },
+          oddsTitle: '让球',
+          oddsItemList: [
+            [`+${(g?.RATIO_RE?._text || '').replace(/[\s]/g, '')}`, g?.IOR_REH?._text],
+            [`-${(g?.RATIO_RE?._text || '').replace(/[\s]/g, '')}`, g?.IOR_REC?._text],
+          ],
+        },
       {
         oddsTitle: '得分',
         oddsItemList: [
