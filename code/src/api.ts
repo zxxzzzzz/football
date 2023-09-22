@@ -280,7 +280,7 @@ export async function getGameOBTByNodeFetch(
     showtype: 'parlay',
     isSpecial: '',
     isEarly: 'N',
-    model: 'ROU|MIX',
+    model: 'OU|MIX',
     isETWI: 'N',
     ecid: ecid,
     ltype: 3,
