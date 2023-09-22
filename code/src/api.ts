@@ -255,7 +255,7 @@ async function getGameListByNodeFetch(url: string, ver: string, uid: string, lid
           {
             oddsTitle: '独赢',
             // 0 1 和
-            oddsItemList: [[game?.IOR_RMH?._text || '0'], [game?.IOR_RMC?._text || '0'], [game?.IOR_RMN?._text || '0']],
+            oddsItemList: [[game?.IOR_MH?._text || '0'], [game?.IOR_MC?._text || '0'], [game?.IOR_MN?._text || '0']],
           },
         ],
         teamList: [game.TEAM_H._text, game.TEAM_C._text],
