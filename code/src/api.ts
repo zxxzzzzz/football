@@ -332,22 +332,22 @@ export async function getGameOBTByNodeFetch(
         ? {
           oddsTitle: '让球',
           oddsItemList: [
-            [`-${(g?.RATIO_RE?._text || '').replace(/[\s]/g, '')}`, g?.IOR_REH?._text],
-            [`+${(g?.RATIO_RE?._text || '').replace(/[\s]/g, '')}`, g?.IOR_REC?._text],
+            [`-${(g?.RATIO_R?._text || '').replace(/[\s]/g, '')}`, g?.IOR_RH?._text],
+            [`+${(g?.RATIO_R?._text || '').replace(/[\s]/g, '')}`, g?.IOR_RC?._text],
           ],
         }
         : {
           oddsTitle: '让球',
           oddsItemList: [
-            [`+${(g?.RATIO_RE?._text || '').replace(/[\s]/g, '')}`, g?.IOR_REH?._text],
-            [`-${(g?.RATIO_RE?._text || '').replace(/[\s]/g, '')}`, g?.IOR_REC?._text],
+            [`+${(g?.RATIO_R?._text || '').replace(/[\s]/g, '')}`, g?.IOR_RH?._text],
+            [`-${(g?.RATIO_R?._text || '').replace(/[\s]/g, '')}`, g?.IOR_RC?._text],
           ],
         },
       {
         oddsTitle: '得分',
         oddsItemList: [
-          [`-${(g?.RATIO_ROUO?._text || '').slice(1).replace(/[\s]/g, '')}`, g?.IOR_ROUC?._text || ''],
-          [`+${(g?.RATIO_ROUU?._text || '').slice(1).replace(/[\s]/g, '')}`, g?.IOR_ROUH?._text || ''],
+          [`-${(g?.RATIO_OUO?._text || '').slice(1).replace(/[\s]/g, '')}`, g?.IOR_OUC?._text || ''],
+          [`+${(g?.RATIO_OUU?._text || '').slice(1).replace(/[\s]/g, '')}`, g?.IOR_OUH?._text || ''],
         ],
       },
     ];
