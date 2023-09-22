@@ -239,7 +239,7 @@ async function getGameListByNodeFetch(url: string, ver: string, uid: string, lid
   }
   const gameList: Game[] = ([] as any[])
     .concat(mixObj?.serverresponse?.ec)
-    .filter((e) => e && e.game.IOR_RMH?._tex && e.game.IOR_RMC?._text && e.game.IOR_RMN?._text)
+    .filter((e) => e)
     .map((ec): Game => {
       const game = ec.game;
       const vDateTime = game.DATETIME._text.slice(0, -1) + ' ' + game.DATETIME._text.slice(-1)[0] + 'm';
@@ -255,7 +255,7 @@ async function getGameListByNodeFetch(url: string, ver: string, uid: string, lid
           {
             oddsTitle: '独赢',
             // 0 1 和
-            oddsItemList: [[game.IOR_RMH._text], [game.IOR_RMC._text], [game.IOR_RMN._text]],
+            oddsItemList: [[game?.IOR_RMH?._text || '0'], [game?.IOR_RMC?._text || '0'], [game?.IOR_RMN?._text || '0']],
           },
         ],
         teamList: [game.TEAM_H._text, game.TEAM_C._text],
