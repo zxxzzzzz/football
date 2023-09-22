@@ -346,8 +346,8 @@ export async function getGameOBTByNodeFetch(
       {
         oddsTitle: '得分',
         oddsItemList: [
-          [`-${(g?.RATIO_OUO?._text || '').slice(1).replace(/[\s]/g, '')}`, g?.IOR_OUC?._text || ''],
-          [`+${(g?.RATIO_OUU?._text || '').slice(1).replace(/[\s]/g, '')}`, g?.IOR_OUH?._text || ''],
+          [`-${(g?.RATIO_OUO?._text || '').replace(/[\s]/g, '')}`, g?.IOR_OUC?._text || ''],
+          [`+${(g?.RATIO_OUU?._text || '').replace(/[\s]/g, '')}`, g?.IOR_OUH?._text || ''],
         ],
       },
     ];
