@@ -288,8 +288,26 @@ export async function getGameOBTByNodeFetch(
     ts: new Date().valueOf(),
     isClick: 'Y',
   };
+  const body2 = {
+    uid: uid,
+    ver: ver,
+    langx: 'zh-cn',
+    p: 'get_game_OBT',
+    gtype: 'ft',
+    showtype: 'parlay',
+    isSpecial: '',
+    isEarly: 'Y',
+    model: 'OU|MIX',
+    isETWI: 'N',
+    ecid: ecid,
+    ltype: 3,
+    is_rb: 'N',
+    ts: new Date().valueOf(),
+    isClick: 'Y',
+  };
   const _url = new URL(url);
   const bodyStr = obj2Str(body);
+  const bodyStr2 = obj2Str(body2);
   const fetch = (await _fetch).default;
   let text: string | undefined = void 0;
   try {
@@ -307,7 +325,7 @@ export async function getGameOBTByNodeFetch(
       },
       referrer: 'https://64.188.38.120/',
       referrerPolicy: 'strict-origin-when-cross-origin',
-      body: bodyStr,
+      body: bodyStr2,
       method: 'POST',
     });
     text = await res.text();
@@ -317,9 +335,37 @@ export async function getGameOBTByNodeFetch(
   if (!text) {
     throw createError('获取extra 补充数据失败', Code.dataFail);
   }
-  const mixObj = Convert.xml2js(text, { compact: true }) as any;
+  let mixObj = Convert.xml2js(text, { compact: true }) as any;
   if (mixObj?.serverresponse?.code?._text === 'error') {
     throw createError('uid过期', Code.uidExpire);
+  }
+  if (!mixObj?.serverresponse?.ec?.game) {
+    try {
+      const res = await fetch(`${_url.origin}/transform.php?ver=${ver}`, {
+        headers: {
+          accept: '*/*',
+          'accept-language': 'zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6',
+          'content-type': 'application/x-www-form-urlencoded',
+          'sec-ch-ua': '"Chromium";v="112", "Microsoft Edge";v="112", "Not:A-Brand";v="99"',
+          'sec-ch-ua-mobile': '?0',
+          'sec-ch-ua-platform': '"Windows"',
+          'sec-fetch-dest': 'empty',
+          'sec-fetch-mode': 'cors',
+          'sec-fetch-site': 'same-origin',
+        },
+        referrer: 'https://64.188.38.120/',
+        referrerPolicy: 'strict-origin-when-cross-origin',
+        body: bodyStr,
+        method: 'POST',
+      });
+      text = await res.text();
+    } catch (error) {
+      throw createError('获取extra 补充数据失败', Code.dataFail);
+    }
+    if (!text) {
+      throw createError('获取extra 补充数据失败', Code.dataFail);
+    }
+    mixObj = Convert.xml2js(text, { compact: true }) as any;
   }
   let gameList = mixObj?.serverresponse?.ec?.game;
   if (gameList?.LEAGUE) {

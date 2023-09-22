@@ -330,21 +330,6 @@ async function getData(username: string, password: string) {
       }
       return [...re, cur];
     }, [] as { name: string; id: string }[]);
-  // const matchedLeagueList = tiCaiDataList
-  //   .map((t) => {
-  //     const t1 = leagueList.find((l) => {
-  //       return isLeagueEqual(t.league, l.name);
-  //     }) || { name: t.league, id: '' };
-  //     return { ...t1 };
-  //   })
-  //   .filter((d) => d.id)
-  //   .reduce((re, cur) => {
-  //     // 去除重复联赛
-  //     if (re.find((r) => r.id === cur.id)) {
-  //       return re;
-  //     }
-  //     return [...re, cur];
-  //   }, [] as { name: string; id: string }[]);
   const extraGameList = (
     await Promise.all(
       matchedLeagueList.map((m) => {
