@@ -9,7 +9,7 @@ import {
   retryGetGameOBTByNodeFetch,
   retryGetTiCaiByFetch,
   retryLoginByNodeFetch,
-  sendDingDing,
+  retrySendDingDing,
 } from './api';
 // import { say } from './chaty';
 import { getStore, saveStore, saveFile, getMessage1List, getMessage2List, getMessage3List, getMessage4List } from './util';
@@ -139,7 +139,7 @@ app.get('/data', async (req, res) => {
         const _list = [..._message1List, ..._message3List, ..._message4List];
         if (_list?.length) {
           for (const _item of _list) {
-            await sendDingDing(_item);
+            await retrySendDingDing(_item);
           }
         }
       } else {
@@ -177,7 +177,7 @@ app.get('/data', async (req, res) => {
         const _list = [..._message1List, ..._message3List, ..._message4List];
         if (_list?.length) {
           for (const _item of _list) {
-            await sendDingDing(_item);
+            await retrySendDingDing(_item);
           }
         }
       }

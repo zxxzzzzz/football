@@ -650,3 +650,4 @@ export async function sendDingDing(msg: string) {
     body: JSON.stringify(body),
   });
 }
+export const retrySendDingDing = retryWrap(sendDingDing, 3);
