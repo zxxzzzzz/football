@@ -228,10 +228,11 @@ async function getGameListByNodeFetch(url: string, ver: string, uid: string, lid
     });
     text = await res.text();
   } catch (error) {
-    throw createError('获取extra 比赛数据失败', Code.dataFail);
+    // @ts-ignore
+    throw createError('获取extra 比赛数据失败 ' + error.message, Code.dataFail);
   }
   if (!text) {
-    throw createError('获取extra 比赛数据失败', Code.dataFail);
+    throw createError('获取extra 比赛数据失败,数据空', Code.dataFail);
   }
   const mixObj = Convert.xml2js(text, { compact: true }) as any;
   if (mixObj?.serverresponse?.code?._text === 'error') {
