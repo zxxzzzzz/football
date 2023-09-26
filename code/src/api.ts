@@ -229,7 +229,7 @@ async function getGameListByNodeFetch(url: string, ver: string, uid: string, lid
     text = await res.text();
   } catch (error) {
     // @ts-ignore
-    throw createError('获取extra 比赛数据失败 ' + error.message, Code.dataFail);
+    throw createError('获取extra 比赛数据失败 网络问题' + error.message, Code.dataFail);
   }
   if (!text) {
     throw createError('获取extra 比赛数据失败,数据空', Code.dataFail);
