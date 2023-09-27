@@ -1,6 +1,7 @@
 import Convert from 'xml-js';
 import dayjs from 'dayjs';
 import { MatchInfo } from './type';
+import axios from 'axios';
 // import _fetch from;
 const _fetch = import('node-fetch');
 import { Code, createError } from './error';
@@ -421,7 +422,7 @@ export async function getLeagueListAllByNodeFetch(url: string, uid: string, ver:
   const fetch = (await _fetch).default;
   let text: string | undefined = void 0;
   try {
-    const res = await fetch(`${_url.origin}/transform.php?ver=${ver}`, {
+    const res = await axios.post(`${_url.origin}/transform.php?ver=${ver}`, bodyStr, {
       headers: {
         accept: '*/*',
         'accept-language': 'zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6',
@@ -433,12 +434,26 @@ export async function getLeagueListAllByNodeFetch(url: string, uid: string, ver:
         'sec-fetch-mode': 'cors',
         'sec-fetch-site': 'same-origin',
       },
-      referrer: 'https://64.188.38.120/',
-      referrerPolicy: 'strict-origin-when-cross-origin',
-      body: bodyStr,
-      method: 'POST',
-    });
-    text = await res.text();
+    })
+    text = res.data
+    // const res = await fetch(`${_url.origin}/transform.php?ver=${ver}`, {
+    //   headers: {
+    //     accept: '*/*',
+    //     'accept-language': 'zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6',
+    //     'content-type': 'application/x-www-form-urlencoded',
+    //     'sec-ch-ua': '"Chromium";v="112", "Microsoft Edge";v="112", "Not:A-Brand";v="99"',
+    //     'sec-ch-ua-mobile': '?0',
+    //     'sec-ch-ua-platform': '"Windows"',
+    //     'sec-fetch-dest': 'empty',
+    //     'sec-fetch-mode': 'cors',
+    //     'sec-fetch-site': 'same-origin',
+    //   },
+    //   referrer: 'https://64.188.38.120/',
+    //   referrerPolicy: 'strict-origin-when-cross-origin',
+    //   body: bodyStr,
+    //   method: 'POST',
+    // });
+    // text = await res.text();
   } catch (error) {
     // @ts-ignore
     throw createError('获取extra 联赛数据失败 网络问题' + error.message, Code.dataFail);
