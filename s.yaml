@@ -22,10 +22,10 @@ name: football
 access: "default"
 
 vars: # 全局变量
-  region: "cn-shanghai"
+  region: "cn-chengdu"
   service:
-    name: "web-framework"
-    description: 'Serverless Devs Web Framework Service'
+    name: "football"
+    description: 'play football'
     logConfig: auto
 
 services:
