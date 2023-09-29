@@ -22,7 +22,7 @@ name: football
 access: "default"
 
 vars: # 全局变量
-  region: "cn-hangzhou"
+  region: "cn-shanghai"
   service:
     name: "web-framework"
     description: 'Serverless Devs Web Framework Service'
