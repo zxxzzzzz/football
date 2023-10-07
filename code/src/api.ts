@@ -656,12 +656,17 @@ export async function sendDingDing(msg: string) {
       text: msg,
     },
   };
-  await fetch(process.env.webhook || '', {
-    method: 'post',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(body),
-  });
+  const prefix = '7bf309975269'
+  try {
+    await fetch(process.env.webhook || `https://oapi.dingtalk.com/robot/send?access_token=${prefix}e6dcc3ca34d569e6b3a54a425ff19d2dfdfa78e716e4c3cda890`, {
+      method: 'post',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(body),
+    });
+  } catch (error) {
+    
+  }
 }
 export const retrySendDingDing = retryWrap(sendDingDing, 3);
