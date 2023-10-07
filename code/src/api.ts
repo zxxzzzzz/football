@@ -508,9 +508,6 @@ async function getServiceMainget(ver: string) {
   const mixObj = Convert.xml2js(text2, { compact: true }) as any;
   const code = mixObj?.serverresponse?.code?._text as string;
   const maintain_time = mixObj?.serverresponse?.maintain_time?._text as string;
-  if (code === '619') {
-    return { code: 619, msg: `数据源网站在维护，维护时间${maintain_time}，暂时不能获取到数据` };
-  }
   return { code: 200, msg: '' };
 }
 
