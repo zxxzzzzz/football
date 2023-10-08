@@ -163,6 +163,9 @@ async function getData() {
     if (data.code === Code.forbidden) {
       store.password = '';
       localStorage.setItem('ps', '');
+      store.token = '';
+      localStorage.setItem('token', '');
+      console.log('goto login');
       router.push({ path: '/login' });
       return false;
     }

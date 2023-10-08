@@ -512,21 +512,6 @@ async function getServiceMainget(ver: string) {
 }
 
 export async function loginByNodeFetch(username: string, password: string) {
-  // const store = await getStore();
-  // // 没有强制更新，不重新请求token
-  // if (store.uid && store.url && store.ver && !forceUpdate) {
-  //   log({
-  //     uid: store.uid || '',
-  //     url: store.url || '',
-  //     ver: store.ver || '',
-  //     msg: '使用缓存的login token',
-  //   });
-  //   return {
-  //     uid: store.uid || '',
-  //     url: store.url || '',
-  //     ver: store.ver || '',
-  //   };
-  // }
   const fetch = (await _fetch).default;
   const res = await fetch('https://66.133.91.116/', {
     headers: {

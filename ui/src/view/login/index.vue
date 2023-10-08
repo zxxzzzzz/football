@@ -1,6 +1,6 @@
 <template>
   <div class="flex justify-center items-center h-[100vh]">
-    <div>v1.0.1</div>
+    <div>v1.0.2</div>
     <div class="mr-4">通行码</div>
     <div>
       <Input v-model:value="password"></Input>
