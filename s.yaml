@@ -22,7 +22,7 @@ name: football
 access: "default"
 
 vars: # 全局变量
-  region: "cn-chengdu"
+  region: "cn-hangzhou"
   service:
     name: "football"
     description: 'play football'
