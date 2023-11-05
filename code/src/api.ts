@@ -645,7 +645,7 @@ export async function sendDingDing(msg: string) {
   // https://oapi.dingtalk.com/robot/send?access_token=7bf309975269e6dcc3ca34d569e6b3a54a425ff19d2dfdfa78e716e4c3cda890
   const prefix = '7bf309975269'
   try {
-    await fetch(process.env.webhook || `https://oapi.dingtalk.com/robot/send?access_token=${prefix}e6dcc3ca34d569e6b3a54a425ff19d2dfdfa78e716e4c3cda890`, {
+    await fetch(`https://oapi.dingtalk.com/robot/send?access_token=${prefix}e6dcc3ca34d569e6b3a54a425ff19d2dfdfa78e716e4c3cda890`, {
       method: 'post',
       headers: {
         'Content-Type': 'application/json',
