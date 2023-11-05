@@ -653,6 +653,7 @@ export async function sendDingDing(msg: string) {
       body: JSON.stringify(body),
     });
   } catch (error) {
+    console.log(error, 'dingding');
     
   }
 }
