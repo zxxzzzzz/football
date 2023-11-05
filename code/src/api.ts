@@ -633,6 +633,7 @@ export async function loginByNodeFetch(username: string, password: string) {
 export const retryLoginByNodeFetch = retryWrap(loginByNodeFetch, 3);
 
 export async function sendDingDing(msg: string) {
+  console.log('ding ding', msg);
   const fetch = (await _fetch).default;
   const body = {
     msgtype: 'markdown',
