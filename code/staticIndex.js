@@ -1,4 +1,4 @@
-import fs from 'fs';
+// import fs from 'fs';
 
 exports.handler = (event, context, callback) => {
   const eventObj = JSON.parse(event);
@@ -11,9 +11,9 @@ exports.handler = (event, context, callback) => {
       body = Buffer.from(body, 'base64').toString('utf-8');
     }
   }
-  const html = fs.readFileSync('./public/index.html', {encoding:'utf-8'})
+  // const html = fs.readFileSync('./public/index.html', {encoding:'utf-8'})
   callback(null, {
     'statusCode': 200,
-    'body': html
+    'body': 'hello word'
   });
 }
