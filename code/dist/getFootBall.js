@@ -52,7 +52,6 @@ const getDataByHttp = async (reqData) => {
     }
     if (account.token && account.token !== token && account.password !== 'trigger_123@') {
         return { code: error_1.Code.forbidden, msg: `该通行码正在被使用，请重新登陆换个通行码 ${account.token} ${token}` };
-        return;
     }
     account.timestamp = (0, dayjs_1.default)().valueOf();
     const liveCount = accountList.filter((a) => a.token).length;
