@@ -1,14 +1,14 @@
+const { getDataByHttp } = require('./dist/getFootBall');
+const { saveStore } = require('./dist/util');
 exports.handler = async (event, context, callback) => {
   try {
-    // const { getDataByHttp } = require('./dist/getFootBall');
-    // const { saveStore } = require('./dist/util');
-    // const eventObj = JSON.parse(event.toString());
-    // const password = eventObj?.queryParameters?.p || '';
-    // const token = eventObj?.queryParameters?.token || '';
-    // const responseData = await getDataByHttp({ password, token });
+    const eventObj = JSON.parse(event.toString());
+    const password = eventObj?.queryParameters?.p || '';
+    const token = eventObj?.queryParameters?.token || '';
+    const responseData = await getDataByHttp({ password, token });
     callback(null, {
       statusCode: 200,
-      body: 'data',
+      body: responseData,
       headers: {
         'Content-Type': 'application/json',
         'Cache-Control': 'no-cache',
@@ -23,8 +23,8 @@ exports.handler = async (event, context, callback) => {
 };
 
 exports.preStop = function (context, callback) {
-  // saveStore({}, true).then(() => {
-  //   console.log('销毁前上传数据');
-  //   callback(null, '');
-  // });
+  saveStore({}, true).then(() => {
+    console.log('销毁前上传数据');
+    callback(null, '');
+  });
 };
