@@ -1,12 +1,12 @@
-import fs from 'fs';
-import path from 'path';
-import { createHash } from 'crypto';
+const fs = require('fs');
+const path = require('path');
+const { createHash } = require('crypto');
 
 exports.handler = (event, context, callback) => {
   try {
     const hash = createHash('sha256');
     const eventObj = JSON.parse(event);
-  
+
     let body = 'Hello World!';
     // get http request body
     if ('body' in eventObj) {
@@ -29,6 +29,5 @@ exports.handler = (event, context, callback) => {
       statusCode: 200,
       body: error.message,
     });
-
   }
 };
