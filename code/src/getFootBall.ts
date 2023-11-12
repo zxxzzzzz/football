@@ -137,6 +137,7 @@ export async function getData(username: string, password: string) {
       throw error;
     }
   }
+  return {b:1} as any
   const tiCaiDataList = await retryGetTiCaiByFetch();
   const matchedLeagueList = leagueList
     .map((l) => {
@@ -212,7 +213,6 @@ export async function getData(username: string, password: string) {
 
   type G = Exclude<FirstOfGeneric<(typeof promiseList)[0]>, undefined>;
   let matchedGameList: G[] = [];
-  return {b:1} as any
   for (const p of promiseList) {
     const data = await p;
     if (data) {
