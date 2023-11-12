@@ -55,6 +55,29 @@ resources:
             payload: ''
             cronExpression: 'CRON_TZ=Asia/Shanghai 0 0/1 * * * ?'
             enable: true
+  static: # 静态文件服务
+    component: fc3 
+    props: 
+      layers:
+        - acs:fc:cn-hangzhou:1048992591952509:layers/ball/versions/2
+      functionName: static
+      region: cn-hangzhou
+      code: ./code
+      runtime: nodejs16
+      handler: staticIndex.handler
+      instanceConcurrency: 1
+      memorySize: 128
+      diskSize: 512
+      description: '静态服务'
+      cpu: 0.1
+      timeout: 20
+      triggers:
+        - triggerName: httpTrigger
+          triggerType: http
+          triggerConfig:
+            authType: anonymous
+            methods:
+              - GET
   fc-domain: #  服务名称
     component: fc3-domain
     props: #  组件的属性值
@@ -63,8 +86,8 @@ resources:
       protocol: HTTP # HTTP | HTTPS 
       routeConfig:
         routes:
-          - functionName: ball
+          - functionName: static
             methods:
               - GET
-            path: /
+            path: ''
             qualifier: LATEST
