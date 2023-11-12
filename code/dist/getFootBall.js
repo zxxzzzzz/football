@@ -131,7 +131,6 @@ async function getData(username, password) {
             throw error;
         }
     }
-    return { b: 1 };
     const tiCaiDataList = await (0, api_1.retryGetTiCaiByFetch)();
     const matchedLeagueList = leagueList
         .map((l) => {
