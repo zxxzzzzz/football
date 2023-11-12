@@ -1,4 +1,3 @@
-
 exports.handler = async (event, context, callback) => {
   try {
     // const { getDataByHttp } = require('./dist/getFootBall');
@@ -7,7 +6,7 @@ exports.handler = async (event, context, callback) => {
     // const password = eventObj?.queryParameters?.p || '';
     // const token = eventObj?.queryParameters?.token || '';
     // const responseData = await getDataByHttp({ password, token });
-    callback({
+    callback(null, {
       statusCode: 200,
       body: 'data',
       headers: {
@@ -15,7 +14,6 @@ exports.handler = async (event, context, callback) => {
         'Cache-Control': 'no-cache',
       },
     });
-    
   } catch (error) {
     callback(null, {
       statusCode: 500,
