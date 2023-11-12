@@ -3,7 +3,7 @@ import dayjs from 'dayjs';
 import { MatchInfo } from './type';
 import axios from 'axios';
 // import _fetch from;
-const _fetch = import('node-fetch');
+// const _fetch = import('node-fetch');
 import { Code, createError } from './error';
 
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
@@ -48,10 +48,9 @@ type Game = {
 };
 
 export async function getTiCaiByFetch() {
-  const fetch = (await _fetch).default;
   let data: any = void 0;
   try {
-    const res = await fetch(
+    const res = await axios.post(
       'https://webapi.sporttery.cn/gateway/jc/football/getMatchCalculatorV1.qry?poolCode=hhad,had,ttg,hafu&channel=c',
       {
         headers: {
@@ -72,7 +71,7 @@ export async function getTiCaiByFetch() {
         method: 'GET',
       }
     );
-    data = (await res.json()) as any;
+    data = res.data as any;
   } catch (error) {
     throw createError('获取体彩数据失败', Code.dataFail);
   }
@@ -207,10 +206,9 @@ async function getGameListByNodeFetch(url: string, ver: string, uid: string, lid
   };
   const _url = new URL(url);
   const bodyStr = obj2Str(body);
-  const fetch = (await _fetch).default;
   let text: string | undefined = void 0;
   try {
-    const res = await fetch(`${_url.origin}/transform.php?ver=${ver}`, {
+    const res = await axios.post(`${_url.origin}/transform.php?ver=${ver}`, {
       headers: {
         accept: '*/*',
         'accept-language': 'zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6',
@@ -227,7 +225,7 @@ async function getGameListByNodeFetch(url: string, ver: string, uid: string, lid
       body: bodyStr,
       method: 'POST',
     });
-    text = await res.text();
+    text = res.data;
   } catch (error) {
     // @ts-ignore
     throw createError('获取extra 比赛数据失败 网络问题' + error.message, Code.dataFail);
@@ -310,10 +308,9 @@ export async function getGameOBTByNodeFetch(
   const _url = new URL(url);
   const bodyStr = obj2Str(body);
   const bodyStr2 = obj2Str(body2);
-  const fetch = (await _fetch).default;
   let text: string | undefined = void 0;
   try {
-    const res = await fetch(`${_url.origin}/transform.php?ver=${ver}`, {
+    const res = await axios.post(`${_url.origin}/transform.php?ver=${ver}`, {
       headers: {
         accept: '*/*',
         'accept-language': 'zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6',
@@ -330,7 +327,7 @@ export async function getGameOBTByNodeFetch(
       body: bodyStr2,
       method: 'POST',
     });
-    text = await res.text();
+    text = res.data;
   } catch (error) {
     throw createError('获取extra 补充数据失败', Code.dataFail);
   }
@@ -343,7 +340,7 @@ export async function getGameOBTByNodeFetch(
   }
   if (!mixObj?.serverresponse?.ec?.game) {
     try {
-      const res = await fetch(`${_url.origin}/transform.php?ver=${ver}`, {
+      const res = await axios.post(`${_url.origin}/transform.php?ver=${ver}`, {
         headers: {
           accept: '*/*',
           'accept-language': 'zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6',
@@ -360,7 +357,7 @@ export async function getGameOBTByNodeFetch(
         body: bodyStr,
         method: 'POST',
       });
-      text = await res.text();
+      text = res.data;
     } catch (error) {
       throw createError('获取extra 补充数据失败', Code.dataFail);
     }
@@ -419,7 +416,6 @@ export async function getLeagueListAllByNodeFetch(url: string, uid: string, ver:
   };
   const _url = new URL(url);
   const bodyStr = obj2Str(body);
-  const fetch = (await _fetch).default;
   let text: string | undefined = void 0;
   try {
     const res = await axios.post(`${_url.origin}/transform.php?ver=${ver}`, bodyStr, {
@@ -436,24 +432,6 @@ export async function getLeagueListAllByNodeFetch(url: string, uid: string, ver:
       },
     })
     text = res.data
-    // const res = await fetch(`${_url.origin}/transform.php?ver=${ver}`, {
-    //   headers: {
-    //     accept: '*/*',
-    //     'accept-language': 'zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6',
-    //     'content-type': 'application/x-www-form-urlencoded',
-    //     'sec-ch-ua': '"Chromium";v="112", "Microsoft Edge";v="112", "Not:A-Brand";v="99"',
-    //     'sec-ch-ua-mobile': '?0',
-    //     'sec-ch-ua-platform': '"Windows"',
-    //     'sec-fetch-dest': 'empty',
-    //     'sec-fetch-mode': 'cors',
-    //     'sec-fetch-site': 'same-origin',
-    //   },
-    //   referrer: 'https://64.188.38.120/',
-    //   referrerPolicy: 'strict-origin-when-cross-origin',
-    //   body: bodyStr,
-    //   method: 'POST',
-    // });
-    // text = await res.text();
   } catch (error) {
     // @ts-ignore
     throw createError('获取extra 联赛数据失败 网络问题' + error.message, Code.dataFail);
@@ -479,10 +457,9 @@ export async function getLeagueListAllByNodeFetch(url: string, uid: string, ver:
 export const retryGetLeagueListAllByNodeFetch = retryWrap(getLeagueListAllByNodeFetch, 3);
 
 async function getServiceMainget(ver: string) {
-  const fetch = (await _fetch).default;
   let text2: string | undefined = void 0;
   try {
-    const res = await fetch(`https://66.133.91.116/transform.php?ver=${ver}`, {
+    const res = await axios.post(`https://66.133.91.116/transform.php?ver=${ver}`, {
       headers: {
         accept: '*/*',
         'accept-language': 'zh-CN,zh;q=0.9',
@@ -498,7 +475,7 @@ async function getServiceMainget(ver: string) {
       body: `p=service_mainget&ver=${ver}&langx=zh-cn&login=N`,
       method: 'POST',
     });
-    text2 = await res.text();
+    text2 = res.data;
   } catch (error) {
     throw createError('获取extra状态失败', Code.dataFail);
   }
@@ -512,8 +489,7 @@ async function getServiceMainget(ver: string) {
 }
 
 export async function loginByNodeFetch(username: string, password: string) {
-  const fetch = (await _fetch).default;
-  const res = await fetch('https://66.133.91.116/', {
+  const res = await axios.post('https://66.133.91.116/', {
     headers: {
       accept:
         'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
@@ -535,7 +511,7 @@ export async function loginByNodeFetch(username: string, password: string) {
     body: 'detection=Y',
     method: 'POST',
   });
-  const text = await res.text();
+  const text = res.data;
   const m = text.match(/top\.ver = '([^']+?)'/);
   if (!m?.[1]) {
     throw createError('获取ver失败', Code.dataFail);
@@ -555,7 +531,7 @@ export async function loginByNodeFetch(username: string, password: string) {
       'TW96aWxsYS81LjAgKFdpbmRvd3MgTlQgMTAuMDsgV2luNjQ7IHg2NCkgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzExMy4wLjAuMCBTYWZhcmkvNTM3LjM2',
   };
 
-  const res2 = await fetch(`https://66.133.91.116/transform.php?ver=${ver}`, {
+  const res2 = await axios.post(`https://66.133.91.116/transform.php?ver=${ver}`, {
     headers: {
       accept: '*/*',
       'accept-language': 'zh-CN,zh;q=0.9',
@@ -574,7 +550,7 @@ export async function loginByNodeFetch(username: string, password: string) {
     body: obj2Str(body2),
     method: 'POST',
   });
-  const text2 = await res2.text();
+  const text2 = res2.data;
   const mixObj = Convert.xml2js(text2, { compact: true }) as any;
   const uid = mixObj?.serverresponse?.uid?._text as string;
   console.log(uid, 'uid');
@@ -595,7 +571,7 @@ export async function loginByNodeFetch(username: string, password: string) {
     code: 663,
   };
   const getDomain = retryWrap(async () => {
-    const res3 = await fetch(`https://66.133.91.116/transform.php?ver=${ver}`, {
+    const res3 = await axios.post(`https://66.133.91.116/transform.php?ver=${ver}`, {
       headers: {
         accept: '*/*',
         'accept-language': 'zh-CN,zh;q=0.9',
@@ -614,7 +590,7 @@ export async function loginByNodeFetch(username: string, password: string) {
       body: obj2Str(body3),
       method: 'POST',
     });
-    const text3 = await res3.text();
+    const text3 = res3.data;
     const mixObj3 = Convert.xml2js(text3, { compact: true }) as any;
     const domain = mixObj3?.serverresponse?.new_domain?._text;
     if (!domain) {
@@ -634,7 +610,6 @@ export const retryLoginByNodeFetch = retryWrap(loginByNodeFetch, 3);
 
 export async function sendDingDing(msg: string) {
   console.log('ding ding', msg);
-  const fetch = (await _fetch).default;
   const body = {
     msgtype: 'markdown',
     markdown: {
@@ -645,7 +620,7 @@ export async function sendDingDing(msg: string) {
   // https://oapi.dingtalk.com/robot/send?access_token=7bf309975269e6dcc3ca34d569e6b3a54a425ff19d2dfdfa78e716e4c3cda890
   const prefix = '7bf309975269'
   try {
-    await fetch(`https://oapi.dingtalk.com/robot/send?access_token=${prefix}e6dcc3ca34d569e6b3a54a425ff19d2dfdfa78e716e4c3cda890`, {
+    await axios.post(`https://oapi.dingtalk.com/robot/send?access_token=${prefix}e6dcc3ca34d569e6b3a54a425ff19d2dfdfa78e716e4c3cda890`, {
       method: 'post',
       headers: {
         'Content-Type': 'application/json',
