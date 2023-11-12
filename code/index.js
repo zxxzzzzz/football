@@ -6,7 +6,7 @@ exports.handler = async (event, context, callback) => {
     const eventObj = JSON.parse(event.toString());
     const password = eventObj?.queryParameters?.p || '';
     const token = eventObj?.queryParameters?.token || '';
-    const responseData = getDataByHttp({ password, token });
+    const responseData = await getDataByHttp({ password, token });
     callback({
       statusCode: 200,
       body: responseData,
