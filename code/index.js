@@ -1,8 +1,8 @@
-const { getDataByHttp } = require('./dist/getFootBall');
-const { saveStore } = require('./dist/util');
 
 exports.handler = async (event, context, callback) => {
   try {
+    const { getDataByHttp } = require('./dist/getFootBall');
+    const { saveStore } = require('./dist/util');
     const eventObj = JSON.parse(event.toString());
     const password = eventObj?.queryParameters?.p || '';
     const token = eventObj?.queryParameters?.token || '';
