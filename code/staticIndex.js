@@ -20,9 +20,11 @@ exports.handler = (event, context, callback) => {
     callback(null, {
       statusCode: 200,
       body: html,
-      'content-type': 'text/html;charset=UTF-8',
-      'Cache-Control': 'no-cache',
-      ETag: hashText,
+      headers: {
+        'Content-Type:': 'text/html;charset=UTF-8',
+        'Cache-Control': 'no-cache',
+        ETag: hashText,
+      },
     });
   } catch (error) {
     callback(null, {
