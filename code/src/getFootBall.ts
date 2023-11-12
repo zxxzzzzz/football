@@ -20,8 +20,6 @@ process.env.password = 'Jxd9061912';
 
 type FirstOfGeneric<T> = T extends Promise<infer F> ? F : never;
 
-
-
 const accountList = [
   { password: 'XD_ivan', token: '', timestamp: 0 },
   { password: 'XD_ivan1', token: '', timestamp: 0 },
@@ -38,8 +36,7 @@ const accountList = [
 ];
 let isWait = false;
 
-export const getDataByHttp = async (reqData:{password:string, token:string})=> {
-  
+export const getDataByHttp = async (reqData: { password: string; token: string }) => {
   console.log(
     accountList.map((a) => {
       const t = a.timestamp;
@@ -170,7 +167,7 @@ export const getDataByHttp = async (reqData:{password:string, token:string})=> {
       if (!account.token) {
         account.token = (Math.random() + 10).toString();
       }
-      isWait = false; 
+      isWait = false;
       return {
         code: 200,
         msg: 'success',
@@ -188,7 +185,7 @@ export const getDataByHttp = async (reqData:{password:string, token:string})=> {
       };
     } catch (error) {
       isWait = false;
-      return { code: (error as CError).code, msg: (error as CError).message+' \r\n'+(error as CError).stack };
+      return { code: (error as CError).code, msg: (error as CError).message + ' \r\n' + (error as CError).stack };
     }
   }
   if (data) {
@@ -220,8 +217,7 @@ export const getDataByHttp = async (reqData:{password:string, token:string})=> {
     code: 500,
     msg: '默认更新错误',
   };
-
-}
+};
 
 // app.get('/setting', async (req, res) => {
 //   try {

@@ -91,3 +91,8 @@ resources:
               - GET
             path: /*
             qualifier: LATEST
+          - functionName: ball
+            methods:
+              - POST
+            path: /data/*
+            qualifier: LATEST
