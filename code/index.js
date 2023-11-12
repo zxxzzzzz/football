@@ -8,7 +8,7 @@ exports.handler = async (event, context, callback) => {
     const responseData = await getDataByHttp({ password, token });
     callback(null, {
       statusCode: 200,
-      body: responseData,
+      body: 'qwe',
       headers: {
         'Content-Type': 'application/json',
         'Cache-Control': 'no-cache',
