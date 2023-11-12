@@ -49,12 +49,12 @@ resources:
         - acs:fc:cn-hangzhou:1048992591952509:layers/ball/versions/2
       instanceConcurrency: 1
       triggers:
-        - triggerName: cron-tab-trigger
-          triggerType: timer
+        - triggerName: httpTrigger
+          triggerType: http
           triggerConfig:
-            payload: ''
-            cronExpression: 'CRON_TZ=Asia/Shanghai 0 0/1 * * * ?'
-            enable: true
+            authType: anonymous
+            methods:
+              - GET
   static: # 静态文件服务
     component: fc3 
     props: 
@@ -91,6 +91,11 @@ resources:
               - POST
               - GET
             path: /data/*
+            qualifier: LATEST
+          - functionName: dataUpdate
+            methods:
+              - GET
+            path: /dataUpdate
             qualifier: LATEST
           - functionName: static
             methods:
