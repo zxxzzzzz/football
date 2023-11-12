@@ -35,7 +35,7 @@ exports.handler = (event, context, callback) => {
     }
     callback(null, {
       statusCode: 200,
-      body: responseBody,
+      body: event,
       headers: {
         'Content-Type': contentType,
         'Cache-Control': 'no-cache',
