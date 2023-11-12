@@ -92,8 +92,8 @@ resources:
               - GET
             path: /data/*
             qualifier: LATEST
-          # - functionName: static
-          #   methods:
-          #     - GET
-          #   path: /*
-          #   qualifier: LATEST
+          - functionName: static
+            methods:
+              - GET
+            path: /*
+            qualifier: LATEST
