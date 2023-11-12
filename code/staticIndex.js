@@ -22,6 +22,7 @@ exports.handler = (event, context, callback) => {
     }
     const hashText = hash.update(responseBody, 'utf-8').digest('hex');
     if (requestEtag === hashText) {
+      console.log(123);
       callback(null, {
         statusCode: 304,
         headers: {
