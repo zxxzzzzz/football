@@ -5,10 +5,10 @@ exports.handler = async (event, context, callback) => {
     const eventObj = JSON.parse(event.toString());
     const password = eventObj?.queryParameters?.p || '';
     const token = eventObj?.queryParameters?.token || '';
-    const responseData = await getDataByHttp({ password, token });
+    // const responseData = await getDataByHttp({ password, token });
     callback(null, {
       statusCode: 200,
-      body: 'qwe',
+      body: {password, token},
       headers: {
         'Content-Type': 'application/json',
         'Cache-Control': 'no-cache',
