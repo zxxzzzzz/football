@@ -118,7 +118,6 @@ export async function getData(username: string, password: string) {
     ver = d.ver;
     url = d.url;
   }
-  return {a:1} as any
   let leagueList: { name: string; id: string }[] = [];
   try {
     console.log('请求联赛', { url, uid, ver });
@@ -213,6 +212,7 @@ export async function getData(username: string, password: string) {
 
   type G = Exclude<FirstOfGeneric<(typeof promiseList)[0]>, undefined>;
   let matchedGameList: G[] = [];
+  return {b:1} as any
   for (const p of promiseList) {
     const data = await p;
     if (data) {
