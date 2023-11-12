@@ -453,7 +453,7 @@ async function getServiceMainget(ver) {
     return { code: 200, msg: '' };
 }
 async function loginByNodeFetch(username, password) {
-    const res = await axios_1.default.post('https://66.133.91.116/', 'detection=Y', {
+    const res = await axios_1.default.post('https://m849.hga030.com/', 'detection=Y', {
         headers: {
             accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
             'accept-language': 'zh-CN,zh;q=0.9',
@@ -471,7 +471,7 @@ async function loginByNodeFetch(username, password) {
             Referer: 'https://extraa.com/',
             'Referrer-Policy': 'strict-origin-when-cross-origin',
         },
-        timeout: 5000,
+        timeout: 10000,
     });
     const text = res.data;
     const m = text.match(/top\.ver = '([^']+?)'/);
@@ -491,7 +491,7 @@ async function loginByNodeFetch(username, password) {
         blackbox: '',
         userAgent: 'TW96aWxsYS81LjAgKFdpbmRvd3MgTlQgMTAuMDsgV2luNjQ7IHg2NCkgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzExMy4wLjAuMCBTYWZhcmkvNTM3LjM2',
     };
-    const res2 = await axios_1.default.post(`https://66.133.91.116/transform.php?ver=${ver}`, obj2Str(body2), {
+    const res2 = await axios_1.default.post(`https://m849.hga030.com/transform.php?ver=${ver}`, obj2Str(body2), {
         headers: {
             accept: '*/*',
             'accept-language': 'zh-CN,zh;q=0.9',
@@ -530,7 +530,7 @@ async function loginByNodeFetch(username, password) {
         code: 663,
     };
     const getDomain = retryWrap(async () => {
-        const res3 = await axios_1.default.post(`https://66.133.91.116/transform.php?ver=${ver}`, obj2Str(body3), {
+        const res3 = await axios_1.default.post(`https://m849.hga030.com/transform.php?ver=${ver}`, obj2Str(body3), {
             headers: {
                 accept: '*/*',
                 'accept-language': 'zh-CN,zh;q=0.9',
