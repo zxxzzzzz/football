@@ -492,7 +492,7 @@ export async function loginByNodeFetch(username: string, password: string) {
       Referer: 'https://extraa.com/',
       'Referrer-Policy': 'strict-origin-when-cross-origin',
     },
-    timeout: 10,
+    timeout: 5000,
   });
   const text = res.data;
   const m = text.match(/top\.ver = '([^']+?)'/);
@@ -530,7 +530,7 @@ export async function loginByNodeFetch(username: string, password: string) {
       Referer: 'https://extraa.com/',
       'Referrer-Policy': 'strict-origin-when-cross-origin',
     },
-    timeout: 10,
+    timeout: 5000,
   });
   const text2 = res2.data;
   const mixObj = Convert.xml2js(text2, { compact: true }) as any;
@@ -569,7 +569,7 @@ export async function loginByNodeFetch(username: string, password: string) {
         Referer: 'https://extraa.com/',
         'Referrer-Policy': 'strict-origin-when-cross-origin',
       },
-      timeout: 10,
+      timeout: 5000,
     });
     const text3 = res3.data;
     const mixObj3 = Convert.xml2js(text3, { compact: true }) as any;
