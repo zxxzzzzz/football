@@ -26,7 +26,10 @@ exports.handler = (event, context, callback) => {
       ETag: hashText,
     });
   } catch (error) {
-    callback(error)
+    callback(null, {
+      statusCode: 200,
+      body: error.message,
+    });
 
   }
 };
