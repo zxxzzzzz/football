@@ -4,7 +4,7 @@ const { createHash } = require('crypto');
 
 exports.handler = (event, context, callback) => {
   try {
-    const rawPath = event.rawPath || '';
+    const rawPath = event.rawPath ||  event?.requestContext?.http?.path ||'';
     const requestEtag = event?.headers?.['If-None-Match'] || '';
     const hash = createHash('sha256');
     let responseBody = '';
