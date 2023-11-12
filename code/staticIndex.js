@@ -4,8 +4,9 @@ const { createHash } = require('crypto');
 
 exports.handler = (event, context, callback) => {
   try {
-    const rawPath = event.rawPath ||  event?.requestContext?.http?.path ||'';
-    const requestEtag = event?.headers?.['If-None-Match'] || '';
+    const eventObj = JSON.parse(event.toString());
+    const rawPath = eventObj.rawPath ||  eventObj?.requestContext?.http?.path ||'';
+    const requestEtag = eventObj?.headers?.['If-None-Match'] || '';
     const hash = createHash('sha256');
     let responseBody = '';
     let contentType = 'text/html;charset=UTF-8';
@@ -35,7 +36,7 @@ exports.handler = (event, context, callback) => {
     }
     callback(null, {
       statusCode: 200,
-      body: event,
+      body: eventObj,
       headers: {
         'Content-Type': contentType,
         'Cache-Control': 'no-cache',
