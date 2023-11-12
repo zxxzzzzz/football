@@ -23,7 +23,6 @@ exports.handler = (event, context, callback) => {
     }
     const hashText = hash.update(responseBody, 'utf-8').digest('hex');
     if (requestEtag === hashText) {
-      console.log(123);
       callback(null, {
         statusCode: 304,
         headers: {
@@ -36,11 +35,10 @@ exports.handler = (event, context, callback) => {
     }
     callback(null, {
       statusCode: 200,
-      body: eventObj,
+      body: responseBody,
       headers: {
         'Content-Type': contentType,
         'Cache-Control': 'no-cache',
-        rawPath: rawPath,
         ETag: hashText,
       },
     });
