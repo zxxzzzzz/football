@@ -86,13 +86,13 @@ resources:
       protocol: HTTP # HTTP | HTTPS 
       routeConfig:
         routes:
-          - functionName: static
-            methods:
-              - GET
-            path: /*
-            qualifier: LATEST
           - functionName: ball
             methods:
               - POST
             path: /data/*
+            qualifier: LATEST
+          - functionName: static
+            methods:
+              - GET
+            path: /*
             qualifier: LATEST
