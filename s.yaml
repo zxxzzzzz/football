@@ -89,5 +89,5 @@ resources:
           - functionName: static
             methods:
               - GET
-            path: /
+            path: /*
             qualifier: LATEST
