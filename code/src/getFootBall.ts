@@ -67,6 +67,7 @@ export const getDataByHttp = async (reqData: { password: string; token: string }
   const password = (process.env.password || '') as string;
   type PromiseType<T> = T extends Promise<infer U> ? U : never;
   const store = await getStore();
+  return store
   const data: PromiseType<ReturnType<typeof getData>> | undefined = store.data;
   // 对于定时器的请求，如果有其他人在用，提前结束
   if (account.password === 'trigger_123@' && data && dayjs().valueOf() - (store.timestamp || 0) < 60 * 1000) {

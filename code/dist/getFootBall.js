@@ -58,6 +58,7 @@ const getDataByHttp = async (reqData) => {
     const username = (process.env.username || '');
     const password = (process.env.password || '');
     const store = await (0, util_2.getStore)();
+    return store;
     const data = store.data;
     // 对于定时器的请求，如果有其他人在用，提前结束
     if (account.password === 'trigger_123@' && data && (0, dayjs_1.default)().valueOf() - (store.timestamp || 0) < 60 * 1000) {
