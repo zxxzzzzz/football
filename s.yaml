@@ -41,7 +41,7 @@ services:
       region: ${vars.region} # 关于变量的使用方法，可以参考：https://www.serverless-devs.com/serverless-devs/yaml#变量赋值
       service: ${vars.service}
       function:
-        name: "todolist"
+        name: "football"
         description: 'Serverless Devs Web Framework Function'
         runtime: nodejs16
         codeUri: ./code
@@ -55,12 +55,6 @@ services:
           preStop:                    # PreStop 函数
             handler: index.preStop    # 函数入口
             timeout: 60               # 超时时间
-        environmentVariables:
-          password: ${env(password)}
-          username: ${env(username)}
-          key: ${env(key)}
-          secret: ${env(secret)}
-          webhook: ${env(webhook)}
       triggers:
         - name: httpTrigger
           type: http
@@ -84,7 +78,7 @@ services:
       region: ${vars.region} # 关于变量的使用方法，可以参考：https://www.serverless-devs.com/serverless-devs/yaml#变量赋值
       service: ${vars.service}
       function:
-        name: "info"
+        name: "trigger"
         description: 'info warning'
         runtime: nodejs16
         codeUri: ./code
