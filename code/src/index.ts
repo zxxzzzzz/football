@@ -199,7 +199,7 @@ app.get('/data', async (req, res) => {
           token: account.token,
         },
       });
-      isWait = false;
+      isWait = false; 
       return;
     } catch (error) {
       res.send({ code: (error as CError).code, msg: (error as CError).message+' \r\n'+(error as CError).stack });
