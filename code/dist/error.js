@@ -10,7 +10,7 @@ var Code;
     Code[Code["maintain"] = 619] = "maintain";
     Code[Code["uidExpire"] = 801] = "uidExpire";
     Code[Code["forbidden"] = 401] = "forbidden";
-})(Code || (exports.Code = Code = {}));
+})(Code = exports.Code || (exports.Code = {}));
 function createError(msg, code) {
     const e = new Error(msg);
     // @ts-ignore

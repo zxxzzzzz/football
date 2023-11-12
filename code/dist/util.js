@@ -144,7 +144,7 @@ function getRev(tiCai, extra, R = 0.12) {
 var Score;
 (function (Score) {
     Score["noSale"] = "100";
-})(Score || (exports.Score = Score = {}));
+})(Score = exports.Score || (exports.Score = {}));
 function toData(tiCaiList, extraList, _R = 0.12) {
     const dataList = tiCaiList.map((ti) => {
         let matchedExtra = extraList.find((d) => d.ecid === ti.ecid);
