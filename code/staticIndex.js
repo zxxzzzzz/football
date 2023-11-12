@@ -39,6 +39,7 @@ exports.handler = (event, context, callback) => {
       headers: {
         'Content-Type': contentType,
         'Cache-Control': 'no-cache',
+        rawPath: rawPath,
         ETag: hashText,
       },
     });
