@@ -15,7 +15,7 @@ exports.handler = (event, context, callback) => {
         body = Buffer.from(body, 'base64').toString('utf-8');
       }
     }
-    const html = fs.readFileSync(path.resolve(__dirname, '../public/index.html'), { encoding: 'utf-8' });
+    const html = fs.readFileSync(path.resolve(__dirname, './public/index.html'), { encoding: 'utf-8' });
     const hashText = hash.update(html, 'utf-8').digest('hex');
     callback(null, {
       statusCode: 200,
