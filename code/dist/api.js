@@ -38,7 +38,7 @@ exports.retryWrap = retryWrap;
 async function getTiCaiByFetch() {
     let data = void 0;
     try {
-        const res = await axios_1.default.post('https://webapi.sporttery.cn/gateway/jc/football/getMatchCalculatorV1.qry?poolCode=hhad,had,ttg,hafu&channel=c', {
+        const res = await axios_1.default.get('https://webapi.sporttery.cn/gateway/jc/football/getMatchCalculatorV1.qry?poolCode=hhad,had,ttg,hafu&channel=c', {
             headers: {
                 accept: 'application/json, text/javascript, */*; q=0.01',
                 'accept-language': 'zh-CN,zh;q=0.9',
@@ -53,8 +53,6 @@ async function getTiCaiByFetch() {
                 Referer: 'https://www.sporttery.cn/',
                 'Referrer-Policy': 'strict-origin-when-cross-origin',
             },
-            body: null,
-            method: 'GET',
         });
         data = res.data;
     }
@@ -190,7 +188,7 @@ async function getGameListByNodeFetch(url, ver, uid, lid) {
     const bodyStr = obj2Str(body);
     let text = void 0;
     try {
-        const res = await axios_1.default.post(`${_url.origin}/transform.php?ver=${ver}`, {
+        const res = await axios_1.default.post(`${_url.origin}/transform.php?ver=${ver}`, bodyStr, {
             headers: {
                 accept: '*/*',
                 'accept-language': 'zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6',
@@ -202,10 +200,6 @@ async function getGameListByNodeFetch(url, ver, uid, lid) {
                 'sec-fetch-mode': 'cors',
                 'sec-fetch-site': 'same-origin',
             },
-            referrer: 'https://64.188.38.120/',
-            referrerPolicy: 'strict-origin-when-cross-origin',
-            body: bodyStr,
-            method: 'POST',
         });
         text = res.data;
     }
@@ -287,7 +281,7 @@ async function getGameOBTByNodeFetch(url, ver, uid, ecid) {
     const bodyStr2 = obj2Str(body2);
     let text = void 0;
     try {
-        const res = await axios_1.default.post(`${_url.origin}/transform.php?ver=${ver}`, {
+        const res = await axios_1.default.post(`${_url.origin}/transform.php?ver=${ver}`, bodyStr2, {
             headers: {
                 accept: '*/*',
                 'accept-language': 'zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6',
@@ -299,10 +293,6 @@ async function getGameOBTByNodeFetch(url, ver, uid, ecid) {
                 'sec-fetch-mode': 'cors',
                 'sec-fetch-site': 'same-origin',
             },
-            referrer: 'https://64.188.38.120/',
-            referrerPolicy: 'strict-origin-when-cross-origin',
-            body: bodyStr2,
-            method: 'POST',
         });
         text = res.data;
     }
@@ -318,7 +308,7 @@ async function getGameOBTByNodeFetch(url, ver, uid, ecid) {
     }
     if (!mixObj?.serverresponse?.ec?.game) {
         try {
-            const res = await axios_1.default.post(`${_url.origin}/transform.php?ver=${ver}`, {
+            const res = await axios_1.default.post(`${_url.origin}/transform.php?ver=${ver}`, bodyStr, {
                 headers: {
                     accept: '*/*',
                     'accept-language': 'zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6',
@@ -330,10 +320,6 @@ async function getGameOBTByNodeFetch(url, ver, uid, ecid) {
                     'sec-fetch-mode': 'cors',
                     'sec-fetch-site': 'same-origin',
                 },
-                referrer: 'https://64.188.38.120/',
-                referrerPolicy: 'strict-origin-when-cross-origin',
-                body: bodyStr,
-                method: 'POST',
             });
             text = res.data;
         }
@@ -439,7 +425,7 @@ exports.retryGetLeagueListAllByNodeFetch = retryWrap(getLeagueListAllByNodeFetch
 async function getServiceMainget(ver) {
     let text2 = void 0;
     try {
-        const res = await axios_1.default.post(`https://66.133.91.116/transform.php?ver=${ver}`, {
+        const res = await axios_1.default.post(`https://66.133.91.116/transform.php?ver=${ver}`, `p=service_mainget&ver=${ver}&langx=zh-cn&login=N`, {
             headers: {
                 accept: '*/*',
                 'accept-language': 'zh-CN,zh;q=0.9',
@@ -452,8 +438,6 @@ async function getServiceMainget(ver) {
                 Referer: 'https://66.133.91.116/',
                 'Referrer-Policy': 'strict-origin-when-cross-origin',
             },
-            body: `p=service_mainget&ver=${ver}&langx=zh-cn&login=N`,
-            method: 'POST',
         });
         text2 = res.data;
     }
@@ -469,7 +453,7 @@ async function getServiceMainget(ver) {
     return { code: 200, msg: '' };
 }
 async function loginByNodeFetch(username, password) {
-    const res = await axios_1.default.post('https://66.133.91.116/', {
+    const res = await axios_1.default.post('https://66.133.91.116/', 'detection=Y', {
         headers: {
             accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
             'accept-language': 'zh-CN,zh;q=0.9',
@@ -487,8 +471,6 @@ async function loginByNodeFetch(username, password) {
             Referer: 'https://extraa.com/',
             'Referrer-Policy': 'strict-origin-when-cross-origin',
         },
-        body: 'detection=Y',
-        method: 'POST',
     });
     const text = res.data;
     const m = text.match(/top\.ver = '([^']+?)'/);
@@ -508,7 +490,7 @@ async function loginByNodeFetch(username, password) {
         blackbox: '',
         userAgent: 'TW96aWxsYS81LjAgKFdpbmRvd3MgTlQgMTAuMDsgV2luNjQ7IHg2NCkgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzExMy4wLjAuMCBTYWZhcmkvNTM3LjM2',
     };
-    const res2 = await axios_1.default.post(`https://66.133.91.116/transform.php?ver=${ver}`, {
+    const res2 = await axios_1.default.post(`https://66.133.91.116/transform.php?ver=${ver}`, obj2Str(body2), {
         headers: {
             accept: '*/*',
             'accept-language': 'zh-CN,zh;q=0.9',
@@ -524,7 +506,6 @@ async function loginByNodeFetch(username, password) {
             Referer: 'https://extraa.com/',
             'Referrer-Policy': 'strict-origin-when-cross-origin',
         },
-        body: obj2Str(body2),
         method: 'POST',
     });
     const text2 = res2.data;
@@ -548,7 +529,7 @@ async function loginByNodeFetch(username, password) {
         code: 663,
     };
     const getDomain = retryWrap(async () => {
-        const res3 = await axios_1.default.post(`https://66.133.91.116/transform.php?ver=${ver}`, {
+        const res3 = await axios_1.default.post(`https://66.133.91.116/transform.php?ver=${ver}`, obj2Str(body3), {
             headers: {
                 accept: '*/*',
                 'accept-language': 'zh-CN,zh;q=0.9',
@@ -564,8 +545,6 @@ async function loginByNodeFetch(username, password) {
                 Referer: 'https://extraa.com/',
                 'Referrer-Policy': 'strict-origin-when-cross-origin',
             },
-            body: obj2Str(body3),
-            method: 'POST',
         });
         const text3 = res3.data;
         const mixObj3 = xml_js_1.default.xml2js(text3, { compact: true });
@@ -596,12 +575,11 @@ async function sendDingDing(msg) {
     // https://oapi.dingtalk.com/robot/send?access_token=7bf309975269e6dcc3ca34d569e6b3a54a425ff19d2dfdfa78e716e4c3cda890
     const prefix = '7bf309975269';
     try {
-        await axios_1.default.post(`https://oapi.dingtalk.com/robot/send?access_token=${prefix}e6dcc3ca34d569e6b3a54a425ff19d2dfdfa78e716e4c3cda890`, {
+        await axios_1.default.post(`https://oapi.dingtalk.com/robot/send?access_token=${prefix}e6dcc3ca34d569e6b3a54a425ff19d2dfdfa78e716e4c3cda890`, JSON.stringify(body), {
             method: 'post',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(body),
         });
     }
     catch (error) {
