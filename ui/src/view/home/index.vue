@@ -245,7 +245,7 @@ const pagination: TableProps['pagination'] = {
 
 async function getData() {
   const origin = import.meta.env.DEV ? 'http://127.0.0.1:9000' : location.origin;
-  const res = await fetch(`${origin}/data?p=${store.password}&token=${store.token}`);
+  const res = await fetch(`${origin}/data/?p=${store.password}&token=${store.token}`);
   const data = (await res.json()) as { code: number; msg: string; data?: any };
   if (data.code !== 200) {
     message.error(data?.msg || '更新出错', 20);
