@@ -8,15 +8,15 @@ import Format from 'json-format';
 import OSS from 'ali-oss';
 
 let client: OSS | undefined = void 0;
-  client = new OSS({
-    // yourRegion填写Bucket所在地域。以华东1（杭州）为例，Region填写为oss-cn-hangzhou。
-    region: 'oss-cn-hangzhou',
-    // 阿里云账号AccessKey拥有所有API的访问权限，风险很高。强烈建议您创建并使用RAM用户进行API访问或日常运维，请登录RAM控制台创建RAM用户。
-    accessKeyId: 'LTAI5tNpSy9xc'+ 'TEcAK7M7Uxu',
-    accessKeySecret: 'xJw1QUVCmOs'+'DT5ZHqJgMssUZTtalqo',
-    bucket: 'footballc',
-    internal: true,
-  });
+client = new OSS({
+  // yourRegion填写Bucket所在地域。以华东1（杭州）为例，Region填写为oss-cn-hangzhou。
+  region: 'oss-cn-hangzhou',
+  // 阿里云账号AccessKey拥有所有API的访问权限，风险很高。强烈建议您创建并使用RAM用户进行API访问或日常运维，请登录RAM控制台创建RAM用户。
+  accessKeyId: 'LTAI5tNpSy9xc' + 'TEcAK7M7Uxu',
+  accessKeySecret: 'xJw1QUVCmOs' + 'DT5ZHqJgMssUZTtalqo',
+  bucket: 'footballc',
+  internal: true,
+});
 const extraTeam = [
   ['谢里夫', '舒列夫'],
   ['康斯塔查灯塔', '法乌尔'],
@@ -95,8 +95,8 @@ export const isLeagueEqual = (l1: string, l2: string) => {
     ['欧罗巴联赛', '欧洲联赛'],
     ['欧罗巴联赛', '欧洲联赛外围赛'],
     ['世界杯2026南美洲外围赛', '世界杯预选赛'],
-    ['亚运会男足','亚运会2022男子足球U23(在中国)'],
-    ['亚洲冠军联赛','亚足联冠军联赛'],
+    ['亚运会男足', '亚运会2022男子足球U23(在中国)'],
+    ['亚洲冠军联赛', '亚足联冠军联赛'],
   ];
   const isEqual = !!equalNameList.find((d) => d.includes(l1) && d.includes(l2));
   if (isEqual) {
@@ -335,8 +335,7 @@ export function toData(tiCaiList: TiCaiItem[], extraList: ExtraItem[], _R = 0.12
                     if (Math.abs(parseFloat(oddsItem[0])) > 3) {
                       return false;
                     }
-                    return isOnlyWin ? parseFloat(oddsItem[0]) === -1 : filterMap[parseFloat(oddsItem[0])][1] === d
-
+                    return isOnlyWin ? parseFloat(oddsItem[0]) === -1 : filterMap[parseFloat(oddsItem[0])][1] === d;
                   },
                   type: 'lose',
                   single,
@@ -496,6 +495,7 @@ type Store = {
   uid: string;
   url: string;
   timestamp: number;
+  timeFormat: string;
   R: number;
   A: number;
   C: number;

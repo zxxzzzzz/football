@@ -227,6 +227,7 @@ export async function getData(username: string, password: string) {
   const matchData = toData(tiCaiDataList, matchedGameList, store.R);
   await saveStore({
     timestamp: dayjs().valueOf(),
+    timeFormat: dayjs().format('YYYY-MM-DD HH:mm:ss'),
     data: matchData,
   });
   return matchData;
