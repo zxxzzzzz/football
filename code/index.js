@@ -1,19 +1,27 @@
-const { getDataByHttp } = require('./dist/index');
+const { getDataByHttp } = require('./dist/getFootBall');
 const { saveStore } = require('./dist/util');
 
 exports.handler = async (event, context, callback) => {
-  const eventObj = JSON.parse(event.toString());
-  // const password = eventObj?.queryParameters?.p || '';
-  // const token = eventObj?.queryParameters?.token || '';
-  // const responseData = getDataByHttp({ password, token });
-  callback({
-    statusCode: 200,
-    body: 'data',
-    headers: {
-      'Content-Type': 'application/json',
-      'Cache-Control': 'no-cache',
-    },
-  });
+  try {
+    const eventObj = JSON.parse(event.toString());
+    const password = eventObj?.queryParameters?.p || '';
+    const token = eventObj?.queryParameters?.token || '';
+    const responseData = getDataByHttp({ password, token });
+    callback({
+      statusCode: 200,
+      body: responseData,
+      headers: {
+        'Content-Type': 'application/json',
+        'Cache-Control': 'no-cache',
+      },
+    });
+    
+  } catch (error) {
+    callback(error, {
+      statusCode: 500,
+      body: error.message,
+    });
+  }
 };
 
 exports.preStop = function (context, callback) {

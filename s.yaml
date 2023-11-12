@@ -90,7 +90,7 @@ resources:
             methods:
               - POST
               - GET
-            path: /data/*
+            path: /data?*
             qualifier: LATEST
           - functionName: static
             methods:
