@@ -2,10 +2,9 @@ import fs from 'fs';
 import path from 'path';
 import { createHash } from 'crypto';
 
-const hash = createHash('sha256');
 exports.handler = (event, context, callback) => {
   try {
-    
+    const hash = createHash('sha256');
     const eventObj = JSON.parse(event);
   
     let body = 'Hello World!';
