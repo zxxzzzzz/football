@@ -5,6 +5,7 @@ const { createHash } = require('crypto');
 exports.handler = (event, context, callback) => {
   try {
     const rawPath = event.rawPath || '';
+    const requestEtag = event?.headers?.['If-None-Match'] || '';
     const hash = createHash('sha256');
     let responseBody = '';
     let contentType = 'text/html;charset=UTF-8';
@@ -20,6 +21,17 @@ exports.handler = (event, context, callback) => {
       contentType = 'text/css';
     }
     const hashText = hash.update(responseBody, 'utf-8').digest('hex');
+    if (requestEtag === hashText) {
+      callback(null, {
+        statusCode: 304,
+        headers: {
+          'Content-Type': contentType,
+          'Cache-Control': 'no-cache',
+          ETag: hashText,
+        },
+      });
+      return;
+    }
     callback(null, {
       statusCode: 200,
       body: responseBody,
