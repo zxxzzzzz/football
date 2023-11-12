@@ -110,6 +110,7 @@ async function getData(username, password) {
         ver = d.ver;
         url = d.url;
     }
+    return { a: 1 };
     let leagueList = [];
     try {
         console.log('请求联赛', { url, uid, ver });

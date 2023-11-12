@@ -118,6 +118,7 @@ export async function getData(username: string, password: string) {
     ver = d.ver;
     url = d.url;
   }
+  return {a:1} as any
   let leagueList: { name: string; id: string }[] = [];
   try {
     console.log('请求联赛', { url, uid, ver });
