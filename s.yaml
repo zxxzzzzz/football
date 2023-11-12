@@ -32,22 +32,22 @@ resources:
             methods:
               - GET
               - POST
-  ballTrigger: # 按时提醒
-    component: fc3 
-    props: 
+  dataUpdate:
+    component: fc3
+    props: # 组件的属性值
+      region: cn-hangzhou # 关于变量的使用方法，可以参考：https://www.serverless-devs.com/serverless-devs/yaml#变量赋值
+      functionName: dataUpdate
+      runtime: nodejs16
+      code: ./code
+      cpu: 0.3
+      handler: update.handler
+      memorySize: 512
+      diskSize: 512
+      description: '数据更新'
+      timeout: 60
       layers:
         - acs:fc:cn-hangzhou:1048992591952509:layers/ball/versions/2
-      functionName: trigger
-      region: cn-hangzhou
-      code: ./code
-      runtime: nodejs16
-      handler: infoIndex.handler
       instanceConcurrency: 1
-      memorySize: 128
-      diskSize: 512
-      description: '足球定时触发'
-      cpu: 0.05
-      timeout: 20
       triggers:
         - triggerName: cron-tab-trigger
           triggerType: timer

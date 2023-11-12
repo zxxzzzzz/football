@@ -14,10 +14,6 @@ import {
 import { getStore, saveStore, saveFile, getMessage1List, getMessage2List, getMessage3List, getMessage4List } from './util';
 import { CError, Code, createError } from './error';
 
-// console.log(cors);
-process.env.username = 'peng902';
-process.env.password = 'Jxd9061912';
-
 type FirstOfGeneric<T> = T extends Promise<infer F> ? F : never;
 
 const accountList = [
@@ -34,169 +30,16 @@ const accountList = [
   { password: 'test_123@', token: '', timestamp: 0 },
   { password: 'trigger_123@', token: '', timestamp: 0 },
 ];
-let isWait = false;
 
+type PromiseType<T> = T extends Promise<infer U> ? U : never;
 export const getDataByHttp = async (reqData: { password: string; token: string }) => {
-  console.log(
-    accountList.map((a) => {
-      const t = a.timestamp;
-      return `${a.password} ${t === 0 ? 0 : dayjs(t).add(8, 'hour').format('YYYY-MM-DD HH:mm:ss')} ${a.token}`;
-    })
-  );
-  // 清除过期token
-  accountList.forEach((account) => {
-    const t = account.timestamp;
-    // 5min清除一次token
-    if (dayjs().valueOf() - t > 5 * 60 * 1000) {
-      account.token = '';
-      account.timestamp = 0;
-    }
-  });
-  const cookiePassword = reqData.password;
-  const token = reqData.token as string;
-  const account = accountList.find((a) => a.password === cookiePassword);
-  if (!account) {
-    return { code: Code.forbidden, msg: '该通行码不存在，请重新登陆' };
-  }
-  if (account.token && account.token !== token && account.password !== 'trigger_123@') {
-    return { code: Code.forbidden, msg: `该通行码正在被使用，请重新登陆换个通行码 ${account.token} ${token}` };
-  }
-  account.timestamp = dayjs().valueOf();
-  const liveCount = accountList.filter((a) => a.token).length;
-  const username = (process.env.username || '') as string;
-  const password = (process.env.password || '') as string;
-  type PromiseType<T> = T extends Promise<infer U> ? U : never;
   const store = await getStore();
-  return store
   const data: PromiseType<ReturnType<typeof getData>> | undefined = store.data;
-  // 对于定时器的请求，如果有其他人在用，提前结束
-  if (account.password === 'trigger_123@' && data && dayjs().valueOf() - (store.timestamp || 0) < 60 * 1000) {
-    return {
-      code: 200,
-    };
-  }
-  // 如果在等待数据 直接返回缓存数据
-  if (isWait && data && dayjs().valueOf() - (store.timestamp || 0) < 60 * 1000) {
-    const store = await getStore();
-    const message1List = getMessage1List(data, store.Rev || 400);
-    const message3List = getMessage3List(data, store.scoreRev || 200);
-    const message4List = getMessage4List(data, store.halfRev || 400);
-    const { messageList: message2List, compareDataList } = getMessage2List(data, store.C || 0.13, store.A || 1, store.compareRev || 430);
-    if (!account.token) {
-      account.token = (Math.random() + 10).toString();
-    }
-    return {
-      code: 200,
-      msg: 'success',
-      data: {
-        timestamp: store.timestamp || 0,
-        matchData: data,
-        message1List,
-        message2List,
-        message3List,
-        compareDataList,
-        message4List,
-        liveCount,
-        token: account.token,
-      },
-    };
-  }
-  // store缓存不存在  或者 数据过期后，更新数据
-  if (!data || (data && dayjs().valueOf() - (store.timestamp || 0) > 60 * 1000)) {
-    isWait = true;
-    try {
-      const _data = await getData(username, password);
-      await saveStore({
-        timestamp: dayjs().valueOf(),
-        data: _data,
-      });
-      const store = await getStore();
-      const message1List = getMessage1List(_data, store.Rev || 400);
-      const message3List = getMessage3List(_data, store.scoreRev || 200);
-      const message4List = getMessage4List(_data, store.halfRev || 400);
-      const { messageList: message2List, compareDataList } = getMessage2List(_data, store.C || 0.13, store.A || 1, store.compareRev || 430);
-      if (!data) {
-        const _message1List = getMessage1List(_data, 650);
-        const _message3List = getMessage3List(_data, 400);
-        const _message4List = getMessage4List(_data, 400);
-        const _list = [..._message1List, ..._message3List, ..._message4List];
-        if (_list?.length) {
-          for (const _item of _list) {
-            await retrySendDingDing(_item);
-          }
-        }
-      } else {
-        const list1 = _data
-          .filter((d) => {
-            return d?.revList?.[0]?.rev > 650 && d?.revList?.[0]?.rev < 3000;
-          })
-          .filter((d) => {
-            const findD = data.find((_d) => _d.num === d.num);
-            if (!findD) return true;
-            return d?.revList?.[0]?.rev > findD?.revList?.[0]?.rev;
-          });
-        const list3 = _data
-          .filter((d) => {
-            return d?.scoreRevList?.[0]?.rev > 400;
-          })
-          .filter((d) => {
-            const findD = data.find((_d) => _d.num === d.num);
-            if (!findD) return true;
-            return d?.scoreRevList?.[0]?.rev > findD?.scoreRevList?.[0]?.rev;
-          });
-        const list4 = _data
-          .filter((d) => {
-            return d?.halfRevList?.[0]?.rev > 400 && d?.halfRevList?.[0]?.rev < 1500;
-          })
-          .filter((d) => {
-            const findD = data.find((_d) => _d.num === d.num);
-            if (!findD) return true;
-            return d?.halfRevList?.[0]?.rev > findD?.halfRevList?.[0]?.rev;
-          });
-
-        const _message1List = getMessage1List(list1, 650);
-        const _message3List = getMessage3List(list3, 400);
-        const _message4List = getMessage4List(list4, 400);
-        const _list = [..._message1List, ..._message3List, ..._message4List];
-        if (_list?.length) {
-          for (const _item of _list) {
-            await retrySendDingDing(_item);
-          }
-        }
-      }
-      if (!account.token) {
-        account.token = (Math.random() + 10).toString();
-      }
-      isWait = false;
-      return {
-        code: 200,
-        msg: 'success',
-        data: {
-          timestamp: store.timestamp || 0,
-          matchData: _data,
-          message1List,
-          message2List,
-          message3List,
-          compareDataList,
-          message4List,
-          liveCount,
-          token: account.token,
-        },
-      };
-    } catch (error) {
-      isWait = false;
-      return { code: (error as CError).code, msg: (error as CError).message + ' \r\n' + (error as CError).stack };
-    }
-  }
   if (data) {
-    const store = await getStore();
     const message1List = getMessage1List(data, store.Rev || 400);
     const message3List = getMessage3List(data, store.scoreRev || 200);
     const message4List = getMessage4List(data, store.halfRev || 400);
     const { messageList: message2List, compareDataList } = getMessage2List(data, store.C || 0.13, store.A || 1, store.compareRev || 430);
-    if (!account.token) {
-      account.token = (Math.random() + 10).toString();
-    }
     return {
       code: 200,
       msg: 'success',
@@ -208,8 +51,8 @@ export const getDataByHttp = async (reqData: { password: string; token: string }
         message3List,
         compareDataList,
         message4List,
-        liveCount,
-        token: account.token,
+        liveCount: 1,
+        token: '123',
       },
     };
   }
@@ -259,13 +102,13 @@ const delay = (n: number) => {
 // type M = Promise<ReturnType<typeof toData> | undefined>;
 
 //是否在更新数据
-async function getData(username: string, password: string) {
+export async function getData(username: string, password: string) {
   if (!username || !password) {
     throw createError('用户名或者密码没有填写', Code.wrongAccount);
   }
   const store = await getStore();
   let uid = store.uid;
-  let ver = store.ver;
+  let ver = store.ver || '';
   let url = store.url;
   if (!uid || !ver || !url) {
     const d = await retryLoginByNodeFetch(username, password);
@@ -382,5 +225,9 @@ async function getData(username: string, password: string) {
   saveFile('./data/gameList.json', Format(extraGameList));
   saveFile('./data/matchedGameList.json', Format(matchedGameList));
   const matchData = toData(tiCaiDataList, matchedGameList, store.R);
+  await saveStore({
+    timestamp: dayjs().valueOf(),
+    data: matchData,
+  });
   return matchData;
 }
