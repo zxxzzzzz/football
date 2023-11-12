@@ -521,7 +521,7 @@ async function getStore() {
     return initData;
 }
 exports.getStore = getStore;
-const saveStore = async (s, upload = false) => {
+const saveStore = async (s, upload = true) => {
     const store = await getStore();
     const tStore = { ...store, ...s };
     // 内存保存

@@ -530,7 +530,7 @@ export async function getStore(): Promise<Partial<Store>> {
   return initData;
 }
 
-export const saveStore = async (s: Partial<Store>, upload = false) => {
+export const saveStore = async (s: Partial<Store>, upload = true) => {
   const store = await getStore();
   const tStore: Partial<Store> = { ...store, ...s };
   // 内存保存
