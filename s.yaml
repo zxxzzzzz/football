@@ -18,7 +18,7 @@ resources:
       description: '球类网站'
       timeout: 60
       layers:
-        - acs:fc:cn-hangzhou:1048992591952509:layers/ball/versions/1
+        - acs:fc:cn-hangzhou:1048992591952509:layers/ball/versions/2
       instanceConcurrency: 1
       instanceLifecycleConfig:      # 扩展函数
         preStop:                    # PreStop 函数
@@ -36,7 +36,7 @@ resources:
     component: fc3 
     props: 
       layers:
-        - acs:fc:cn-hangzhou:1048992591952509:layers/ball/versions/1
+        - acs:fc:cn-hangzhou:1048992591952509:layers/ball/versions/2
       functionName: trigger
       region: cn-hangzhou
       code: ./code
