@@ -82,7 +82,7 @@ resources:
       protocol: HTTP # HTTP | HTTPS 
       routeConfig:
         routes:
-          - functionName: ball
+          - functionName: getCacheData
             methods:
               - POST
               - GET
