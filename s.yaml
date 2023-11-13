@@ -8,22 +8,18 @@ resources:
     component: fc3
     props: # 组件的属性值
       region: cn-hangzhou # 关于变量的使用方法，可以参考：https://www.serverless-devs.com/serverless-devs/yaml#变量赋值
-      functionName: ball
+      functionName: getCacheData
       runtime: nodejs16
       code: ./code
       cpu: 0.3
-      handler: index.handler
+      handler: index.getCacheData
       memorySize: 512
       diskSize: 512
-      description: '球类网站'
+      description: '球类网站缓存数据'
       timeout: 60
       layers:
         - acs:fc:cn-hangzhou:1048992591952509:layers/ball/versions/2
       instanceConcurrency: 1
-      instanceLifecycleConfig:      # 扩展函数
-        preStop:                    # PreStop 函数
-          handler: index.preStop    # 函数入口
-          timeout: 60               # 超时时间
       triggers:
         - triggerName: httpTrigger
           triggerType: http
@@ -40,7 +36,7 @@ resources:
       runtime: nodejs16
       code: ./code
       cpu: 0.3
-      handler: update.handler
+      handler: index.dataUpdate
       memorySize: 512
       diskSize: 512
       description: '数据更新'
@@ -64,7 +60,7 @@ resources:
       region: cn-hangzhou
       code: ./code
       runtime: nodejs16
-      handler: staticIndex.handler
+      handler: index.static
       instanceConcurrency: 1
       memorySize: 128
       diskSize: 512
