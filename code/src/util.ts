@@ -7,15 +7,14 @@ import { resolve, parse } from 'path';
 import Format from 'json-format';
 import OSS from 'ali-oss';
 
-let client: OSS | undefined = void 0;
-client = new OSS({
+let client = new OSS({
   // yourRegion填写Bucket所在地域。以华东1（杭州）为例，Region填写为oss-cn-hangzhou。
   region: 'oss-cn-hangzhou',
   // 阿里云账号AccessKey拥有所有API的访问权限，风险很高。强烈建议您创建并使用RAM用户进行API访问或日常运维，请登录RAM控制台创建RAM用户。
   accessKeyId: 'LTAI5tNpSy9xc' + 'TEcAK7M7Uxu',
   accessKeySecret: 'xJw1QUVCmOs' + 'DT5ZHqJgMssUZTtalqo',
   bucket: 'footballc',
-  internal: true,
+  internal: process.env.dev ? false :true,
 });
 const extraTeam = [
   ['谢里夫', '舒列夫'],
@@ -524,6 +523,7 @@ export async function getStore(): Promise<Partial<Store>> {
       const res = await client.get(`store.json`);
       return { ...initData, ...JSON.parse(res.content) };
     } catch (error) {
+      console.log(error);
       return initData;
     }
   }

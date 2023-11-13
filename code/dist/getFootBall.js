@@ -109,6 +109,7 @@ async function getData(username, password) {
         uid = d.uid;
         ver = d.ver;
         url = d.url;
+        console.log(d);
     }
     let leagueList = [];
     try {

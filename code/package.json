@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "dev": "pnpm exec tsx ./src/index.ts",
-    "build": "npx tsc --project tsconfig.build.json"
+    "build": "npx tsc --project tsconfig.build.json",
+    "test": "cross-env dev=1  pnpm exec tsx ./src/test.ts"
   },
   "keywords": [],
   "author": "",

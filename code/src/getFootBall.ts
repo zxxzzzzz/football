@@ -117,6 +117,7 @@ export async function getData(username: string, password: string) {
     uid = d.uid;
     ver = d.ver;
     url = d.url;
+    console.log(d);
   }
   let leagueList: { name: string; id: string }[] = [];
   try {

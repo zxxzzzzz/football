@@ -473,7 +473,7 @@ async function getServiceMainget(ver: string) {
 }
 
 export async function loginByNodeFetch(username: string, password: string) {
-  const res = await axios.post('https://m849.hga030.com/', 'detection=Y', {
+  const res = await axios.post('https://61.14.172.140/', 'detection=Y', {
     headers: {
       accept:
         'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
@@ -500,7 +500,6 @@ export async function loginByNodeFetch(username: string, password: string) {
     throw createError('获取ver失败', Code.dataFail);
   }
   const ver = m[1];
-  console.log(ver, 'ver');
   const body2 = {
     p: 'chk_login',
     langx: 'zh-cn',
@@ -514,7 +513,7 @@ export async function loginByNodeFetch(username: string, password: string) {
       'TW96aWxsYS81LjAgKFdpbmRvd3MgTlQgMTAuMDsgV2luNjQ7IHg2NCkgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzExMy4wLjAuMCBTYWZhcmkvNTM3LjM2',
   };
 
-  const res2 = await axios.post(`https://m849.hga030.com/transform.php?ver=${ver}`, obj2Str(body2), {
+  const res2 = await axios.post(`https://61.14.172.140/transform.php?ver=${ver}`, obj2Str(body2), {
     headers: {
       accept: '*/*',
       'accept-language': 'zh-CN,zh;q=0.9',
@@ -535,7 +534,6 @@ export async function loginByNodeFetch(username: string, password: string) {
   const text2 = res2.data;
   const mixObj = Convert.xml2js(text2, { compact: true }) as any;
   const uid = mixObj?.serverresponse?.uid?._text as string;
-  console.log(uid, 'uid');
   const _username = mixObj?.serverresponse?.username?._text;
   if (!uid) {
     const d = await getServiceMainget(ver);
@@ -553,7 +551,7 @@ export async function loginByNodeFetch(username: string, password: string) {
     code: 663,
   };
   const getDomain = retryWrap(async () => {
-    const res3 = await axios.post(`https://m849.hga030.com/transform.php?ver=${ver}`, obj2Str(body3), {
+    const res3 = await axios.post(`https://61.14.172.140/transform.php?ver=${ver}`, obj2Str(body3), {
       headers: {
         accept: '*/*',
         'accept-language': 'zh-CN,zh;q=0.9',
@@ -590,7 +588,6 @@ export async function loginByNodeFetch(username: string, password: string) {
 export const retryLoginByNodeFetch = retryWrap(loginByNodeFetch, 3);
 
 export async function sendDingDing(msg: string) {
-  console.log('ding ding', msg);
   const body = {
     msgtype: 'markdown',
     markdown: {
