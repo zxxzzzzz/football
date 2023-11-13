@@ -51,6 +51,11 @@ resources:
             authType: anonymous
             methods:
               - GET
+        - triggerName: cron-tab-trigger
+          triggerType: timer
+          triggerConfig:
+            cronExpression: 'CRON_TZ=Asia/Shanghai 0 0/1 * * * ?'
+            enable: true
   static: # 静态文件服务
     component: fc3 
     props: 
