@@ -4,15 +4,15 @@ name: ball
 access: "default"
 
 resources:
-  getCacheData:
+  data:
     component: fc3
     props: # 组件的属性值
       region: cn-hangzhou # 关于变量的使用方法，可以参考：https://www.serverless-devs.com/serverless-devs/yaml#变量赋值
-      functionName: getCacheData
+      functionName: data
       runtime: nodejs16
       code: ./code
       cpu: 0.3
-      handler: index.getCacheData
+      handler: index.data
       memorySize: 512
       diskSize: 512
       description: '球类网站缓存数据'
@@ -82,7 +82,7 @@ resources:
       protocol: HTTP # HTTP | HTTPS 
       routeConfig:
         routes:
-          - functionName: getCacheData
+          - functionName: data
             methods:
               - POST
               - GET

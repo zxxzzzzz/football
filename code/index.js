@@ -53,7 +53,7 @@ exports.static = (event, context, callback) => {
 
 
 
-exports.getCacheData = async (event, context, callback) => {
+exports.data = async (event, context, callback) => {
   try {
     const eventObj = JSON.parse(event.toString());
     const password = eventObj?.queryParameters?.p || '';
