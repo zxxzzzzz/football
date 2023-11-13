@@ -4,7 +4,7 @@ name: ball
 access: "default"
 
 resources:
-  ball:
+  getCacheData:
     component: fc3
     props: # 组件的属性值
       region: cn-hangzhou # 关于变量的使用方法，可以参考：https://www.serverless-devs.com/serverless-devs/yaml#变量赋值
