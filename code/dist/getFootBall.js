@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getData = exports.getDataByHttp = void 0;
+exports.getData = exports.getCacheData = void 0;
 // @ts-ignore
 const json_format_1 = __importDefault(require("json-format"));
 const util_1 = require("./util");
@@ -26,7 +26,7 @@ const accountList = [
     { password: 'test_123@', token: '', timestamp: 0 },
     { password: 'trigger_123@', token: '', timestamp: 0 },
 ];
-const getDataByHttp = async (reqData) => {
+const getCacheData = async (reqData) => {
     const store = await (0, util_2.getStore)();
     const data = store.data;
     if (data) {
@@ -55,7 +55,7 @@ const getDataByHttp = async (reqData) => {
         msg: '默认更新错误',
     };
 };
-exports.getDataByHttp = getDataByHttp;
+exports.getCacheData = getCacheData;
 // app.get('/setting', async (req, res) => {
 //   try {
 //     const store = await getStore();

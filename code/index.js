@@ -1,4 +1,4 @@
-const { getDataByHttp } = require('./dist/getFootBall');
+const { getCacheData, getData } = require('./dist/getFootBall');
 const fs = require('fs');
 const path = require('path');
 const { createHash } = require('crypto');
@@ -58,7 +58,7 @@ exports.data = async (event, context, callback) => {
     const eventObj = JSON.parse(event.toString());
     const password = eventObj?.queryParameters?.p || '';
     const token = eventObj?.queryParameters?.token || '';
-    const responseData = await getDataByHttp({ password, token });
+    const responseData = await getCacheData({ password, token });
     callback(null, {
       statusCode: 200,
       body: responseData,

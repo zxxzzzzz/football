@@ -1,1 +1,0 @@
-export { getDataByHttp } from './getFootBall';

@@ -32,7 +32,7 @@ const accountList = [
 ];
 
 type PromiseType<T> = T extends Promise<infer U> ? U : never;
-export const getDataByHttp = async (reqData: { password: string; token: string }) => {
+export const getCacheData = async (reqData: { password: string; token: string }) => {
   const store = await getStore();
   const data: PromiseType<ReturnType<typeof getData>> | undefined = store.data;
   if (data) {
