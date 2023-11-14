@@ -87,7 +87,7 @@ const useStatic = (request, response) => {
   };
 };
 
-exports.static = pipe(_event, content, callback, [useStatic, useCache]);
+exports.static = (_event, content, callback) => pipe(_event, content, callback, [useStatic, useCache]);
 
 const useData = async (request, response) => {
   const password = request?.queryParameters?.p || '';
@@ -101,7 +101,7 @@ const useData = async (request, response) => {
   };
 };
 
-exports.data = pipe(_event, context, callback, [useData, useCache]);
+exports.data = (_event, content, callback) => pipe(_event, context, callback, [useData, useCache]);
 
 exports.dataUpdate = async (event, context, callback) => {
   try {
