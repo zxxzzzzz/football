@@ -101,7 +101,7 @@ const useData = async (request, response) => {
   };
 };
 
-exports.data = (_event, content, callback) => pipe(_event, context, callback, [useData, useCache]);
+exports.data = (_event, content, callback) => pipe(_event, content, callback, [useData, useCache]);
 
 exports.dataUpdate = async (event, context, callback) => {
   try {
