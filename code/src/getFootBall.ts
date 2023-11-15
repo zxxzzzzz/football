@@ -39,7 +39,10 @@ export const getCacheData = async (reqData: { password: string; token: string })
     return { code: Code.forbidden, msg: '该通行码不存在，请重新登陆' };
   }
   if (currentAccount?.token && currentAccount?.token !== reqData.token && dayjs().valueOf() - currentAccount.timestamp < 5 * 60 * 1000) {
-    return { code: Code.forbidden, msg: '该通行码正在被使用，请重新登陆换个通行码' };
+    return {
+      code: Code.forbidden,
+      msg: '该通行码正在被使用，请重新登陆换个通行码' + ' ' + currentAccount.token + ' ' + currentAccount.timestamp,
+    };
   }
   if (!currentAccount.token) {
     currentAccount.token = Math.random().toString();
