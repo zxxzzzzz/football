@@ -49,7 +49,7 @@ export const getCacheData = async (reqData: { password: string; token: string })
   }
   currentAccount.timestamp = dayjs().valueOf();
   await saveStore({ accountList });
-  const data: PromiseType<ReturnType<typeof getData>> | undefined = store.data;
+  const data: PromiseType<ReturnType<typeof getData>>['matchData'] | undefined = store.data;
   if (data) {
     const message1List = getMessage1List(data, store.Rev || 400);
     const message3List = getMessage3List(data, store.scoreRev || 200);
