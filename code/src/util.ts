@@ -14,7 +14,7 @@ let client = new OSS({
   accessKeyId: 'LTAI5tNpSy9xc' + 'TEcAK7M7Uxu',
   accessKeySecret: 'xJw1QUVCmOs' + 'DT5ZHqJgMssUZTtalqo',
   bucket: 'footballc',
-  internal: process.env.dev ? false :true,
+  internal: process.env.dev ? false : true,
 });
 const extraTeam = [
   ['谢里夫', '舒列夫'],
@@ -503,6 +503,7 @@ type Store = {
   scoreRev: number;
   halfRev: number;
   data: any;
+  accountList: { password: string; token: string; timestamp: number }[];
 };
 let g_store: Partial<Store> | undefined = void 0;
 export async function getStore(): Promise<Partial<Store>> {

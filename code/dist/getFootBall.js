@@ -12,7 +12,7 @@ const api_1 = require("./api");
 // import { say } from './chaty';
 const util_2 = require("./util");
 const error_1 = require("./error");
-const accountList = [
+const _accountList = [
     { password: 'XD_ivan', token: '', timestamp: 0 },
     { password: 'XD_ivan1', token: '', timestamp: 0 },
     { password: 'XD_ivan2', token: '', timestamp: 0 },
@@ -24,10 +24,22 @@ const accountList = [
     { password: 'XIAO9999', token: '', timestamp: 0 },
     { password: 'XIAO0000', token: '', timestamp: 0 },
     { password: 'test_123@', token: '', timestamp: 0 },
-    { password: 'trigger_123@', token: '', timestamp: 0 },
 ];
 const getCacheData = async (reqData) => {
     const store = await (0, util_2.getStore)();
+    const accountList = store?.accountList || _accountList;
+    const currentAccount = accountList.find((ac) => ac.password === reqData.password);
+    if (!currentAccount) {
+        return { code: error_1.Code.forbidden, msg: '该通行码不存在，请重新登陆' };
+    }
+    if (currentAccount?.token && currentAccount?.token !== reqData.token && (0, dayjs_1.default)().valueOf() - currentAccount.timestamp < 5 * 60 * 1000) {
+        return { code: error_1.Code.forbidden, msg: '该通行码正在被使用，请重新登陆换个通行码' };
+    }
+    if (!currentAccount.token) {
+        currentAccount.token = Math.random().toString();
+    }
+    currentAccount.timestamp = (0, dayjs_1.default)().valueOf();
+    await (0, util_2.saveStore)({ accountList });
     const data = store.data;
     if (data) {
         const message1List = (0, util_2.getMessage1List)(data, store.Rev || 400);

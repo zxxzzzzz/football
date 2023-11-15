@@ -16,7 +16,7 @@ import { CError, Code, createError } from './error';
 
 type FirstOfGeneric<T> = T extends Promise<infer F> ? F : never;
 
-const accountList = [
+const _accountList = [
   { password: 'XD_ivan', token: '', timestamp: 0 },
   { password: 'XD_ivan1', token: '', timestamp: 0 },
   { password: 'XD_ivan2', token: '', timestamp: 0 },
@@ -28,12 +28,24 @@ const accountList = [
   { password: 'XIAO9999', token: '', timestamp: 0 },
   { password: 'XIAO0000', token: '', timestamp: 0 },
   { password: 'test_123@', token: '', timestamp: 0 },
-  { password: 'trigger_123@', token: '', timestamp: 0 },
 ];
 
 type PromiseType<T> = T extends Promise<infer U> ? U : never;
 export const getCacheData = async (reqData: { password: string; token: string }) => {
   const store = await getStore();
+  const accountList = store?.accountList || _accountList;
+  const currentAccount = accountList.find((ac) => ac.password === reqData.password);
+  if (!currentAccount) {
+    return { code: Code.forbidden, msg: '该通行码不存在，请重新登陆' };
+  }
+  if (currentAccount?.token && currentAccount?.token !== reqData.token && dayjs().valueOf() - currentAccount.timestamp < 5 * 60 * 1000) {
+    return { code: Code.forbidden, msg: '该通行码正在被使用，请重新登陆换个通行码' };
+  }
+  if (!currentAccount.token) {
+    currentAccount.token = Math.random().toString();
+  }
+  currentAccount.timestamp = dayjs().valueOf();
+  await saveStore({ accountList });
   const data: PromiseType<ReturnType<typeof getData>> | undefined = store.data;
   if (data) {
     const message1List = getMessage1List(data, store.Rev || 400);
