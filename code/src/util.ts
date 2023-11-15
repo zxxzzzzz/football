@@ -505,7 +505,6 @@ type Store = {
   data: any;
   accountList: { password: string; token: string; timestamp: number }[];
 };
-let g_store: Partial<Store> | undefined = void 0;
 export async function getStore(): Promise<Partial<Store>> {
   const initData: Partial<Store> = {
     R: 0.12,
@@ -516,9 +515,6 @@ export async function getStore(): Promise<Partial<Store>> {
     scoreRev: 200,
     halfRev: 400,
   };
-  if (g_store) {
-    return { ...initData, ...g_store };
-  }
   if (client) {
     try {
       const res = await client.get(`store.json`);
@@ -534,8 +530,6 @@ export async function getStore(): Promise<Partial<Store>> {
 export const saveStore = async (s: Partial<Store>, upload = true) => {
   const store = await getStore();
   const tStore: Partial<Store> = { ...store, ...s };
-  // 内存保存
-  g_store = tStore;
   // oss保存
   try {
     if (client && upload) {

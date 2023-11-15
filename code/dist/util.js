@@ -494,7 +494,6 @@ const saveFile = async (fileName, data) => {
     fs_1.default.writeFileSync((0, path_1.resolve)(path, fileName), data, { encoding: 'utf-8' });
 };
 exports.saveFile = saveFile;
-let g_store = void 0;
 async function getStore() {
     const initData = {
         R: 0.12,
@@ -505,9 +504,6 @@ async function getStore() {
         scoreRev: 200,
         halfRev: 400,
     };
-    if (g_store) {
-        return { ...initData, ...g_store };
-    }
     if (client) {
         try {
             const res = await client.get(`store.json`);
@@ -524,8 +520,6 @@ exports.getStore = getStore;
 const saveStore = async (s, upload = true) => {
     const store = await getStore();
     const tStore = { ...store, ...s };
-    // 内存保存
-    g_store = tStore;
     // oss保存
     try {
         if (client && upload) {

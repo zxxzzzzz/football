@@ -57,7 +57,7 @@ const useCache = (request, response) => {
     'Cache-Control': 'no-cache',
     ETag: hashText,
   };
-  if (hashText === requestEtag) {
+  if (requestEtag && hashText === requestEtag) {
     response.statusCode = 304;
     response.body = '';
   }
