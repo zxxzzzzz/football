@@ -59,7 +59,7 @@ export const getCacheData = async (reqData: { password: string; token: string })
       code: 200,
       msg: 'success',
       data: {
-        timestamp: dayjs().valueOf() - (store.timestamp || 0),
+        timestamp: store.timestamp,
         matchData: data,
         message1List,
         message2List,
