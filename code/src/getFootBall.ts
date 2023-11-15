@@ -66,7 +66,7 @@ export const getCacheData = async (reqData: { password: string; token: string })
         message3List,
         compareDataList,
         message4List,
-        liveCount: accountList.filter((ac) => dayjs().valueOf() - ac.timestamp < 5 * 60 * 1000),
+        liveCount: accountList.filter((ac) => dayjs().valueOf() - ac.timestamp < 5 * 60 * 1000)?.length,
         token: currentAccount.token,
       },
     };
