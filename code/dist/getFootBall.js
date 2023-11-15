@@ -53,7 +53,7 @@ const getCacheData = async (reqData) => {
             code: 200,
             msg: 'success',
             data: {
-                timestamp: store.timestamp || 0,
+                timestamp: (0, dayjs_1.default)().valueOf() - (store.timestamp || 0),
                 matchData: data,
                 message1List,
                 message2List,
