@@ -120,30 +120,24 @@ async function getData(username, password) {
     if (!uid || !ver || !url) {
         const d = await (0, api_1.retryLoginByNodeFetch)(username, password);
         await (0, util_2.saveStore)(d);
-        console.log('uid不存在，更新uid后 存储到store');
         uid = d.uid;
         ver = d.ver;
         url = d.url;
-        console.log(d);
     }
     let leagueList = [];
     try {
-        console.log('请求联赛', { url, uid, ver });
         leagueList = await (0, api_1.retryGetLeagueListAllByNodeFetch)(url, uid, ver);
     }
     catch (error) {
         if (error.code === error_1.Code.uidExpire) {
             const d = await (0, api_1.retryLoginByNodeFetch)(username, password);
             await (0, util_2.saveStore)(d);
-            console.log({ uid, ver, url }, 'uid过期，更新uid后 存储到store', d);
             uid = d.uid;
             ver = d.ver;
             url = d.url;
-            console.log('uid重新获取后请求联赛', { url, uid, ver });
             leagueList = await (0, api_1.retryGetLeagueListAllByNodeFetch)(url, uid, ver);
         }
         else {
-            console.log(error);
             throw error;
         }
     }
@@ -230,6 +224,12 @@ async function getData(username, password) {
         timeFormat: (0, dayjs_1.default)().format('YYYY-MM-DD HH:mm:ss'),
         data: matchData,
     });
-    return matchData;
+    return {
+        matchData,
+        log: {
+            timestamp: (0, dayjs_1.default)().valueOf(),
+            timeFormat: (0, dayjs_1.default)().format('YYYY-MM-DD HH:mm:ss'),
+        },
+    };
 }
 exports.getData = getData;

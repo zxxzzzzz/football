@@ -105,10 +105,10 @@ exports.data = (_event, content, callback) => pipe(_event, content, callback, [u
 
 exports.dataUpdate = async (event, context, callback) => {
   try {
-    const data = await getData('peng902', 'Aakk8899');
+    const { log } = await getData('peng902', 'Aakk8899');
     callback(null, {
       statusCode: 500,
-      body: data,
+      body: log,
     });
   } catch (error) {
     callback(null, {
