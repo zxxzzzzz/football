@@ -495,7 +495,7 @@ const saveFile = async (fileName, data) => {
     fs_1.default.writeFileSync((0, path_1.resolve)(path, fileName), data, { encoding: 'utf-8' });
 };
 exports.saveFile = saveFile;
-async function getStore() {
+async function getStore(p) {
     const initData = {
         R: 0.12,
         A: 1,
@@ -507,11 +507,17 @@ async function getStore() {
     };
     if (client) {
         try {
+            if (p === 'data') {
+                const res = await client.get(`data.json`);
+                return { ...initData, ...JSON.parse(res.content) };
+            }
+        }
+        catch (error) { }
+        try {
             const res = await client.get(`store.json`);
             return { ...initData, ...JSON.parse(res.content) };
         }
         catch (error) {
-            console.log(error);
             return initData;
         }
     }
@@ -525,7 +531,10 @@ const saveStore = async (s, upload = true) => {
     try {
         if (client && upload) {
             try {
-                await client.put(`store.json`, Buffer.from((0, json_format_1.default)(tStore)));
+                if (s.data) {
+                    await client.put(`data.json`, Buffer.from((0, json_format_1.default)(s.accountList)));
+                }
+                await client.put(`store.json`, Buffer.from((0, json_format_1.default)(R.omit(['data'], tStore))));
             }
             catch (error) {
                 console.log(error);

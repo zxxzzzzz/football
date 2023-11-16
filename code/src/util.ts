@@ -506,7 +506,10 @@ type Store = {
   data: any;
   accountList: { password: string; token: string; timestamp: number }[];
 };
-export async function getStore(): Promise<Partial<Store>> {
+
+export async function getStore(p: 'data'): Promise<Pick<Store, 'accountList'>>;
+export async function getStore(): Promise<Partial<Store>>;
+export async function getStore(p?: 'data'): Promise<Partial<Store>> {
   const initData: Partial<Store> = {
     R: 0.12,
     A: 1,
@@ -518,10 +521,15 @@ export async function getStore(): Promise<Partial<Store>> {
   };
   if (client) {
     try {
+      if (p === 'data') {
+        const res = await client.get(`data.json`);
+        return { ...initData, ...JSON.parse(res.content) };
+      }
+    } catch (error) {}
+    try {
       const res = await client.get(`store.json`);
       return { ...initData, ...JSON.parse(res.content) };
     } catch (error) {
-      console.log(error);
       return initData;
     }
   }
@@ -535,7 +543,10 @@ export const saveStore = async (s: Partial<Store>, upload = true) => {
   try {
     if (client && upload) {
       try {
-        await client.put(`store.json`, Buffer.from(Format(tStore)));
+        if (s.data) {
+          await client.put(`data.json`, Buffer.from(Format(s.accountList)));
+        }
+        await client.put(`store.json`, Buffer.from(Format(R.omit(['data'], tStore))));
       } catch (error) {
         console.log(error);
       }
