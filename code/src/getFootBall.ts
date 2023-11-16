@@ -32,7 +32,7 @@ const _accountList = [
 
 type PromiseType<T> = T extends Promise<infer U> ? U : never;
 export const getCacheData = async (reqData: { password: string; token: string }) => {
-  const store = await getStore();
+  const store = await getStore('data');
   const accountList = store?.accountList || _accountList;
   const currentAccount = accountList.find((ac) => ac.password === reqData.password);
   if (!currentAccount) {

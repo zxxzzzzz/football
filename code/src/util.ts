@@ -507,8 +507,8 @@ type Store = {
   accountList: { password: string; token: string; timestamp: number }[];
 };
 
-export async function getStore(p: 'data'): Promise<Pick<Store, 'accountList'>>;
-export async function getStore(): Promise<Partial<Store>>;
+export async function getStore(p: 'data'): Promise<Partial<Store>>;
+export async function getStore(): Promise<Partial<Omit<Store, 'data'>>>;
 export async function getStore(p?: 'data'): Promise<Partial<Store>> {
   const initData: Partial<Store> = {
     R: 0.12,
@@ -521,13 +521,11 @@ export async function getStore(p?: 'data'): Promise<Partial<Store>> {
   };
   if (client) {
     try {
-      if (p === 'data') {
-        const res = await client.get(`data.json`);
-        return { ...initData, ...JSON.parse(res.content) };
-      }
-    } catch (error) {}
-    try {
       const res = await client.get(`store.json`);
+      if (p === 'data') {
+        const dataRes = await client.get(`data.json`);
+        return { ...initData, ...JSON.parse(res.content), data: JSON.parse(dataRes.content) };
+      }
       return { ...initData, ...JSON.parse(res.content) };
     } catch (error) {
       return initData;
@@ -544,7 +542,7 @@ export const saveStore = async (s: Partial<Store>, upload = true) => {
     if (client && upload) {
       try {
         if (s.data) {
-          await client.put(`data.json`, Buffer.from(Format(s.accountList)));
+          await client.put(`data.json`, Buffer.from(Format(s.data)));
         }
         await client.put(`store.json`, Buffer.from(Format(R.omit(['data'], tStore))));
       } catch (error) {

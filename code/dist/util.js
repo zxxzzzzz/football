@@ -507,14 +507,11 @@ async function getStore(p) {
     };
     if (client) {
         try {
-            if (p === 'data') {
-                const res = await client.get(`data.json`);
-                return { ...initData, ...JSON.parse(res.content) };
-            }
-        }
-        catch (error) { }
-        try {
             const res = await client.get(`store.json`);
+            if (p === 'data') {
+                const dataRes = await client.get(`data.json`);
+                return { ...initData, ...JSON.parse(res.content), data: JSON.parse(dataRes.content) };
+            }
             return { ...initData, ...JSON.parse(res.content) };
         }
         catch (error) {
@@ -532,7 +529,7 @@ const saveStore = async (s, upload = true) => {
         if (client && upload) {
             try {
                 if (s.data) {
-                    await client.put(`data.json`, Buffer.from((0, json_format_1.default)(s.accountList)));
+                    await client.put(`data.json`, Buffer.from((0, json_format_1.default)(s.data)));
                 }
                 await client.put(`store.json`, Buffer.from((0, json_format_1.default)(R.omit(['data'], tStore))));
             }

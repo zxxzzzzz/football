@@ -26,7 +26,7 @@ const _accountList = [
     { password: 'test_123@', token: '', timestamp: 0 },
 ];
 const getCacheData = async (reqData) => {
-    const store = await (0, util_2.getStore)();
+    const store = await (0, util_2.getStore)('data');
     const accountList = store?.accountList || _accountList;
     const currentAccount = accountList.find((ac) => ac.password === reqData.password);
     if (!currentAccount) {
