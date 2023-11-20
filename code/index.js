@@ -127,7 +127,7 @@ exports.setting = (_event, content, callback) =>
         ...(response.headers || {}),
         'Content-Type': 'application/json',
       };
-      if ((request?.httpMethod || '').toLowerCase() === 'get') {
+      if ((request?.requestContext?.http?.method || '').toLowerCase() === 'get') {
         const res = await getSetting();
         response.body = res;
       } else {
