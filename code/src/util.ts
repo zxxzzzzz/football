@@ -536,7 +536,13 @@ export async function getStore(p?: 'data'): Promise<Partial<Store>> {
 
 export const saveStore = async (s: Partial<Store>, upload = true) => {
   const store = await getStore();
-  const tStore: Partial<Store> = { ...store, ...s };
+  const tStore: Partial<Store> = R.pick(
+    ['ver', 'uid', 'url', 'timestamp', 'timeFormat', 'R', 'A', 'C', 'Rev', 'compareRev', 'scoreRev', 'halfRev', 'data', 'accountList'],
+    {
+      ...store,
+      ...s,
+    }
+  );
   // oss保存
   try {
     if (client && upload) {

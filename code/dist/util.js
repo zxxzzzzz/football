@@ -523,7 +523,10 @@ async function getStore(p) {
 exports.getStore = getStore;
 const saveStore = async (s, upload = true) => {
     const store = await getStore();
-    const tStore = { ...store, ...s };
+    const tStore = R.pick(['ver', 'uid', 'url', 'timestamp', 'timeFormat', 'R', 'A', 'C', 'Rev', 'compareRev', 'scoreRev', 'halfRev', 'data', 'accountList'], {
+        ...store,
+        ...s,
+    });
     // oss保存
     try {
         if (client && upload) {
