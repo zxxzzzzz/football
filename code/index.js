@@ -139,3 +139,14 @@ exports.setting = (_event, content, callback) =>
       }
     },
   ]);
+exports.getRequest = (_event, content, callback) =>
+  pipe(_event, content, callback, [
+    async (request, response) => {
+      response.statusCode = 200;
+      response.headers = {
+        ...(response.headers || {}),
+        'Content-Type': 'application/json',
+      };
+      response.body = request
+    },
+  ]);
