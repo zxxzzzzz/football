@@ -1,4 +1,4 @@
-const { getCacheData, getData } = require('./dist/getFootBall');
+const { getCacheData, getData, sendDingDingMessage } = require('./dist/getFootBall');
 const fs = require('fs');
 const path = require('path');
 const { createHash } = require('crypto');
