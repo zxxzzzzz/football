@@ -36,7 +36,7 @@ resources:
       runtime: nodejs16
       code: ./code
       cpu: 0.3
-      handler: index.data
+      handler: index.setting
       memorySize: 512
       diskSize: 512
       description: '球类网站设置'
