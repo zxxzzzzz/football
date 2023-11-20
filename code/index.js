@@ -36,6 +36,9 @@ const { createHash } = require('crypto');
 
 const pipe = async (event, context, callback, funcList = []) => {
   const request = JSON.parse(event.toString());
+  if(request.headers['Content-Type'] === 'application/json'){
+    request.body = JSON.parse(request.body)
+  }
   const response = {};
   try {
     for (const func of funcList) {
