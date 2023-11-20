@@ -28,6 +28,30 @@ resources:
             methods:
               - GET
               - POST
+  setting:
+    component: fc3
+    props: # 组件的属性值
+      region: cn-hangzhou # 关于变量的使用方法，可以参考：https://www.serverless-devs.com/serverless-devs/yaml#变量赋值
+      functionName: setting
+      runtime: nodejs16
+      code: ./code
+      cpu: 0.3
+      handler: index.data
+      memorySize: 512
+      diskSize: 512
+      description: '球类网站设置'
+      timeout: 60
+      layers:
+        - acs:fc:cn-hangzhou:1048992591952509:layers/ball/versions/2
+      instanceConcurrency: 1
+      triggers:
+        - triggerName: httpTrigger
+          triggerType: http
+          triggerConfig:
+            authType: anonymous
+            methods:
+              - GET
+              - POST
   dataUpdate:
     component: fc3
     props: # 组件的属性值
@@ -92,6 +116,12 @@ resources:
               - POST
               - GET
             path: /data/*
+            qualifier: LATEST
+          - functionName: setting
+            methods:
+              - POST
+              - GET
+            path: /setting
             qualifier: LATEST
           - functionName: dataUpdate
             methods:
