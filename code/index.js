@@ -119,22 +119,21 @@ exports.dataUpdate = async (event, context, callback) => {
   }
 };
 
-
-// pipe(_event, context, callback, [
-//   async (request, response) => {
-//     response.statusCode = 200;
-//     response.headers = {
-//       ...(response.headers || {}),
-//       'Content-Type': 'application/json',
-//     };
-//     if ((request?.httpMethod || '').toLowerCase() === 'get') {
-//       // const res = await getSetting();
-//       response.body = {a:1};
-//     } else {
-//       const res = await setSetting(request.body);
-//       response.body = res;
-//     }
-//   },
-// ])
-exports.setting = (_event, content, callback) => callback(null, {statusCode:200, body:1})
-  ;
+exports.setting = (_event, content, callback) =>
+  pipe(_event, context, callback, [
+    async (request, response) => {
+      response.statusCode = 200;
+      response.headers = {
+        ...(response.headers || {}),
+        'Content-Type': 'application/json',
+      };
+      if ((request?.httpMethod || '').toLowerCase() === 'get') {
+        // const res = await getSetting();
+        response.body = { a: 1 };
+      } else {
+        response.body = { a: 2 };
+        // const res = await setSetting(request.body);
+        // response.body = res;
+      }
+    },
+  ]);
