@@ -127,13 +127,14 @@ exports.setting = (_event, content, callback) =>
         ...(response.headers || {}),
         'Content-Type': 'application/json',
       };
-      if ((request?.httpMethod || '').toLowerCase() === 'get') {
-        // const res = await getSetting();
-        response.body = { a: 1 };
-      } else {
-        response.body = { a: 2 };
-        // const res = await setSetting(request.body);
-        // response.body = res;
-      }
+      response.body = {a:1}
+      // if ((request?.httpMethod || '').toLowerCase() === 'get') {
+      //   // const res = await getSetting();
+      //   response.body = { a: 1 };
+      // } else {
+      //   response.body = { a: 2 };
+      //   // const res = await setSetting(request.body);
+      //   // response.body = res;
+      // }
     },
   ]);
