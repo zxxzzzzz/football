@@ -128,8 +128,8 @@ exports.setting = (_event, content, callback) =>
         'Content-Type': 'application/json',
       };
       if ((request?.httpMethod || '').toLowerCase() === 'get') {
-        const res = await getSetting();
-        response.body = res;
+        // const res = await getSetting();
+        response.body = {a:1};
       } else {
         const res = await setSetting(request.body);
         response.body = res;
