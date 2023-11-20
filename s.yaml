@@ -60,7 +60,7 @@ resources:
       runtime: nodejs16
       code: ./code
       cpu: 0.3
-      handler: index.request
+      handler: index.getRequest
       memorySize: 512
       diskSize: 512
       description: 'request test'
