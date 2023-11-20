@@ -1,4 +1,4 @@
-const { getCacheData, getData, sendDingDingMessage } = require('./dist/getFootBall');
+const { getCacheData, getData, sendDingDingMessage, getSetting, setSetting } = require('./dist/getFootBall');
 const fs = require('fs');
 const path = require('path');
 const { createHash } = require('crypto');
@@ -118,3 +118,21 @@ exports.dataUpdate = async (event, context, callback) => {
     });
   }
 };
+
+exports.setting = (_event, content, callback) =>
+  pipe(_event, context, callback, [
+    async (request, response) => {
+      response.statusCode = 304;
+      response.headers = {
+        ...(response.headers || {}),
+        'Content-Type': 'application/json',
+      };
+      if ((request?.httpMethod || '').toLowerCase() === 'get') {
+        const res = await getSetting();
+        response.body = res;
+      } else {
+        const res = await setSetting(request.body);
+        response.body = res;
+      }
+    },
+  ]);

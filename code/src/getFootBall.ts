@@ -262,3 +262,35 @@ export const sendDingDingMessage = async (data:any)=> {
     }
   }
 }
+
+export const getSetting = async ()=>{
+  try {
+    const store = await getStore();
+    return {
+      code: 200,
+      msg: 'success',
+      data: {
+        R: store.R,
+        A: store.A,
+        C: store.C,
+        Rev: store.Rev,
+        compareRev: store.compareRev,
+        scoreRev: store.scoreRev,
+        halfRev: store.halfRev,
+      },
+    };
+  } catch (error) {
+    return { code: 500, msg: (error as Error).message }
+  }
+
+}
+
+export const setSetting = async (body:any) => {
+  try {
+    await saveStore(body);
+    return { code: 200, msg: 'success' };
+  } catch (error) {
+    return { code: 500, msg: (error as Error).message };
+  }
+
+}

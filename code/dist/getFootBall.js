@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.sendDingDingMessage = exports.getData = exports.getCacheData = void 0;
+exports.setSetting = exports.getSetting = exports.sendDingDingMessage = exports.getData = exports.getCacheData = void 0;
 // @ts-ignore
 const json_format_1 = __importDefault(require("json-format"));
 const util_1 = require("./util");
@@ -247,3 +247,35 @@ const sendDingDingMessage = async (data) => {
     }
 };
 exports.sendDingDingMessage = sendDingDingMessage;
+const getSetting = async () => {
+    try {
+        const store = await (0, util_2.getStore)();
+        return {
+            code: 200,
+            msg: 'success',
+            data: {
+                R: store.R,
+                A: store.A,
+                C: store.C,
+                Rev: store.Rev,
+                compareRev: store.compareRev,
+                scoreRev: store.scoreRev,
+                halfRev: store.halfRev,
+            },
+        };
+    }
+    catch (error) {
+        return { code: 500, msg: error.message };
+    }
+};
+exports.getSetting = getSetting;
+const setSetting = async (body) => {
+    try {
+        await (0, util_2.saveStore)(body);
+        return { code: 200, msg: 'success' };
+    }
+    catch (error) {
+        return { code: 500, msg: error.message };
+    }
+};
+exports.setSetting = setSetting;
