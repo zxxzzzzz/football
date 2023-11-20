@@ -249,7 +249,7 @@ export async function getData(username: string, password: string) {
   };
 }
 
-export const sendDingDingMessage = async (data:any)=> {
+export const sendDingDingMessage = async (data: any) => {
   if (data) {
     const _message1List = getMessage1List(data, 650);
     const _message3List = getMessage3List(data, 400);
@@ -261,9 +261,9 @@ export const sendDingDingMessage = async (data:any)=> {
       }
     }
   }
-}
+};
 
-export const getSetting = async ()=>{
+export const getSetting = async () => {
   try {
     const store = await getStore();
     return {
@@ -280,17 +280,15 @@ export const getSetting = async ()=>{
       },
     };
   } catch (error) {
-    return { code: 500, msg: (error as Error).message }
+    return { code: 500, msg: (error as Error).message };
   }
+};
 
-}
-
-export const setSetting = async (body:any) => {
+export const setSetting = async (body: any) => {
   try {
     await saveStore(body);
-    return { code: 200, msg: 'success' };
+    return { code: 200, msg: 'success', data: body };
   } catch (error) {
     return { code: 500, msg: (error as Error).message };
   }
-
-}
+};

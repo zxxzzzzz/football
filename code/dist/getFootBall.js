@@ -272,7 +272,7 @@ exports.getSetting = getSetting;
 const setSetting = async (body) => {
     try {
         await (0, util_2.saveStore)(body);
-        return { code: 200, msg: 'success' };
+        return { code: 200, msg: 'success', data: body };
     }
     catch (error) {
         return { code: 500, msg: error.message };
