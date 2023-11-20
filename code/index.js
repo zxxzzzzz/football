@@ -122,7 +122,7 @@ exports.dataUpdate = async (event, context, callback) => {
 exports.setting = (_event, content, callback) =>
   pipe(_event, content, callback, [
     async (request, response) => {
-      response.statusCode = 304;
+      response.statusCode = 200;
       response.headers = {
         ...(response.headers || {}),
         'Content-Type': 'application/json',
