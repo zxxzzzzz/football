@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getData = exports.getCacheData = void 0;
+exports.sendDingDingMessage = exports.getData = exports.getCacheData = void 0;
 // @ts-ignore
 const json_format_1 = __importDefault(require("json-format"));
 const util_1 = require("./util");
@@ -233,3 +233,17 @@ async function getData(username, password) {
     };
 }
 exports.getData = getData;
+const sendDingDingMessage = async (data) => {
+    if (data) {
+        const _message1List = (0, util_2.getMessage1List)(data, 650);
+        const _message3List = (0, util_2.getMessage3List)(data, 400);
+        const _message4List = (0, util_2.getMessage4List)(data, 400);
+        const _list = [..._message1List, ..._message3List, ..._message4List];
+        if (_list?.length) {
+            for (const _item of _list) {
+                await (0, api_1.retrySendDingDing)(_item);
+            }
+        }
+    }
+};
+exports.sendDingDingMessage = sendDingDingMessage;

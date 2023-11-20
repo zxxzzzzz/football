@@ -248,3 +248,17 @@ export async function getData(username: string, password: string) {
     },
   };
 }
+
+export const sendDingDingMessage = async (data:any)=> {
+  if (data) {
+    const _message1List = getMessage1List(data, 650);
+    const _message3List = getMessage3List(data, 400);
+    const _message4List = getMessage4List(data, 400);
+    const _list = [..._message1List, ..._message3List, ..._message4List];
+    if (_list?.length) {
+      for (const _item of _list) {
+        await retrySendDingDing(_item);
+      }
+    }
+  }
+}
