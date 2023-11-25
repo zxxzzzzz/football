@@ -49,7 +49,6 @@ const pipe = async (event, context, callback, funcList = []) => {
   }
   callback(null, response);
 };
-
 const useCache = (request, response) => {
   const hash = createHmac('sha256', '123@');
   const requestEtag = request?.headers?.['If-None-Match'] || '';
@@ -60,7 +59,8 @@ const useCache = (request, response) => {
     'Cache-Control': 'no-cache',
     ETag: hashText,
     hashText,
-    requestEtag
+    requestEtag,
+    isT:requestEtag && hashText === requestEtag
   };
   if (requestEtag && hashText === requestEtag) {
     response.statusCode = 304;
