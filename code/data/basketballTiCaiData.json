@@ -1,0 +1,272 @@
+[
+	{
+		"dateTime": "11-25 01:00",
+		"num": "周六301",
+		"league": "西班牙篮球联赛",
+		"source": "tiCai",
+		"teamList": [
+			"奥布拉多伊罗",
+			"格拉纳达"
+		],
+		"singleList": [
+			false,
+			false
+		],
+		"itemList": [
+			{
+				"oddsTitle": "让球",
+				"oddsItemList": [
+					[
+						"+4",
+						"1.70"
+					],
+					[
+						"-4",
+						"1.70"
+					]
+				]
+			}
+		],
+		"ecid": "6984819"
+	},
+	{
+		"dateTime": "11-25 01:00",
+		"num": "周六302",
+		"league": "西班牙篮球联赛",
+		"source": "tiCai",
+		"teamList": [
+			"帕伦西亚",
+			"巴伦西亚"
+		],
+		"singleList": [
+			false,
+			false
+		],
+		"itemList": [
+			{
+				"oddsTitle": "让球",
+				"oddsItemList": [
+					[
+						"+7",
+						"1.76"
+					],
+					[
+						"-7",
+						"1.64"
+					]
+				]
+			}
+		],
+		"ecid": "6984798"
+	},
+	{
+		"dateTime": "11-25 03:45",
+		"num": "周六303",
+		"league": "西班牙篮球联赛",
+		"source": "tiCai",
+		"teamList": [
+			"穆尔西亚天主大学",
+			"约文图特"
+		],
+		"singleList": [
+			false,
+			false
+		],
+		"itemList": [
+			{
+				"oddsTitle": "让球",
+				"oddsItemList": [
+					[
+						"+8",
+						"1.70"
+					],
+					[
+						"-8",
+						"1.70"
+					]
+				]
+			}
+		],
+		"ecid": "6984903"
+	},
+	{
+		"dateTime": "11-25 03:45",
+		"num": "周六304",
+		"league": "西班牙篮球联赛",
+		"source": "tiCai",
+		"teamList": [
+			"毕尔巴鄂",
+			"马拉加"
+		],
+		"singleList": [
+			false,
+			false
+		],
+		"itemList": [
+			{
+				"oddsTitle": "让球",
+				"oddsItemList": [
+					[
+						"+5",
+						"1.70"
+					],
+					[
+						"-5",
+						"1.70"
+					]
+				]
+			}
+		],
+		"ecid": "6984882"
+	},
+	{
+		"dateTime": "11-25 07:00",
+		"num": "周六305",
+		"league": "美国职业篮球联盟",
+		"source": "tiCai",
+		"teamList": [
+			"布鲁克林篮网",
+			"迈阿密热火"
+		],
+		"singleList": [
+			false,
+			false
+		],
+		"itemList": [
+			{
+				"oddsTitle": "让球",
+				"oddsItemList": [
+					[
+						"+2",
+						"1.70"
+					],
+					[
+						"-2",
+						"1.70"
+					]
+				]
+			}
+		],
+		"ecid": ""
+	},
+	{
+		"dateTime": "11-25 08:00",
+		"num": "周六306",
+		"league": "美国职业篮球联盟",
+		"source": "tiCai",
+		"teamList": [
+			"华盛顿奇才",
+			"亚特兰大老鹰"
+		],
+		"singleList": [
+			false,
+			false
+		],
+		"itemList": [
+			{
+				"oddsTitle": "让球",
+				"oddsItemList": [
+					[
+						"+9",
+						"1.70"
+					],
+					[
+						"-9",
+						"1.70"
+					]
+				]
+			}
+		],
+		"ecid": ""
+	},
+	{
+		"dateTime": "11-25 08:30",
+		"num": "周六307",
+		"league": "美国职业篮球联盟",
+		"source": "tiCai",
+		"teamList": [
+			"克利夫兰骑士",
+			"洛杉矶湖人"
+		],
+		"singleList": [
+			false,
+			false
+		],
+		"itemList": [
+			{
+				"oddsTitle": "让球",
+				"oddsItemList": [
+					[
+						"+2",
+						"1.64"
+					],
+					[
+						"-2",
+						"1.76"
+					]
+				]
+			}
+		],
+		"ecid": ""
+	},
+	{
+		"dateTime": "11-25 10:30",
+		"num": "周六308",
+		"league": "美国职业篮球联盟",
+		"source": "tiCai",
+		"teamList": [
+			"犹他爵士",
+			"新奥尔良鹈鹕"
+		],
+		"singleList": [
+			false,
+			false
+		],
+		"itemList": [
+			{
+				"oddsTitle": "让球",
+				"oddsItemList": [
+					[
+						"+3",
+						"1.76"
+					],
+					[
+						"-3",
+						"1.64"
+					]
+				]
+			}
+		],
+		"ecid": ""
+	},
+	{
+		"dateTime": "11-25 11:30",
+		"num": "周六309",
+		"league": "美国职业篮球联盟",
+		"source": "tiCai",
+		"teamList": [
+			"洛杉矶快船",
+			"达拉斯独行侠"
+		],
+		"singleList": [
+			false,
+			false
+		],
+		"itemList": [
+			{
+				"oddsTitle": "让球",
+				"oddsItemList": [
+					[
+						"+1",
+						"1.76"
+					],
+					[
+						"-1",
+						"1.64"
+					]
+				]
+			}
+		],
+		"ecid": ""
+	}
+]

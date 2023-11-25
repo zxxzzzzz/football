@@ -26,7 +26,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getMessage2List = exports.getMessage4List = exports.getMessage3List = exports.getMessage1List = exports.getLogHistory = exports.saveStore = exports.getStore = exports.saveFile = exports.compare = exports.toData = exports.Score = exports.isLeagueEqual = exports.isTeamEqu = exports.sim_jaccard = void 0;
+exports.getMessage2List = exports.getMessage4List = exports.getMessage3List = exports.getMessage1List = exports.getLogHistory = exports.saveStore = exports.getStore = exports.saveFile = exports.compare = exports.toData = exports.toBasketballData = exports.Score = exports.isLeagueEqual = exports.isTeamEqu = exports.sim_jaccard = void 0;
 const R = __importStar(require("ramda"));
 const dayjs_1 = __importDefault(require("dayjs"));
 const fs_1 = __importDefault(require("fs"));
@@ -46,7 +46,6 @@ let client = new ali_oss_1.default({
 const extraTeam = [
     ['谢里夫', '舒列夫'],
     ['康斯塔查灯塔', '法乌尔'],
-    // ['北安普敦', '法乌尔'],
 ];
 function sim_jaccard(s1, s2) {
     const extraFind = extraTeam.find((e) => e.includes(s1));
@@ -119,6 +118,7 @@ const isLeagueEqual = (l1, l2) => {
         ['亚运会男足', '亚运会2022男子足球U23(在中国)'],
         ['亚洲冠军联赛', '亚足联冠军联赛'],
         ['世界杯预选赛', '世界杯2026亚洲外围赛', '世界杯2026南美洲外围赛', '世界杯2026非洲外围赛'],
+        ['西班牙篮球联赛', '西班牙篮球甲级联赛'],
     ];
     const isEqual = !!equalNameList.find((d) => d.includes(l1) && d.includes(l2));
     if (isEqual) {
@@ -145,6 +145,57 @@ var Score;
 (function (Score) {
     Score["noSale"] = "100";
 })(Score = exports.Score || (exports.Score = {}));
+function toBasketballData(tiCaiList, extraList, _R = 0.12) {
+    const dataList = tiCaiList
+        .map((ti) => {
+        let matchedExtra = extraList.find((d) => d.ecid === ti.ecid);
+        if (!matchedExtra) {
+            return void 0;
+        }
+        // 处理队伍错位的情况
+        if (matchedExtra.teamList[0] === ti.teamList[1]) {
+            matchedExtra = {
+                ...matchedExtra,
+                teamList: [matchedExtra.teamList[1], matchedExtra.teamList[0]],
+                itemList: matchedExtra.itemList.map((item) => {
+                    return {
+                        ...item,
+                        oddsItemList: [item.oddsItemList[1], item.oddsItemList[0]],
+                    };
+                }),
+            };
+        }
+        const oneMinute = 60 * 1000;
+        return {
+            league: ti.league,
+            tiCaiLeague: ti.league,
+            extraLeague: matchedExtra.league,
+            num: ti.num || '',
+            singleList: ti.singleList,
+            // @ts-ignore
+            rate: matchedExtra.rate,
+            tiCaiDateTime: ti.dateTime,
+            extraDateTime: matchedExtra.dateTime,
+            // 体彩的时间不对，使用extra的时间作为基准
+            dateTime: Math.abs((0, dayjs_1.default)(matchedExtra.dateTime).valueOf() - (0, dayjs_1.default)(ti.dateTime).add(24, 'hour').valueOf()) <= 10 * oneMinute
+                ? (0, dayjs_1.default)(ti.dateTime).add(24, 'hour').format('MM-DD HH:mm')
+                : (0, dayjs_1.default)(ti.dateTime).format('MM-DD HH:mm'),
+            tiCaiTeamList: ti.teamList,
+            extraTeamList: matchedExtra?.teamList || ti.teamList,
+            tiCaiItemList: ti.itemList,
+            extraItemList: (matchedExtra?.itemList || []).filter((d) => {
+                if (d.oddsTitle === '得分') {
+                    return d.oddsItemList[0][0].slice(1) === '2' || d.oddsItemList[0][0].slice(1) === '2.5';
+                }
+                return true;
+            }),
+            revList: [],
+        };
+    })
+        .filter((d) => d);
+    return dataList;
+}
+exports.toBasketballData = toBasketballData;
 function toData(tiCaiList, extraList, _R = 0.12) {
     const dataList = tiCaiList.map((ti) => {
         let matchedExtra = extraList.find((d) => d.ecid === ti.ecid);
@@ -439,6 +490,7 @@ function toData(tiCaiList, extraList, _R = 0.12) {
     });
 }
 exports.toData = toData;
+// 排序
 function compare(dataList, c = 0.13, a = 1, cRev = 430) {
     const filterDataList = dataList
         .filter((d) => {
@@ -479,10 +531,12 @@ const saveFile = async (fileName, data) => {
     if (!fs_1.default.existsSync(pPath.dir)) {
         fs_1.default.mkdirSync(pPath.dir, { recursive: true });
     }
-    const _data = fs_1.default.readFileSync((0, path_1.resolve)(path, fileName), { encoding: 'utf-8' });
-    // 如果数据没变 就不在保存数据
-    if (data === _data) {
-        return;
+    if (fs_1.default.existsSync((0, path_1.resolve)(path, fileName))) {
+        const _data = fs_1.default.readFileSync((0, path_1.resolve)(path, fileName), { encoding: 'utf-8' });
+        // 如果数据没变 就不在保存数据
+        if (data === _data) {
+            return;
+        }
     }
     if (client) {
         try {
@@ -512,6 +566,10 @@ async function getStore(p) {
                 const dataRes = await client.get(`data.json`);
                 return { ...initData, ...JSON.parse(res.content), data: JSON.parse(dataRes.content) };
             }
+            if (p === 'basketballData') {
+                const dataRes = await client.get(`basketballData.json`);
+                return { ...initData, ...JSON.parse(res.content), data: JSON.parse(dataRes.content) };
+            }
             return { ...initData, ...JSON.parse(res.content) };
         }
         catch (error) {
@@ -523,7 +581,23 @@ async function getStore(p) {
 exports.getStore = getStore;
 const saveStore = async (s, upload = true) => {
     const store = await getStore();
-    const tStore = R.pick(['ver', 'uid', 'url', 'timestamp', 'timeFormat', 'R', 'A', 'C', 'Rev', 'compareRev', 'scoreRev', 'halfRev', 'data', 'accountList'], {
+    const tStore = R.pick([
+        'ver',
+        'uid',
+        'url',
+        'timestamp',
+        'timeFormat',
+        'R',
+        'A',
+        'C',
+        'Rev',
+        'compareRev',
+        'scoreRev',
+        'halfRev',
+        'data',
+        'accountList',
+        'basketballData',
+    ], {
         ...store,
         ...s,
     });
@@ -534,7 +608,10 @@ const saveStore = async (s, upload = true) => {
                 if (s.data) {
                     await client.put(`data.json`, Buffer.from((0, json_format_1.default)(s.data)));
                 }
-                await client.put(`store.json`, Buffer.from((0, json_format_1.default)(R.omit(['data'], tStore))));
+                if (s.basketballData) {
+                    await client.put(`basketballData.json`, Buffer.from((0, json_format_1.default)(s.basketballData)));
+                }
+                await client.put(`store.json`, Buffer.from((0, json_format_1.default)(R.omit(['data', 'basketballData'], tStore))));
             }
             catch (error) {
                 console.log(error);

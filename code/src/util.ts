@@ -1,5 +1,5 @@
 import * as R from 'ramda';
-import { getTiCaiByFetch } from './api';
+import { getTiCaiByFetch, getTiCaiBasketballByFetch } from './api';
 import dayjs from 'dayjs';
 import fs from 'fs';
 import { resolve, parse } from 'path';
@@ -19,7 +19,6 @@ let client = new OSS({
 const extraTeam = [
   ['谢里夫', '舒列夫'],
   ['康斯塔查灯塔', '法乌尔'],
-  // ['北安普敦', '法乌尔'],
 ];
 export function sim_jaccard(s1: string, s2: string): number {
   const extraFind = extraTeam.find((e) => e.includes(s1));
@@ -97,6 +96,7 @@ export const isLeagueEqual = (l1: string, l2: string) => {
     ['亚运会男足', '亚运会2022男子足球U23(在中国)'],
     ['亚洲冠军联赛', '亚足联冠军联赛'],
     ['世界杯预选赛', '世界杯2026亚洲外围赛', '世界杯2026南美洲外围赛', '世界杯2026非洲外围赛'],
+    ['西班牙篮球联赛', '西班牙篮球甲级联赛'],
   ];
   const isEqual = !!equalNameList.find((d) => d.includes(l1) && d.includes(l2));
   if (isEqual) {
@@ -122,6 +122,59 @@ function getRev(tiCai: number, extra: number, R: number = 0.12) {
 
 export enum Score {
   noSale = '100',
+}
+
+type TiCaiBasketballItem = FirstOfGeneric<ReturnType<typeof getTiCaiBasketballByFetch>>[0];
+export function toBasketballData(tiCaiList: TiCaiBasketballItem[], extraList: ExtraItem[], _R = 0.12) {
+  const dataList = tiCaiList
+    .map((ti) => {
+      let matchedExtra = extraList.find((d) => d.ecid === ti.ecid);
+      if (!matchedExtra) {
+        return void 0;
+      }
+      // 处理队伍错位的情况
+      if (matchedExtra.teamList[0] === ti.teamList[1]) {
+        matchedExtra = {
+          ...matchedExtra,
+          teamList: [matchedExtra.teamList[1], matchedExtra.teamList[0]],
+          itemList: matchedExtra.itemList.map((item) => {
+            return {
+              ...item,
+              oddsItemList: [item.oddsItemList[1], item.oddsItemList[0]],
+            };
+          }),
+        };
+      }
+      const oneMinute = 60 * 1000;
+      return {
+        league: ti.league,
+        tiCaiLeague: ti.league,
+        extraLeague: matchedExtra.league,
+        num: ti.num || '',
+        singleList: ti.singleList,
+        // @ts-ignore
+        rate: matchedExtra.rate,
+        tiCaiDateTime: ti.dateTime,
+        extraDateTime: matchedExtra.dateTime,
+        // 体彩的时间不对，使用extra的时间作为基准
+        dateTime:
+          Math.abs(dayjs(matchedExtra.dateTime).valueOf() - dayjs(ti.dateTime).add(24, 'hour').valueOf()) <= 10 * oneMinute
+            ? dayjs(ti.dateTime).add(24, 'hour').format('MM-DD HH:mm')
+            : dayjs(ti.dateTime).format('MM-DD HH:mm'),
+        tiCaiTeamList: ti.teamList,
+        extraTeamList: matchedExtra?.teamList || ti.teamList,
+        tiCaiItemList: ti.itemList,
+        extraItemList: (matchedExtra?.itemList || []).filter((d: any) => {
+          if (d.oddsTitle === '得分') {
+            return d.oddsItemList[0][0].slice(1) === '2' || d.oddsItemList[0][0].slice(1) === '2.5';
+          }
+          return true;
+        }),
+        revList: [],
+      };
+    })
+    .filter((d) => d);
+  return dataList;
 }
 
 type FirstOfGeneric<T> = T extends Promise<infer F> ? F : never;
@@ -422,6 +475,7 @@ export function toData(tiCaiList: TiCaiItem[], extraList: ExtraItem[], _R = 0.12
     });
 }
 
+// 排序
 export function compare(dataList: ReturnType<typeof toData>, c = 0.13, a = 1, cRev = 430) {
   const filterDataList = dataList
     .filter((d) => {
@@ -475,10 +529,12 @@ export const saveFile = async (fileName: string, data: string) => {
   if (!fs.existsSync(pPath.dir)) {
     fs.mkdirSync(pPath.dir, { recursive: true });
   }
-  const _data = fs.readFileSync(resolve(path, fileName), { encoding: 'utf-8' });
-  // 如果数据没变 就不在保存数据
-  if (data === _data) {
-    return;
+  if (fs.existsSync(resolve(path, fileName))) {
+    const _data = fs.readFileSync(resolve(path, fileName), { encoding: 'utf-8' });
+    // 如果数据没变 就不在保存数据
+    if (data === _data) {
+      return;
+    }
   }
   if (client) {
     try {
@@ -504,12 +560,14 @@ type Store = {
   scoreRev: number;
   halfRev: number;
   data: any;
+  basketballData: any;
   accountList: { password: string; token: string; timestamp: number }[];
 };
 
 export async function getStore(p: 'data'): Promise<Partial<Store>>;
-export async function getStore(): Promise<Partial<Omit<Store, 'data'>>>;
-export async function getStore(p?: 'data'): Promise<Partial<Store>> {
+export async function getStore(p: 'basketballData'): Promise<Partial<Store>>;
+export async function getStore(): Promise<Partial<Omit<Store, 'data'|'basketballData'>>>;
+export async function getStore(p?: 'data' | 'basketballData'): Promise<Partial<Store>> {
   const initData: Partial<Store> = {
     R: 0.12,
     A: 1,
@@ -526,6 +584,10 @@ export async function getStore(p?: 'data'): Promise<Partial<Store>> {
         const dataRes = await client.get(`data.json`);
         return { ...initData, ...JSON.parse(res.content), data: JSON.parse(dataRes.content) };
       }
+      if (p === 'basketballData') {
+        const dataRes = await client.get(`basketballData.json`);
+        return { ...initData, ...JSON.parse(res.content), data: JSON.parse(dataRes.content) };
+      }
       return { ...initData, ...JSON.parse(res.content) };
     } catch (error) {
       return initData;
@@ -537,7 +599,23 @@ export async function getStore(p?: 'data'): Promise<Partial<Store>> {
 export const saveStore = async (s: Partial<Store>, upload = true) => {
   const store = await getStore();
   const tStore: Partial<Store> = R.pick(
-    ['ver', 'uid', 'url', 'timestamp', 'timeFormat', 'R', 'A', 'C', 'Rev', 'compareRev', 'scoreRev', 'halfRev', 'data', 'accountList'],
+    [
+      'ver',
+      'uid',
+      'url',
+      'timestamp',
+      'timeFormat',
+      'R',
+      'A',
+      'C',
+      'Rev',
+      'compareRev',
+      'scoreRev',
+      'halfRev',
+      'data',
+      'accountList',
+      'basketballData',
+    ],
     {
       ...store,
       ...s,
@@ -550,7 +628,10 @@ export const saveStore = async (s: Partial<Store>, upload = true) => {
         if (s.data) {
           await client.put(`data.json`, Buffer.from(Format(s.data)));
         }
-        await client.put(`store.json`, Buffer.from(Format(R.omit(['data'], tStore))));
+        if (s.basketballData) {
+          await client.put(`basketballData.json`, Buffer.from(Format(s.basketballData)));
+        }
+        await client.put(`store.json`, Buffer.from(Format(R.omit(['data', 'basketballData'], tStore))));
       } catch (error) {
         console.log(error);
       }

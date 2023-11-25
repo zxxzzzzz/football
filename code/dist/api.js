@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.retrySendDingDing = exports.sendDingDing = exports.retryLoginByNodeFetch = exports.loginByNodeFetch = exports.retryGetLeagueListAllByNodeFetch = exports.getLeagueListAllByNodeFetch = exports.retryGetGameOBTByNodeFetch = exports.getGameOBTByNodeFetch = exports.retryGetGameListByNodeFetch = exports.retryGetTiCaiByFetch = exports.getTiCaiByFetch = exports.retryWrap = void 0;
+exports.retrySendDingDing = exports.sendDingDing = exports.retryLoginByNodeFetch = exports.loginByNodeFetch = exports.retryGetBasketballLeagueList = exports.getBasketballLeagueList = exports.retryGetLeagueListAllByNodeFetch = exports.getLeagueListAllByNodeFetch = exports.retryGetGameOBTByNodeFetch = exports.getGameOBTByNodeFetch = exports.retryGetGameListByNodeFetch = exports.retryGetBasketballGameList = exports.getBasketballGameList = exports.getBasketballMore = exports.retryGetTiCaiBasketballByFetch = exports.getTiCaiBasketballByFetch = exports.retryGetTiCaiByFetch = exports.getTiCaiByFetch = exports.retryWrap = void 0;
 const xml_js_1 = __importDefault(require("xml-js"));
 const dayjs_1 = __importDefault(require("dayjs"));
 const axios_1 = __importDefault(require("axios"));
@@ -165,6 +165,233 @@ async function getTiCaiByFetch() {
 }
 exports.getTiCaiByFetch = getTiCaiByFetch;
 exports.retryGetTiCaiByFetch = retryWrap(getTiCaiByFetch, 3);
+async function getTiCaiBasketballByFetch() {
+    let data = void 0;
+    try {
+        // https://webapi.sporttery.cn/gateway/jc/basketball/getMatchCalculatorV1.qry?poolCode=hdc&channel=c
+        const res = await axios_1.default.get('https://webapi.sporttery.cn/gateway/jc/basketball/getMatchCalculatorV1.qry?poolCode=hdc&channel=c', {
+            headers: {
+                accept: 'application/json, text/javascript, */*; q=0.01',
+                'accept-language': 'zh-CN,zh;q=0.9',
+                'cache-control': 'no-cache',
+                pragma: 'no-cache',
+                'sec-ch-ua': '"Google Chrome";v="111", "Not(A:Brand";v="8", "Chromium";v="111"',
+                'sec-ch-ua-mobile': '?0',
+                'sec-ch-ua-platform': '"Windows"',
+                'sec-fetch-dest': 'empty',
+                'sec-fetch-mode': 'cors',
+                'sec-fetch-site': 'same-site',
+                Referer: 'https://www.sporttery.cn/',
+                'Referrer-Policy': 'strict-origin-when-cross-origin',
+            },
+        });
+        data = res.data;
+    }
+    catch (error) {
+        throw (0, error_1.createError)('获取体彩足球数据失败', error_1.Code.dataFail);
+    }
+    const matchInfoList = data?.value?.matchInfoList;
+    if (matchInfoList) {
+        const dataList = matchInfoList
+            .map((match) => {
+            return match.subMatchList;
+        })
+            .flat()
+            .map((m) => {
+            const leagueAllName = m.leagueAllName;
+            const g = Math.abs(parseInt(m.hdc.goalLine === void 0 ? '100' : m.hdc.goalLine));
+            return {
+                dateTime: (0, dayjs_1.default)(m.businessDate + ' ' + m.matchTime, 'YYYY-MM-DD HH:mm:ss').format('MM-DD HH:mm'),
+                num: m.matchNumStr,
+                league: leagueAllName,
+                source: 'tiCai',
+                teamList: [m.homeTeamAllName, m.awayTeamAllName],
+                singleList: [false, false],
+                itemList: [
+                    {
+                        oddsTitle: '让球',
+                        oddsItemList: [
+                            // 让分 主胜 主负
+                            ['+' + g, m.hdc.h || '0'],
+                            ['-' + g, m.hdc.a || '0'],
+                        ],
+                    },
+                ],
+                ecid: '',
+            };
+        });
+        return dataList;
+    }
+    return [];
+}
+exports.getTiCaiBasketballByFetch = getTiCaiBasketballByFetch;
+exports.retryGetTiCaiBasketballByFetch = retryWrap(getTiCaiBasketballByFetch, 3);
+async function getBasketballMore(url, ver, uid, lid, gid) {
+    const body = {
+        uid: uid,
+        ver: ver,
+        langx: 'zh-cn',
+        p: 'get_game_more',
+        gtype: 'bk',
+        showtype: 'parlay',
+        ltype: 3,
+        isRB: 'N',
+        lid: lid,
+        specialClick: '',
+        mode: 'NORMAL',
+        filter: 'Main',
+        ts: new Date().valueOf(),
+        gid: gid,
+    };
+    const _url = new URL(url);
+    const bodyStr = obj2Str(body);
+    let text = '';
+    try {
+        const res = await axios_1.default.post(`${_url.origin}/transform.php?ver=${ver}`, bodyStr, {
+            headers: {
+                accept: '*/*',
+                'accept-language': 'zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6',
+                'content-type': 'application/x-www-form-urlencoded',
+                'sec-ch-ua': '"Chromium";v="112", "Microsoft Edge";v="112", "Not:A-Brand";v="99"',
+                'sec-ch-ua-mobile': '?0',
+                'sec-ch-ua-platform': '"Windows"',
+                'sec-fetch-dest': 'empty',
+                'sec-fetch-mode': 'cors',
+                'sec-fetch-site': 'same-origin',
+            },
+        });
+        text = res.data;
+    }
+    catch (error) {
+        // @ts-ignore
+        throw (0, error_1.createError)('获取basketball more比赛数据失败 网络问题' + error.message, error_1.Code.dataFail);
+    }
+    if (!text) {
+        throw (0, error_1.createError)('获取basketball more比赛数据失败,数据空', error_1.Code.dataFail);
+    }
+    const mixObj = xml_js_1.default.xml2js(text, { compact: true });
+    if (mixObj?.serverresponse?.code?._text === 'error') {
+        throw (0, error_1.createError)('uid过期', error_1.Code.uidExpire);
+    }
+    const gameList = (mixObj?.serverresponse?.game || []).filter((g) => !g?.ms?._text);
+    return gameList
+        .map((game) => {
+        const strong = game?.strong?._text;
+        return [
+            strong === 'H'
+                ? {
+                    oddsTitle: '让球',
+                    oddsItemList: [
+                        ['-' + game?.ratio?._text, game?.ior_PRH?._text],
+                        ['+' + game?.ratio?._text, game?.ior_PRC?._text],
+                    ],
+                }
+                : {
+                    oddsTitle: '让球',
+                    oddsItemList: [
+                        ['+' + game?.ratio?._text, game?.ior_PRH?._text],
+                        ['-' + game?.ratio?._text, game?.ior_PRC?._text],
+                    ],
+                },
+            {
+                oddsTitle: '总分',
+                oddsItemList: [
+                    ['+' + game?.ratio_o?._text, game?.ior_POUC?._text],
+                    ['-' + game?.ratio_o?._text, game?.ior_POUH?._text],
+                ],
+            },
+            {
+                oddsTitle: '独赢',
+                oddsItemList: [[game?.ior_MH?._text, game?.ior_MC?._text]],
+            },
+        ];
+    })
+        .flat()
+        .filter((d) => !d.oddsItemList?.[0]?.[1] || d.oddsItemList?.[0]?.[1] !== '0');
+}
+exports.getBasketballMore = getBasketballMore;
+const delay = (n) => {
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            resolve(true);
+        }, n);
+    });
+};
+async function getBasketballGameList(url, ver, uid, lid) {
+    const body = {
+        uid: uid,
+        ver: ver,
+        langx: 'zh-cn',
+        p: 'get_game_list',
+        p3type: '',
+        date: 'all',
+        gtype: 'bk',
+        showtype: 'parlay',
+        rtype: 'r',
+        ltype: 3,
+        lid: lid,
+        action: 'click_league',
+        sorttype: 'L',
+        specialClick: '',
+        isFantasy: 'N',
+        ts: new Date().valueOf(),
+    };
+    const _url = new URL(url);
+    const bodyStr = obj2Str(body);
+    let text = void 0;
+    try {
+        const res = await axios_1.default.post(`${_url.origin}/transform.php?ver=${ver}`, bodyStr, {
+            headers: {
+                accept: '*/*',
+                'accept-language': 'zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6',
+                'content-type': 'application/x-www-form-urlencoded',
+                'sec-ch-ua': '"Chromium";v="112", "Microsoft Edge";v="112", "Not:A-Brand";v="99"',
+                'sec-ch-ua-mobile': '?0',
+                'sec-ch-ua-platform': '"Windows"',
+                'sec-fetch-dest': 'empty',
+                'sec-fetch-mode': 'cors',
+                'sec-fetch-site': 'same-origin',
+            },
+        });
+        text = res.data;
+    }
+    catch (error) {
+        // @ts-ignore
+        throw (0, error_1.createError)('获取basketball比赛数据失败 网络问题' + error.message, error_1.Code.dataFail);
+    }
+    if (!text) {
+        throw (0, error_1.createError)('获取basketball比赛数据失败,数据空', error_1.Code.dataFail);
+    }
+    const mixObj = xml_js_1.default.xml2js(text, { compact: true });
+    if (mixObj?.serverresponse?.code?._text === 'error') {
+        throw (0, error_1.createError)('uid过期', error_1.Code.uidExpire);
+    }
+    const gameList = []
+        .concat(mixObj?.serverresponse?.ec)
+        .filter((e) => e)
+        .map((ec) => {
+        const game = ec.game;
+        const vDateTime = game.DATETIME._text.slice(0, -1) + ' ' + game.DATETIME._text.slice(-1)[0] + 'm';
+        return {
+            league: game.LEAGUE._text || '',
+            source: 'extra',
+            ecid: game.GID._text,
+            num: '',
+            singleList: [false, false],
+            strong: game.STRONG._text,
+            dateTime: (0, dayjs_1.default)(vDateTime, 'MM-DD HH:mm a').add(12, 'hour').format('MM-DD HH:mm'),
+            itemList: [],
+            teamList: [game.TEAM_H._text, game.TEAM_C._text],
+        };
+    });
+    for (const game of gameList) {
+        game.itemList = await getBasketballMore(url, ver, uid, lid, game.ecid);
+        await delay(500);
+    }
+    return gameList;
+}
+exports.getBasketballGameList = getBasketballGameList;
+exports.retryGetBasketballGameList = retryWrap(getBasketballGameList, 3);
 async function getGameListByNodeFetch(url, ver, uid, lid) {
     const body = {
         uid: uid,
@@ -422,6 +649,62 @@ async function getLeagueListAllByNodeFetch(url, uid, ver) {
 }
 exports.getLeagueListAllByNodeFetch = getLeagueListAllByNodeFetch;
 exports.retryGetLeagueListAllByNodeFetch = retryWrap(getLeagueListAllByNodeFetch, 3);
+async function getBasketballLeagueList(url, uid, ver) {
+    const body = {
+        p: 'get_league_list_All',
+        uid: uid,
+        ver: ver,
+        langx: 'zh-cn',
+        gtype: 'BK',
+        FS: 'N',
+        showtype: 'p3',
+        date: 'all',
+        ts: new Date().valueOf(),
+        nocp: 'N',
+    };
+    const _url = new URL(url);
+    const bodyStr = obj2Str(body);
+    let text = void 0;
+    try {
+        const res = await axios_1.default.post(`${_url.origin}/transform.php?ver=${ver}`, bodyStr, {
+            headers: {
+                accept: '*/*',
+                'accept-language': 'zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6',
+                'content-type': 'application/x-www-form-urlencoded',
+                'sec-ch-ua': '"Chromium";v="112", "Microsoft Edge";v="112", "Not:A-Brand";v="99"',
+                'sec-ch-ua-mobile': '?0',
+                'sec-ch-ua-platform': '"Windows"',
+                'sec-fetch-dest': 'empty',
+                'sec-fetch-mode': 'cors',
+                'sec-fetch-site': 'same-origin',
+            },
+        });
+        text = res.data;
+    }
+    catch (error) {
+        // @ts-ignore
+        throw (0, error_1.createError)('获取extra 联赛数据失败 网络问题' + error.message, error_1.Code.dataFail);
+    }
+    if (!text) {
+        throw (0, error_1.createError)('获取extra 联赛数据失败 数据空', error_1.Code.dataFail);
+    }
+    const mixObj = xml_js_1.default.xml2js(text, { compact: true });
+    if (mixObj?.serverresponse?.code?._text === 'error') {
+        throw (0, error_1.createError)('uid过期', error_1.Code.uidExpire);
+    }
+    return (mixObj?.serverresponse?.classifier?.region || [])
+        .map((r) => {
+        const league = r.league?.length ? r.league : [r.league];
+        return league.map((l) => {
+            const name = l._attributes.name;
+            const id = l._attributes.id;
+            return { name, id };
+        });
+    })
+        .flat();
+}
+exports.getBasketballLeagueList = getBasketballLeagueList;
+exports.retryGetBasketballLeagueList = retryWrap(getBasketballLeagueList, 3);
 async function getServiceMainget(ver) {
     let text2 = void 0;
     try {

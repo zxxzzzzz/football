@@ -28,6 +28,29 @@ resources:
             methods:
               - GET
               - POST
+  basketballData:
+    component: fc3
+    props: # 组件的属性值
+      region: cn-hangzhou # 关于变量的使用方法，可以参考：https://www.serverless-devs.com/serverless-devs/yaml#变量赋值
+      functionName: data
+      runtime: nodejs16
+      code: ./code
+      cpu: 0.3
+      handler: index.basketballData
+      memorySize: 512
+      diskSize: 512
+      description: 'lan球类网站缓存数据'
+      timeout: 60
+      layers:
+        - acs:fc:cn-hangzhou:1048992591952509:layers/ball/versions/2
+      instanceConcurrency: 1
+      triggers:
+        - triggerName: httpTrigger
+          triggerType: http
+          triggerConfig:
+            authType: anonymous
+            methods:
+              - POST
   setting:
     component: fc3
     props: # 组件的属性值

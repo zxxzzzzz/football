@@ -1,4 +1,4 @@
-const { getCacheData, getData, sendDingDingMessage, getSetting, setSetting } = require('./dist/getFootBall');
+const { getCacheData, getData, sendDingDingMessage, getSetting, setSetting, getBasketballCacheData } = require('./dist/getFootBall');
 const fs = require('fs');
 const path = require('path');
 const { createHash } = require('crypto');
@@ -103,8 +103,20 @@ const useData = async (request, response) => {
     'Content-Type': 'application/json',
   };
 };
+const useBasketballData = async (request, response) => {
+  const password = request?.queryParameters?.p || '';
+  const token = request?.queryParameters?.token || '';
+  const responseData = await getBasketballCacheData({ password, token });
+  response.statusCode = 200;
+  response.body = responseData;
+  response.headers = {
+    ...(response.headers || {}),
+    'Content-Type': 'application/json',
+  };
+};
 
 exports.data = (_event, content, callback) => pipe(_event, content, callback, [useData, useCache]);
+exports.basketballData = (_event, content, callback) => pipe(_event, content, callback, [useBasketballData, useCache]);
 
 exports.dataUpdate = async (event, context, callback) => {
   try {
