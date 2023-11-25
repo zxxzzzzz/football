@@ -568,7 +568,7 @@ async function getStore(p) {
             }
             if (p === 'basketballData') {
                 const dataRes = await client.get(`basketballData.json`);
-                return { ...initData, ...JSON.parse(res.content), data: JSON.parse(dataRes.content) };
+                return { ...initData, ...JSON.parse(res.content), basketballData: JSON.parse(dataRes.content) };
             }
             return { ...initData, ...JSON.parse(res.content) };
         }

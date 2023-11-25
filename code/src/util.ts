@@ -586,7 +586,7 @@ export async function getStore(p?: 'data' | 'basketballData'): Promise<Partial<S
       }
       if (p === 'basketballData') {
         const dataRes = await client.get(`basketballData.json`);
-        return { ...initData, ...JSON.parse(res.content), data: JSON.parse(dataRes.content) };
+        return { ...initData, ...JSON.parse(res.content), basketballData: JSON.parse(dataRes.content) };
       }
       return { ...initData, ...JSON.parse(res.content) };
     } catch (error) {
