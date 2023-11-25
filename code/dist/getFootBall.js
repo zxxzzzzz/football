@@ -114,6 +114,9 @@ const getBasketballCacheData = async (reqData) => {
     return {
         code: 500,
         msg: '默认更新错误',
+        data: {
+            token: currentAccount.token,
+        },
     };
 };
 exports.getBasketballCacheData = getBasketballCacheData;
