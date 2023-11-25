@@ -1,7 +1,7 @@
 const { getCacheData, getData, sendDingDingMessage, getSetting, setSetting, getBasketballCacheData } = require('./dist/getFootBall');
 const fs = require('fs');
 const path = require('path');
-const { createHash } = require('crypto');
+const { createHmac } = require('crypto');
 
 // {
 //   "version": "v1",
@@ -51,7 +51,7 @@ const pipe = async (event, context, callback, funcList = []) => {
 };
 
 const useCache = (request, response) => {
-  const hash = createHash('sha256');
+  const hash = createHmac('sha256', '123@');
   const requestEtag = request?.headers?.['If-None-Match'] || '';
   const body = typeof response.body === 'string' ? response.body : JSON.stringify(response.body);
   const hashText = hash.update(body, 'utf-8').digest('hex');
