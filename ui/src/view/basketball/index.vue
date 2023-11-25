@@ -5,60 +5,12 @@
     <div class="mx-4">
       <Table :dataSource="sortDataSource" :columns="columns" bordered :rowClassName="rowClassName" :pagination="pagination"></Table>
     </div>
-    <Drawer width="840" placement="right" :closable="true" :visible="drawerVisible" :mask="true" @close="onClose">
-      <List item-layout="horizontal" :data-source="message1List">
-        <template #renderItem="{ item }">
-          <div class="flex flex-wrap mb-2">
-            <div v-for="(t, index) in item.split(' ')" :style="{ color: colors[index], margin: '0 4px' }" class="whitespace-nowrap">
-              {{ t }}
-            </div>
-          </div>
-        </template>
-      </List>
-      <Divider></Divider>
-      <List item-layout="horizontal" :data-source="message2List">
-        <template #renderItem="{ item }">
-          <div class="mb-2">
-            <div class="flex flex-wrap">
-              <div v-for="(t, index) in item[0].split(' ')" :style="{ color: colors[index], margin: '0 4px' }" class="whitespace-nowrap">
-                {{ t }}
-              </div>
-            </div>
-            <div class="flex flex-wrap">
-              <div v-for="(t, index) in item[1].split(' ')" :style="{ color: colors[index], margin: '0 4px' }" class="whitespace-nowrap">
-                {{ t }}
-              </div>
-            </div>
-          </div>
-        </template>
-      </List>
-      <Divider></Divider>
-      <List item-layout="horizontal" :data-source="message3List">
-        <template #renderItem="{ item }">
-          <div class="flex flex-wrap mb-2">
-            <div v-for="(t, index) in item.split(' ')" :style="{ color: colors[index], margin: '0 4px' }" class="whitespace-nowrap">
-              {{ t }}
-            </div>
-          </div>
-        </template>
-      </List>
-      <Divider></Divider>
-      <List item-layout="horizontal" :data-source="message4List">
-        <template #renderItem="{ item }">
-          <div class="flex flex-wrap mb-2">
-            <div v-for="(t, index) in item.split(' ')" :style="{ color: colors[index], margin: '0 4px' }" class="whitespace-nowrap">
-              {{ t }}
-            </div>
-          </div>
-        </template>
-      </List>
-    </Drawer>
     <Affix :offsetBottom="400" :style="{ position: 'absolute', right: 0 + 'px' }">
       <div class="flex flex-col">
         <Button type="primary" @click="() => (drawerVisible = true)" class="my-2"> 消息</Button>
         <Button type="primary" @click="handleSort" class="my-2">{{ sortName }}</Button>
         <Button class="my-2" @click="handleSetting"> 设置</Button>
-        <Button class="my-2" @click="router.push('/basketball')">篮球</Button>
+        <Button class="my-2" @click="router.push('/')"> 足球</Button>
       </div>
     </Affix>
   </div>
@@ -75,11 +27,11 @@ import Extra from './component/extra.vue';
 // import { Game } from './type';
 import Rev from './component/rev.vue';
 import dayjs from 'dayjs';
-import { useRouter,useRoute } from 'vue-router';
+import { useRouter, useRoute } from 'vue-router';
 import store from '@/store';
 
 const router = useRouter();
-const route = useRoute()
+const route = useRoute();
 
 // defineProps<{}>();
 type D = {
@@ -170,54 +122,16 @@ enum Code {
   maintain = 619,
   uidExpire = 801,
   forbidden = 401,
+  interError = 500,
 }
 
 // const dataList = ref<Game[]>([]);
 const dataSource = ref<D[]>([]);
 const sortDataSource = computed(() => {
-  if (sortType.value === SortType.rev) {
-    return dataSource.value.sort((a, b) => {
-      const rev1 = a.revList.reduce((re, cur) => {
-        if (cur.isMatch && cur.rev > re) {
-          return cur.rev;
-        }
-        return re;
-      }, -Infinity);
-      const rev2 = b.revList.reduce((re, cur) => {
-        if (cur.isMatch && cur.rev > re) {
-          return cur.rev;
-        }
-        return re;
-      }, -Infinity);
-      return rev2 - rev1;
-    });
-  }
-  if (sortType.value === SortType.score) {
-    return dataSource.value.sort((a, b) => {
-      const rev1 = a.scoreRevList.reduce((re, cur) => {
-        if (cur.rev > re) {
-          return cur.rev;
-        }
-        return re;
-      }, -Infinity);
-      const rev2 = b.scoreRevList.reduce((re, cur) => {
-        if (cur.rev > re) {
-          return cur.rev;
-        }
-        return re;
-      }, -Infinity);
-      return rev2 - rev1;
-    });
-  }
-  if (sortType.value === SortType.normal) {
-    return dataSource.value.sort((a, b) => dayjs(a.dateTime, 'MM-DD HH:ss').valueOf() - dayjs(b.dateTime, 'MM-DD HH:ss').valueOf());
-  }
+  // if (sortType.value === SortType.normal) {
+  return dataSource.value.sort((a, b) => dayjs(a.dateTime, 'MM-DD HH:ss').valueOf() - dayjs(b.dateTime, 'MM-DD HH:ss').valueOf());
+  // }
 });
-const message1List = ref<string[]>([]);
-const message2List = ref<string[]>([]);
-const message3List = ref<string[]>([]);
-const message4List = ref<string[]>([]);
-// 在线人数
 let timeId: ReturnType<typeof setTimeout> | undefined = void 0;
 // 是否按照rev排序
 const enum SortType {
@@ -246,12 +160,11 @@ const pagination: TableProps['pagination'] = {
 };
 
 async function getData() {
-  console.log(route.path);
-  if (route.path !== '/home') {
+  if (route.path !== '/basketball') {
     return false
   }
-  const origin = import.meta.env.DEV ? 'http://127.0.0.1:9000' : location.origin;
-  const res = await fetch(`${origin}/data/?p=${store.password}&token=${store.token}`);
+  const origin = import.meta.env.DEV ? 'http://data.fcv3.1048992591952509.cn-hangzhou.fc.devsapp.net' : location.origin;
+  const res = await fetch(`${origin}/basketballData/?p=${store.password}&token=${store.token}`);
   const data = (await res.json()) as { code: number; msg: string; data?: any };
   if (data.code !== 200) {
     message.error(data?.msg || '更新出错', 20);
@@ -259,6 +172,12 @@ async function getData() {
     if (data?.code === Code.maintain) {
       message.info('已停止数据自动更新', 10);
       return false;
+    }
+    if (data?.code === Code.interError) {
+      if (data?.data?.token) {
+        localStorage.setItem('token', data?.data?.token);
+        store.token = data?.data?.token;
+      }
     }
     if (data?.code === Code.accountUnknownFail) {
       message.info('为了保证账号安全，已停止数据自动更新。刷新页面可开始继续自动更新', 10);
@@ -282,12 +201,8 @@ async function getData() {
       5
     );
     dataSource.value = data.data.matchData;
-    message1List.value = data.data.message1List;
-    message2List.value = data.data.message2List;
-    message3List.value = data.data.message3List;
-    message4List.value = data.data.message4List;
-    localStorage.setItem('token', data.data.token)
-    store.token = data.data.token
+    localStorage.setItem('token', data.data.token);
+    store.token = data.data.token;
   }
   return true;
 }
@@ -318,10 +233,6 @@ onUnmounted(() => {
     clearTimeout(timeId);
   }
 });
-
-const onClose = () => {
-  drawerVisible.value = false;
-};
 
 const handleSort = () => {
   if (sortType.value === SortType.normal) {
@@ -379,20 +290,10 @@ const columns: TableProps<Record>['columns'] = [
     customRender({ record }) {
       return h(Extra, {
         teamList: record.extraTeamList,
-        itemList: record.extraItemList.filter((e) => ['让球', '得分', '独赢'].includes(e.oddsTitle)),
+        itemList: record.extraItemList.filter((e) => ['让球', '总分', '独赢'].includes(e.oddsTitle)),
         revList: record.revList,
         halfRevList: record.halfRevList,
         scoreRevList: record.scoreRevList,
-      });
-    },
-  },
-  {
-    title: 'Rev',
-    customRender({ record }) {
-      return h(Rev, {
-        itemList: record.revList,
-        scoreItemList: record.scoreRevList,
-        halfItemList: record.halfRevList,
       });
     },
   },
