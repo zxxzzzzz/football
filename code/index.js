@@ -110,8 +110,8 @@ const useBasketballData = async (request, response) => {
   const password = request?.queryParameters?.p || '';
   const token = request?.queryParameters?.token || '';
   const responseData = await getBasketballCacheData({ password, token });
-  response.statusCode = 200;
-  response.body = responseData;
+  response.statusCode = 304;
+  response.body = '';
   response.headers = {
     ...(response.headers || {}),
     'Content-Type': 'application/json',
