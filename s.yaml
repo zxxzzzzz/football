@@ -166,6 +166,7 @@ resources:
           - functionName: basketballData
             methods:
               - POST
+              - GET
             path: /basketballData/*
             qualifier: LATEST
           - functionName: setting
