@@ -97,6 +97,7 @@ export const isLeagueEqual = (l1: string, l2: string) => {
     ['亚洲冠军联赛', '亚足联冠军联赛'],
     ['世界杯预选赛', '世界杯2026亚洲外围赛', '世界杯2026南美洲外围赛', '世界杯2026非洲外围赛'],
     ['西班牙篮球联赛', '西班牙篮球甲级联赛'],
+    ['美国职业篮球联盟', 'NBA美国职业篮球联赛'],
   ];
   const isEqual = !!equalNameList.find((d) => d.includes(l1) && d.includes(l2));
   if (isEqual) {
