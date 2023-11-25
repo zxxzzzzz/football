@@ -59,6 +59,8 @@ const useCache = (request, response) => {
     ...(response.headers || {}),
     'Cache-Control': 'no-cache',
     ETag: hashText,
+    hashText,
+    requestEtag
   };
   if (requestEtag && hashText === requestEtag) {
     response.statusCode = 304;
@@ -103,6 +105,7 @@ const useData = async (request, response) => {
     'Content-Type': 'application/json',
   };
 };
+
 const useBasketballData = async (request, response) => {
   const password = request?.queryParameters?.p || '';
   const token = request?.queryParameters?.token || '';
@@ -116,6 +119,7 @@ const useBasketballData = async (request, response) => {
 };
 
 exports.data = (_event, content, callback) => pipe(_event, content, callback, [useData, useCache]);
+
 exports.basketballData = (_event, content, callback) => pipe(_event, content, callback, [useBasketballData, useCache]);
 
 exports.dataUpdate = async (event, context, callback) => {
