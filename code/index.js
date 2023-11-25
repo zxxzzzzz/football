@@ -36,8 +36,8 @@ const { createHmac } = require('crypto');
 
 const pipe = async (event, context, callback, funcList = []) => {
   const request = JSON.parse(event.toString());
-  if(request.headers['Content-Type'] === 'application/json'){
-    request.body = JSON.parse(request.body)
+  if (request.headers['Content-Type'] === 'application/json') {
+    request.body = JSON.parse(request.body);
   }
   const response = {};
   try {
@@ -60,7 +60,7 @@ const useCache = (request, response) => {
     ETag: hashText,
     hashText,
     requestEtag,
-    isT:requestEtag && hashText === requestEtag
+    isT: requestEtag && hashText === requestEtag ? 'true' : 'false',
   };
   if (requestEtag && hashText === requestEtag) {
     response.statusCode = 304;
@@ -163,6 +163,6 @@ exports.getRequest = (_event, content, callback) =>
         ...(response.headers || {}),
         'Content-Type': 'application/json',
       };
-      response.body = request
+      response.body = request;
     },
   ]);
