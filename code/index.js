@@ -1,4 +1,4 @@
-const { getCacheData, getData, sendDingDingMessage, getSetting, setSetting, getBasketballCacheData } = require('./dist/getFootBall');
+const { getCacheData, getData, sendDingDingMessage, getSetting, setSetting, getBasketballCacheData,getBasketballData } = require('./dist/getFootBall');
 const fs = require('fs');
 const path = require('path');
 const { createHmac } = require('crypto');
@@ -123,6 +123,7 @@ exports.dataUpdate = async (event, context, callback) => {
   try {
     const { log, matchData } = await getData('peng902', 'Aakk8899');
     await sendDingDingMessage(matchData);
+    await getBasketballData('peng902', 'Aakk8899')
     callback(null, {
       statusCode: 500,
       body: log,
