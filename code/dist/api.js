@@ -293,7 +293,7 @@ async function getBasketballMore(url, ver, uid, lid, gid) {
         return [
             {
                 oddsTitle: '让球',
-                oddsItemList: [[strong === 'H' ? '-' : '+' + game?.ratio?._text, game?.ior_PRH?._text, game?.ior_PRC?._text]],
+                oddsItemList: [[(strong === 'H' ? '-' : '+') + game?.ratio?._text, game?.ior_PRH?._text, game?.ior_PRC?._text]],
             },
             {
                 oddsTitle: '总分',
