@@ -187,7 +187,7 @@ export async function getTiCaiBasketballByFetch() {
   let data: any = void 0;
   try {
     // https://webapi.sporttery.cn/gateway/jc/basketball/getMatchCalculatorV1.qry?poolCode=hdc&channel=c
-    const res = await axios.get('https://webapi.sporttery.cn/gateway/jc/basketball/getMatchCalculatorV1.qry?poolCode=hdc&channel=c', {
+    const res = await axios.get('https://webapi.sporttery.cn/gateway/jc/basketball/getMatchCalculatorV1.qry?poolCode=hdc,hilo,mnl&channel=c', {
       headers: {
         accept: 'application/json, text/javascript, */*; q=0.01',
         'accept-language': 'zh-CN,zh;q=0.9',
@@ -216,7 +216,7 @@ export async function getTiCaiBasketballByFetch() {
       .flat()
       .map((m) => {
         const leagueAllName = m.leagueAllName;
-        const g = Math.abs(parseInt(m.hdc.goalLine === void 0 ? '100' : m.hdc.goalLine))
+        const g = Math.abs(parseFloat(m.hdc.goalLine === void 0 ? '100' : m.hdc.goalLine))
         return {
           dateTime: dayjs(m.businessDate + ' ' + m.matchTime, 'YYYY-MM-DD HH:mm:ss').format('MM-DD HH:mm'),
           num: m.matchNumStr,
@@ -231,6 +231,22 @@ export async function getTiCaiBasketballByFetch() {
                 // 让分 主胜 主负
                 ['+' + g, m.hdc.h || '0'],
                 ['-' + g, m.hdc.a || '0'],
+              ],
+            },
+            {
+              oddsTitle: '让球',
+              oddsItemList: [
+                // 让分 主胜 主负
+                ['+0', m.mnl.h || '0'],
+                ['-0', m.mnl.a || '0'],
+              ],
+            },
+            {
+              oddsTitle: '总分',
+              oddsItemList: [
+                // 让分 主胜 主负
+                ['+' + parseFloat(m.hilo.goalLine), m.hilo.h || '0'],
+                ['-' + parseFloat(m.hilo.goalLine), m.hilo.l || '0'],
               ],
             },
           ] as {

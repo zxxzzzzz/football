@@ -153,19 +153,6 @@ function toBasketballData(tiCaiList, extraList, _R = 0.12) {
         if (!matchedExtra) {
             return void 0;
         }
-        // 处理队伍错位的情况
-        if (matchedExtra.teamList[0] === ti.teamList[1]) {
-            matchedExtra = {
-                ...matchedExtra,
-                teamList: [matchedExtra.teamList[1], matchedExtra.teamList[0]],
-                itemList: matchedExtra.itemList.map((item) => {
-                    return {
-                        ...item,
-                        oddsItemList: [item.oddsItemList[1], item.oddsItemList[0]],
-                    };
-                }),
-            };
-        }
         const oneMinute = 60 * 1000;
         return {
             league: ti.league,
@@ -184,12 +171,7 @@ function toBasketballData(tiCaiList, extraList, _R = 0.12) {
             tiCaiTeamList: ti.teamList,
             extraTeamList: matchedExtra?.teamList || ti.teamList,
             tiCaiItemList: ti.itemList,
-            extraItemList: (matchedExtra?.itemList || []).filter((d) => {
-                if (d.oddsTitle === '得分') {
-                    return d.oddsItemList[0][0].slice(1) === '2' || d.oddsItemList[0][0].slice(1) === '2.5';
-                }
-                return true;
-            }),
+            extraItemList: (matchedExtra?.itemList || []),
             revList: [],
         };
     })
