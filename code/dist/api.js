@@ -199,7 +199,7 @@ async function getTiCaiBasketballByFetch() {
             .flat()
             .map((m) => {
             const leagueAllName = m.leagueAllName;
-            const g = Math.abs(parseFloat(m.hdc.goalLine === void 0 ? '100' : m.hdc.goalLine));
+            const g = m.hdc.goalLine || '0';
             return {
                 dateTime: (0, dayjs_1.default)(m.businessDate + ' ' + m.matchTime, 'YYYY-MM-DD HH:mm:ss').format('MM-DD HH:mm'),
                 num: m.matchNumStr,
