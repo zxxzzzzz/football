@@ -1,15 +1,13 @@
 <template>
   <div>
-    <div v-for="item in oddsItemList">
-      <div class="flex">
-        <div class="w-4rem h-1.5rem">{{ item.title }}</div>
-        <div class="w-5rem h-1.5rem" v-for="el in item.item">
-          {{ el }}
-        </div>
-
+    <Ball :itemList="props.itemList" ></Ball>
+    <div class="flex">
+      <div v-for="item in oddsItemList" class="mr-1.5rem">
+        <div >总分：{{ item.title }}</div>
+        <div>胜&nbsp;&nbsp;&nbsp;：{{ item.win }}</div>
+        <div>负&nbsp;&nbsp;&nbsp;：{{ item.lose }}</div>
       </div>
     </div>
-    <!-- <Ball :revList="props.revList" :halfRevList="props.halfRevList" :itemList="ballItemList" class="flex-1"></Ball> -->
   </div>
 </template>
 <script lang="ts" setup>
@@ -49,12 +47,14 @@ type Rev3 = {
 };
 const props = defineProps<{ teamList: string[]; itemList: Item[]; revList: Rev[]; scoreRevList: Rev2[]; halfRevList: Rev3[] }>();
 
+// 总分
 const oddsItemList = computed(() => {
-  return props.itemList.map((item) => {
+  return props.itemList.filter(item => item.oddsTitle === '总分').map((item) => {
     return item.oddsItemList.map((odd) => {
       return {
-        title: item.oddsTitle,
-        item: odd,
+        title: odd[0],
+        win: odd[1],
+        lose: odd[2],
       };
     });
   }).flat();
