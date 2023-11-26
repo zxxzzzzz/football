@@ -315,37 +315,25 @@ export async function getBasketballMore(url: string, ver: string, uid: string, l
     .map((game: any) => {
       const strong = game?.strong?._text;
       return [
-        strong === 'H'
-          ? {
-              oddsTitle: '让球',
-              oddsItemList: [['-' + game?.ratio?._text, game?.ior_PRH?._text, game?.ior_PRC?._text]],
-            }
-          : {
-              oddsTitle: '让球',
-              oddsItemList: [['-' + game?.ratio?._text, game?.ior_PRC?._text, game?.ior_PRH?._text]],
-            },
-        strong === 'H'
-          ? {
-              oddsTitle: '总分',
-              oddsItemList: [[game?.ratio_o?._text, game?.ior_POUH?._text, game?.ior_POUC?._text]],
-            }
-          : {
-              oddsTitle: '总分',
-              oddsItemList: [[game?.ratio_o?._text, game?.ior_POUC?._text, game?.ior_POUH?._text]],
-            },
-        strong === 'H'
-          ? {
-              oddsTitle: '让球',
-              oddsItemList: [['0', game?.ior_MH?._text, game?.ior_MC?._text]],
-            }
-          : {
-              oddsTitle: '让球',
-              oddsItemList: [['0', game?.ior_MC?._text, game?.ior_MH?._text]],
-            },
+        {
+          oddsTitle: '让球',
+          oddsItemList: [['-' + game?.ratio?._text, game?.ior_PRH?._text, game?.ior_PRC?._text]],
+        },
+
+        {
+          oddsTitle: '总分',
+          oddsItemList: [[game?.ratio_o?._text, game?.ior_POUH?._text, game?.ior_POUC?._text]],
+        },
+
+        {
+          oddsTitle: '让球',
+          oddsItemList: [['0', game?.ior_MH?._text, game?.ior_MC?._text]],
+        },
       ];
     })
     .flat()
-    .filter((d) => !d.oddsItemList?.[0]?.[1] || d.oddsItemList?.[0]?.[1] !== '0').sort((a,b)=> a.oddsItemList[0][0] == '0' ? 1: -1);
+    .filter((d) => !d.oddsItemList?.[0]?.[1] || d.oddsItemList?.[0]?.[1] !== '0')
+    .sort((a, b) => (a.oddsItemList[0][0] == '0' ? 1 : -1));
 }
 
 const delay = (n: number) => {
