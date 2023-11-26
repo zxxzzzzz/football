@@ -321,7 +321,7 @@ async function getBasketballMore(url, ver, uid, lid, gid) {
         ];
     })
         .flat()
-        .filter((d) => !d.oddsItemList?.[0]?.[1] || d.oddsItemList?.[0]?.[1] !== '0');
+        .filter((d) => !d.oddsItemList?.[0]?.[1] || d.oddsItemList?.[0]?.[1] !== '0').sort((a, b) => a.oddsItemList[0][0] == '0' ? 1 : 0);
 }
 exports.getBasketballMore = getBasketballMore;
 const delay = (n) => {
