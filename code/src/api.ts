@@ -317,7 +317,7 @@ export async function getBasketballMore(url: string, ver: string, uid: string, l
       return [
         {
           oddsTitle: '让球',
-          oddsItemList: [['-' + game?.ratio?._text, game?.ior_PRH?._text, game?.ior_PRC?._text]],
+          oddsItemList: [[strong === 'H' ? '-' : '+' + game?.ratio?._text, game?.ior_PRH?._text, game?.ior_PRC?._text]],
         },
 
         {
