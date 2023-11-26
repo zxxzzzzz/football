@@ -318,11 +318,11 @@ export async function getBasketballMore(url: string, ver: string, uid: string, l
         strong === 'H'
           ? {
               oddsTitle: '让球',
-              oddsItemList: [[game?.ratio?._text, game?.ior_PRH?._text, game?.ior_PRC?._text]],
+              oddsItemList: [['-' + game?.ratio?._text, game?.ior_PRH?._text, game?.ior_PRC?._text]],
             }
           : {
               oddsTitle: '让球',
-              oddsItemList: [[game?.ratio?._text, game?.ior_PRC?._text, game?.ior_PRH?._text]],
+              oddsItemList: [['-' + game?.ratio?._text, game?.ior_PRC?._text, game?.ior_PRH?._text]],
             },
         strong === 'H'
           ? {
