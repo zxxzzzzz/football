@@ -39,8 +39,8 @@ const dataSource = computed(() => {
     const oddsItemList = item.oddsItemList;
     return {
       scoreText: oddsItemList[0][0],
-      win: parseFloat(oddsItemList[0][1]),
-      lose: parseFloat(oddsItemList[0][2]),
+      win: parseFloat(oddsItemList[0][1]).toFixed(2),
+      lose: parseFloat(oddsItemList[0][2]).toFixed(2),
     };
   });
 });

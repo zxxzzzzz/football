@@ -53,8 +53,8 @@ const oddsItemList = computed(() => {
     return item.oddsItemList.map((odd) => {
       return {
         title: odd[0],
-        win: odd[1],
-        lose: odd[2],
+        win: parseFloat(odd[1]).toFixed(2),
+        lose: parseFloat(odd[2]).toFixed(2),
       };
     });
   }).flat();
