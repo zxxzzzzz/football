@@ -345,7 +345,7 @@ export async function getBasketballMore(url: string, ver: string, uid: string, l
       ];
     })
     .flat()
-    .filter((d) => !d.oddsItemList?.[0]?.[1] || d.oddsItemList?.[0]?.[1] !== '0').sort((a,b)=> a.oddsItemList[0][0] == '0' ? 1: 0);
+    .filter((d) => !d.oddsItemList?.[0]?.[1] || d.oddsItemList?.[0]?.[1] !== '0').sort((a,b)=> a.oddsItemList[0][0] == '0' ? 1: -1);
 }
 
 const delay = (n: number) => {
