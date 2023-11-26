@@ -227,32 +227,34 @@ export async function getTiCaiBasketballByFetch() {
           source: 'tiCai',
           teamList: [m.homeTeamAllName, m.awayTeamAllName],
           singleList: [false, false],
-          itemList: [
-            {
-              oddsTitle: '让球',
-              oddsItemList: [
-                // 让分 主胜 主负
-                [g, m.hdc.h || '0', m.hdc.a || '0'],
-              ],
-            },
-            {
-              oddsTitle: '让球',
-              oddsItemList: [
-                // 让分 主胜 主负
-                ['0', m.mnl.h || '0', m.mnl.a || '0'],
-              ],
-            },
-            {
-              oddsTitle: '总分',
-              oddsItemList: [
-                // 让分 主胜 主负
-                [parseFloat(m.hilo.goalLine).toString(), m.hilo.h || '0', m.hilo.l || '0'],
-              ],
-            },
-          ] as {
-            oddsTitle: string;
-            oddsItemList: string[][];
-          }[],
+          itemList: (
+            [
+              {
+                oddsTitle: '让球',
+                oddsItemList: [
+                  // 让分 主胜 主负
+                  [g, m.hdc.h || '0', m.hdc.a || '0'],
+                ],
+              },
+              {
+                oddsTitle: '让球',
+                oddsItemList: [
+                  // 让分 主胜 主负
+                  ['0', m.mnl.h || '0', m.mnl.a || '0'],
+                ],
+              },
+              {
+                oddsTitle: '总分',
+                oddsItemList: [
+                  // 让分 主胜 主负
+                  [parseFloat(m.hilo.goalLine).toString(), m.hilo.h || '0', m.hilo.l || '0'],
+                ],
+              },
+            ] as {
+              oddsTitle: string;
+              oddsItemList: string[][];
+            }[]
+          ).filter((d) => d.oddsItemList[0][1] != '0'),
           ecid: '',
         };
       });
@@ -316,29 +318,30 @@ export async function getBasketballMore(url: string, ver: string, uid: string, l
         strong === 'H'
           ? {
               oddsTitle: '让球',
-              oddsItemList: [
-                ['-' + game?.ratio?._text, game?.ior_PRH?._text],
-                ['+' + game?.ratio?._text, game?.ior_PRC?._text],
-              ],
+              oddsItemList: [[game?.ratio?._text, game?.ior_PRH?._text, game?.ior_PRC?._text]],
             }
           : {
               oddsTitle: '让球',
-              oddsItemList: [
-                ['+' + game?.ratio?._text, game?.ior_PRH?._text],
-                ['-' + game?.ratio?._text, game?.ior_PRC?._text],
-              ],
+              oddsItemList: [[game?.ratio?._text, game?.ior_PRC?._text, game?.ior_PRH?._text]],
             },
-        {
-          oddsTitle: '总分',
-          oddsItemList: [
-            ['+' + game?.ratio_o?._text, game?.ior_POUC?._text],
-            ['-' + game?.ratio_o?._text, game?.ior_POUH?._text],
-          ],
-        },
-        {
-          oddsTitle: '独赢',
-          oddsItemList: [[game?.ior_MH?._text, game?.ior_MC?._text]],
-        },
+        strong === 'H'
+          ? {
+              oddsTitle: '总分',
+              oddsItemList: [[game?.ratio_o?._text, game?.ior_POUH?._text, game?.ior_POUC?._text]],
+            }
+          : {
+              oddsTitle: '总分',
+              oddsItemList: [[game?.ratio_o?._text, game?.ior_POUC?._text, game?.ior_POUH?._text]],
+            },
+        strong === 'H'
+          ? {
+              oddsTitle: '让球',
+              oddsItemList: [['0', game?.ior_MH?._text, game?.ior_MC?._text]],
+            }
+          : {
+              oddsTitle: '让球',
+              oddsItemList: [['0', game?.ior_MC?._text, game?.ior_MH?._text]],
+            },
       ];
     })
     .flat()

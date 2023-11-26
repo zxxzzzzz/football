@@ -229,7 +229,7 @@ async function getTiCaiBasketballByFetch() {
                             [parseFloat(m.hilo.goalLine).toString(), m.hilo.h || '0', m.hilo.l || '0'],
                         ],
                     },
-                ],
+                ].filter((d) => d.oddsItemList[0][1] != '0'),
                 ecid: '',
             };
         });

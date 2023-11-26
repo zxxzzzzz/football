@@ -1,6 +1,13 @@
 <template>
   <div>
     <Table :dataSource="dataSource" :columns="columns" :pagination="false"></Table>
+    <div class="flex">
+      <div v-for="item in totalItemList">
+        <div >总分：{{ item.scoreTitle }}</div>
+        <div>胜&nbsp;&nbsp;&nbsp;：{{ item.win }}</div>
+        <div>负&nbsp;&nbsp;&nbsp;：{{ item.lose }}</div>
+      </div>
+    </div>
   </div>
 </template>
 <script lang="ts" setup>
@@ -32,19 +39,42 @@ type Rev2 = {
 };
 const props = defineProps<{ itemList: Item[]; revList: Rev[]; scoreRevList: Rev2[]; halfRevList: Rev2[] }>();
 const dataSource = computed(() => {
-  return props.itemList.filter((item) => item.oddsTitle === '让球').map(d => d.oddsItemList).flat().map((odds) => {
-    return {
-      ratio: parseFloat(odds[1]),
-      scoreTitle: odds[0] === Score.noSale ? '未开售' : odds[0],
-    };
-  });
+  return props.itemList
+    .filter((item) => item.oddsTitle === '让球')
+    .map((d) => d.oddsItemList)
+    .flat()
+    .map((odds) => {
+      return {
+        win: parseFloat(odds[1]),
+        lose: parseFloat(odds[2]),
+        scoreTitle: odds[0] === Score.noSale ? '未开售' : odds[0],
+      };
+    });
+});
+// 总分
+const totalItemList = computed(() => {
+  return props.itemList
+    .filter((item) => item.oddsTitle === '总分')
+    .map((d) => d.oddsItemList)
+    .flat()
+    .map((odds) => {
+      return {
+        win: parseFloat(odds[1]),
+        lose: parseFloat(odds[2]),
+        scoreTitle: odds[0] === Score.noSale ? '未开售' : odds[0],
+      };
+    });
 });
 const columns: TableProps<(typeof dataSource.value)[0]>['columns'] = [
   // {title:'球队', customRender(){return '-'}},
   { title: '让球', dataIndex: 'scoreTitle', minWidth: 48 },
   {
-    title: '赔率',
-    dataIndex: 'ratio',
+    title: '胜',
+    dataIndex: 'win',
+  },
+  {
+    title: '负',
+    dataIndex: 'lose',
   },
 ];
 </script>
