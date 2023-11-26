@@ -187,22 +187,25 @@ export async function getTiCaiBasketballByFetch() {
   let data: any = void 0;
   try {
     // https://webapi.sporttery.cn/gateway/jc/basketball/getMatchCalculatorV1.qry?poolCode=hdc&channel=c
-    const res = await axios.get('https://webapi.sporttery.cn/gateway/jc/basketball/getMatchCalculatorV1.qry?poolCode=hdc,hilo,mnl&channel=c', {
-      headers: {
-        accept: 'application/json, text/javascript, */*; q=0.01',
-        'accept-language': 'zh-CN,zh;q=0.9',
-        'cache-control': 'no-cache',
-        pragma: 'no-cache',
-        'sec-ch-ua': '"Google Chrome";v="111", "Not(A:Brand";v="8", "Chromium";v="111"',
-        'sec-ch-ua-mobile': '?0',
-        'sec-ch-ua-platform': '"Windows"',
-        'sec-fetch-dest': 'empty',
-        'sec-fetch-mode': 'cors',
-        'sec-fetch-site': 'same-site',
-        Referer: 'https://www.sporttery.cn/',
-        'Referrer-Policy': 'strict-origin-when-cross-origin',
-      },
-    });
+    const res = await axios.get(
+      'https://webapi.sporttery.cn/gateway/jc/basketball/getMatchCalculatorV1.qry?poolCode=hdc,hilo,mnl&channel=c',
+      {
+        headers: {
+          accept: 'application/json, text/javascript, */*; q=0.01',
+          'accept-language': 'zh-CN,zh;q=0.9',
+          'cache-control': 'no-cache',
+          pragma: 'no-cache',
+          'sec-ch-ua': '"Google Chrome";v="111", "Not(A:Brand";v="8", "Chromium";v="111"',
+          'sec-ch-ua-mobile': '?0',
+          'sec-ch-ua-platform': '"Windows"',
+          'sec-fetch-dest': 'empty',
+          'sec-fetch-mode': 'cors',
+          'sec-fetch-site': 'same-site',
+          Referer: 'https://www.sporttery.cn/',
+          'Referrer-Policy': 'strict-origin-when-cross-origin',
+        },
+      }
+    );
     data = res.data as any;
   } catch (error) {
     throw createError('获取体彩足球数据失败', Code.dataFail);
@@ -216,7 +219,7 @@ export async function getTiCaiBasketballByFetch() {
       .flat()
       .map((m) => {
         const leagueAllName = m.leagueAllName;
-        const g = Math.abs(parseFloat(m.hdc.goalLine === void 0 ? '100' : m.hdc.goalLine))
+        const g = Math.abs(parseFloat(m.hdc.goalLine === void 0 ? '100' : m.hdc.goalLine));
         return {
           dateTime: dayjs(m.businessDate + ' ' + m.matchTime, 'YYYY-MM-DD HH:mm:ss').format('MM-DD HH:mm'),
           num: m.matchNumStr,
@@ -229,24 +232,21 @@ export async function getTiCaiBasketballByFetch() {
               oddsTitle: '让球',
               oddsItemList: [
                 // 让分 主胜 主负
-                ['+' + g, m.hdc.h || '0'],
-                ['-' + g, m.hdc.a || '0'],
+                [g, m.hdc.h || '0', m.hdc.a || '0'],
               ],
             },
             {
               oddsTitle: '让球',
               oddsItemList: [
                 // 让分 主胜 主负
-                ['+0', m.mnl.h || '0'],
-                ['-0', m.mnl.a || '0'],
+                ['0', m.mnl.h || '0', m.mnl.a || '0'],
               ],
             },
             {
               oddsTitle: '总分',
               oddsItemList: [
                 // 让分 主胜 主负
-                ['+' + parseFloat(m.hilo.goalLine), m.hilo.h || '0'],
-                ['-' + parseFloat(m.hilo.goalLine), m.hilo.l || '0'],
+                [parseFloat(m.hilo.goalLine).toString(), m.hilo.h || '0', m.hilo.l || '0'],
               ],
             },
           ] as {

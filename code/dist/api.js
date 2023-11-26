@@ -212,24 +212,21 @@ async function getTiCaiBasketballByFetch() {
                         oddsTitle: '让球',
                         oddsItemList: [
                             // 让分 主胜 主负
-                            ['+' + g, m.hdc.h || '0'],
-                            ['-' + g, m.hdc.a || '0'],
+                            [g, m.hdc.h || '0', m.hdc.a || '0'],
                         ],
                     },
                     {
                         oddsTitle: '让球',
                         oddsItemList: [
                             // 让分 主胜 主负
-                            ['+0', m.mnl.h || '0'],
-                            ['-0', m.mnl.a || '0'],
+                            ['0', m.mnl.h || '0', m.mnl.a || '0'],
                         ],
                     },
                     {
                         oddsTitle: '总分',
                         oddsItemList: [
                             // 让分 主胜 主负
-                            ['+' + parseFloat(m.hilo.goalLine), m.hilo.h || '0'],
-                            ['-' + parseFloat(m.hilo.goalLine), m.hilo.l || '0'],
+                            [parseFloat(m.hilo.goalLine).toString(), m.hilo.h || '0', m.hilo.l || '0'],
                         ],
                     },
                 ],
