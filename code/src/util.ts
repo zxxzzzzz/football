@@ -188,7 +188,7 @@ export function toBasketballData(tiCaiList: TiCaiBasketballItem[], extraList: Ex
             });
             const rev  = Math.max(...[...revList1, ...revList2].map(r => r.rev));
             return [...revList1, ...revList2].find(r => r.rev === rev)
-          }).filter(d =>  d),
+          }).filter(d =>  d).sort((a,b) => (b?.rev||0) - (a?.rev ||0)).slice(0,1),
       };
     })
     .filter((d) => d);
