@@ -164,14 +164,14 @@ export function toBasketballData(tiCaiList: TiCaiBasketballItem[], extraList: Ex
         tiCaiItemList: ti.itemList,
         extraItemList: matchedExtra?.itemList || [],
         revList: ti.itemList
-          .filter((item) => item.oddsTitle === '得分')
+          .filter((item) => item.oddsTitle === '让球')
           .map((item) => {
             const tiCaiItem = item;
             // 体彩主队比较
             const score = parseFloat(tiCaiItem.oddsItemList?.[0]?.[0] || '0');
             const revList1 = (matchedExtra?.itemList || []).filter((item) => {
               const eScore = -parseFloat(item.oddsItemList?.[0]?.[0] || '0');
-              return item.oddsTitle === '得分' && eScore > -score;
+              return item.oddsTitle === '让球' && eScore > -score;
             }).map((extraItem) => {
               const b = parseFloat(extraItem.oddsItemList?.[0]?.[2] || '0')
               const a = parseFloat(item.oddsItemList?.[0]?.[1] || '0')
@@ -180,7 +180,7 @@ export function toBasketballData(tiCaiList: TiCaiBasketballItem[], extraList: Ex
             // 体彩客队比较
             const revList2 = (matchedExtra?.itemList || []).filter((item) => {
               const eScore = -parseFloat(item.oddsItemList?.[0]?.[0] || '0');
-              return item.oddsTitle === '得分' && eScore > -score;
+              return item.oddsTitle === '让球' && eScore > -score;
             }).map((extraItem) => {
               const b = parseFloat(extraItem.oddsItemList?.[0]?.[1] || '0')
               const a = parseFloat(item.oddsItemList?.[0]?.[2] || '0')
