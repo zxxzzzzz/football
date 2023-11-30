@@ -127,13 +127,22 @@ export enum Score {
 
 type TiCaiBasketballItem = FirstOfGeneric<ReturnType<typeof getTiCaiBasketballByFetch>>[0];
 export function toBasketballData(tiCaiList: TiCaiBasketballItem[], extraList: ExtraItem[], _R = 0.12) {
+  const getRev = (a: number, b: number) => {
+    const x = (10000 * a) / (1.025 * b + 0.975);
+    return {
+      GC: a,
+      VV: b,
+      OFFSET: (10000 * a) / (1.025 * b + 0.975),
+      REV: a * 10000 - 8800 - 0.975 * x,
+    };
+  };
   const dataList = tiCaiList
     .map((ti) => {
       let matchedExtra = extraList.find((d) => d.ecid === ti.ecid);
       if (!matchedExtra) {
         return void 0;
       }
-      
+
       const oneMinute = 60 * 1000;
       return {
         league: ti.league,
@@ -153,8 +162,33 @@ export function toBasketballData(tiCaiList: TiCaiBasketballItem[], extraList: Ex
         tiCaiTeamList: ti.teamList,
         extraTeamList: matchedExtra?.teamList || ti.teamList,
         tiCaiItemList: ti.itemList,
-        extraItemList: (matchedExtra?.itemList || []),
-        revList: [],
+        extraItemList: matchedExtra?.itemList || [],
+        revList: ti.itemList
+          .filter((item) => item.oddsTitle === '得分')
+          .map((item) => {
+            const tiCaiItem = item;
+            // 体彩主队比较
+            const score = parseFloat(tiCaiItem.oddsItemList?.[0]?.[0] || '0');
+            const revList1 = (matchedExtra?.itemList || []).filter((item) => {
+              const eScore = -parseFloat(item.oddsItemList?.[0]?.[0] || '0');
+              return item.oddsTitle === '得分' && eScore > -score;
+            }).map((extraItem) => {
+              const b = parseFloat(extraItem.oddsItemList?.[0]?.[2] || '0')
+              const a = parseFloat(item.oddsItemList?.[0]?.[1] || '0')
+              return getRev(a, b)
+            })
+            // 体彩客队比较
+            const revList2 = (matchedExtra?.itemList || []).filter((item) => {
+              const eScore = -parseFloat(item.oddsItemList?.[0]?.[0] || '0');
+              return item.oddsTitle === '得分' && eScore > -score;
+            }).map((extraItem) => {
+              const b = parseFloat(extraItem.oddsItemList?.[0]?.[1] || '0')
+              const a = parseFloat(item.oddsItemList?.[0]?.[2] || '0')
+              return getRev(a, b)
+            });
+            const rev  = Math.max(...[...revList1, ...revList2].map(r => r.REV));
+            return [...revList1, ...revList2].find(r => r.REV === rev)
+          }).filter(d =>  d),
       };
     })
     .filter((d) => d);
@@ -550,7 +584,7 @@ type Store = {
 
 export async function getStore(p: 'data'): Promise<Partial<Store>>;
 export async function getStore(p: 'basketballData'): Promise<Partial<Store>>;
-export async function getStore(): Promise<Partial<Omit<Store, 'data'|'basketballData'>>>;
+export async function getStore(): Promise<Partial<Omit<Store, 'data' | 'basketballData'>>>;
 export async function getStore(p?: 'data' | 'basketballData'): Promise<Partial<Store>> {
   const initData: Partial<Store> = {
     R: 0.12,

@@ -147,6 +147,15 @@ var Score;
     Score["noSale"] = "100";
 })(Score = exports.Score || (exports.Score = {}));
 function toBasketballData(tiCaiList, extraList, _R = 0.12) {
+    const getRev = (a, b) => {
+        const x = (10000 * a) / (1.025 * b + 0.975);
+        return {
+            GC: a,
+            VV: b,
+            OFFSET: (10000 * a) / (1.025 * b + 0.975),
+            REV: a * 10000 - 8800 - 0.975 * x,
+        };
+    };
     const dataList = tiCaiList
         .map((ti) => {
         let matchedExtra = extraList.find((d) => d.ecid === ti.ecid);
@@ -171,8 +180,33 @@ function toBasketballData(tiCaiList, extraList, _R = 0.12) {
             tiCaiTeamList: ti.teamList,
             extraTeamList: matchedExtra?.teamList || ti.teamList,
             tiCaiItemList: ti.itemList,
-            extraItemList: (matchedExtra?.itemList || []),
-            revList: [],
+            extraItemList: matchedExtra?.itemList || [],
+            revList: ti.itemList
+                .filter((item) => item.oddsTitle === '得分')
+                .map((item) => {
+                const tiCaiItem = item;
+                // 体彩主队比较
+                const score = parseFloat(tiCaiItem.oddsItemList?.[0]?.[0] || '0');
+                const revList1 = (matchedExtra?.itemList || []).filter((item) => {
+                    const eScore = -parseFloat(item.oddsItemList?.[0]?.[0] || '0');
+                    return item.oddsTitle === '得分' && eScore > -score;
+                }).map((extraItem) => {
+                    const b = parseFloat(extraItem.oddsItemList?.[0]?.[2] || '0');
+                    const a = parseFloat(item.oddsItemList?.[0]?.[1] || '0');
+                    return getRev(a, b);
+                });
+                // 体彩客队比较
+                const revList2 = (matchedExtra?.itemList || []).filter((item) => {
+                    const eScore = -parseFloat(item.oddsItemList?.[0]?.[0] || '0');
+                    return item.oddsTitle === '得分' && eScore > -score;
+                }).map((extraItem) => {
+                    const b = parseFloat(extraItem.oddsItemList?.[0]?.[1] || '0');
+                    const a = parseFloat(item.oddsItemList?.[0]?.[2] || '0');
+                    return getRev(a, b);
+                });
+                const rev = Math.max(...[...revList1, ...revList2].map(r => r.REV));
+                return [...revList1, ...revList2].find(r => r.REV === rev);
+            }).filter(d => d),
         };
     })
         .filter((d) => d);
