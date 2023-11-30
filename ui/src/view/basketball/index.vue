@@ -24,7 +24,6 @@ import { computed, h, ref, onMounted, watch, onUnmounted } from 'vue';
 import Match from './component/match.vue';
 import TiCai from './component/tiCai.vue';
 import Extra from './component/extra.vue';
-// import { Game } from './type';
 import Rev from './component/rev.vue';
 import dayjs from 'dayjs';
 import { useRouter, useRoute } from 'vue-router';
@@ -294,6 +293,16 @@ const columns: TableProps<Record>['columns'] = [
         revList: record.revList,
         halfRevList: record.halfRevList,
         scoreRevList: record.scoreRevList,
+      });
+    },
+  },
+  {
+    title: 'Rev',
+    customRender({ record }) {
+      return h(Rev, {
+        // teamList: record.extraTeamList,
+        // itemList: record.extraItemList.filter((e) => ['让球', '总分', '独赢'].includes(e.oddsTitle)),
+        revList: record.revList,
       });
     },
   },

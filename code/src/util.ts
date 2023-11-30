@@ -130,10 +130,10 @@ export function toBasketballData(tiCaiList: TiCaiBasketballItem[], extraList: Ex
   const getRev = (a: number, b: number) => {
     const x = (10000 * a) / (1.025 * b + 0.975);
     return {
-      GC: a,
-      VV: b,
-      OFFSET: (10000 * a) / (1.025 * b + 0.975),
-      REV: a * 10000 - 8800 - 0.975 * x,
+      gc: a,
+      vv: b,
+      offset: (10000 * a) / (1.025 * b + 0.975),
+      rev: a * 10000 - 8800 - 0.975 * x,
     };
   };
   const dataList = tiCaiList
@@ -186,8 +186,8 @@ export function toBasketballData(tiCaiList: TiCaiBasketballItem[], extraList: Ex
               const a = parseFloat(item.oddsItemList?.[0]?.[2] || '0')
               return getRev(a, b)
             });
-            const rev  = Math.max(...[...revList1, ...revList2].map(r => r.REV));
-            return [...revList1, ...revList2].find(r => r.REV === rev)
+            const rev  = Math.max(...[...revList1, ...revList2].map(r => r.rev));
+            return [...revList1, ...revList2].find(r => r.rev === rev)
           }).filter(d =>  d),
       };
     })
