@@ -169,26 +169,81 @@ export function toBasketballData(tiCaiList: TiCaiBasketballItem[], extraList: Ex
             const tiCaiItem = item;
             // 体彩主队比较
             const score = parseFloat(tiCaiItem.oddsItemList?.[0]?.[0] || '0');
-            const revList1 = (matchedExtra?.itemList || []).filter((item) => {
-              const eScore = -parseFloat(item.oddsItemList?.[0]?.[0] || '0');
-              return item.oddsTitle === '让球' && eScore > -score;
-            }).map((extraItem) => {
-              const b = parseFloat(extraItem.oddsItemList?.[0]?.[2] || '0')
-              const a = parseFloat(item.oddsItemList?.[0]?.[1] || '0')
-              return getRev(a, b)
-            })
+            const revList1 = (matchedExtra?.itemList || [])
+              .filter((item) => {
+                const eScore = -parseFloat(item.oddsItemList?.[0]?.[0] || '0');
+                return item.oddsTitle === '让球' && eScore > -score && eScore !== 0 && score !== 0;
+              })
+              .map((extraItem) => {
+                const b = parseFloat(extraItem.oddsItemList?.[0]?.[2] || '0');
+                const a = parseFloat(item.oddsItemList?.[0]?.[1] || '0');
+                return getRev(a, b);
+              });
             // 体彩客队比较
-            const revList2 = (matchedExtra?.itemList || []).filter((item) => {
-              const eScore = -parseFloat(item.oddsItemList?.[0]?.[0] || '0');
-              return item.oddsTitle === '让球' && eScore > -score;
-            }).map((extraItem) => {
-              const b = parseFloat(extraItem.oddsItemList?.[0]?.[1] || '0')
-              const a = parseFloat(item.oddsItemList?.[0]?.[2] || '0')
-              return getRev(a, b)
-            });
-            const rev  = Math.max(...[...revList1, ...revList2].map(r => r.rev));
-            return [...revList1, ...revList2].find(r => r.rev === rev)
-          }).filter(d =>  d).sort((a,b) => (b?.rev||0) - (a?.rev ||0)).slice(0,1),
+            const revList2 = (matchedExtra?.itemList || [])
+              .filter((item) => {
+                const eScore = -parseFloat(item.oddsItemList?.[0]?.[0] || '0');
+                return item.oddsTitle === '让球' && eScore > -score && eScore !== 0 && score !== 0;
+              })
+              .map((extraItem) => {
+                const b = parseFloat(extraItem.oddsItemList?.[0]?.[1] || '0');
+                const a = parseFloat(item.oddsItemList?.[0]?.[2] || '0');
+                return getRev(a, b);
+              });
+            // 独赢部分的
+            const revList3 = (matchedExtra?.itemList || [])
+              .filter((item) => {
+                const eScore = -parseFloat(item.oddsItemList?.[0]?.[0] || '0');
+                return item.oddsTitle === '让球' && eScore === 0 && score === 0;
+              })
+              .map((extraItem) => {
+                const b = parseFloat(extraItem.oddsItemList?.[0]?.[1] || '0');
+                const a = parseFloat(item.oddsItemList?.[0]?.[2] || '0');
+                return getRev(a, b);
+              });
+            const revList4 = (matchedExtra?.itemList || [])
+              .filter((item) => {
+                const eScore = -parseFloat(item.oddsItemList?.[0]?.[0] || '0');
+                return item.oddsTitle === '让球' && eScore === 0 && score === 0;
+              })
+              .map((extraItem) => {
+                const b = parseFloat(extraItem.oddsItemList?.[0]?.[2] || '0');
+                const a = parseFloat(item.oddsItemList?.[0]?.[1] || '0');
+                return getRev(a, b);
+              });
+
+            const rev = Math.max(...[...revList1, ...revList2, ...revList3, ...revList4].map((r) => r.rev));
+            return [...revList1, ...revList2].find((r) => r.rev === rev);
+          })
+          .filter((d) => d)
+          .sort((a, b) => (b?.rev || 0) - (a?.rev || 0))
+          .slice(0, 1),
+        scoreRevList: ti.itemList
+          .filter((item) => item.oddsTitle === '总分')
+          .map((item) => {
+            const tiCaiItem = item;
+            const tiCaiScore = parseFloat(item.oddsItemList?.[0]?.[0] || '0');
+            return (matchedExtra?.itemList || [])
+              .filter((item) => item.oddsTitle === '总分')
+              .map((item) => {
+                const extraItem = item;
+                const extraScore = parseFloat(item.oddsItemList?.[0]?.[0] || '0');
+                if (tiCaiScore >= extraScore) {
+                  const a = parseFloat(tiCaiItem.oddsItemList?.[0]?.[2] || '0');
+                  const b = parseFloat(extraItem.oddsItemList?.[0]?.[1] || '0');
+                  return getRev(a, b);
+                }
+                if (tiCaiScore <= extraScore) {
+                  const a = parseFloat(tiCaiItem.oddsItemList?.[0]?.[1] || '0');
+                  const b = parseFloat(extraItem.oddsItemList?.[0]?.[2] || '0');
+                  return getRev(a, b);
+                }
+              });
+          })
+          .flat()
+          .filter((d) => d)
+          .sort((a, b) => (b?.rev || 0) - (a?.rev || 0))
+          .slice(0, 1),
       };
     })
     .filter((d) => d);
