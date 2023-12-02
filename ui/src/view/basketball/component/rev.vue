@@ -15,34 +15,11 @@ import { computed, h, onMounted, ref } from 'vue';
 import { Table, message } from 'ant-design-vue';
 import type { TableProps } from 'ant-design-vue';
 import Highlight from './highlight.vue';
+import { Rev } from '../type';
 
 const props = defineProps<{
-  revList: {
-    isMatch: boolean;
-    type: string;
-    tiCaiOdds: number;
-    extraOdds: number;
-    tiCai: number;
-    extra: number;
-    rev: number;
-    gc: number;
-    vv: number;
-    r: number;
-    offset: number;
-  }[];
-  scoreRevList: {
-    isMatch: boolean;
-    type: string;
-    tiCaiOdds: number;
-    extraOdds: number;
-    tiCai: number;
-    extra: number;
-    rev: number;
-    gc: number;
-    vv: number;
-    r: number;
-    offset: number;
-  }[];
+  revList: Rev[];
+  scoreRevList: Rev[];
 }>();
 const dataSource = computed(() => {
   return props.revList;
@@ -114,3 +91,4 @@ const scoreColumns: TableProps<(typeof dataSource.value)[0]>['columns'] = [
   },
 ];
 </script>
+../type

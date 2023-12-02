@@ -4,13 +4,31 @@
     <div class="flex">
       <div v-for="item in totalItemList">
         <div>总分：{{ item.scoreTitle }}</div>
-        <div class="flex">胜&nbsp;&nbsp;&nbsp;：
-          <Highlight  v-if="props.scoreRevList?.[0]?.tiCaiScore === item.scoreTitle && parseFloat(props.scoreRevList?.[0]?.a) === item.win"  :index="4" :content="item.win.toFixed(2)"></Highlight>
-          <span v-else>{{ item.win.toFixed(2) }}</span> 
+        <div class="flex">
+          胜&nbsp;&nbsp;&nbsp;：
+          <Highlight
+            v-if="
+              props.scoreRevList?.[0]?.tiCaiType === 'win' &&
+              props.scoreRevList?.[0]?.tiCaiScore === item.scoreTitle &&
+              parseFloat(props.scoreRevList?.[0]?.a) === item.win
+            "
+            :index="4"
+            :content="item.win.toFixed(2)"
+          ></Highlight>
+          <span v-else>{{ item.win.toFixed(2) }}</span>
         </div>
-        <div class="flex">负&nbsp;&nbsp;&nbsp;：
-          <Highlight v-if="props.scoreRevList?.[0]?.tiCaiScore === item.scoreTitle && parseFloat(props.scoreRevList?.[0]?.a) === item.lose" :index="4" :content="item.lose.toFixed(2)"></Highlight>
-          <span v-else>{{ item.lose.toFixed(2) }}</span> 
+        <div class="flex">
+          负&nbsp;&nbsp;&nbsp;：
+          <Highlight
+            v-if="
+              props.scoreRevList?.[0]?.tiCaiType === 'lose' &&
+              props.scoreRevList?.[0]?.tiCaiScore === item.scoreTitle &&
+              parseFloat(props.scoreRevList?.[0]?.a) === item.lose
+            "
+            :index="4"
+            :content="item.lose.toFixed(2)"
+          ></Highlight>
+          <span v-else>{{ item.lose.toFixed(2) }}</span>
         </div>
       </div>
     </div>
@@ -32,6 +50,8 @@ type Rev = {
   b: string;
   tiCaiScore: string;
   extraScore: string;
+  tiCaiType: 'lose' | 'win';
+  extraType: 'lose' | 'win';
   rev: number;
 };
 
@@ -70,7 +90,10 @@ const columns: TableProps<(typeof dataSource.value)[0]>['columns'] = [
     title: '胜',
     dataIndex: 'win',
     customRender({ record, index }) {
-      const isMatch = record.scoreTitle === props.revList?.[0]?.tiCaiScore && record.win === parseFloat(props.revList[0].a);
+      const isMatch =
+        props.revList?.[0]?.tiCaiType === 'win' &&
+        record.scoreTitle === props.revList?.[0]?.tiCaiScore &&
+        record.win === parseFloat(props.revList[0].a);
       return isMatch ? h(Highlight, { index: 0, content: record.win.toFixed(2) }) : record.win.toFixed(2);
     },
   },
@@ -78,7 +101,10 @@ const columns: TableProps<(typeof dataSource.value)[0]>['columns'] = [
     title: '负',
     dataIndex: 'lose',
     customRender({ record, index }) {
-      const isMatch = record.scoreTitle === props.revList?.[0]?.tiCaiScore && record.lose === parseFloat(props.revList[0].a);
+      const isMatch =
+        props.revList?.[0]?.tiCaiType === 'lose' &&
+        record.scoreTitle === props.revList?.[0]?.tiCaiScore &&
+        record.lose === parseFloat(props.revList[0].a);
       return isMatch ? h(Highlight, { index: 0, content: record.lose.toFixed(2) }) : record.lose.toFixed(2);
     },
   },

@@ -24,11 +24,11 @@ import { computed, h, ref, onMounted, watch, onUnmounted } from 'vue';
 import Match from './component/match.vue';
 import TiCai from './component/tiCai.vue';
 import Extra from './component/extra.vue';
-import Rev from './component/rev.vue';
+import RevC from './component/rev.vue';
 import dayjs from 'dayjs';
 import { useRouter, useRoute } from 'vue-router';
 import store from '@/store';
-
+import { Rev } from './type';
 const router = useRouter();
 const route = useRoute();
 
@@ -47,53 +47,9 @@ type D = {
     oddsTitle: string;
     oddsItemList: string[][];
   }[];
-  scoreRevList: {
-    teamList: string[];
-    num: string | undefined;
-    ecid: string;
-    tiCaiOdds: number;
-    extraOdds: number;
-    tiCai: string;
-    extra: string;
-    rev: number;
-    gc: number;
-    vv: number;
-    r: number;
-    offset: number;
-  }[];
-  halfRevList: {
-    teamList: string[];
-    num: string | undefined;
-    ecid: string;
-    tiCaiOdds: number;
-    extraOdds: number;
-    tiCai: string;
-    extra: string;
-    rev: number;
-    gc: number;
-    vv: number;
-    r: number;
-    offset: number;
-    isOnlyWin: boolean;
-    type: string;
-  }[];
-  revList: {
-    teamList: string[];
-    num: string | undefined;
-    ecid: string;
-    isMatch: boolean;
-    isOnlyWin: boolean;
-    type: string;
-    tiCaiOdds: number;
-    extraOdds: number;
-    tiCai: number;
-    extra: number;
-    rev: number;
-    gc: number;
-    vv: number;
-    r: number;
-    offset: number;
-  }[];
+  scoreRevList: Rev[];
+
+  revList: Rev[];
 };
 
 const colors = [
@@ -160,7 +116,7 @@ const pagination: TableProps['pagination'] = {
 
 async function getData() {
   if (route.path !== '/basketball') {
-    return false
+    return false;
   }
   const origin = import.meta.env.DEV ? 'http://data.fcv3.1048992591952509.cn-hangzhou.fc.devsapp.net' : location.origin;
   const res = await fetch(`${origin}/basketballData/?p=${store.password}&token=${store.token}`);
@@ -280,7 +236,6 @@ const columns: TableProps<Record>['columns'] = [
         itemList: record.tiCaiItemList,
         revList: record.revList,
         scoreRevList: record.scoreRevList,
-        halfRevList: record.halfRevList,
       });
     },
   },
@@ -298,13 +253,14 @@ const columns: TableProps<Record>['columns'] = [
   {
     title: 'Rev',
     customRender({ record }) {
-      return h(Rev, {
+      return h(RevC, {
         // teamList: record.extraTeamList,
         // itemList: record.extraItemList.filter((e) => ['让球', '总分', '独赢'].includes(e.oddsTitle)),
         revList: record.revList,
-        scoreRevList:record.scoreRevList
+        scoreRevList: record.scoreRevList,
       });
     },
   },
 ];
 </script>
+./type
