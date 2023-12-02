@@ -246,7 +246,7 @@ export function toBasketballData(tiCaiList: TiCaiBasketballItem[], extraList: Ex
               });
 
             const rev = Math.max(...[...revList1, ...revList2, ...revList3, ...revList4].map((r) => r.rev));
-            return [...revList1, ...revList2].find((r) => r.rev === rev);
+            return [...revList1, ...revList2, ...revList3, ...revList4].find((r) => r.rev === rev);
           })
           .filter((d) => d)
           .sort((a, b) => (b?.rev || 0) - (a?.rev || 0))

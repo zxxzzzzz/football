@@ -263,7 +263,7 @@ function toBasketballData(tiCaiList, extraList, _R = 0.12) {
                     };
                 });
                 const rev = Math.max(...[...revList1, ...revList2, ...revList3, ...revList4].map((r) => r.rev));
-                return [...revList1, ...revList2].find((r) => r.rev === rev);
+                return [...revList1, ...revList2, ...revList3, ...revList4].find((r) => r.rev === rev);
             })
                 .filter((d) => d)
                 .sort((a, b) => (b?.rev || 0) - (a?.rev || 0))
