@@ -127,7 +127,8 @@ export enum Score {
 
 type TiCaiBasketballItem = FirstOfGeneric<ReturnType<typeof getTiCaiBasketballByFetch>>[0];
 export function toBasketballData(tiCaiList: TiCaiBasketballItem[], extraList: ExtraItem[], _R = 0.12) {
-  const getRev = (a: number, b: number) => {
+  const getRev = (a: number, _b: number) => {
+    const b = _b - 1;
     const x = (10000 * a) / (1.025 * b + 0.975);
     return {
       gc: a,

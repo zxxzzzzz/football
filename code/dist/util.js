@@ -147,7 +147,8 @@ var Score;
     Score["noSale"] = "100";
 })(Score = exports.Score || (exports.Score = {}));
 function toBasketballData(tiCaiList, extraList, _R = 0.12) {
-    const getRev = (a, b) => {
+    const getRev = (a, _b) => {
+        const b = _b - 1;
         const x = (10000 * a) / (1.025 * b + 0.975);
         return {
             gc: a,
