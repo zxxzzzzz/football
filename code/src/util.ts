@@ -184,6 +184,8 @@ export function toBasketballData(tiCaiList: TiCaiBasketballItem[], extraList: Ex
                   extraScore: extraItem.oddsItemList?.[0]?.[0] || '0',
                   a: tiCaiItem.oddsItemList?.[0]?.[1] || '0',
                   b: extraItem.oddsItemList?.[0]?.[2] || '0',
+                  tiCaiType: 'win',
+                  extraType: 'lose',
                 };
               });
             // 体彩客队比较
@@ -201,6 +203,8 @@ export function toBasketballData(tiCaiList: TiCaiBasketballItem[], extraList: Ex
                   extraScore: extraItem.oddsItemList?.[0]?.[0] || '0',
                   a: tiCaiItem.oddsItemList?.[0]?.[2] || '0',
                   b: extraItem.oddsItemList?.[0]?.[1] || '0',
+                  tiCaiType: 'lose',
+                  extraType: 'win',
                 };
               });
             // 独赢部分的
@@ -218,6 +222,8 @@ export function toBasketballData(tiCaiList: TiCaiBasketballItem[], extraList: Ex
                   extraScore: extraItem.oddsItemList?.[0]?.[0] || '0',
                   a: tiCaiItem.oddsItemList?.[0]?.[2] || '0',
                   b: extraItem.oddsItemList?.[0]?.[1] || '0',
+                  tiCaiType: 'lose',
+                  extraType: 'win',
                 };
               });
             const revList4 = (matchedExtra?.itemList || [])
@@ -234,6 +240,8 @@ export function toBasketballData(tiCaiList: TiCaiBasketballItem[], extraList: Ex
                   extraScore: extraItem.oddsItemList?.[0]?.[0] || '0',
                   a: tiCaiItem.oddsItemList?.[0]?.[1] || '0',
                   b: extraItem.oddsItemList?.[0]?.[2] || '0',
+                  tiCaiType: 'win',
+                  extraType: 'lose',
                 };
               });
 
@@ -262,6 +270,8 @@ export function toBasketballData(tiCaiList: TiCaiBasketballItem[], extraList: Ex
                     extraScore: extraItem.oddsItemList?.[0]?.[0] || '0',
                     a: tiCaiItem.oddsItemList?.[0]?.[2] || '0',
                     b: extraItem.oddsItemList?.[0]?.[1] || '0',
+                    tiCaiType: 'lose',
+                    extraType: 'win',
                   };
                 }
                 if (tiCaiScore <= extraScore) {
@@ -273,6 +283,8 @@ export function toBasketballData(tiCaiList: TiCaiBasketballItem[], extraList: Ex
                     extraScore: extraItem.oddsItemList?.[0]?.[0] || '0',
                     a: tiCaiItem.oddsItemList?.[0]?.[1] || '0',
                     b: extraItem.oddsItemList?.[0]?.[2] || '0',
+                    tiCaiType: 'win',
+                    extraType: 'lose',
                   };
                 }
               });

@@ -291,7 +291,6 @@ const columns: TableProps<Record>['columns'] = [
         teamList: record.extraTeamList,
         itemList: record.extraItemList.filter((e) => ['让球', '总分', '独赢'].includes(e.oddsTitle)),
         revList: record.revList,
-        halfRevList: record.halfRevList,
         scoreRevList: record.scoreRevList,
       });
     },

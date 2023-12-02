@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Ball :itemList="props.itemList" ></Ball>
+    <Ball :itemList="props.itemList" :revList="props.revList" ></Ball>
     <div class="flex">
       <div v-for="item in oddsItemList" class="mr-1.5rem">
         <div >总分：{{ item.title }}</div>
@@ -20,32 +20,15 @@ interface Item {
   oddsItemList: string[][];
 }
 type Rev = {
-  isMatch: boolean;
-  type: string;
-  tiCaiOdds: number;
-  extraOdds: number;
-  tiCai: number;
-  extra: number;
-  rev: number;
-  isOnlyWin: boolean;
-};
-type Rev2 = {
-  tiCaiOdds: number;
-  extraOdds: number;
-  tiCai: string;
-  extra: string;
+  a: string;
+  b: string;
+  tiCaiScore: string;
+  extraScore: string;
   rev: number;
 };
-type Rev3 = {
-  type: string;
-  isOnlyWin: boolean;
-  tiCaiOdds: number;
-  extraOdds: number;
-  tiCai: string;
-  extra: string;
-  rev: number;
-};
-const props = defineProps<{ teamList: string[]; itemList: Item[]; revList: Rev[]; scoreRevList: Rev2[]; halfRevList: Rev3[] }>();
+
+
+const props = defineProps<{ teamList: string[]; itemList: Item[]; revList: Rev[]; scoreRevList: Rev[]; }>();
 
 // 总分
 const oddsItemList = computed(() => {

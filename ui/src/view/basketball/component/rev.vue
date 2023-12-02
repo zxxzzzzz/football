@@ -6,7 +6,7 @@
     </div>
     <div v-if="scoreRevList?.length">
       <div>总分</div>
-      <Table :columns="columns" :dataSource="scoreRevList" :pagination="false"> </Table>
+      <Table :columns="scoreColumns" :dataSource="scoreRevList" :pagination="false"> </Table>
     </div>
   </div>
 </template>
@@ -53,7 +53,6 @@ const scoreRevList = computed(() => {
   // .slice(0, 1);
 });
 
-
 const columns: TableProps<(typeof dataSource.value)[0]>['columns'] = [
   {
     title: 'GC',
@@ -79,8 +78,8 @@ const columns: TableProps<(typeof dataSource.value)[0]>['columns'] = [
   {
     title: 'Rev',
     dataIndex: 'rev',
-    customRender({ record }) {
-      return record.rev.toFixed(2);
+    customRender({ record, index }) {
+      return h(Highlight, { index: index, content: record.rev.toFixed(2) });
     },
   },
 ];
@@ -109,11 +108,9 @@ const scoreColumns: TableProps<(typeof dataSource.value)[0]>['columns'] = [
   {
     title: 'Rev',
     dataIndex: 'rev',
-    customRender({ record }) {
-      return record.rev.toFixed(2);
+    customRender({ record, index }) {
+      return h(Highlight, { index: index + 4, content: record.rev.toFixed(2) });
     },
   },
 ];
-
-
 </script>

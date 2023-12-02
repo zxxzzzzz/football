@@ -15,32 +15,21 @@ interface Item {
   oddsItemList: string[][];
 }
 type Rev = {
-  isMatch: boolean;
-  type: string;
-  tiCaiOdds: number;
-  extraOdds: number;
-  tiCai: number;
-  extra: number;
-  rev: number;
-  isOnlyWin: boolean;
-};
-type Rev2 = {
-  type: string;
-  isOnlyWin: boolean;
-  tiCaiOdds: number;
-  extraOdds: number;
-  tiCai: string;
-  extra: string;
+  a: string;
+  b: string;
+  tiCaiScore: string;
+  extraScore: string;
   rev: number;
 };
-const props = defineProps<{ itemList: Item[] }>();
+
+const props = defineProps<{ itemList: Item[], revList:Rev[] }>();
 const dataSource = computed(() => {
   return props.itemList.filter(item => item.oddsTitle === '让球').map((item) => {
     const oddsItemList = item.oddsItemList;
     return {
       scoreText: oddsItemList[0][0],
-      win: parseFloat(oddsItemList[0][1]).toFixed(2),
-      lose: parseFloat(oddsItemList[0][2]).toFixed(2),
+      win: parseFloat(oddsItemList[0][1]),
+      lose: parseFloat(oddsItemList[0][2]),
     };
   });
 });
@@ -50,10 +39,18 @@ const columns: TableProps<(typeof dataSource.value)[0]>['columns'] = [
   {
     title: '胜',
     dataIndex: 'win',
+    customRender({ record, index }) {
+      const isMatch = record.scoreText === props.revList?.[0]?.extraScore && record.win === parseFloat(props.revList[0].b);
+      return isMatch ? h(Highlight, { index:0, content: record.win.toFixed(2) }) : record.win.toFixed(2);
+    },
   },
   {
     title: '负',
     dataIndex: 'lose',
+    customRender({ record, index }) {
+      const isMatch = record.scoreText === props.revList?.[0]?.extraScore && record.lose === parseFloat(props.revList[0].b);
+      return isMatch ? h(Highlight, { index:0, content: record.lose.toFixed(2) }) : record.lose.toFixed(2);
+    },
   },
 ];
 </script>
