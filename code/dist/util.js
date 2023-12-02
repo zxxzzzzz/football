@@ -210,7 +210,7 @@ function toBasketballData(tiCaiList, extraList, _R = 0.12) {
                 const revList2 = (matchedExtra?.itemList || [])
                     .filter((item) => {
                     const eScore = -parseFloat(item.oddsItemList?.[0]?.[0] || '0');
-                    return item.oddsTitle === '让球' && eScore >= -score && eScore !== 0 && score !== 0;
+                    return item.oddsTitle === '让球' && eScore <= -score && eScore !== 0 && score !== 0;
                 })
                     .map((extraItem) => {
                     const b = parseFloat(extraItem.oddsItemList?.[0]?.[1] || '0');
