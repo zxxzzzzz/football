@@ -191,7 +191,7 @@ function toBasketballData(tiCaiList, extraList, _R = 0.12) {
                 const revList1 = (matchedExtra?.itemList || [])
                     .filter((item) => {
                     const eScore = -parseFloat(item.oddsItemList?.[0]?.[0] || '0');
-                    return item.oddsTitle === '让球' && eScore > -score && eScore !== 0 && score !== 0;
+                    return item.oddsTitle === '让球' && eScore >= -score && eScore !== 0 && score !== 0;
                 })
                     .map((extraItem) => {
                     const b = parseFloat(extraItem.oddsItemList?.[0]?.[2] || '0');
@@ -210,7 +210,7 @@ function toBasketballData(tiCaiList, extraList, _R = 0.12) {
                 const revList2 = (matchedExtra?.itemList || [])
                     .filter((item) => {
                     const eScore = -parseFloat(item.oddsItemList?.[0]?.[0] || '0');
-                    return item.oddsTitle === '让球' && eScore > -score && eScore !== 0 && score !== 0;
+                    return item.oddsTitle === '让球' && eScore >= -score && eScore !== 0 && score !== 0;
                 })
                     .map((extraItem) => {
                     const b = parseFloat(extraItem.oddsItemList?.[0]?.[1] || '0');
@@ -262,9 +262,9 @@ function toBasketballData(tiCaiList, extraList, _R = 0.12) {
                         extraType: 'lose',
                     };
                 });
-                const rev = Math.max(...[...revList1, ...revList2, ...revList3, ...revList4].map((r) => r.rev));
-                return [...revList1, ...revList2, ...revList3, ...revList4].find((r) => r.rev === rev);
+                return [...revList1, ...revList2, ...revList3, ...revList4];
             })
+                .flat()
                 .filter((d) => d)
                 .sort((a, b) => (b?.rev || 0) - (a?.rev || 0))
                 .slice(0, 1),
