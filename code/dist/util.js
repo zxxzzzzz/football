@@ -195,8 +195,14 @@ function toBasketballData(tiCaiList, extraList, _R = 0.12) {
                 })
                     .map((extraItem) => {
                     const b = parseFloat(extraItem.oddsItemList?.[0]?.[2] || '0');
-                    const a = parseFloat(item.oddsItemList?.[0]?.[1] || '0');
-                    return getRev(a, b);
+                    const a = parseFloat(tiCaiItem.oddsItemList?.[0]?.[1] || '0');
+                    return {
+                        ...getRev(a, b),
+                        tiCaiScore: tiCaiItem.oddsItemList?.[0]?.[0] || '0',
+                        extraScore: extraItem.oddsItemList?.[0]?.[0] || '0',
+                        a: tiCaiItem.oddsItemList?.[0]?.[1] || '0',
+                        b: extraItem.oddsItemList?.[0]?.[2] || '0',
+                    };
                 });
                 // 体彩客队比较
                 const revList2 = (matchedExtra?.itemList || [])
@@ -206,8 +212,14 @@ function toBasketballData(tiCaiList, extraList, _R = 0.12) {
                 })
                     .map((extraItem) => {
                     const b = parseFloat(extraItem.oddsItemList?.[0]?.[1] || '0');
-                    const a = parseFloat(item.oddsItemList?.[0]?.[2] || '0');
-                    return getRev(a, b);
+                    const a = parseFloat(tiCaiItem.oddsItemList?.[0]?.[2] || '0');
+                    return {
+                        ...getRev(a, b),
+                        tiCaiScore: tiCaiItem.oddsItemList?.[0]?.[0] || '0',
+                        extraScore: extraItem.oddsItemList?.[0]?.[0] || '0',
+                        a: tiCaiItem.oddsItemList?.[0]?.[2] || '0',
+                        b: extraItem.oddsItemList?.[0]?.[1] || '0',
+                    };
                 });
                 // 独赢部分的
                 const revList3 = (matchedExtra?.itemList || [])
@@ -218,7 +230,13 @@ function toBasketballData(tiCaiList, extraList, _R = 0.12) {
                     .map((extraItem) => {
                     const b = parseFloat(extraItem.oddsItemList?.[0]?.[1] || '0');
                     const a = parseFloat(item.oddsItemList?.[0]?.[2] || '0');
-                    return getRev(a, b);
+                    return {
+                        ...getRev(a, b),
+                        tiCaiScore: tiCaiItem.oddsItemList?.[0]?.[0] || '0',
+                        extraScore: extraItem.oddsItemList?.[0]?.[0] || '0',
+                        a: tiCaiItem.oddsItemList?.[0]?.[2] || '0',
+                        b: extraItem.oddsItemList?.[0]?.[1] || '0',
+                    };
                 });
                 const revList4 = (matchedExtra?.itemList || [])
                     .filter((item) => {
@@ -228,7 +246,13 @@ function toBasketballData(tiCaiList, extraList, _R = 0.12) {
                     .map((extraItem) => {
                     const b = parseFloat(extraItem.oddsItemList?.[0]?.[2] || '0');
                     const a = parseFloat(item.oddsItemList?.[0]?.[1] || '0');
-                    return getRev(a, b);
+                    return {
+                        ...getRev(a, b),
+                        tiCaiScore: tiCaiItem.oddsItemList?.[0]?.[0] || '0',
+                        extraScore: extraItem.oddsItemList?.[0]?.[0] || '0',
+                        a: tiCaiItem.oddsItemList?.[0]?.[1] || '0',
+                        b: extraItem.oddsItemList?.[0]?.[2] || '0',
+                    };
                 });
                 const rev = Math.max(...[...revList1, ...revList2, ...revList3, ...revList4].map((r) => r.rev));
                 return [...revList1, ...revList2].find((r) => r.rev === rev);
@@ -249,12 +273,24 @@ function toBasketballData(tiCaiList, extraList, _R = 0.12) {
                     if (tiCaiScore >= extraScore) {
                         const a = parseFloat(tiCaiItem.oddsItemList?.[0]?.[2] || '0');
                         const b = parseFloat(extraItem.oddsItemList?.[0]?.[1] || '0');
-                        return getRev(a, b);
+                        return {
+                            ...getRev(a, b),
+                            tiCaiScore: tiCaiItem.oddsItemList?.[0]?.[0] || '0',
+                            extraScore: extraItem.oddsItemList?.[0]?.[0] || '0',
+                            a: tiCaiItem.oddsItemList?.[0]?.[2] || '0',
+                            b: extraItem.oddsItemList?.[0]?.[1] || '0',
+                        };
                     }
                     if (tiCaiScore <= extraScore) {
                         const a = parseFloat(tiCaiItem.oddsItemList?.[0]?.[1] || '0');
                         const b = parseFloat(extraItem.oddsItemList?.[0]?.[2] || '0');
-                        return getRev(a, b);
+                        return {
+                            ...getRev(a, b),
+                            tiCaiScore: tiCaiItem.oddsItemList?.[0]?.[0] || '0',
+                            extraScore: extraItem.oddsItemList?.[0]?.[0] || '0',
+                            a: tiCaiItem.oddsItemList?.[0]?.[1] || '0',
+                            b: extraItem.oddsItemList?.[0]?.[2] || '0',
+                        };
                     }
                 });
             })
