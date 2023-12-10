@@ -5,7 +5,7 @@
       <div v-for="item in oddsItemList" class="mr-1.5rem">
         <div >总分：{{ item.title }}</div>
         <div class="flex">
-          胜&nbsp;&nbsp;&nbsp;：
+          大&nbsp;&nbsp;&nbsp;：
           <Highlight
             v-if="
               props.scoreRevList?.[0]?.extraType === 'win' &&
@@ -18,7 +18,7 @@
           <span v-else>{{ item.win.toFixed(2) }}</span>
         </div>
         <div class="flex">
-          负&nbsp;&nbsp;&nbsp;：
+          小&nbsp;&nbsp;&nbsp;：
           <Highlight
             v-if="
               props.scoreRevList?.[0]?.extraType === 'lose' &&

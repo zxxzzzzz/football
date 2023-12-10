@@ -5,7 +5,7 @@
       <div v-for="item in totalItemList">
         <div>总分：{{ item.scoreTitle }}</div>
         <div class="flex">
-          胜&nbsp;&nbsp;&nbsp;：
+          大&nbsp;&nbsp;&nbsp;：
           <Highlight
             v-if="
               props.scoreRevList?.[0]?.tiCaiType === 'win' &&
@@ -18,7 +18,7 @@
           <span v-else>{{ item.win.toFixed(2) }}</span>
         </div>
         <div class="flex">
-          负&nbsp;&nbsp;&nbsp;：
+          小&nbsp;&nbsp;&nbsp;：
           <Highlight
             v-if="
               props.scoreRevList?.[0]?.tiCaiType === 'lose' &&
