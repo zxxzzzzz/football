@@ -300,8 +300,8 @@ async function getBasketballMore(url, ver, uid, lid, gid) {
                 oddsItemList: [
                     [
                         game?.ratio_o?._text,
-                        strong === 'H' ? game?.ior_POUH?._text : game?.ior_POUC?._text,
-                        strong === 'H' ? game?.ior_POUC?._text : game?.ior_POUH?._text,
+                        game?.ior_POUC?._text,
+                        game?.ior_POUH?._text,
                     ],
                 ],
             },

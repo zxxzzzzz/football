@@ -325,8 +325,8 @@ export async function getBasketballMore(url: string, ver: string, uid: string, l
           oddsItemList: [
             [
               game?.ratio_o?._text,
-              strong === 'H' ? game?.ior_POUH?._text : game?.ior_POUC?._text,
-              strong === 'H' ? game?.ior_POUC?._text : game?.ior_POUH?._text,
+              game?.ior_POUC?._text,
+              game?.ior_POUH?._text,
             ],
           ],
         },
