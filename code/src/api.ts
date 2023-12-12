@@ -322,7 +322,13 @@ export async function getBasketballMore(url: string, ver: string, uid: string, l
 
         {
           oddsTitle: '总分',
-          oddsItemList: [[game?.ratio_o?._text, game?.ior_POUH?._text, game?.ior_POUC?._text]],
+          oddsItemList: [
+            [
+              game?.ratio_o?._text,
+              strong === 'H' ? game?.ior_POUH?._text : game?.ior_POUC?._text,
+              strong === 'H' ? game?.ior_POUC?._text : game?.ior_POUH?._text,
+            ],
+          ],
         },
 
         {
@@ -733,7 +739,7 @@ export const retryGetBasketballLeagueList = retryWrap(getBasketballLeagueList, 3
 async function getServiceMainget(ver: string) {
   let text2: string | undefined = void 0;
   try {
-    const res = await axios.post(`https://66.133.91.116/transform.php?ver=${ver}`, `p=service_mainget&ver=${ver}&langx=zh-cn&login=N`, {
+    const res = await axios.post(`https://61.14.172.140/transform.php?ver=${ver}`, `p=service_mainget&ver=${ver}&langx=zh-cn&login=N`, {
       headers: {
         accept: '*/*',
         'accept-language': 'zh-CN,zh;q=0.9',
@@ -743,7 +749,7 @@ async function getServiceMainget(ver: string) {
         'sec-fetch-dest': 'empty',
         'sec-fetch-mode': 'cors',
         'sec-fetch-site': 'same-origin',
-        Referer: 'https://66.133.91.116/',
+        Referer: 'https://61.14.172.140/',
         'Referrer-Policy': 'strict-origin-when-cross-origin',
       },
     });
