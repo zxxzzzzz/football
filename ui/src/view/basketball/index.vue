@@ -47,9 +47,8 @@ type D = {
     oddsTitle: string;
     oddsItemList: string[][];
   }[];
-  scoreRevList: Rev[];
-
   revList: Rev[];
+  scoreRevList: Rev[];
 };
 
 const colors = [
@@ -83,9 +82,20 @@ enum Code {
 // const dataList = ref<Game[]>([]);
 const dataSource = ref<D[]>([]);
 const sortDataSource = computed(() => {
-  // if (sortType.value === SortType.normal) {
+  if (sortType.value === SortType.normal) {
+    return dataSource.value.sort((a, b) => dayjs(a.dateTime, 'MM-DD HH:ss').valueOf() - dayjs(b.dateTime, 'MM-DD HH:ss').valueOf());
+  }
+  if (sortType.value === SortType.rev) {
+    return dataSource.value.sort((a, b) => {
+      return (b.revList?.[0]?.rev || 0) - (a.revList?.[0]?.rev || 0);
+    });
+  }
+  if (sortType.value === SortType.score) {
+    return dataSource.value.sort((a, b) => {
+      return (b.scoreRevList?.[0]?.rev || 0) - (a.scoreRevList?.[0]?.rev || 0);
+    });
+  }
   return dataSource.value.sort((a, b) => dayjs(a.dateTime, 'MM-DD HH:ss').valueOf() - dayjs(b.dateTime, 'MM-DD HH:ss').valueOf());
-  // }
 });
 let timeId: ReturnType<typeof setTimeout> | undefined = void 0;
 // 是否按照rev排序
@@ -100,7 +110,7 @@ const sortName = computed(() => {
     return '用rev排序';
   }
   if (sortType.value === SortType.rev) {
-    return '用得分排序';
+    return '用总分排序';
   }
   if (sortType.value === SortType.score) {
     return '用时间排序';

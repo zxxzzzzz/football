@@ -26,7 +26,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getMessage2List = exports.getMessage4List = exports.getMessage3List = exports.getMessage1List = exports.getLogHistory = exports.saveStore = exports.getStore = exports.saveFile = exports.compare = exports.toData = exports.toBasketballData = exports.Score = exports.isLeagueEqual = exports.isTeamEqu = exports.sim_jaccard = void 0;
+exports.getMessage2List = exports.getMessage4List = exports.getMessage3List = exports.getBasketballMessage1List = exports.getMessage1List = exports.getLogHistory = exports.saveStore = exports.getStore = exports.saveFile = exports.compare = exports.toData = exports.toBasketballData = exports.Score = exports.isLeagueEqual = exports.isTeamEqu = exports.sim_jaccard = void 0;
 const R = __importStar(require("ramda"));
 const dayjs_1 = __importDefault(require("dayjs"));
 const fs_1 = __importDefault(require("fs"));
@@ -307,12 +307,12 @@ function toBasketballData(tiCaiList, extraList, _R = 0.12) {
                 });
             })
                 .flat()
-                .filter((d) => d)
+                .filter((d) => !!d)
                 .sort((a, b) => (b?.rev || 0) - (a?.rev || 0))
                 .slice(0, 1),
         };
     })
-        .filter((d) => d);
+        .filter((d) => !!d);
     return dataList;
 }
 exports.toBasketballData = toBasketballData;
@@ -767,6 +767,22 @@ function getMessage1List(data, rev) {
     });
 }
 exports.getMessage1List = getMessage1List;
+function getBasketballMessage1List(data, rev) {
+    return data
+        .filter((d) => d?.revList?.[0]?.rev > rev && d?.revList?.[0]?.rev < 3000)
+        .sort((a, b) => {
+        const rev1 = a.revList[0];
+        const rev2 = b.revList[0];
+        return rev2.rev - rev1.rev;
+    })
+        .map((d) => {
+        const rev = d.revList[0];
+        // 胜，负，让胜，让负
+        const desc = rev.type === 'win' ? `${rev.tiCai === 0 ? '胜' : '让胜'}` : `${rev.tiCai === 0 ? '负' : '让负'}`;
+        return `${rev.single ? '【单】' : ''}${d.num} ${(0, dayjs_1.default)(d.dateTime, 'MM-DD HH:mm').format('MM-DD\u2002HH:mm')} ${d.tiCaiTeamList.join(' ')} ${desc} GC:${rev.gc.toFixed(2)} VV:${rev.vv.toFixed(2)} offset:${rev.offset.toFixed(2)} rev:${rev.rev.toFixed(2)}`;
+    });
+}
+exports.getBasketballMessage1List = getBasketballMessage1List;
 function getMessage3List(data, scoreRev) {
     return data
         .filter((d) => d?.scoreRevList?.[0]?.rev > scoreRev)
