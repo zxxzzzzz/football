@@ -778,8 +778,8 @@ function getBasketballMessage1List(data, rev) {
         .map((d) => {
         const rev = d.revList[0];
         // 胜，负，让胜，让负
-        const desc = rev.type === 'win' ? `${rev.tiCai === 0 ? '胜' : '让胜'}` : `${rev.tiCai === 0 ? '负' : '让负'}`;
-        return `${rev.single ? '【单】' : ''}${d.num} ${(0, dayjs_1.default)(d.dateTime, 'MM-DD HH:mm').format('MM-DD\u2002HH:mm')} ${d.tiCaiTeamList.join(' ')} ${desc} GC:${rev.gc.toFixed(2)} VV:${rev.vv.toFixed(2)} offset:${rev.offset.toFixed(2)} rev:${rev.rev.toFixed(2)}`;
+        const desc = rev.tiCaiType === 'win' ? `${rev.tiCaiScore === '0' ? '胜' : '让胜'}` : `${rev.tiCaiScore === '0' ? '负' : '让负'}`;
+        return `${d.num} ${(0, dayjs_1.default)(d.dateTime, 'MM-DD HH:mm').format('MM-DD\u2002HH:mm')} ${d.tiCaiTeamList.join(' ')} ${desc} GC:${rev.gc.toFixed(2)} VV:${rev.vv.toFixed(2)} offset:${rev.offset.toFixed(2)} rev:${rev.rev.toFixed(2)}`;
     });
 }
 exports.getBasketballMessage1List = getBasketballMessage1List;

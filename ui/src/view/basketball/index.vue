@@ -5,6 +5,7 @@
     <div class="mx-4">
       <Table :dataSource="sortDataSource" :columns="columns" bordered :rowClassName="rowClassName" :pagination="pagination"></Table>
     </div>
+    <MessageDraw :drawer-visible="drawerVisible" :message1-list="message1List"></MessageDraw>
     <Affix :offsetBottom="400" :style="{ position: 'absolute', right: 0 + 'px' }">
       <div class="flex flex-col">
         <Button type="primary" @click="() => (drawerVisible = true)" class="my-2"> 消息</Button>
@@ -29,6 +30,8 @@ import dayjs from 'dayjs';
 import { useRouter, useRoute } from 'vue-router';
 import store from '@/store';
 import { Rev } from './type';
+import MessageDraw from './component/messageDraw.vue';
+
 const router = useRouter();
 const route = useRoute();
 
@@ -51,22 +54,7 @@ type D = {
   scoreRevList: Rev[];
 };
 
-const colors = [
-  '#78a5de',
-  '#4fb2a1',
-  '#205a13',
-  '#186174',
-  '#88b00b',
-  '#cf4b22',
-  '#9e57cd',
-  '#238910',
-  '#c18fde',
-  '#673b84',
-  '#760bbb',
-  '#557766',
-  '#557733',
-  '#337755',
-];
+
 
 enum Code {
   success = 200,
@@ -98,6 +86,11 @@ const sortDataSource = computed(() => {
   return dataSource.value.sort((a, b) => dayjs(a.dateTime, 'MM-DD HH:ss').valueOf() - dayjs(b.dateTime, 'MM-DD HH:ss').valueOf());
 });
 let timeId: ReturnType<typeof setTimeout> | undefined = void 0;
+const resData = ref<any>()
+
+const message1List = computed(() => {
+  return resData.value?.message1List || []
+})
 // 是否按照rev排序
 const enum SortType {
   normal,
@@ -166,6 +159,7 @@ async function getData() {
       5
     );
     dataSource.value = data.data.matchData;
+    resData.value = data.data;
     localStorage.setItem('token', data.data.token);
     store.token = data.data.token;
   }

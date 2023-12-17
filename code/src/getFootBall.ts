@@ -1,6 +1,6 @@
 // @ts-ignore
 import Format from 'json-format';
-import { isTeamEqu, isLeagueEqual, toData, toBasketballData } from './util';
+import { isTeamEqu, isLeagueEqual, toData, toBasketballData, getBasketballMessage1List } from './util';
 import dayjs from 'dayjs';
 import {
   retryGetLeagueListAllByNodeFetch,
@@ -97,10 +97,9 @@ export const getBasketballCacheData = async (reqData: { password: string; token:
   }
   currentAccount.timestamp = dayjs().valueOf();
   await saveStore({ accountList });
-  const data: PromiseType<ReturnType<typeof getData>>['matchData'] | undefined = store?.basketballData;
+  const data: PromiseType<ReturnType<typeof getBasketballData>>['matchData'] | undefined = store?.basketballData;
   if (data) {
-    // const message1List = getMessage1List(data, store.Rev || 400);
-    // const message3List = getMessage3List(data, store.scoreRev || 200);
+    const message1List = getBasketballMessage1List(data, store.Rev || 400);
     // const message4List = getMessage4List(data, store.halfRev || 400);
     // const { messageList: message2List, compareDataList } = getMessage2List(data, store.C || 0.13, store.A || 1, store.compareRev || 430);
     return {
@@ -109,7 +108,7 @@ export const getBasketballCacheData = async (reqData: { password: string; token:
       data: {
         timestamp: store.timestamp,
         matchData: data,
-        // message1List,
+        message1List,
         // message2List,
         // message3List,
         // compareDataList,
