@@ -22,6 +22,10 @@ export const routeList: RouteRecordRaw[] = [
     component: () => import('@/view/basketball/index.vue'),
   },
   {
+    path: '/mobile/basketball',
+    component: () => import('@/view/basketball/mobile.vue'),
+  },
+  {
     path: '',
     redirect: '/login',
   },

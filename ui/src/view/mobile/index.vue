@@ -3,7 +3,7 @@
     <List item-layout="horizontal" :data-source="message1List">
       <template #renderItem="{ item }">
         <div class="flex flex-wrap mb-2">
-          <div v-for="(t, index) in item.split(' ')" :style="{ color: colors[index], margin: '0 4px' }" class="whitespace-nowrap">
+          <div v-for="(t, index) in sp(item)" :style="{ color: colors[index], margin: '0 4px' }" class="whitespace-nowrap">
             {{ t }}
           </div>
         </div>
@@ -14,12 +14,12 @@
       <template #renderItem="{ item }">
         <div class="mb-2">
           <div class="flex flex-wrap">
-            <div v-for="(t, index) in item[0].split(' ')" :style="{ color: colors[index], margin: '0 4px' }" class="whitespace-nowrap">
+            <div v-for="(t, index) in sp(item[0])" :style="{ color: colors[index], margin: '0 4px' }" class="whitespace-nowrap">
               {{ t }}
             </div>
           </div>
           <div class="flex flex-wrap">
-            <div v-for="(t, index) in item[1].split(' ')" :style="{ color: colors[index], margin: '0 4px' }" class="whitespace-nowrap">
+            <div v-for="(t, index) in sp(item[1])" :style="{ color: colors[index], margin: '0 4px' }" class="whitespace-nowrap">
               {{ t }}
             </div>
           </div>
@@ -30,7 +30,7 @@
     <List item-layout="horizontal" :data-source="message3List">
       <template #renderItem="{ item }">
         <div class="flex flex-wrap mb-2">
-          <div v-for="(t, index) in item.split(' ')" :style="{ color: colors[index], margin: '0 4px' }" class="whitespace-nowrap">
+          <div v-for="(t, index) in sp(item)" :style="{ color: colors[index], margin: '0 4px' }" class="whitespace-nowrap">
             {{ t }}
           </div>
         </div>
@@ -40,7 +40,7 @@
       <List item-layout="horizontal" :data-source="message4List">
         <template #renderItem="{ item }">
           <div class="flex flex-wrap mb-2">
-            <div v-for="(t, index) in item.split(' ')" :style="{ color: colors[index], margin: '0 4px' }" class="whitespace-nowrap">
+            <div v-for="(t, index) in sp(item)" :style="{ color: colors[index], margin: '0 4px' }" class="whitespace-nowrap">
               {{ t }}
             </div>
           </div>
@@ -49,6 +49,7 @@
     <Affix :offsetBottom="400" :style="{ position: 'absolute', right: 0 + 'px' }">
       <div class="flex flex-col">
         <Button class="my-2" @click="handleSetting"> 设置</Button>
+        <Button class="my-2" @click="handleBasketball"> 篮球</Button>
       </div>
     </Affix>
   </div>
@@ -107,6 +108,10 @@ type D = {
     r: number;
     offset: number;
   }[];
+};
+
+const sp = (s: string) => {
+  return s.split(' ');
 };
 
 const colors = [
@@ -203,6 +208,9 @@ async function cInter(cb: () => Promise<boolean>, n: number) {
 const handleSetting = () => {
   router.push({ path: '/setting' });
 };
+const handleBasketball = () => {
+  router.push({ path: '/mobile/basketball' });
+}
 onMounted(async () => {
   // await getData();
   cInter(async () => {

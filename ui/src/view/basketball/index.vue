@@ -5,7 +5,9 @@
     <div class="mx-4">
       <Table :dataSource="sortDataSource" :columns="columns" bordered :rowClassName="rowClassName" :pagination="pagination"></Table>
     </div>
-    <MessageDraw :drawer-visible="drawerVisible" :message1-list="message1List"></MessageDraw>
+    <Drawer width="840" placement="right" :closable="true" :visible="drawerVisible" :mask="true" @close="() => (drawerVisible = false)">
+      <Message :message1-list="message1List"></Message>
+    </Drawer>
     <Affix :offsetBottom="400" :style="{ position: 'absolute', right: 0 + 'px' }">
       <div class="flex flex-col">
         <Button type="primary" @click="() => (drawerVisible = true)" class="my-2"> 消息</Button>
@@ -17,10 +19,8 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { Table, Drawer, List, Button, Affix, Divider, message } from 'ant-design-vue';
+import { Table, Button, Affix, message } from 'ant-design-vue';
 import type { TableProps } from 'ant-design-vue';
-// import { data, dataList } from './mock';
-// import { SourceType } from '@/type/enum';
 import { computed, h, ref, onMounted, watch, onUnmounted } from 'vue';
 import Match from './component/match.vue';
 import TiCai from './component/tiCai.vue';
@@ -30,7 +30,7 @@ import dayjs from 'dayjs';
 import { useRouter, useRoute } from 'vue-router';
 import store from '@/store';
 import { Rev } from './type';
-import MessageDraw from './component/messageDraw.vue';
+import Message from './component/message.vue';
 
 const router = useRouter();
 const route = useRoute();
@@ -53,8 +53,6 @@ type D = {
   revList: Rev[];
   scoreRevList: Rev[];
 };
-
-
 
 enum Code {
   success = 200,
@@ -86,11 +84,11 @@ const sortDataSource = computed(() => {
   return dataSource.value.sort((a, b) => dayjs(a.dateTime, 'MM-DD HH:ss').valueOf() - dayjs(b.dateTime, 'MM-DD HH:ss').valueOf());
 });
 let timeId: ReturnType<typeof setTimeout> | undefined = void 0;
-const resData = ref<any>()
+const resData = ref<any>();
 
 const message1List = computed(() => {
-  return resData.value?.message1List || []
-})
+  return resData.value?.message1List || [];
+});
 // 是否按照rev排序
 const enum SortType {
   normal,

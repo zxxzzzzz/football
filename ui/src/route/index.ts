@@ -25,4 +25,7 @@ router.beforeEach((to, from) => {
   if (to.path === '/home' && isMobile()) {
     return { path: '/mobile' };
   }
+  if (to.path === '/basketball' && isMobile()) {
+    return { path: '/mobile/basketball' };
+  }
 });
