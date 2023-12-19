@@ -19,7 +19,7 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { Table, Button, Affix, message } from 'ant-design-vue';
+import { Table, Button, Affix, message , Drawer} from 'ant-design-vue';
 import type { TableProps } from 'ant-design-vue';
 import { computed, h, ref, onMounted, watch, onUnmounted } from 'vue';
 import Match from './component/match.vue';

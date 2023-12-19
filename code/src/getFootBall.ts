@@ -24,7 +24,6 @@ const _accountList = [
   { password: 'XD_ivan1', token: '', timestamp: 0 },
   { password: 'XD_ivan2', token: '', timestamp: 0 },
   { password: 'LJ111', token: '', timestamp: 0 },
-  { password: 'LJ222', token: '', timestamp: 0 },
   { password: 'LJ333', token: '', timestamp: 0 },
   { password: 'XIAO222', token: '', timestamp: 0 },
   { password: 'XIAO8888', token: '', timestamp: 0 },
@@ -36,7 +35,7 @@ const _accountList = [
 type PromiseType<T> = T extends Promise<infer U> ? U : never;
 export const getCacheData = async (reqData: { password: string; token: string }) => {
   const store = await getStore('data');
-  const accountList = store?.accountList || _accountList;
+  const accountList = (store?.accountList || _accountList).filter(ac => _accountList.some(_ac => _ac.password === ac.password));
   const currentAccount = accountList.find((ac) => ac.password === reqData.password);
   if (!currentAccount) {
     return { code: Code.forbidden, msg: '该通行码不存在，请重新登陆' };
@@ -81,7 +80,7 @@ export const getCacheData = async (reqData: { password: string; token: string })
 };
 export const getBasketballCacheData = async (reqData: { password: string; token: string }) => {
   const store = await getStore('basketballData');
-  const accountList = store?.accountList || _accountList;
+  const accountList = (store?.accountList || _accountList).filter(ac => _accountList.some(_ac => _ac.password === ac.password));
   const currentAccount = accountList.find((ac) => ac.password === reqData.password);
   if (!currentAccount) {
     return { code: Code.forbidden, msg: '该通行码不存在，请重新登陆' };

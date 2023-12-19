@@ -66,7 +66,7 @@ const message1List = computed(() => {
 })
 
 async function getData() {
-  if (route.path !== '/basketball') {
+  if (route.path !== '/mobile/basketball') {
     return false;
   }
   const origin = import.meta.env.DEV ? 'http://data.fcv3.1048992591952509.cn-hangzhou.fc.devsapp.net' : location.origin;
