@@ -2,7 +2,8 @@
   <div>
     <div class="bg-white">&nbsp;</div>
     <div class="bg-gray-100">&nbsp;</div>
-    <Message :message1-list="message1List"></Message>
+    <Message :message-list="message1List"></Message>
+    <Message :message-list="message2List"></Message>
     <Affix :offsetBottom="400" :style="{ position: 'absolute', right: 0 + 'px' }">
       <div class="flex flex-col">
         <Button class="my-2" @click="handleSetting"> 设置</Button>
@@ -63,6 +64,9 @@ const resData = ref<any>()
 
 const message1List = computed(() => {
   return resData.value?.message1List || []
+})
+const message2List = computed(() => {
+  return resData.value?.message2List || []
 })
 
 async function getData() {

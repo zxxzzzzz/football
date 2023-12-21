@@ -6,7 +6,8 @@
       <Table :dataSource="sortDataSource" :columns="columns" bordered :rowClassName="rowClassName" :pagination="pagination"></Table>
     </div>
     <Drawer width="840" placement="right" :closable="true" :visible="drawerVisible" :mask="true" @close="() => (drawerVisible = false)">
-      <Message :message1-list="message1List"></Message>
+      <MessageList :message-list="message1List" />
+      <MessageList :message-list="message2List" />
     </Drawer>
     <Affix :offsetBottom="400" :style="{ position: 'absolute', right: 0 + 'px' }">
       <div class="flex flex-col">
@@ -30,7 +31,7 @@ import dayjs from 'dayjs';
 import { useRouter, useRoute } from 'vue-router';
 import store from '@/store';
 import { Rev } from './type';
-import Message from './component/message.vue';
+import MessageList from './component/message.vue';
 
 const router = useRouter();
 const route = useRoute();
@@ -88,6 +89,9 @@ const resData = ref<any>();
 
 const message1List = computed(() => {
   return resData.value?.message1List || [];
+});
+const message2List = computed(() => {
+  return resData.value?.message2List || [];
 });
 // 是否按照rev排序
 const enum SortType {

@@ -1,5 +1,5 @@
 <template>
-  <List item-layout="horizontal" :data-source="props.message1List">
+  <List item-layout="horizontal" :data-source="props.messageList">
     <template #renderItem="{ item }">
       <div class="flex flex-wrap mb-2">
         <div v-for="(t, index) in sp(item)" :style="{ color: colors[index], margin: '0 4px' }" class="whitespace-nowrap">
@@ -13,7 +13,7 @@
 <script setup lang="ts">
 import { List } from 'ant-design-vue';
 const props = defineProps<{
-  message1List: string[];
+  messageList: string[];
 }>();
 
 const sp = (s: string) => {
