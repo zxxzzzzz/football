@@ -245,7 +245,7 @@ export function toBasketballData(tiCaiList: TiCaiBasketballItem[], extraList: Ex
                 };
               });
 
-            return [...revList1, ...revList2, ...revList3, ...revList4]
+            return [...revList1, ...revList2, ...revList3, ...revList4];
           })
           .flat()
           .filter((d) => d)
@@ -290,12 +290,12 @@ export function toBasketballData(tiCaiList: TiCaiBasketballItem[], extraList: Ex
               });
           })
           .flat()
-          .filter((d):d is Exclude<typeof d, undefined> => !!d)
+          .filter((d): d is Exclude<typeof d, undefined> => !!d)
           .sort((a, b) => (b?.rev || 0) - (a?.rev || 0))
           .slice(0, 1),
       };
     })
-    .filter((d):d is Exclude<typeof d, undefined> => !!d);
+    .filter((d): d is Exclude<typeof d, undefined> => !!d);
   return dataList;
 }
 
@@ -800,6 +800,23 @@ export function getBasketballMessage1List(data: ReturnType<typeof toBasketballDa
       const rev = d.revList[0];
       // 胜，负，让胜，让负
       const desc = rev.tiCaiType === 'win' ? `${rev.tiCaiScore === '0' ? '胜' : '让胜'}` : `${rev.tiCaiScore === '0' ? '负' : '让负'}`;
+      return `${d.num} ${dayjs(d.dateTime, 'MM-DD HH:mm').format('MM-DD\u2002HH:mm')} ${d.tiCaiTeamList.join(
+        ' '
+      )} ${desc} GC:${rev.gc.toFixed(2)} VV:${rev.vv.toFixed(2)} offset:${rev.offset.toFixed(2)} rev:${rev.rev.toFixed(2)}`;
+    });
+}
+export function getBasketballMessage2List(data: ReturnType<typeof toBasketballData>, rev: number) {
+  return data
+    .filter((d) => d?.scoreRevList?.[0]?.rev > rev && d?.scoreRevList?.[0]?.rev < 3000)
+    .sort((a, b) => {
+      const rev1 = a.scoreRevList[0];
+      const rev2 = b.scoreRevList[0];
+      return rev2.rev - rev1.rev;
+    })
+    .map((d) => {
+      const rev = d.scoreRevList[0];
+      // 胜，负，让胜，让负
+      const desc = `比分 ${rev.tiCaiScore} ` + rev.tiCaiType === 'win' ? `胜` : `负`;
       return `${d.num} ${dayjs(d.dateTime, 'MM-DD HH:mm').format('MM-DD\u2002HH:mm')} ${d.tiCaiTeamList.join(
         ' '
       )} ${desc} GC:${rev.gc.toFixed(2)} VV:${rev.vv.toFixed(2)} offset:${rev.offset.toFixed(2)} rev:${rev.rev.toFixed(2)}`;

@@ -91,6 +91,7 @@ const getBasketballCacheData = async (reqData) => {
     const data = store?.basketballData;
     if (data) {
         const message1List = (0, util_1.getBasketballMessage1List)(data, store.Rev || 400);
+        const message2List = (0, util_1.getBasketballMessage2List)(data, store.Rev || 400);
         // const message4List = getMessage4List(data, store.halfRev || 400);
         // const { messageList: message2List, compareDataList } = getMessage2List(data, store.C || 0.13, store.A || 1, store.compareRev || 430);
         return {
@@ -100,6 +101,7 @@ const getBasketballCacheData = async (reqData) => {
                 timestamp: store.timestamp,
                 matchData: data,
                 message1List,
+                message2List,
                 // message2List,
                 // message3List,
                 // compareDataList,
