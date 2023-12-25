@@ -35,7 +35,7 @@ const _accountList = [
 type PromiseType<T> = T extends Promise<infer U> ? U : never;
 export const getCacheData = async (reqData: { password: string; token: string }) => {
   const store = await getStore('data');
-  const accountList = (store?.accountList || _accountList).filter(ac => _accountList.some(_ac => _ac.password === ac.password));
+  const accountList = (store?.accountList || _accountList).filter((ac) => _accountList.some((_ac) => _ac.password === ac.password));
   const currentAccount = accountList.find((ac) => ac.password === reqData.password);
   if (!currentAccount) {
     return { code: Code.forbidden, msg: '该通行码不存在，请重新登陆' };
@@ -80,7 +80,7 @@ export const getCacheData = async (reqData: { password: string; token: string })
 };
 export const getBasketballCacheData = async (reqData: { password: string; token: string }) => {
   const store = await getStore('basketballData');
-  const accountList = (store?.accountList || _accountList).filter(ac => _accountList.some(_ac => _ac.password === ac.password));
+  const accountList = (store?.accountList || _accountList).filter((ac) => _accountList.some((_ac) => _ac.password === ac.password));
   const currentAccount = accountList.find((ac) => ac.password === reqData.password);
   if (!currentAccount) {
     return { code: Code.forbidden, msg: '该通行码不存在，请重新登陆' };
@@ -427,7 +427,9 @@ export const sendDingDingMessage = async (data: any) => {
     const _message1List = getMessage1List(data, 650);
     const _message3List = getMessage3List(data, 400);
     const _message4List = getMessage4List(data, 400);
-    const _list = [..._message1List, ..._message3List, ..._message4List];
+    const _basketballMessage1List = getBasketballMessage1List(data, 400);
+    const _basketballMessage2List = getBasketballMessage2List(data, 400);
+    const _list = [..._message1List, ..._message3List, ..._message4List, ..._basketballMessage1List, ..._basketballMessage2List];
     if (_list?.length) {
       for (const _item of _list) {
         await retrySendDingDing(_item);

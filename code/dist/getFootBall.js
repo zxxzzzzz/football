@@ -26,7 +26,7 @@ const _accountList = [
 ];
 const getCacheData = async (reqData) => {
     const store = await (0, util_2.getStore)('data');
-    const accountList = (store?.accountList || _accountList).filter(ac => _accountList.some(_ac => _ac.password === ac.password));
+    const accountList = (store?.accountList || _accountList).filter((ac) => _accountList.some((_ac) => _ac.password === ac.password));
     const currentAccount = accountList.find((ac) => ac.password === reqData.password);
     if (!currentAccount) {
         return { code: error_1.Code.forbidden, msg: '该通行码不存在，请重新登陆' };
@@ -72,7 +72,7 @@ const getCacheData = async (reqData) => {
 exports.getCacheData = getCacheData;
 const getBasketballCacheData = async (reqData) => {
     const store = await (0, util_2.getStore)('basketballData');
-    const accountList = (store?.accountList || _accountList).filter(ac => _accountList.some(_ac => _ac.password === ac.password));
+    const accountList = (store?.accountList || _accountList).filter((ac) => _accountList.some((_ac) => _ac.password === ac.password));
     const currentAccount = accountList.find((ac) => ac.password === reqData.password);
     if (!currentAccount) {
         return { code: error_1.Code.forbidden, msg: '该通行码不存在，请重新登陆' };
@@ -402,7 +402,9 @@ const sendDingDingMessage = async (data) => {
         const _message1List = (0, util_2.getMessage1List)(data, 650);
         const _message3List = (0, util_2.getMessage3List)(data, 400);
         const _message4List = (0, util_2.getMessage4List)(data, 400);
-        const _list = [..._message1List, ..._message3List, ..._message4List];
+        const _basketballMessage1List = (0, util_1.getBasketballMessage1List)(data, 400);
+        const _basketballMessage2List = (0, util_1.getBasketballMessage2List)(data, 400);
+        const _list = [..._message1List, ..._message3List, ..._message4List, ..._basketballMessage1List, ..._basketballMessage2List];
         if (_list?.length) {
             for (const _item of _list) {
                 await (0, api_1.retrySendDingDing)(_item);
