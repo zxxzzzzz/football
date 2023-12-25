@@ -3,6 +3,7 @@
     <div class="bg-white">&nbsp;</div>
     <div class="bg-gray-100">&nbsp;</div>
     <Message :message-list="message1List"></Message>
+    <Divider></Divider>
     <Message :message-list="message2List"></Message>
     <Affix :offsetBottom="400" :style="{ position: 'absolute', right: 0 + 'px' }">
       <div class="flex flex-col">
@@ -13,7 +14,7 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { Table, Button, Affix, message } from 'ant-design-vue';
+import { Table, Button, Affix, message, Divider } from 'ant-design-vue';
 import { computed, h, ref, onMounted, watch, onUnmounted } from 'vue';
 import dayjs from 'dayjs';
 import { useRouter, useRoute } from 'vue-router';
@@ -43,8 +44,6 @@ type D = {
   scoreRevList: Rev[];
 };
 
-
-
 enum Code {
   success = 200,
   wrongAccount = 403,
@@ -60,14 +59,14 @@ enum Code {
 const dataSource = ref<D[]>([]);
 
 let timeId: ReturnType<typeof setTimeout> | undefined = void 0;
-const resData = ref<any>()
+const resData = ref<any>();
 
 const message1List = computed(() => {
-  return resData.value?.message1List || []
-})
+  return resData.value?.message1List || [];
+});
 const message2List = computed(() => {
-  return resData.value?.message2List || []
-})
+  return resData.value?.message2List || [];
+});
 
 async function getData() {
   if (route.path !== '/mobile/basketball') {
@@ -145,14 +144,8 @@ onUnmounted(() => {
   }
 });
 
-
-
 const handleSetting = () => {
   router.push({ path: '/setting' });
 };
-
-
-
-
 </script>
 ./type

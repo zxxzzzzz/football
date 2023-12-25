@@ -7,6 +7,7 @@
     </div>
     <Drawer width="840" placement="right" :closable="true" :visible="drawerVisible" :mask="true" @close="() => (drawerVisible = false)">
       <MessageList :message-list="message1List" />
+      <Divider></Divider>
       <MessageList :message-list="message2List" />
     </Drawer>
     <Affix :offsetBottom="400" :style="{ position: 'absolute', right: 0 + 'px' }">
@@ -20,7 +21,7 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { Table, Button, Affix, message , Drawer} from 'ant-design-vue';
+import { Table, Button, Affix, message, Drawer, Divider } from 'ant-design-vue';
 import type { TableProps } from 'ant-design-vue';
 import { computed, h, ref, onMounted, watch, onUnmounted } from 'vue';
 import Match from './component/match.vue';
@@ -88,10 +89,10 @@ let timeId: ReturnType<typeof setTimeout> | undefined = void 0;
 const resData = ref<any>();
 
 const message1List = computed(() => {
-  return resData.value?.message1List || [];
+  return (resData.value?.message1List as string[]) || [];
 });
 const message2List = computed(() => {
-  return resData.value?.message2List || [];
+  return (resData.value?.message2List as string[]) || [];
 });
 // 是否按照rev排序
 const enum SortType {
