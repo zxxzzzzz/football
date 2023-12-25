@@ -816,7 +816,7 @@ export function getBasketballMessage2List(data: ReturnType<typeof toBasketballDa
     .map((d) => {
       const rev = d.scoreRevList[0];
       // 胜，负，让胜，让负
-      const desc = `比分 ${rev.tiCaiScore} ` + rev.tiCaiType === 'win' ? `胜` : `负`;
+      const desc = `比分 ${rev.tiCaiScore} ` + (rev.tiCaiType === 'win' ? `胜` : `负`);
       return `${d.num} ${dayjs(d.dateTime, 'MM-DD HH:mm').format('MM-DD\u2002HH:mm')} ${d.tiCaiTeamList.join(
         ' '
       )} ${desc} GC:${rev.gc.toFixed(2)} VV:${rev.vv.toFixed(2)} offset:${rev.offset.toFixed(2)} rev:${rev.rev.toFixed(2)}`;
