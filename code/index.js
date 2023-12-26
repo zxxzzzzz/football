@@ -130,9 +130,9 @@ exports.basketballData = (_event, content, callback) => pipe(_event, content, ca
 
 exports.dataUpdate = async (event, context, callback) => {
   try {
-    const { log, matchData } = await getData('xiao3333', 'LYxjn5201314');
+    const { log, matchData } = await getData('Wuhan01', 'Aakk22666');
     await sendDingDingMessage(matchData);
-    const { matchData: basketballData } = await getBasketballData('xiao3333', 'LYxjn5201314');
+    const { matchData: basketballData } = await getBasketballData('Wuhan01', 'Aakk22666');
     await sendBasketballDingDingMessage(basketballData);
     callback(null, {
       statusCode: 500,
