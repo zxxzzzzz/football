@@ -427,9 +427,19 @@ export const sendDingDingMessage = async (data: any) => {
     const _message1List = getMessage1List(data, 650);
     const _message3List = getMessage3List(data, 400);
     const _message4List = getMessage4List(data, 400);
+    const _list = [..._message1List, ..._message3List, ..._message4List];
+    if (_list?.length) {
+      for (const _item of _list) {
+        await retrySendDingDing(_item);
+      }
+    }
+  }
+};
+export const sendBasketballDingDingMessage = async (data: any) => {
+  if (data) {
     const _basketballMessage1List = getBasketballMessage1List(data, 400);
     const _basketballMessage2List = getBasketballMessage2List(data, 400);
-    const _list = [..._message1List, ..._message3List, ..._message4List, ..._basketballMessage1List, ..._basketballMessage2List];
+    const _list = [..._basketballMessage1List, ..._basketballMessage2List];
     if (_list?.length) {
       for (const _item of _list) {
         await retrySendDingDing(_item);
