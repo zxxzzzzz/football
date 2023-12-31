@@ -352,9 +352,10 @@ export async function getBasketballData(username: string, password: string) {
       const _extraGameList = extraGameList
         .filter((d): d is Game => !!d)
         .map((extra) => {
+          const nYear = dayjs().format('YYYY');
           const teamRate = isTeamEqu(tiCai.teamList, extra.teamList);
-          const tDateTime = dayjs(tiCai.dateTime, 'MM-DD HH:mm');
-          const eDateTime = dayjs(extra.dateTime, 'MM-DD HH:mm');
+          const tDateTime = dayjs(nYear + '-' + tiCai.dateTime, 'YYYY-MM-DD HH:mm');
+          const eDateTime = dayjs(nYear + '-' + extra.dateTime, 'YYYY-MM-DD HH:mm');
           const oneMinute = 60 * 1000;
           // 时间是否匹配,上下十分钟的范围
           const isTime1 = Math.abs(eDateTime.valueOf() - tDateTime.valueOf()) <= 10 * oneMinute;
@@ -368,6 +369,7 @@ export async function getBasketballData(username: string, password: string) {
           const re: [typeof extra, number] = [extra, rate];
           return re;
         })
+        .filter(([_, rate]) => rate >= 110);
       // 选出匹配度最高的一场比赛
       const game = _extraGameList.reduce(
         (re, cur) => {
