@@ -368,7 +368,6 @@ export async function getBasketballData(username: string, password: string) {
           const re: [typeof extra, number] = [extra, rate];
           return re;
         })
-        .filter(([_, rate]) => rate >= 110);
       // 选出匹配度最高的一场比赛
       const game = _extraGameList.reduce(
         (re, cur) => {

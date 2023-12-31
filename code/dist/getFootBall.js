@@ -347,8 +347,7 @@ async function getBasketballData(username, password) {
             // 联赛必须匹配上
             const re = [extra, rate];
             return re;
-        })
-            .filter(([_, rate]) => rate >= 110);
+        });
         // 选出匹配度最高的一场比赛
         const game = _extraGameList.reduce((re, cur) => {
             if (re[1] < cur[1]) {
