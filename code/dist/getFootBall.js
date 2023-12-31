@@ -332,15 +332,14 @@ async function getBasketballData(username, password) {
         const _extraGameList = extraGameList
             .filter((d) => !!d)
             .map((extra) => {
-            const nYear = (0, dayjs_1.default)().format('YYYY');
             const teamRate = (0, util_1.isTeamEqu)(tiCai.teamList, extra.teamList);
-            const tDateTime = (0, dayjs_1.default)(nYear + '-' + tiCai.dateTime, 'YYYY-MM-DD HH:mm');
-            const eDateTime = (0, dayjs_1.default)(nYear + '-' + extra.dateTime, 'YYYY-MM-DD HH:mm');
+            const tDateTime = (0, dayjs_1.default)(tiCai.dateTime, 'YYYY-MM-DD HH:mm');
+            const eDateTime = (0, dayjs_1.default)(extra.dateTime, 'YYYY-MM-DD HH:mm');
             const oneMinute = 60 * 1000;
             // 时间是否匹配,上下十分钟的范围
             const isTime1 = Math.abs(eDateTime.valueOf() - tDateTime.valueOf()) <= 10 * oneMinute;
             // 有时体彩的时间会落后extra的时间24小时
-            const isTime2 = Math.abs(eDateTime.valueOf() - tDateTime.add(24, 'hour').valueOf()) <= 10 * oneMinute;
+            const isTime2 = Math.abs(eDateTime.valueOf() - tDateTime.valueOf() - 24 * 60 * 60 * 1000) <= 10 * oneMinute;
             const isTime = isTime1 || isTime2;
             // 联赛是否匹配
             const isLeague = (0, util_1.isLeagueEqual)(tiCai.league, extra.league);
