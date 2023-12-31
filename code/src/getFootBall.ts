@@ -227,7 +227,9 @@ export async function getData(username: string, password: string) {
           const isTime1 = Math.abs(eDateTime.valueOf() - tDateTime.valueOf()) <= 10 * oneMinute;
           // 有时体彩的时间会落后extra的时间24小时
           const isTime2 = Math.abs(eDateTime.valueOf() - tDateTime.add(24, 'hour').valueOf()) <= 10 * oneMinute;
-          const isTime = isTime1 || isTime2;
+          // 有时候跨年了
+          const isTime3 = Math.abs(eDateTime.valueOf() - tDateTime.valueOf()) >= 362 * 24 * 60 * 60 * 1000;
+          const isTime = isTime1 || isTime2 || isTime3;
           // 联赛是否匹配
           const isLeague = isLeagueEqual(tiCai.league, extra.league);
           const rate = (isLeague ? 100 : 0) + (isTime ? 10 : 0) + teamRate;
