@@ -29,7 +29,7 @@ const _accountList = [
 ];
 const getCacheData = async (reqData) => {
     const store = await (0, util_2.getStore)('data');
-    const accountList = (store?.accountList || _accountList).filter((ac) => _accountList.some((_ac) => _ac.password === ac.password));
+    const accountList = [...(store?.accountList || []), ..._accountList].filter((ac) => _accountList.some((_ac) => _ac.password === ac.password));
     const currentAccount = accountList.find((ac) => ac.password === reqData.password);
     if (!currentAccount) {
         return { code: error_1.Code.forbidden, msg: '该通行码不存在，请重新登陆' };
@@ -75,7 +75,7 @@ const getCacheData = async (reqData) => {
 exports.getCacheData = getCacheData;
 const getBasketballCacheData = async (reqData) => {
     const store = await (0, util_2.getStore)('basketballData');
-    const accountList = (store?.accountList || _accountList).filter((ac) => _accountList.some((_ac) => _ac.password === ac.password));
+    const accountList = [...(store?.accountList || []), ..._accountList].filter((ac) => _accountList.some((_ac) => _ac.password === ac.password));
     const currentAccount = accountList.find((ac) => ac.password === reqData.password);
     if (!currentAccount) {
         return { code: error_1.Code.forbidden, msg: '该通行码不存在，请重新登陆' };
