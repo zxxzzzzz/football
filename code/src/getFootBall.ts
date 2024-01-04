@@ -17,7 +17,7 @@ import {
 import { getStore, saveStore, saveFile, getMessage1List, getMessage2List, getMessage3List, getMessage4List } from './util';
 import { CError, Code, createError } from './error';
 
-type FirstOfGeneric<T> = T extends Promise<infer F> ? F : never;
+type FirstOfGeneric<T> = T extends Promise<infer F> ? F : never; 
 
 const _accountList = [
   { password: 'XD_ivan', token: '', timestamp: 0 },
