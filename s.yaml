@@ -174,11 +174,6 @@ resources:
               - GET
             path: /request
             qualifier: LATEST
-          - functionName: dataUpdate
-            methods:
-              - GET
-            path: /dataUpdate
-            qualifier: LATEST
           - functionName: static
             methods:
               - GET
