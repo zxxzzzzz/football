@@ -120,6 +120,28 @@ resources:
           triggerConfig:
             cronExpression: 'CRON_TZ=Asia/Shanghai 0 0/1 * * * ?'
             enable: true
+  basketballDataUpdate:
+    component: fc3
+    props: # 组件的属性值
+      region: cn-hangzhou # 关于变量的使用方法，可以参考：https://www.serverless-devs.com/serverless-devs/yaml#变量赋值
+      functionName: basketballDataUpdate
+      runtime: nodejs16
+      code: ./code
+      cpu: 0.3
+      handler: index.basketballDataUpdate
+      memorySize: 512
+      diskSize: 512
+      description: '篮球数据更新'
+      timeout: 90
+      layers:
+        - acs:fc:cn-hangzhou:1048992591952509:layers/ball/versions/2
+      instanceConcurrency: 1
+      triggers:
+        - triggerName: cron-tab-trigger
+          triggerType: timer
+          triggerConfig:
+            cronExpression: 'CRON_TZ=Asia/Shanghai 0 0/1 * * * ?'
+            enable: true
   static: # 静态文件服务
     component: fc3 
     props: 

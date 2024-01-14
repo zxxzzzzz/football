@@ -132,6 +132,19 @@ exports.dataUpdate = async (event, context, callback) => {
   try {
     const { log, matchData } = await getData('5201314YH', 'Aabb11222');
     await sendDingDingMessage(matchData);
+    callback(null, {
+      statusCode: 200,
+      body: log,
+    });
+  } catch (error) {
+    callback(null, {
+      statusCode: 500,
+      body: error.message,
+    });
+  }
+};
+exports.basketballDataUpdate = async (event, context, callback) => {
+  try {
     const { matchData: basketballData } = await getBasketballData('5201314YH', 'Aabb11222');
     await sendBasketballDingDingMessage(basketballData);
     callback(null, {
