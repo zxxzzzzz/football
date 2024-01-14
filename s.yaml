@@ -105,7 +105,7 @@ resources:
       functionName: dataUpdate
       runtime: nodejs16
       code: ./code
-      cpu: 0.1
+      cpu: 0.3
       handler: index.dataUpdate
       memorySize: 512
       diskSize: 512
@@ -173,6 +173,11 @@ resources:
             methods:
               - GET
             path: /request
+            qualifier: LATEST
+          - functionName: dataUpdate
+            methods:
+              - GET
+            path: /dataUpdate
             qualifier: LATEST
           - functionName: static
             methods:
