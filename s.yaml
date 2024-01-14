@@ -11,9 +11,9 @@ resources:
       functionName: data
       runtime: nodejs16
       code: ./code
-      cpu: 0.3
+      cpu: 1
       handler: index.data
-      memorySize: 512
+      memorySize: 1024
       diskSize: 512
       description: '球类网站缓存数据'
       timeout: 60
@@ -35,9 +35,9 @@ resources:
       functionName: basketballData
       runtime: nodejs16
       code: ./code
-      cpu: 0.3
+      cpu: 1
       handler: index.basketballData
-      memorySize: 512
+      memorySize: 1024
       diskSize: 512
       description: 'lan球类网站缓存数据'
       timeout: 60
