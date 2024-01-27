@@ -218,7 +218,7 @@ onMounted(async () => {
       return await getData();
     }
     return true;
-  }, 30 * 1000);
+  }, 10 * 1000);
 });
 onUnmounted(() => {
   if (timeId) {
