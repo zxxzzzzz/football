@@ -705,6 +705,7 @@ const saveStore = async (s, upload = true) => {
         'url',
         'timestamp',
         'basketballTimestamp',
+        'localRunTimestamp',
         'timeFormat',
         'R',
         'A',

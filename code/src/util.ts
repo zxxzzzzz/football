@@ -677,6 +677,7 @@ type Store = {
   url: string;
   timestamp: number;
   basketballTimestamp: number;
+  localRunTimestamp: number;
   timeFormat: string;
   R: number;
   A: number;
@@ -727,6 +728,7 @@ export const saveStore = async (s: Partial<Store>, upload = true) => {
       'url',
       'timestamp',
       'basketballTimestamp',
+      'localRunTimestamp',
       'timeFormat',
       'R',
       'A',

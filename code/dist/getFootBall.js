@@ -158,7 +158,7 @@ exports.getBasketballCacheData = getBasketballCacheData;
 async function getData(username, password, op) {
     const store = await (0, util_2.getStore)();
     const now = new Date().valueOf();
-    if (now - (store.timestamp || 0) < op.limit) {
+    if (now - (store.localRunTimestamp || 0) < op.limit) {
         throw (0, error_1.createError)('更新时间未到', error_1.Code.wrongAccount);
     }
     let uid = store.uid;
@@ -292,7 +292,7 @@ exports.getData = getData;
 async function getBasketballData(username, password, op) {
     const store = await (0, util_2.getStore)();
     const now = new Date().valueOf();
-    if (now - (store.basketballTimestamp || 0) < op.limit) {
+    if (now - (store.localRunTimestamp || 0) < op.limit) {
         throw (0, error_1.createError)('更新时间未到', error_1.Code.wrongAccount);
     }
     let uid = store.uid;
