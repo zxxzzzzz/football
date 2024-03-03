@@ -93,9 +93,9 @@ const useBasketballData = async (request, response) => {
   };
 };
 
-exports.data = (_event, content, callback) => pipe(_event, content, callback, [useData]);
+exports.data = (_event, content, callback) => pipe(_event, content, callback, [useData, useCache]);
 
-exports.basketballData = (_event, content, callback) => pipe(_event, content, callback, [useBasketballData]);
+exports.basketballData = (_event, content, callback) => pipe(_event, content, callback, [useBasketballData, useCache]);
 
 exports.dataUpdate = async (event, context, callback) => {
   try {
