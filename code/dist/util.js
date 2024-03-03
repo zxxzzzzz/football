@@ -721,23 +721,15 @@ const saveStore = async (s, upload = true) => {
         ...s,
     });
     // oss保存
-    try {
-        if (client && upload) {
-            try {
-                if (s.data) {
-                    await client.put(`data.json`, Buffer.from((0, json_format_1.default)(s.data)));
-                }
-                if (s.basketballData) {
-                    await client.put(`basketballData.json`, Buffer.from((0, json_format_1.default)(s.basketballData)));
-                }
-                await client.put(`store.json`, Buffer.from((0, json_format_1.default)(R.omit(['data', 'basketballData'], tStore))));
-            }
-            catch (error) {
-                console.log(error);
-            }
+    if (client && upload) {
+        if (s.data) {
+            await client.put(`data.json`, Buffer.from((0, json_format_1.default)(s.data)));
         }
+        if (s.basketballData) {
+            await client.put(`basketballData.json`, Buffer.from((0, json_format_1.default)(s.basketballData)));
+        }
+        await client.put(`store.json`, Buffer.from((0, json_format_1.default)(R.omit(['data', 'basketballData'], tStore))));
     }
-    catch (error) { }
     return tStore;
 };
 exports.saveStore = saveStore;

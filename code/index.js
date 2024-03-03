@@ -99,7 +99,7 @@ exports.basketballData = (_event, content, callback) => pipe(_event, content, ca
 
 exports.dataUpdate = async (event, context, callback) => {
   try {
-    const { log, matchData } = await getData('', '', { limit: 90 * 1000 });
+    const { log, matchData } = await getData('xiao112211', 'Aabb112233', { limit: 90 * 1000 });
     await sendDingDingMessage(matchData);
     callback(null, {
       statusCode: 200,
@@ -114,7 +114,7 @@ exports.dataUpdate = async (event, context, callback) => {
 };
 exports.basketballDataUpdate = async (event, context, callback) => {
   try {
-    const { matchData: basketballData } = await getBasketballData('', '', { limit: 90 * 1000 });
+    const { matchData: basketballData } = await getBasketballData('xiao112211', 'Aabb112233', { limit: 90 * 1000 });
     await sendBasketballDingDingMessage(basketballData);
     callback(null, {
       statusCode: 200,
