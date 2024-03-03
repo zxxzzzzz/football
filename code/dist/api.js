@@ -298,13 +298,7 @@ async function getBasketballMore(url, ver, uid, lid, gid) {
             },
             {
                 oddsTitle: '总分',
-                oddsItemList: [
-                    [
-                        game?.ratio_o?._text,
-                        game?.ior_POUC?._text,
-                        game?.ior_POUH?._text,
-                    ],
-                ],
+                oddsItemList: [[game?.ratio_o?._text, game?.ior_POUC?._text, game?.ior_POUH?._text]],
             },
             {
                 oddsTitle: '让球',
@@ -684,7 +678,7 @@ async function getBasketballLeagueList(url, uid, ver) {
                 'sec-fetch-dest': 'empty',
                 'sec-fetch-mode': 'cors',
                 'sec-fetch-site': 'same-origin',
-            },
+            }
         });
         text = res.data;
     }
@@ -727,7 +721,7 @@ async function getServiceMainget(ver) {
                 'sec-fetch-site': 'same-origin',
                 Referer: 'https://61.14.172.140/',
                 'Referrer-Policy': 'strict-origin-when-cross-origin',
-            },
+            }
         });
         text2 = res.data;
     }

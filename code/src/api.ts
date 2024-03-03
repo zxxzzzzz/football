@@ -27,7 +27,7 @@ export function retryWrap<T extends any[], R>(cb: (...args: T) => R, count: numb
         return d;
       } catch (error) {
         _error = error as Error;
-        await delay(1000)
+        await delay(1000);
       }
     }
     throw _error;
@@ -323,13 +323,7 @@ export async function getBasketballMore(url: string, ver: string, uid: string, l
 
         {
           oddsTitle: '总分',
-          oddsItemList: [
-            [
-              game?.ratio_o?._text,
-              game?.ior_POUC?._text,
-              game?.ior_POUH?._text,
-            ],
-          ],
+          oddsItemList: [[game?.ratio_o?._text, game?.ior_POUC?._text, game?.ior_POUH?._text]],
         },
 
         {
@@ -710,7 +704,7 @@ export async function getBasketballLeagueList(url: string, uid: string, ver: str
         'sec-fetch-dest': 'empty',
         'sec-fetch-mode': 'cors',
         'sec-fetch-site': 'same-origin',
-      },
+      }
     });
     text = res.data;
   } catch (error) {
@@ -752,7 +746,7 @@ async function getServiceMainget(ver: string) {
         'sec-fetch-site': 'same-origin',
         Referer: 'https://61.14.172.140/',
         'Referrer-Policy': 'strict-origin-when-cross-origin',
-      },
+      }
     });
     text2 = res.data;
   } catch (error) {

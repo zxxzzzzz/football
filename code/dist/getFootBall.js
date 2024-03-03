@@ -156,9 +156,6 @@ exports.getBasketballCacheData = getBasketballCacheData;
 // type M = Promise<ReturnType<typeof toData> | undefined>;
 //是否在更新数据
 async function getData(username, password, op) {
-    if (!username || !password) {
-        throw (0, error_1.createError)('用户名或者密码没有填写', error_1.Code.wrongAccount);
-    }
     const store = await (0, util_2.getStore)();
     const now = new Date().valueOf();
     if (now - (store.timestamp || 0) < op.limit) {
@@ -168,6 +165,9 @@ async function getData(username, password, op) {
     let ver = store.ver || '';
     let url = store.url;
     if (!uid || !ver || !url) {
+        if (!username || !password) {
+            throw (0, error_1.createError)('用户名或者密码没有填写', error_1.Code.wrongAccount);
+        }
         const d = await (0, api_1.retryLoginByNodeFetch)(username, password);
         await (0, util_2.saveStore)(d);
         uid = d.uid;
@@ -180,6 +180,9 @@ async function getData(username, password, op) {
     }
     catch (error) {
         if (error.code === error_1.Code.uidExpire) {
+            if (!username || !password) {
+                throw (0, error_1.createError)('用户名或者密码没有填写', error_1.Code.wrongAccount);
+            }
             const d = await (0, api_1.retryLoginByNodeFetch)(username, password);
             await (0, util_2.saveStore)(d);
             uid = d.uid;
@@ -287,9 +290,6 @@ async function getData(username, password, op) {
 exports.getData = getData;
 // 篮球
 async function getBasketballData(username, password, op) {
-    if (!username || !password) {
-        throw (0, error_1.createError)('用户名或者密码没有填写', error_1.Code.wrongAccount);
-    }
     const store = await (0, util_2.getStore)();
     const now = new Date().valueOf();
     if (now - (store.basketballTimestamp || 0) < op.limit) {
@@ -299,6 +299,9 @@ async function getBasketballData(username, password, op) {
     let ver = store.ver || '';
     let url = store.url;
     if (!uid || !ver || !url) {
+        if (!username || !password) {
+            throw (0, error_1.createError)('用户名或者密码没有填写', error_1.Code.wrongAccount);
+        }
         const d = await (0, api_1.retryLoginByNodeFetch)(username, password);
         await (0, util_2.saveStore)(d);
         uid = d.uid;
@@ -311,6 +314,9 @@ async function getBasketballData(username, password, op) {
     }
     catch (error) {
         if (error.code === error_1.Code.uidExpire) {
+            if (!username || !password) {
+                throw (0, error_1.createError)('用户名或者密码没有填写', error_1.Code.wrongAccount);
+            }
             const d = await (0, api_1.retryLoginByNodeFetch)(username, password);
             await (0, util_2.saveStore)(d);
             uid = d.uid;

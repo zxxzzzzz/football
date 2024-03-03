@@ -18,9 +18,6 @@ async function cInter(cb, n) {
     }
     catch (error) {
         console.log('error', error);
-        await delay(1000);
-        await cInter(cb, n);
-        return;
     }
     timeId = setTimeout(async () => {
         try {
@@ -31,12 +28,14 @@ async function cInter(cb, n) {
 }
 // 为了节省运算资源补充本地运行
 const footballUpdate = async () => {
-    const { log, matchData } = await (0, getFootBall_1.getData)('MW5038', 'Aadd555', { limit: 0 });
+    // 只支持uid登录
+    const { log, matchData } = await (0, getFootBall_1.getData)('', '', { limit: 0 });
     console.log(new Date().toString(), 'up football');
     await (0, getFootBall_1.sendDingDingMessage)(matchData);
 };
 const basketballUpdate = async () => {
-    const { matchData: basketballData } = await (0, getFootBall_1.getBasketballData)('MW5038', 'Aadd555', { limit: 0 });
+    // 只支持uid登录
+    const { matchData: basketballData } = await (0, getFootBall_1.getBasketballData)('', '', { limit: 0 });
     console.log(new Date().toString(), 'up basketball');
     await (0, getFootBall_1.sendBasketballDingDingMessage)(basketballData);
 };
