@@ -27,6 +27,7 @@ export function retryWrap<T extends any[], R>(cb: (...args: T) => R, count: numb
         return d;
       } catch (error) {
         _error = error as Error;
+        await delay(1000)
       }
     }
     throw _error;
