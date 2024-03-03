@@ -683,21 +683,16 @@ async function getStore(p) {
         halfRev: 400,
     };
     if (client) {
-        try {
-            const res = await client.get(`store.json`);
-            if (p === 'data') {
-                const dataRes = await client.get(`data.json`);
-                return { ...initData, ...JSON.parse(res.content), data: JSON.parse(dataRes.content) };
-            }
-            if (p === 'basketballData') {
-                const dataRes = await client.get(`basketballData.json`);
-                return { ...initData, ...JSON.parse(res.content), basketballData: JSON.parse(dataRes.content) };
-            }
-            return { ...initData, ...JSON.parse(res.content) };
+        const res = await client.get(`store.json`);
+        if (p === 'data') {
+            const dataRes = await client.get(`data.json`);
+            return { ...initData, ...JSON.parse(res.content), data: JSON.parse(dataRes.content) };
         }
-        catch (error) {
-            return initData;
+        if (p === 'basketballData') {
+            const dataRes = await client.get(`basketballData.json`);
+            return { ...initData, ...JSON.parse(res.content), basketballData: JSON.parse(dataRes.content) };
         }
+        return { ...initData, ...JSON.parse(res.content) };
     }
     return initData;
 }

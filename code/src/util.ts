@@ -704,20 +704,16 @@ export async function getStore(p?: 'data' | 'basketballData'): Promise<Partial<S
     halfRev: 400,
   };
   if (client) {
-    try {
-      const res = await client.get(`store.json`);
-      if (p === 'data') {
-        const dataRes = await client.get(`data.json`);
-        return { ...initData, ...JSON.parse(res.content), data: JSON.parse(dataRes.content) };
-      }
-      if (p === 'basketballData') {
-        const dataRes = await client.get(`basketballData.json`);
-        return { ...initData, ...JSON.parse(res.content), basketballData: JSON.parse(dataRes.content) };
-      }
-      return { ...initData, ...JSON.parse(res.content) };
-    } catch (error) {
-      return initData;
+    const res = await client.get(`store.json`);
+    if (p === 'data') {
+      const dataRes = await client.get(`data.json`);
+      return { ...initData, ...JSON.parse(res.content), data: JSON.parse(dataRes.content) };
     }
+    if (p === 'basketballData') {
+      const dataRes = await client.get(`basketballData.json`);
+      return { ...initData, ...JSON.parse(res.content), basketballData: JSON.parse(dataRes.content) };
+    }
+    return { ...initData, ...JSON.parse(res.content) };
   }
   return initData;
 }
@@ -896,6 +892,6 @@ export function getMessage2List(data: ReturnType<typeof toData>, C: number, A: n
   return { messageList, compareDataList };
 }
 
-const isDataFresh = ()=> {
-  getStore()
-}
+const isDataFresh = () => {
+  getStore();
+};
