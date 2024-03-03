@@ -17,7 +17,7 @@ import {
 import { getStore, saveStore, saveFile, getMessage1List, getMessage2List, getMessage3List, getMessage4List } from './util';
 import { CError, Code, createError } from './error';
 
-type FirstOfGeneric<T> = T extends Promise<infer F> ? F : never; 
+type FirstOfGeneric<T> = T extends Promise<infer F> ? F : never;
 
 const _accountList = [
   { password: 'XD_ivan', token: '', timestamp: 0 },
@@ -38,7 +38,9 @@ const _accountList = [
 type PromiseType<T> = T extends Promise<infer U> ? U : never;
 export const getCacheData = async (reqData: { password: string; token: string }) => {
   const store = await getStore('data');
-  const accountList = [...(store?.accountList || []), ... _accountList].filter((ac) => _accountList.some((_ac) => _ac.password === ac.password));
+  const accountList = [...(store?.accountList || []), ..._accountList].filter((ac) =>
+    _accountList.some((_ac) => _ac.password === ac.password)
+  );
   const currentAccount = accountList.find((ac) => ac.password === reqData.password);
   if (!currentAccount) {
     return { code: Code.forbidden, msg: '该通行码不存在，请重新登陆' };
@@ -83,7 +85,9 @@ export const getCacheData = async (reqData: { password: string; token: string })
 };
 export const getBasketballCacheData = async (reqData: { password: string; token: string }) => {
   const store = await getStore('basketballData');
-  const accountList = [...(store?.accountList || []), ... _accountList].filter((ac) => _accountList.some((_ac) => _ac.password === ac.password));
+  const accountList = [...(store?.accountList || []), ..._accountList].filter((ac) =>
+    _accountList.some((_ac) => _ac.password === ac.password)
+  );
   const currentAccount = accountList.find((ac) => ac.password === reqData.password);
   if (!currentAccount) {
     return { code: Code.forbidden, msg: '该通行码不存在，请重新登陆' };
@@ -109,7 +113,7 @@ export const getBasketballCacheData = async (reqData: { password: string; token:
       code: 200,
       msg: 'success',
       data: {
-        timestamp: store.timestamp,
+        timestamp: store.basketballTimestamp || 0,
         matchData: data,
         message1List,
         message2List,
@@ -163,11 +167,15 @@ export const getBasketballCacheData = async (reqData: { password: string; token:
 // type M = Promise<ReturnType<typeof toData> | undefined>;
 
 //是否在更新数据
-export async function getData(username: string, password: string) {
+export async function getData(username: string, password: string, op: { limit: number }) {
   if (!username || !password) {
     throw createError('用户名或者密码没有填写', Code.wrongAccount);
   }
   const store = await getStore();
+  const now = new Date().valueOf();
+  if (now - (store.timestamp || 0) < op.limit) {
+    throw createError('更新时间未到', Code.wrongAccount);
+  }
   let uid = store.uid;
   let ver = store.ver || '';
   let url = store.url;
@@ -298,11 +306,15 @@ export async function getData(username: string, password: string) {
 }
 
 // 篮球
-export async function getBasketballData(username: string, password: string) {
+export async function getBasketballData(username: string, password: string, op: { limit: number }) {
   if (!username || !password) {
     throw createError('用户名或者密码没有填写', Code.wrongAccount);
   }
   const store = await getStore();
+  const now = new Date().valueOf();
+  if (now - (store.basketballTimestamp || 0) < op.limit) {
+    throw createError('更新时间未到', Code.wrongAccount);
+  }
   let uid = store.uid;
   let ver = store.ver || '';
   let url = store.url;
@@ -416,7 +428,7 @@ export async function getBasketballData(username: string, password: string) {
   saveFile('./data/basketballMatchedGameList.json', Format(matchedGameList));
   const matchData = toBasketballData(tiCaiDataList, matchedGameList, store.R);
   await saveStore({
-    timestamp: dayjs().valueOf(),
+    basketballTimestamp: dayjs().valueOf(),
     timeFormat: dayjs().format('YYYY-MM-DD HH:mm:ss'),
     basketballData: matchData,
   });

@@ -101,7 +101,7 @@ const getBasketballCacheData = async (reqData) => {
             code: 200,
             msg: 'success',
             data: {
-                timestamp: store.timestamp,
+                timestamp: store.basketballTimestamp || 0,
                 matchData: data,
                 message1List,
                 message2List,
@@ -154,11 +154,15 @@ exports.getBasketballCacheData = getBasketballCacheData;
 // });
 // type M = Promise<ReturnType<typeof toData> | undefined>;
 //是否在更新数据
-async function getData(username, password) {
+async function getData(username, password, op) {
     if (!username || !password) {
         throw (0, error_1.createError)('用户名或者密码没有填写', error_1.Code.wrongAccount);
     }
     const store = await (0, util_2.getStore)();
+    const now = new Date().valueOf();
+    if (now - (store.timestamp || 0) < op.limit) {
+        throw (0, error_1.createError)('更新时间未到', error_1.Code.wrongAccount);
+    }
     let uid = store.uid;
     let ver = store.ver || '';
     let url = store.url;
@@ -281,11 +285,15 @@ async function getData(username, password) {
 }
 exports.getData = getData;
 // 篮球
-async function getBasketballData(username, password) {
+async function getBasketballData(username, password, op) {
     if (!username || !password) {
         throw (0, error_1.createError)('用户名或者密码没有填写', error_1.Code.wrongAccount);
     }
     const store = await (0, util_2.getStore)();
+    const now = new Date().valueOf();
+    if (now - (store.basketballTimestamp || 0) < op.limit) {
+        throw (0, error_1.createError)('更新时间未到', error_1.Code.wrongAccount);
+    }
     let uid = store.uid;
     let ver = store.ver || '';
     let url = store.url;
@@ -391,7 +399,7 @@ async function getBasketballData(username, password) {
     (0, util_2.saveFile)('./data/basketballMatchedGameList.json', (0, json_format_1.default)(matchedGameList));
     const matchData = (0, util_1.toBasketballData)(tiCaiDataList, matchedGameList, store.R);
     await (0, util_2.saveStore)({
-        timestamp: (0, dayjs_1.default)().valueOf(),
+        basketballTimestamp: (0, dayjs_1.default)().valueOf(),
         timeFormat: (0, dayjs_1.default)().format('YYYY-MM-DD HH:mm:ss'),
         basketballData: matchData,
     });

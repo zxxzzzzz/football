@@ -12,37 +12,6 @@ const fs = require('fs');
 const path = require('path');
 const { createHmac } = require('crypto');
 
-// {
-//   "version": "v1",
-//   "rawPath": "/my/path",
-//   "httpMethod": "POST",
-//   "headers": {
-//       "header1": "value1,value2",
-//       "header2": "value2"
-//   },
-//   "queryParameters": {
-//       "param1": "value1,value2",
-//       "param2": "value2"
-//   },
-//   "body": "hello from client",
-//   "isBase64Encoded": false,
-//   "requestContext": {
-//       "accountId": "12345678",
-//       "domainName": "my-domain.com",
-//       "domainPrefix": "prefix",
-//       "requestId": "abcd-efgh",
-//       "time": "2023-09-01T14:17:23+08:00",
-//       "timeEpoch": 1693549043255,
-//       "http": {
-//           "method": "GET",
-//           "path": "/my/path",
-//           "protocol": "http",
-//           "sourceIP": "39.40.41.42",
-//           "userAgent": "go-sdk/1.0"
-//       }
-//   }
-// }
-
 const pipe = async (event, context, callback, funcList = []) => {
   const request = JSON.parse(event.toString());
   if (request.headers['Content-Type'] === 'application/json') {
@@ -130,7 +99,7 @@ exports.basketballData = (_event, content, callback) => pipe(_event, content, ca
 
 exports.dataUpdate = async (event, context, callback) => {
   try {
-    const { log, matchData } = await getData('5201314YH', 'Aabb11222');
+    const { log, matchData } = await getData('MW5038', 'Add5555', { limit: 90 * 1000 });
     await sendDingDingMessage(matchData);
     callback(null, {
       statusCode: 200,
@@ -145,7 +114,7 @@ exports.dataUpdate = async (event, context, callback) => {
 };
 exports.basketballDataUpdate = async (event, context, callback) => {
   try {
-    const { matchData: basketballData } = await getBasketballData('5201314YH', 'Aabb11222');
+    const { matchData: basketballData } = await getBasketballData('MW5038', 'Add5555', { limit: 90 * 1000 });
     await sendBasketballDingDingMessage(basketballData);
     callback(null, {
       statusCode: 200,

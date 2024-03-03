@@ -676,6 +676,7 @@ type Store = {
   uid: string;
   url: string;
   timestamp: number;
+  basketballTimestamp: number;
   timeFormat: string;
   R: number;
   A: number;
@@ -729,6 +730,7 @@ export const saveStore = async (s: Partial<Store>, upload = true) => {
       'uid',
       'url',
       'timestamp',
+      'basketballTimestamp',
       'timeFormat',
       'R',
       'A',
@@ -892,4 +894,8 @@ export function getMessage2List(data: ReturnType<typeof toData>, C: number, A: n
       ];
     });
   return { messageList, compareDataList };
+}
+
+const isDataFresh = ()=> {
+  getStore()
 }

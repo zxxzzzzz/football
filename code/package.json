@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "pnpm exec tsx ./src/index.ts",
     "build": "npx tsc --project tsconfig.build.json",
-    "test": "cross-env dev=1  pnpm exec tsx ./src/test.ts"
+    "test": "cross-env dev=1  pnpm exec tsx ./src/test.ts",
+    "localUpdate": "cross-env dev=1 tsx ./src/localUpdate.ts"
   },
   "keywords": [],
   "author": "",

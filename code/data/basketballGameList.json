@@ -2,78 +2,32 @@
 	{
 		"league": "西班牙篮球甲级联赛",
 		"source": "extra",
-		"ecid": "6984798",
-		"num": "",
-		"singleList": [
-			false,
-			false
-		],
-		"strong": "C",
-		"dateTime": "11-26 01:00",
-		"itemList": [
-			{
-				"oddsTitle": "让球",
-				"oddsItemList": [
-					[
-						"+6.5",
-						"1.89"
-					],
-					[
-						"-6.5",
-						"1.9"
-					]
-				]
-			},
-			{
-				"oddsTitle": "总分",
-				"oddsItemList": [
-					[
-						"+153",
-						"1.9"
-					],
-					[
-						"-153",
-						"1.85"
-					]
-				]
-			},
-			{
-				"oddsTitle": "独赢",
-				"oddsItemList": [
-					[
-						"3.350",
-						"1.320"
-					]
-				]
-			}
-		],
-		"teamList": [
-			"帕伦西亚",
-			"瓦伦西亚"
-		]
-	},
-	{
-		"league": "西班牙篮球甲级联赛",
-		"source": "extra",
-		"ecid": "6984819",
+		"ecid": "7448821",
 		"num": "",
 		"singleList": [
 			false,
 			false
 		],
 		"strong": "H",
-		"dateTime": "11-26 01:00",
+		"dateTime": "03-03 19:30",
 		"itemList": [
+			{
+				"oddsTitle": "总分",
+				"oddsItemList": [
+					[
+						"165",
+						"2.02",
+						"1.8"
+					]
+				]
+			},
 			{
 				"oddsTitle": "让球",
 				"oddsItemList": [
 					[
-						"-7.5",
-						"1.94"
-					],
-					[
-						"+7.5",
-						"1.85"
+						"-3",
+						"1.76",
+						"2.08"
 					]
 				]
 			},
@@ -81,52 +35,87 @@
 				"oddsTitle": "总分",
 				"oddsItemList": [
 					[
-						"+165.5",
-						"1.8399999"
-					],
+						"163",
+						"1.78",
+						"2.04"
+					]
+				]
+			},
+			{
+				"oddsTitle": "让球",
+				"oddsItemList": [
 					[
-						"-165.5",
+						"-5",
+						"2.01",
+						"1.8299999"
+					]
+				]
+			},
+			{
+				"oddsTitle": "总分",
+				"oddsItemList": [
+					[
+						"164",
+						"1.9",
 						"1.9100001"
 					]
 				]
 			},
 			{
-				"oddsTitle": "独赢",
+				"oddsTitle": "让球",
 				"oddsItemList": [
 					[
-						"1.300",
-						"3.500"
+						"-4",
+						"1.8399999",
+						"1.99"
+					]
+				]
+			},
+			{
+				"oddsTitle": "让球",
+				"oddsItemList": [
+					[
+						"0",
+						"1.530",
+						"2.600"
 					]
 				]
 			}
 		],
 		"teamList": [
-			"奥布拉多伊洛",
-			"哥瑞纳达"
+			"赫罗纳",
+			"奥布拉多伊洛"
 		]
 	},
 	{
 		"league": "西班牙篮球甲级联赛",
 		"source": "extra",
-		"ecid": "6984882",
+		"ecid": "7448842",
 		"num": "",
 		"singleList": [
 			false,
 			false
 		],
 		"strong": "C",
-		"dateTime": "11-26 03:45",
+		"dateTime": "03-03 19:30",
 		"itemList": [
+			{
+				"oddsTitle": "总分",
+				"oddsItemList": [
+					[
+						"168",
+						"2.03",
+						"1.79"
+					]
+				]
+			},
 			{
 				"oddsTitle": "让球",
 				"oddsItemList": [
 					[
-						"+6",
-						"1.89"
-					],
-					[
-						"-6",
-						"1.9"
+						"+10.5",
+						"1.8",
+						"2.04"
 					]
 				]
 			},
@@ -134,81 +123,190 @@
 				"oddsTitle": "总分",
 				"oddsItemList": [
 					[
-						"+165",
-						"1.88"
-					],
-					[
-						"-165",
-						"1.87"
+						"166",
+						"1.78",
+						"2.04"
 					]
 				]
 			},
 			{
-				"oddsTitle": "独赢",
+				"oddsTitle": "让球",
 				"oddsItemList": [
 					[
-						"2.920",
-						"1.410"
+						"+8.5",
+						"2.01",
+						"1.8299999"
+					]
+				]
+			},
+			{
+				"oddsTitle": "总分",
+				"oddsItemList": [
+					[
+						"167",
+						"1.88",
+						"1.9300001"
+					]
+				]
+			},
+			{
+				"oddsTitle": "让球",
+				"oddsItemList": [
+					[
+						"+9.5",
+						"1.85",
+						"1.98"
+					]
+				]
+			},
+			{
+				"oddsTitle": "让球",
+				"oddsItemList": [
+					[
+						"0",
+						"4.600",
+						"1.220"
 					]
 				]
 			}
 		],
 		"teamList": [
-			"毕尔包",
-			"乌尼卡查马拉加"
+			"安道尔",
+			"皇家马德里"
 		]
 	},
 	{
 		"league": "西班牙篮球甲级联赛",
 		"source": "extra",
-		"ecid": "6984903",
+		"ecid": "7448863",
 		"num": "",
 		"singleList": [
 			false,
 			false
 		],
 		"strong": "H",
-		"dateTime": "11-26 03:45",
+		"dateTime": "03-04 00:00",
 		"itemList": [
 			{
-				"oddsTitle": "让球",
+				"oddsTitle": "总分",
 				"oddsItemList": [
 					[
-						"-8",
-						"1.9200001"
-					],
-					[
-						"+8",
+						"162",
+						"1.88",
 						"1.87"
 					]
 				]
 			},
 			{
-				"oddsTitle": "总分",
+				"oddsTitle": "让球",
 				"oddsItemList": [
 					[
-						"+166.5",
-						"1.89"
-					],
-					[
-						"-166.5",
-						"1.86"
+						"-11.5",
+						"1.88",
+						"1.9100001"
 					]
 				]
 			},
 			{
-				"oddsTitle": "独赢",
+				"oddsTitle": "让球",
 				"oddsItemList": [
 					[
-						"1.300",
-						"3.550"
+						"0",
+						"1.130",
+						"6.000"
 					]
 				]
 			}
 		],
 		"teamList": [
-			"穆尔西亚",
-			"尤文图特巴达洛纳"
+			"瓦伦西亚",
+			"帕伦西亚"
+		]
+	},
+	{
+		"league": "西班牙篮球甲级联赛",
+		"source": "extra",
+		"ecid": "7448884",
+		"num": "",
+		"singleList": [
+			false,
+			false
+		],
+		"strong": "H",
+		"dateTime": "03-04 01:30",
+		"itemList": [
+			{
+				"oddsTitle": "总分",
+				"oddsItemList": [
+					[
+						"169",
+						"1.87",
+						"1.88"
+					]
+				]
+			},
+			{
+				"oddsTitle": "让球",
+				"oddsItemList": [
+					[
+						"-3.5",
+						"1.86",
+						"1.9300001"
+					]
+				]
+			},
+			{
+				"oddsTitle": "让球",
+				"oddsItemList": [
+					[
+						"0",
+						"1.610",
+						"2.310"
+					]
+				]
+			}
+		],
+		"teamList": [
+			"大加纳利",
+			"沙萨基巴斯克尼亚"
+		]
+	},
+	{
+		"league": "西班牙篮球甲级联赛",
+		"source": "extra",
+		"ecid": "7448905",
+		"num": "",
+		"singleList": [
+			false,
+			false
+		],
+		"strong": "H",
+		"dateTime": "03-04 01:30",
+		"itemList": [
+			{
+				"oddsTitle": "总分",
+				"oddsItemList": [
+					[
+						"165.5",
+						"1.87",
+						"1.88"
+					]
+				]
+			},
+			{
+				"oddsTitle": "让球",
+				"oddsItemList": [
+					[
+						"-14",
+						"1.88",
+						"1.9100001"
+					]
+				]
+			}
+		],
+		"teamList": [
+			"巴塞罗那",
+			"萨拉戈萨"
 		]
 	}
 ]

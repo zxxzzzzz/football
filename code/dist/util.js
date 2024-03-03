@@ -709,6 +709,7 @@ const saveStore = async (s, upload = true) => {
         'uid',
         'url',
         'timestamp',
+        'basketballTimestamp',
         'timeFormat',
         'R',
         'A',
@@ -853,3 +854,6 @@ function getMessage2List(data, C, A, compareRev) {
     return { messageList, compareDataList };
 }
 exports.getMessage2List = getMessage2List;
+const isDataFresh = () => {
+    getStore();
+};
