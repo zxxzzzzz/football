@@ -16,6 +16,7 @@ import {
 // import { say } from './chaty';
 import { getStore, saveStore, saveFile, getMessage1List, getMessage2List, getMessage3List, getMessage4List } from './util';
 import { CError, Code, createError } from './error';
+import { uniqBy } from 'ramda';
 
 type FirstOfGeneric<T> = T extends Promise<infer F> ? F : never;
 
@@ -38,8 +39,9 @@ const _accountList = [
 type PromiseType<T> = T extends Promise<infer U> ? U : never;
 export const getCacheData = async (reqData: { password: string; token: string }) => {
   const store = await getStore('data');
-  const accountList = [...(store?.accountList || []), ..._accountList].filter((ac) =>
-    _accountList.some((_ac) => _ac.password === ac.password)
+  const accountList = uniqBy(
+    (ac) => ac.password,
+    [...(store?.accountList || []), ..._accountList].filter((ac) => _accountList.some((_ac) => _ac.password === ac.password))
   );
   const currentAccount = accountList.find((ac) => ac.password === reqData.password);
   if (!currentAccount) {
@@ -85,8 +87,9 @@ export const getCacheData = async (reqData: { password: string; token: string })
 };
 export const getBasketballCacheData = async (reqData: { password: string; token: string }) => {
   const store = await getStore('basketballData');
-  const accountList = [...(store?.accountList || []), ..._accountList].filter((ac) =>
-    _accountList.some((_ac) => _ac.password === ac.password)
+  const accountList = uniqBy(
+    (ac) => ac.password,
+    [...(store?.accountList || []), ..._accountList].filter((ac) => _accountList.some((_ac) => _ac.password === ac.password))
   );
   const currentAccount = accountList.find((ac) => ac.password === reqData.password);
   if (!currentAccount) {

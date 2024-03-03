@@ -29,6 +29,7 @@ function retryWrap(cb, count) {
             }
             catch (error) {
                 _error = error;
+                await delay(1000);
             }
         }
         throw _error;
@@ -438,7 +439,7 @@ async function getGameListByNodeFetch(url, ver, uid, lid) {
     }
     catch (error) {
         // @ts-ignore
-        throw (0, error_1.createError)('获取extra 比赛数据失败 网络问题' + error.message, error_1.Code.dataFail);
+        throw (0, error_1.createError)('获取extra 比赛数据失败 网络问题' + _url.origin + error.message, error_1.Code.dataFail);
     }
     if (!text) {
         throw (0, error_1.createError)('获取extra 比赛数据失败,数据空', error_1.Code.dataFail);
