@@ -25,3 +25,5 @@ data
 *.zip
 config.ts
 test.ts
+localUpdate.ts
+localUpdate.js
