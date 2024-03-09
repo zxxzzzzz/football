@@ -7,6 +7,7 @@
     "dev": "pnpm exec tsx ./src/index.ts",
     "build": "npx tsc --project tsconfig.build.json",
     "test": "cross-env dev=1  pnpm exec tsx ./src/test.ts",
+    "localWifi": "tsx ./src/localWifi.ts",
     "localUpdate": "pnpm build & cross-env dev=1 pm2 start ./dist/localUpdate.js & pm2 monit"
   },
   "keywords": [],
